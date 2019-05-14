@@ -1,0 +1,80 @@
+type	code	title	nom	professor	studentLastname	studentFirstname	studentEmail
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Beech	Caroline	cbeech@vassar.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Frechette	Jillian	jfrechette@vassar.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Gikas	Emily	egikas@vassar.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Hebert	Abigail	ahebert@vassar.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Hu	Qingyang (Heropeia)	qhu@wesleyan.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Hussey	Erin	ehussey@wesleyan.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Kotru Gode	Tanya	tkotrugode@vassar.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Prendergast	Alexandra	aprendergast@wesleyan.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Rome	Nita	nrome@wesleyan.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Rose	Erin	ehrose@wesleyan.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	Samios	Olivia	osamios@wesleyan.edu
+Writing	WI1	Myths in Literature	Les Mythes dans la littérature	Crippa , Simona	test	test	director@vwpp.org
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Cole	Elizabeth (Betsy)	edcole@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Compton	Nell	nscompton@vassar.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	DeNooyer	Allegra	adenooyer@vassar.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Fowler	Claire	cfowler@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Kusel	Madeleine	mkusel@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Le Beau	Mariah	mlebeau@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Lubin	Gillian	glubin@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Tennant	Sawyer	stennant@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Wassoodew	Mika	mwassoodew@wesleyan.edu
+Writing	WI2	Paris in French Cinema	 Le spectacle de Paris au cinéma 	Degenève, Jonathan	Young	Johanna	jcyoung@wesleyan.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Chester	Cormac	cchester@wesleyan.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Clejan	Thomas	tclejan@wesleyan.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Dudley	Ayana	adudley@wesleyan.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Hansen	Amy	ahansen@vassar.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Heimler	Daniel	dheimler@wesleyan.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Sun	Alex	asun@vassar.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Wexler	Olive	owexler@wesleyan.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Young	Madleine	mayoung@vassar.edu
+Writing	WI3	French Love : A Strange Exception?	L?Amour à la française : Une exception étrange ?	Graille, Patrick	Zola	Aidan	azola@vassar.edu
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	Ahuja	Siddhant	sahuja@wesleyan.edu
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	Azuelos	Alexander	aazuelos@vassar.edu
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	LaCascia	Joseph	jlacascia@vassar.edu
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	McCarthy	Sam	smccarthy1997@gmail.com
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	Savoy	Gina	gsavoy@wesleyan.edu
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	Smith	Ariana	asmith@vassar.edu
+Writing	WI4	The French West Indies: A Global Laboratory	 Les Antilles Françaises : Laboratoire de la Mondialité	Lauro-Raoulx, Raphaël	Wang	Megan	mwang@vassar.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Beech	Caroline	cbeech@vassar.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Dudley	Ayana	adudley@wesleyan.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Frechette	Jillian	jfrechette@vassar.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Gikas	Emily	egikas@vassar.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Hebert	Abigail	ahebert@vassar.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Kotru Gode	Tanya	tkotrugode@vassar.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Kusel	Madeleine	mkusel@wesleyan.edu
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	test	test	director@vwpp.org
+Seminar	S1	Theater : Shining Light on the World	 Le Théâtre, lumière du monde	Clément, Bruno	Wexler	Olive	owexler@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Chester	Cormac	cchester@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Heimler	Daniel	dheimler@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Le Beau	Mariah	mlebeau@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Lubin	Gillian	glubin@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Rome	Nita	nrome@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Rose	Erin	ehrose@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Samios	Olivia	osamios@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	test	test	director@vwpp.org
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Wang	Megan	mwang@vassar.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Wassoodew	Mika	mwassoodew@wesleyan.edu
+Seminar	S2	Art and Politics: The Activist Artist	Art et politique:l?artiste engagé	Kraguly, Néna	Young	Johanna	jcyoung@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Ahuja	Siddhant	sahuja@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Compton	Nell	nscompton@vassar.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Fowler	Claire	cfowler@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Hussey	Erin	ehussey@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Prendergast	Alexandra	aprendergast@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Savoy	Gina	gsavoy@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Sun	Alex	asun@vassar.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Tennant	Sawyer	stennant@wesleyan.edu
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	test	test	director@vwpp.org
+Seminar	S3	« Arabs »,  Islam and Politics in France (1962-2018)	 Les « Arabes », l?islam et la vie politique en France (1962-2018)	Taraud, Christelle	Young	Madleine	mayoung@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Azuelos	Alexander	aazuelos@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Cole	Elizabeth (Betsy)	edcole@wesleyan.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Compton	Nell	nscompton@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	DeNooyer	Allegra	adenooyer@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Gikas	Emily	egikas@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Hansen	Amy	ahansen@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	LaCascia	Joseph	jlacascia@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Lubin	Gillian	glubin@wesleyan.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	McCarthy	Sam	smccarthy1997@gmail.com
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Smith	Ariana	asmith@vassar.edu
+Seminar	S4	A Post-Colonial France ? A Journey from the Past to the Present	Une France postcoloniale ? Un voyage entre passé et présent 	Larcher, Silyane	Zola	Aidan	azola@vassar.edu
