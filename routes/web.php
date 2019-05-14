@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/documents', 'DocumentController@index')->name('documents.index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
