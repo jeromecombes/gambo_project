@@ -1,8 +1,69 @@
-@include('includes.header')
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@if($data['myCategory'] == 'student')
-    @include('includes.student_menu')
-@endif
+        <title>VWPP Database</title>
+        
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-@yield('content')
-@include('includes.footer')
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/dataTables/jquery.dataTables_themeroller.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/print.css') }}" rel="stylesheet" media='print'>
+
+        <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
+
+        <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/jquery-1.10.2.js'></script>
+        <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/ui/jquery-ui.js'></script>
+        <script type='text/JavaScript' src='/js/dataTables/jquery.dataTables.min.js'></script>
+        <script type='text/JavaScript' src='/js/dataTables/sort.js'></script>
+        <script type='text/JavaScript' src='/js/CJScript.js'></script>
+        <script type='text/JavaScript' src='/js/script.js'></script>
+    </head>
+
+    <body>
+
+        <div id='body'>
+            <div class="content">
+                <div id='title'>VWPP Database</div>
+                <div id='loginName'>
+                    <span>
+                    @if($_SESSION['vwpp']['login_name'])
+                        {{ $_SESSION['vwpp']['login_name'] }}
+                    @endif
+                    </span>
+                    <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
+                    <div id='myMenu'>
+                        <a href='myAccount.php'>My Account</a><br/>
+                        <a href='logout.php'>Logout</a>
+                    </div>
+                </div>
+
+                <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
+
+                    @if($_SESSION['vwpp']['category'] == 'student')
+                        @include('includes.student_menu')
+                    @endif
+
+                    @if(!empty($successMsg))
+                        <div class="alert alert-success"> {{ $successMsg }}</div>
+                    @endif
+
+                    <section id='content'>
+                        @yield('content')
+                    </section> <!-- content -->
+
+                </div>	<!-- tabs -->
+            </div>
+            <footer>
+                <a href='http://www.jeromecombes.com' target='_blank'>Created by jeromecombes.com</a>
+            </footer>
+        </div> <!-- id=body or login1-->
+    </body>
+</html>

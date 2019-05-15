@@ -360,14 +360,20 @@ ul.ui-widget-header{
   line-height: 20px;
 }
 
+.align-right {
+    width: 100%;
+    text-align: right;
+    margin: 20px auto;
+}
+
 .myUI-button{
 	min-width:100px;
-	margin-right:30px;
+	margin-right:20px;
 }
 
 .myUI-button-right{
 	min-width:100px;
-	margin-left:30px;
+	margin-left:20px;
 }
 
 section#content{
