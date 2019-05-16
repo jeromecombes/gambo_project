@@ -19,7 +19,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                     <th>Type</th>
                     <th>Size</th>
                     <th>Date</th>
-                    @if($_SESSION['vwpp']['category'] == 'admin')
+                    @if(session('admin'))
                         <th>Visibility</th>
                     @endif
                 </tr>
@@ -28,12 +28,12 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
 
             @foreach($documents as $doc)
                 <tr>
-                    <td><a href='/preview/{{ $doc->id }}' target='_blank'> {{ $doc->name }}</a></td>
+                    <td><a href='/show/{{ $doc->id }}' target='_blank'> {{ $doc->name }}</a></td>
                     <td>{{ $doc->rel }}</td>
                     <td>{{ $doc->type }}</td>
-                    <td style='text-align:right;'>{{ $doc->size }}</td>
-                    <td>{{ $doc->time }}</td>
-                    @if($_SESSION['vwpp']['category'] == 'admin')
+                    <td style='white-space:nowrap; text-align:right;'>{{ $doc->size }}</td>
+                    <td style='white-space:nowrap;'>{{ $doc->time }}</td>
+                    @if(session('admin'))
                         <td>{{ $doc->visibility }}</td>
                     @endif
                 </tr>
@@ -47,10 +47,13 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
     @endif
 
     <p class='align-right'>
-        @if($_SESSION['vwpp']['category'] == 'admin')
-            <a class='myUI-button' href='/documents/edit'>Edit</a>
+        @if(session('admin'))
+            @if(session('student'))
+                <a class='myUI-button' href='/documents/edit'>Edit</a>
+                <a class='myUI-button' href='/documents/add'>Add files</a>
+            @endif
         @else
-            <a class='myUI-button' href='/documents/edit'>Add files</a>
+            <a class='myUI-button' href='/documents/add'>Add files</a>
         @endif
     </p>
 

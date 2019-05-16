@@ -17,12 +17,33 @@ class DocumentController extends Controller
 
 
     /**
+     * Show the form for adding the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function add()
+    {
+        $document_types = array_merge(array(''), explode(',', getenv('DOCUMENT_TYPES')));
+        sort($document_types);
+
+        return view('documents.add', compact('document_types'));
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $admin = $_SESSION['vwpp']['category'] == 'admin';
+        $request->session()->put('admin', $admin);
+
+        $student = !empty($_SESSION['vwpp']['student']) ? $_SESSION['vwpp']['student'] : null;
+        $request->session()->put('student', $student);
+
+        $request->session()->put('semester', $_SESSION['vwpp']['semestre']);
+
         $documents = $this->get();
         return view('documents.index', compact('documents'));
     }
@@ -62,6 +83,7 @@ class DocumentController extends Controller
                 $doc->realname = $filename;
                 $doc->student = $request->student;
                 $doc->rel = $request->post('rel'.$i) ? $request->post('rel'.$i) : 'Other';
+                $doc->adminOnly = !empty($request->post('admin'.$i)) ? 1 : 0;
                 $doc->save();
                 
                 $files[] = $filename;
@@ -222,12 +244,26 @@ class DocumentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Document $document
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Document $document)
+    public function show(Request $request)
     {
-        //
+        $doc = $this->get()->find($request->id);
+
+        if (empty($doc)) {
+            return view('documents.access_denied');
+        }
+
+        $folder = date('Y/m/', $doc->timestamp);
+        $file = $folder.$doc->id;
+        $content = decrypt(Storage::get($file));
+
+        header('Content-Disposition: inline; filename='.$doc->name);
+        header('Content-type:'.$doc->type);
+        header('Cache-Control: private, max-age=0, must-revalidate');
+        header('Pragma: public');
+        echo $content;
     }
 
     /**
@@ -243,9 +279,7 @@ class DocumentController extends Controller
         $document_types = array_merge(array(''), explode(',', getenv('DOCUMENT_TYPES')));
         sort($document_types);
 
-        $student = !empty($_SESSION['vwpp']['student']) ? $_SESSION['vwpp']['student'] : 0;
-
-        return view('documents.edit', compact('documents', 'document_types', 'student'));
+        return view('documents.edit', compact('documents', 'document_types'));
 
     }
 
@@ -276,19 +310,20 @@ class DocumentController extends Controller
      * Retrieve documents for logged in or selected student
      *
      * @param  int $student (optional student ID)
+     * @param  \Illuminate\Http\Request  $request
      * @return \App\Document
      */
     private function get(int $student = 0)
     {
-        $admin = $_SESSION['vwpp']['category'] == 'admin';
-        $student = !empty($_SESSION['vwpp']['student']) ? $_SESSION['vwpp']['student'] : null;
+        $student = session('student');
 
         // Retrieving documents
-        if ($admin) {
+        if (session('admin')) {
             if ($student) {
                 $documents = Document::where('student',$student)->get();
             } else {
-                $students = !empty($_SESSION['vwpp']['studentsList']) ? $_SESSION['vwpp']['studentsList'] : array();
+                $semester = session('semester');
+                $students = Student::where('semestre', $semester)->pluck('id')->toArray();
                 $documents = Document::whereIn('student', $students)->get();
             }
         } else {
@@ -298,32 +333,6 @@ class DocumentController extends Controller
         return $documents;
     }
 
-    /**
-     * Show a document
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function preview(Request $request)
-    {
-        $doc = $this->get()->find($request->id);
-
-        if (empty($doc)) {
-            return view('documents.access_denied');
-        }
-
-        $folder = date('Y/m/', $doc->timestamp);
-        $file = $folder.$doc->id;
-        $content = decrypt(Storage::get($file));
-
-        header('Content-Disposition: inline; filename='.$doc->name);
-        header('Content-type:'.$doc->type);
-        header('Cache-Control: private, max-age=0, must-revalidate');
-        header('Pragma: public');
-        echo $content;
-    }
-
-    
     /**
      * Convert old documents
      *

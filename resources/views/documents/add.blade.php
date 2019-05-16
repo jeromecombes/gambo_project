@@ -14,39 +14,18 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
     
     <input type='hidden' name='student' value='{{session('student')}}' />
 
-        <table class='datatable' data-sort='[]'>
+        <table>
             <thead>
                 <tr>
+                    <th>File</th>
+                    <th>Type of document</th>
                     @if(session('admin'))
-                        <th>Name</th>
-                        <th>Document</th>
-                        <th>Type</th>
-                        <th>Size</th>
-                        <th>Date</th>
-                        <th>Visibility</th>
-                    @else
-                        <th>File</th>
-                        <th>Type of document</th>
+                        <th>Admin Only</th>
                     @endif
                 </tr>
             </thead>
 
             <tbody>
-            @if(session('admin'))
-                @foreach ($documents as $doc)
-                    <tr>
-                        <td><a href='/preview.php?id={{ $doc->id }}' target='_blank'> {{ $doc->name }}</a></td>
-                        <td>{{ $doc->rel }}</td>
-                        <td>{{ $doc->type }}</td>
-                        <td style='white-space:nowrap; text-align:right;'>{{ $doc->size }}</td>
-                        <td style='white-space:nowrap;'>{{ $doc->time }}</td>
-                        @if(session('admin'))
-                            <td>{{ $doc->visibility }}</td>
-                        @endif
-                    </tr>
-                @endforeach
-            @endif
-
             @for ($i = 0; $i < 5; $i++)
                 <tr>
                     <td>
@@ -60,9 +39,6 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                         </select>
                     </td>
                     @if(session('admin'))
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
                         <td><input type='checkbox' name='admin{{$i}}' value='1' /></td>
                     @endif
                 </tr>
