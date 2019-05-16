@@ -23,3 +23,8 @@ Route::get('/preview/{id}', 'DocumentController@preview')->middleware('old.sessi
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// TEST
+Route::get('/convert', 'DocumentController@convert')->name('document.convert');
+

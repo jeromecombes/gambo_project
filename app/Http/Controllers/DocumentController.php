@@ -288,9 +288,9 @@ class DocumentController extends Controller
 
         // Retrieving documents
         if ($admin) {
-            $documents = Document::where('student',$student)->where('timestamp', '>', 1557927192)->get();
+            $documents = Document::where('student',$student)->get();                            // ->where('timestamp', '>', 1557927192)
         } else {
-            $documents = Document::where('student',$student)->where('timestamp', '>', 1557927192)->where('adminOnly', 0)->get();
+            $documents = Document::where('student',$student)->where('adminOnly', 0)->get();     // ->where('timestamp', '>', 1557927192)
         }
         
         return $documents;
@@ -320,5 +320,154 @@ class DocumentController extends Controller
         header('Pragma: public');
         echo $content;
     }
+
+    
+    /**
+     * Convert old documents
+     *
+     */
+    public function convert()
+    {
+        $this->convert_files();
+//         $this->convert_db();
+    }
+ 
+    /**
+     * Convert old documents
+     *
+     */
+    public function convert_db()
+    {
+        $doc=Document::where('timestamp', '<=', 1557927192)->get();
+        
+        echo "count : ".$doc->count();
+        echo "<br><br>";
+
+        foreach ($doc as $d) {
+        
+            $name = $this->old_decrypt($d->name, $d->student);
+            $size = $this->old_decrypt($d->size, $d->student);
+            $type = $this->old_decrypt($d->type, $d->student);
+            
+            echo "$name / $size / $type <br/>";
+            $d->name = encrypt($name);
+            $d->size = encrypt($size);
+            $d->type = encrypt($type);
+            $d->save();
+ 
+        }
+        
+    }
+
+    /**
+     * Convert old documents
+     *
+     */
+    public function convert_files()
+    {
+        $start = 2012;
+        $end = 2019;
+        
+        for ($year=$start; $year<=$end; $year++) {
+
+            $folder_year = app_path().'/../documents/'.$year;
+
+            if (!is_dir($folder_year) or $folder_year == '.' or $folder_year == '..') {
+                continue;
+            }
+
+            echo "Scanning $folder_year<br/><br/>";
+            $folders_months = scandir($folder_year);
+            print_r($folders_months);
+            echo "<br/><br/>";
+
+            foreach ($folders_months as $folder) {
+                $folder_month = $folder_year.'/'.$folder;
+
+                if (!is_dir($folder_month) or $folder_month == '.' or $folder_month == '..') {
+                    continue;
+                }
+
+                echo "Scanning $folder_month<br/><br/>";
+                $files = scandir($folder_month);
+                print_r($files);
+                echo "<br/><br/>";
+
+                foreach ($files as $file) {
+                    $original_file = $folder_month.'/'.$file;
+
+                    if (!is_file($original_file)) {
+                        continue;
+                    }
+
+                    echo "Decrypt $original_file<br/><br/>";
+
+                    $doc=Document::find($file);
+                    if (!$doc) {
+                        echo "$file not found in DB<br/><br/>";
+                        continue;
+                    }
+
+                    if (file_exists(storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id)) {
+                        echo storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id." Already exists<br/><br/>";
+                        continue;
+                    }
+
+                    $content = $this->old_decrypt(file_get_contents($original_file), $doc->student);
+
+                    // Original checksum
+                    $checksum1 = md5($content);
+
+                    // If checksum error, keep the file in the tmp folder without encryption
+                    if (empty($checksum1)) {
+                        echo "Can't check the file \"$original_file\" !<br/><br/>";
+                        continue;
+                    }
+
+                    // Encrypt the file
+                    $document = encrypt($content);
+
+                    // Store the encrypted file
+                    Storage::put(date('Y/m/', $doc->timestamp).$doc->id, $document);
+
+                    // Test / compare checksums
+                    $test = decrypt(Storage::get(date('Y/m/', $doc->timestamp).$doc->id));
+                    $checksum2 = md5($test);
+
+                    if ($checksum1 != $checksum2) {
+                        echo "Can't encrypt the file \"$original_file\" !<br/><br/>";
+                        continue;
+                    }
+                }
+            }         
+        }
+    }
+    
+    /**
+     * Old decrypt function
+     *
+     * @param  String $crypted_token
+     * @param  String $key
+     * @return String $decrypted_token
+     */
+    public function old_decrypt(String $crypted_token, String $key=null)
+    {
+        if($crypted_token === null){
+            return null;
+        }
+
+        $decrypted_token = false;
+
+        if(preg_match("/^(.*)::(.*)$/", $crypted_token, $regs)) {
+            // decrypt encrypted string
+            list(, $crypted_token, $enc_iv) = $regs;
+            $enc_method = 'AES-128-CTR';
+            $enc_key = openssl_digest($key.'1A30FA887BF404DA8B8477B1', 'SHA256', TRUE);
+            $decrypted_token = openssl_decrypt($crypted_token, $enc_method, $enc_key, 0, hex2bin($enc_iv));
+            unset($crypted_token, $enc_method, $enc_key, $enc_iv, $regs);
+        }
+        return $decrypted_token;
+    }
+
 
 }
