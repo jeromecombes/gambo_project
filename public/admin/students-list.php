@@ -9,6 +9,8 @@ require_once "menu.php";
 $semestre=filter_input(INPUT_GET,"semestre",FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET,"sort",FILTER_SANITIZE_STRING);
 
+$_SESSION['vwpp']['student'] = null;
+
 if($semestre){
   $_SESSION['vwpp']['semestre']=$semestre;
   $_SESSION['vwpp']['semester']=str_replace("_"," ",$semestre);

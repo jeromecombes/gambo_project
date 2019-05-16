@@ -281,18 +281,20 @@ class DocumentController extends Controller
     private function get(int $student = 0)
     {
         $admin = $_SESSION['vwpp']['category'] == 'admin';
-
-        if (!$admin) {
-            $student = $_SESSION['vwpp']['student'];
-        }
+        $student = !empty($_SESSION['vwpp']['student']) ? $_SESSION['vwpp']['student'] : null;
 
         // Retrieving documents
         if ($admin) {
-            $documents = Document::where('student',$student)->get();                            // ->where('timestamp', '>', 1557927192)
+            if ($student) {
+                $documents = Document::where('student',$student)->get();
+            } else {
+                $students = !empty($_SESSION['vwpp']['studentsList']) ? $_SESSION['vwpp']['studentsList'] : array();
+                $documents = Document::whereIn('student', $students)->get();
+            }
         } else {
-            $documents = Document::where('student',$student)->where('adminOnly', 0)->get();     // ->where('timestamp', '>', 1557927192)
+            $documents = Document::where('student',$student)->where('adminOnly', 0)->get();
         }
-        
+
         return $documents;
     }
 

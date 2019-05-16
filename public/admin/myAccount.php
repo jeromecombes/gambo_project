@@ -1,10 +1,13 @@
 <?php
 // Last update : 2015-03-20
 
+
 if(!isset($_POST['password'])){
   require_once "../header.php";
   require_once "../inc/class.users.inc";
   require_once "menu.php";
+
+  $_SESSION['vwpp']['student'] = null;
 
   $u=new user();
   $u->fetch($_SESSION['vwpp']['login_id']);

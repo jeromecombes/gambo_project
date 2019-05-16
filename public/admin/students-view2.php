@@ -26,6 +26,8 @@ $std->id=$std_id;
 $std->fetch();
 $std=$std->elements;
 
+$_SESSION['vwpp']['student'] = $std_id;
+
 
 //	Show student menu
 require_once "students-menu2.php";
