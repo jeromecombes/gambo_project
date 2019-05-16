@@ -47,7 +47,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                 @endforeach
             @endif
 
-            @for ($i = 0; $i < 3; $i++)
+            @for ($i = 0; $i < 5; $i++)
                 <tr>
                     <td>
                         <input type='file' name='file{{$i}}' />

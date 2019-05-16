@@ -51,8 +51,12 @@
                         @include('includes.student_menu')
                     @endif
 
-                    @if(!empty($successMsg))
-                        <div class="alert alert-success"> {{ $successMsg }}</div>
+                    @if (session('success'))
+                        <div class="alert alert-success"> {{ session('success') }}</div>
+                    @endif
+
+                    @if (session('warning'))
+                        <div class="alert alert-warning"> {{ session('warning') }}</div>
                     @endif
 
                     <section id='content'>

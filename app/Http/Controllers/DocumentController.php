@@ -7,6 +7,7 @@ use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class DocumentController extends Controller
 {
@@ -47,7 +48,7 @@ class DocumentController extends Controller
         // New uploads
         $files = array();
 
-        for ($i=0; $i<3; $i++) {
+        for ($i=0; $i<5; $i++) {
             $file = $request->file('file'.$i);
             if ($file) {
 
@@ -66,15 +67,36 @@ class DocumentController extends Controller
                 $files[] = $filename;
             }
         }
-        
-        // Get files information
-        $this->get_files_information($files);
 
-        // Encrypt files
-        $this->encrypt($files);
+        // If no file selected
+        if (empty($files)) {
+            $this->error = 1;
+            $error = "No file selected";
+            $this->msg[] = $error;
+            Log::error($error);
 
-        $documents = $this->get();
-        return view('documents.index', compact('documents'))->with('successMsg','Your files have been copied successfully');
+        // If files selected, store information in DB, encrypt files and move them to the permanent directory
+        } else {
+            // Get files information
+            $this->get_files_information($files);
+
+            // Encrypt files
+            $this->encrypt($files);
+        }
+
+        // Retrieve student documents to return index view
+//         $documents = $this->get();
+
+        // Messages
+        if ($this->error) {
+            $msgType = "warning";
+            $message = implode("<br/>", $this->msg);
+        } else {
+            $msgType = "success";
+            $message = "Documents have been successfully uploaded";
+        }
+
+        return redirect('documents')->with($msgType, $message);
     }
 
     /**
@@ -120,8 +142,13 @@ class DocumentController extends Controller
                 $rel = "Other";
             }
 
-            $name = $rel."_".$student_name;
-            
+            $count = '_'.(Document::where('student',$student_id)->where('rel', $rel)->count() +1);
+            if ($count == '_1') {
+                $count = null;
+            }
+
+            $name = $rel."_".$student_name.$count;
+
             $doc->name = encrypt($name);
             $doc->size = encrypt($size);
             $doc->timestamp = $timestamp;
@@ -155,7 +182,12 @@ class DocumentController extends Controller
             // If checksum error, keep the file in the tmp folder without encryption
             if (empty($checksum1)) {
                 $this->error = 1;
-                $this->msg[] = "Can't check the file \"$filename\". It won't be encrypted !";
+                $error = "Can't check the file \"$filename\". It won't be saved !";
+                $this->msg[] = $error;
+                Log::error($error);
+
+                Storage::delete('tmp/'.$filename);
+                $doc->delete();
 
                 continue;
             }
@@ -169,11 +201,15 @@ class DocumentController extends Controller
             // Test / compare checksums
             $test = decrypt(Storage::get(date('Y/m/', $doc->timestamp).$doc->id));
             $checksum2 = md5($test);
-            
+
             if ($checksum1 != $checksum2) {
                 $this->error = 1;
-                $this->msg[] = "Can't encrypt the file \"$filename\" ! It will be stored decrypted.";
-                echo "Can't encrypt the file \"$filename\" ! It will be stored decrypted.";
+                $error = "Can't encrypt the file \"$filename\" ! It won't be saved !";
+                $this->msg[] = $error;
+                Log::error($error);
+
+                Storage::delete('tmp/'.$filename);
+                $doc->delete();
 
                 continue;
 
