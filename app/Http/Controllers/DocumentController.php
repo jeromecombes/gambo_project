@@ -328,7 +328,8 @@ class DocumentController extends Controller
      */
     public function convert()
     {
-        $this->convert_files();
+//         echo $this->convert_files();
+//  TODO : before converting the DB, comment all lines in Document's Model
 //         $this->convert_db();
     }
  
@@ -348,11 +349,15 @@ class DocumentController extends Controller
             $name = $this->old_decrypt($d->name, $d->student);
             $size = $this->old_decrypt($d->size, $d->student);
             $type = $this->old_decrypt($d->type, $d->student);
+            $realname = $this->old_decrypt($d->realname, $d->student);
+            $type2 = $this->old_decrypt($d->type2, $d->student);
             
             echo "$name / $size / $type <br/>";
             $d->name = encrypt($name);
             $d->size = encrypt($size);
             $d->type = encrypt($type);
+            $d->realname = encrypt($realname);
+            $d->type2 = encrypt($type2);
             $d->save();
  
         }
@@ -367,7 +372,9 @@ class DocumentController extends Controller
     {
         $start = 2012;
         $end = 2019;
-        
+
+        $i = 0;
+
         for ($year=$start; $year<=$end; $year++) {
 
             $folder_year = app_path().'/../documents/'.$year;
@@ -378,20 +385,20 @@ class DocumentController extends Controller
 
             echo "Scanning $folder_year<br/><br/>";
             $folders_months = scandir($folder_year);
-            print_r($folders_months);
-            echo "<br/><br/>";
+//             print_r($folders_months);
+//             echo "<br/><br/>";
 
             foreach ($folders_months as $folder) {
                 $folder_month = $folder_year.'/'.$folder;
 
-                if (!is_dir($folder_month) or $folder_month == '.' or $folder_month == '..') {
+                if (!is_dir($folder_month) or $folder == '.' or $folder == '..') {
                     continue;
                 }
 
                 echo "Scanning $folder_month<br/><br/>";
                 $files = scandir($folder_month);
-                print_r($files);
-                echo "<br/><br/>";
+//                 print_r($files);
+//                 echo "<br/><br/>";
 
                 foreach ($files as $file) {
                     $original_file = $folder_month.'/'.$file;
@@ -409,7 +416,7 @@ class DocumentController extends Controller
                     }
 
                     if (file_exists(storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id)) {
-                        echo storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id." Already exists<br/><br/>";
+//                         echo storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id." Already exists<br/><br/>";
                         continue;
                     }
 
@@ -438,9 +445,16 @@ class DocumentController extends Controller
                         echo "Can't encrypt the file \"$original_file\" !<br/><br/>";
                         continue;
                     }
+
+                    $i++;
+                    if ($i >= 40) {
+                        return "40 files converted";
+                    }
                 }
             }         
         }
+
+        return "done";
     }
     
     /**
