@@ -16,10 +16,10 @@ foreach($db->result as $elem){
       $tab[$i][$key]=$elem[$key];
     }
     elseif(in_array($key,array("university","cm_code"))){
-      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key]):null;
+      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key]):null;
     }
     elseif(!is_numeric($key)){
-      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key],$elem['student']):null;
+      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key],$elem['student']):null;
     }
   }
 $i++;
@@ -80,7 +80,7 @@ foreach($tab as $elem){
 	$data[":$key"]=$elem[$cmFields1[$key]];
       }
       elseif(!is_numeric($key)){
-	$data[":$key"]=($elem[$cmFields1[$key]] and !is_numeric($key))?encrypt($elem[$cmFields1[$key]]):null;
+	$data[":$key"]=($elem[$cmFields1[$key]] and !is_numeric($key))?encrypt_vwpp($elem[$cmFields1[$key]]):null;
       }
     }
     if(empty($data[':code']) or $data[':code']=="?" or $data[':code']=="N/A" or $data[':code']=="NA")
@@ -105,10 +105,10 @@ foreach($db->result as $elem){
       $tab[$i][$key]=$elem[$key];
     }
     elseif(in_array($key,array("university","cm_code"))){
-      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key]):null;
+      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key]):null;
     }
     elseif(!is_numeric($key)){
-      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key],$elem['student']):null;
+      $tab[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key],$elem['student']):null;
     }
   }
 $i++;
@@ -137,7 +137,7 @@ foreach($tab as $elem){
 	$data[":$key"]=$elem[$tdFields1[$key]];
       }
       elseif(!is_numeric($key)){
-	$data[":$key"]=($elem[$tdFields1[$key]] and !is_numeric($key))?encrypt($elem[$tdFields1[$key]]):null;
+	$data[":$key"]=($elem[$tdFields1[$key]] and !is_numeric($key))?encrypt_vwpp($elem[$tdFields1[$key]]):null;
       }
     }
     if(empty($data[':code']) or $data[':code']=="?" or $data[':code']=="N/A" or $data[':code']=="NA")
@@ -158,8 +158,8 @@ foreach($tab as $elem){
 $db=new db();
 $db->select("courses_univ");
 foreach($db->result as $elem){
-  $univ=$elem["university"]?decrypt($elem["university"]):null;
-  $code=$elem["cm_code"]?decrypt($elem["cm_code"]):$elem['student'];
+  $univ=$elem["university"]?decrypt_vwpp($elem["university"]):null;
+  $code=$elem["cm_code"]?decrypt_vwpp($elem["cm_code"]):$elem['student'];
   $semester=str_replace("_"," ",$elem['semester']);
   $db2=new db();
   $db2->select("courses_cm","id","university='$univ' AND code='$code'");
@@ -173,8 +173,8 @@ foreach($db->result as $elem){
 $db=new db();
 $db->select("courses_univ");
 foreach($db->result as $elem){
-  $univ=$elem["university"]?decrypt($elem["university"]):null;
-  $code=$elem["td_code"]?decrypt($elem["td_code"]):$elem['student'];
+  $univ=$elem["university"]?decrypt_vwpp($elem["university"]):null;
+  $code=$elem["td_code"]?decrypt_vwpp($elem["td_code"]):$elem['student'];
   $semester=str_replace("_"," ",$elem['semester']);
   $db2=new db();
   $db2->select("courses_td","id","university='$univ' AND code='$code'");
@@ -224,9 +224,9 @@ $dbh->prepare("UPDATE courses_cm SET niveau=:niveau WHERE id=:id");
 $db=new db();
 $db->select("courses_cm");
 foreach($db->result as $elem){
-  $niveau=decrypt($elem["niveau"]);
+  $niveau=decrypt_vwpp($elem["niveau"]);
   $niveau=str_replace(array("L","M"),array("Licence ","Master "),$niveau);
-  $niveau=encrypt($niveau);
+  $niveau=encrypt_vwpp($niveau);
   $data=array(":id"=>$elem['id'],":niveau"=>$niveau);
   $dbh->execute($data);
 }

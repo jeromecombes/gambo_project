@@ -31,7 +31,7 @@ class univ3{
     $cm=array(":university"=>$course["university"],":code"=>$course["code"],":semester"=>$this->semester);
     $fields=array("ufr","parcours","discipline","departement","licence","niveau","nom","prof","email","jour1","debut1","fin1","jour2","debut2","fin2","credits");
     foreach($fields as $field){
-      $cm[":".$field]=encrypt(htmlentities($course[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+      $cm[":".$field]=encrypt_vwpp(htmlentities($course[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
     }
     $db=new dbh();
     $db->prepare("INSERT INTO courses_cm (university,code,semester,ufr,parcours,discipline,departement,licence,niveau,nom,prof,email,jour1,debut1,fin1,jour2,debut2,fin2,credits)
@@ -49,7 +49,7 @@ class univ3{
     $td=array(":university"=>$course["university"],":code"=>$course["code"],":semester"=>$this->semester);
     $fields=array("nom","nom_en","prof","email","jour1","debut1","fin1","jour2","debut2","fin2");
     foreach($fields as $field){
-      $td[":".$field]=encrypt(htmlentities($course[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+      $td[":".$field]=encrypt_vwpp(htmlentities($course[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
     }
     $db=new dbh();					// Ajouter jour1,debut1,fin1,jour2,debut2,fin2
     $db->prepare("INSERT INTO courses_td (university,code,semester,nom,nom_en,prof,email,jour1,debut1,fin1,jour2,debut2,fin2)
@@ -130,7 +130,7 @@ class univ3{
       $keys=array_keys($d);
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $cm[$key]=decrypt($d[$key]);
+	  $cm[$key]=decrypt_vwpp($d[$key]);
       }
       $cm["university"]=$d["university"];
       $cm["code"]=$d['code'];
@@ -158,7 +158,7 @@ class univ3{
       $keys=array_keys($d);
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $td[$key]=decrypt($d[$key]);
+	  $td[$key]=decrypt_vwpp($d[$key]);
       }
       $td["university"]=$d["university"];
       $td["code"]=$d['code'];
@@ -190,7 +190,7 @@ class univ3{
 	$keys=array_keys($d);
 	foreach($keys as $key){
 	  if(!is_numeric($key))
-	    $cm[$key]=decrypt($d[$key]);
+	    $cm[$key]=decrypt_vwpp($d[$key]);
 	}
 	$cm["university"]=$d["university"];
 	$cm["code"]=$d['code'];
@@ -218,7 +218,7 @@ class univ3{
 	$keys=array_keys($d);
 	foreach($keys as $key){
 	  if(!is_numeric($key))
-	    $td[$key]=decrypt($d[$key]);
+	    $td[$key]=decrypt_vwpp($d[$key]);
 	}
 	$td["university"]=$d["university"];
 	$td["code"]=$d['code'];
@@ -258,7 +258,7 @@ class univ3{
       $cm=array();
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $cm[$key]=decrypt($elem[$key]);
+	  $cm[$key]=decrypt_vwpp($elem[$key]);
       }
       $cm["university"]=$elem["university"];
       $cm["code"]=$elem['code'];
@@ -296,7 +296,7 @@ class univ3{
       $td=array();
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $td[$key]=decrypt($elem[$key]);
+	  $td[$key]=decrypt_vwpp($elem[$key]);
       }
       $td["university"]=$elem["university"];
       $td["code"]=$elem['code'];
@@ -339,7 +339,7 @@ class univ3{
       $keys=array_keys($d);
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $cm[$key]=decrypt($d[$key]);
+	  $cm[$key]=decrypt_vwpp($d[$key]);
       }
       $cm["university"]=$d["university"];
       $cm["code"]=$d['code'];
@@ -357,7 +357,7 @@ class univ3{
       $keys=array_keys($d);
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $cm[$key]=decrypt($d[$key]);
+	  $cm[$key]=decrypt_vwpp($d[$key]);
       }
       $cm["university"]=$d["university"];
       $cm["code"]=$d['code'];
@@ -417,7 +417,7 @@ class univ3{
       $keys=array_keys($d);
       foreach($keys as $key){
 	if(!is_numeric($key))
-	  $td[$key]=decrypt($d[$key]);
+	  $td[$key]=decrypt_vwpp($d[$key]);
       }
       $td["university"]=$d["university"];
       $td["code"]=$d['code'];
@@ -538,7 +538,7 @@ class univ3{
       if(in_array($key,array("id","university","code","semester")))
 	$tab[":$key"]=$data[$key];
       else
-	$tab[":$key"]=encrypt(htmlentities($data[$key],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+	$tab[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES|ENT_IGNORE,"utf-8"));
     }
 
 
@@ -565,7 +565,7 @@ class univ3{
       if(in_array($key,array("id","university","code","semester")))
 	$tab[":$key"]=$data[$key];
       else
-	$tab[":$key"]=encrypt(htmlentities($data[$key],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+	$tab[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES|ENT_IGNORE,"utf-8"));
     }
 
 

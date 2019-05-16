@@ -45,14 +45,14 @@ if($semestre){
   $db->select("students","*","semesters LIKE '%\"$semestre\"%'");
   $students=$db->result;
   for($i=0;$i<count($students);$i++){
-      $students[$i]['lastname']=decrypt($students[$i]['lastname']);
-      $students[$i]['firstname']=decrypt($students[$i]['firstname']);
-      $students[$i]['gender']=decrypt($students[$i]['gender'],$students[$i]['id']);
-      $students[$i]['email']=decrypt($students[$i]['email']);
+      $students[$i]['lastname']=decrypt_vwpp($students[$i]['lastname']);
+      $students[$i]['firstname']=decrypt_vwpp($students[$i]['firstname']);
+      $students[$i]['gender']=decrypt_vwpp($students[$i]['gender'],$students[$i]['id']);
+      $students[$i]['email']=decrypt_vwpp($students[$i]['email']);
       $students[$i]['univ']=$students[$i]['university'];
-      $students[$i]['homeInstitution']=decrypt($students[$i]['homeInstitution'],$students[$i]['id']);
+      $students[$i]['homeInstitution']=decrypt_vwpp($students[$i]['homeInstitution'],$students[$i]['id']);
       $students[$i]['university']=$students[$i]['guest']?$students[$i]['homeInstitution']:$students[$i]['university'];
-      $dob=strToTime(decrypt($students[$i]['dob'],$students[$i]['id']));
+      $dob=strToTime(decrypt_vwpp($students[$i]['dob'],$students[$i]['id']));
       $students[$i]['dob']=$dob;
       $dob=$dob?date("M d, Y",$dob):null;
       $students[$i]['dob_text']=$dob;

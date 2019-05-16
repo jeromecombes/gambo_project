@@ -23,7 +23,7 @@ elseif($_POST['id'] and $_POST['univ']=="univ"){
 
   $keys=array_keys($_POST);
   foreach($keys as $key){
-    $data[":{$key}"]=encrypt($_POST[$key],$student);
+    $data[":{$key}"]=encrypt_vwpp($_POST[$key],$student);
     $sql[]="{$key}=:{$key}";
   }
 
@@ -42,7 +42,7 @@ elseif($_POST['univ']=="univ"){
   $data=array(":student"=>$student, ":semester"=>$_SESSION['vwpp']['semestre']);
   $keys=array_keys($_POST);
   foreach($keys as $key){
-    $data[":{$key}"]=encrypt($_POST[$key],$student);
+    $data[":{$key}"]=encrypt_vwpp($_POST[$key],$student);
   }
   $fields="(student, semester, ".join(", ",$keys).")";
   $values="(:student, :semester, :".join(", :",$keys).")";

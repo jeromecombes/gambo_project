@@ -16,7 +16,7 @@ $db=new db();
 $db->select("evaluations","*","student='$student' AND timestamp='$timestamp'");
 
 foreach($db->result as $elem){
-  $data[$elem['question']]=decrypt($elem['response'],$student);
+  $data[$elem['question']]=decrypt_vwpp($elem['response'],$student);
 }
 
 $isForm=$db->result[0]['closed']?false:true;	// display form with inputs or texts only

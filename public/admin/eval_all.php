@@ -31,7 +31,7 @@ if($form=="CIPH"){
     GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
   if($db->result){
     foreach($db->result as $elem){
-      $result[]=array("id"=>$elem['id'],"titre"=>decrypt($elem['titre'],$elem['student']),"instructeur"=>decrypt($elem['instructeur'],$elem['student']));
+      $result[]=array("id"=>$elem['id'],"titre"=>decrypt_vwpp($elem['titre'],$elem['student']),"instructeur"=>decrypt_vwpp($elem['instructeur'],$elem['student']));
     }
   }
   usort($result,"cmp_title");
@@ -49,7 +49,7 @@ elseif($form=="ReidHall"){
     GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
   if($db->result){
     foreach($db->result as $elem){
-      $result[]=array("id"=>$elem['id'],"title"=>decrypt($elem['title']),"professor"=>decrypt($elem['professor']));
+      $result[]=array("id"=>$elem['id'],"title"=>decrypt_vwpp($elem['title']),"professor"=>decrypt_vwpp($elem['professor']));
     }
   }
   usort($result,"cmp_title");

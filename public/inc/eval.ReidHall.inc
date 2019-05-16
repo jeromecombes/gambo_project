@@ -11,8 +11,8 @@ This script needs :
 
 $db=new db();
 $db->select("courses","*","id=$courseId");
-$title=decrypt($db->result[0]['title']);
-$professor=decrypt($db->result[0]['professor']);
+$title=decrypt_vwpp($db->result[0]['title']);
+$professor=decrypt_vwpp($db->result[0]['professor']);
 
 
 //$isForm=false;

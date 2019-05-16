@@ -24,7 +24,7 @@ if($form=="CIPH"){
     GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
   if($db->result){
     foreach($db->result as $elem){
-      $result[]=array("id"=>$elem['id'],"titre"=>decrypt($elem['titre'],$elem['student']),"instructeur"=>decrypt($elem['instructeur'],$elem['student']));
+      $result[]=array("id"=>$elem['id'],"titre"=>decrypt_vwpp($elem['titre'],$elem['student']),"instructeur"=>decrypt_vwpp($elem['instructeur'],$elem['student']));
     }
   }
   usort($result,"cmp_title");
@@ -48,9 +48,9 @@ elseif($form=="ReidHall"){
 
   if($db->result)
   foreach($db->result as $elem){
-      $result["{$elem['student']}_{$elem['timestamp']}"][1]=decrypt($elem['title']);
-      $result["{$elem['student']}_{$elem['timestamp']}"][2]=decrypt($elem['professor']);
-      $result["{$elem['student']}_{$elem['timestamp']}"][$elem['question']]=decrypt($elem['response'],$elem['student']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][1]=decrypt_vwpp($elem['title']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][2]=decrypt_vwpp($elem['professor']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][$elem['question']]=decrypt_vwpp($elem['response'],$elem['student']);
   }
 }
 
@@ -83,11 +83,11 @@ elseif($form=="univ"){
     ORDER BY timestamp,student,cm_name;");
   if($db->result)
   foreach($db->result as $elem){
-      $result["{$elem['student']}_{$elem['timestamp']}"][1]=decrypt($elem['cm_name'],$elem['student']);
-      $result["{$elem['student']}_{$elem['timestamp']}"][2]=decrypt($elem['ufr'],$elem['student']);
-      $result["{$elem['student']}_{$elem['timestamp']}"][3]=decrypt($elem['cm_code'],$elem['student']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][1]=decrypt_vwpp($elem['cm_name'],$elem['student']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][2]=decrypt_vwpp($elem['ufr'],$elem['student']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][3]=decrypt_vwpp($elem['cm_code'],$elem['student']);
       $offset=$elem['question']<11?2:3;
-      $result["{$elem['student']}_{$elem['timestamp']}"][$elem['question']-$offset]=decrypt($elem['response'],$elem['student']);
+      $result["{$elem['student']}_{$elem['timestamp']}"][$elem['question']-$offset]=decrypt_vwpp($elem['response'],$elem['student']);
   }
 }
 
@@ -98,7 +98,7 @@ elseif($form=="program"){
   $db->select("evaluations","*","closed='1' AND semester='{$_SESSION['vwpp']['semestre']}' AND form='program'","ORDER BY student,timestamp,question");
   if($db->result)
   foreach($db->result as $elem){
-    $result["{$elem['student']}_{$elem['timestamp']}"][$elem['question']]=decrypt($elem['response'],$elem['student']);
+    $result["{$elem['student']}_{$elem['timestamp']}"][$elem['question']]=decrypt_vwpp($elem['response'],$elem['student']);
   }
 }
 

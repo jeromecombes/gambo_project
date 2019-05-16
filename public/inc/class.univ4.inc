@@ -25,7 +25,7 @@ class univ4{
     $fields=array("code","nom","nature","lien","institution","institutionAutre","discipline","niveau",
       "prof","email","jour","debut","fin","modalites","modalites1","modalites2","semester","student","note");
     foreach($fields as $field){
-      $tab[":$field"]=encrypt(htmlentities($data[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+      $tab[":$field"]=encrypt_vwpp(htmlentities($data[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
     }
     $tab[":semester"]=$data['semester'];
     $tab[":student"]=$data['student'];
@@ -66,7 +66,7 @@ class univ4{
     if(!empty($db->result)){
       $keys=array_keys($db->result[0]);
       foreach($keys as $key){
-	$data[$key]=decrypt($db->result[0][$key]);
+	$data[$key]=decrypt_vwpp($db->result[0][$key]);
       }
       $data['id']=$id;
       $data['semester']=$db->result[0]['semester'];
@@ -96,7 +96,7 @@ class univ4{
       $keys=array_keys($db->result[0]);
       foreach($db->result as $elem){
 	foreach($keys as $key){
-	  $data[$elem['id']][$key]=decrypt($elem[$key]);
+	  $data[$elem['id']][$key]=decrypt_vwpp($elem[$key]);
 	}
 	$data[$elem['id']]['id']=$elem['id'];
 	$data[$elem['id']]['semester']=$elem['semester'];
@@ -148,7 +148,7 @@ class univ4{
       $keys=array_keys($db->result[0]);
       foreach($db->result as $elem){
 	foreach($keys as $key){
-	  $data[$elem['id']][$key]=decrypt($elem[$key]);
+	  $data[$elem['id']][$key]=decrypt_vwpp($elem[$key]);
 	}
 	$data[$elem['id']]['id']=$elem['id'];
 	$data[$elem['id']]['semester']=$elem['semester'];
@@ -219,7 +219,7 @@ class univ4{
     $fields=array("code","nom","nature","lien","institution","institutionAutre","discipline","niveau",
       "prof","email","jour","debut","fin","note","modalites","modalites1","modalites2","semester","student");
     foreach($fields as $field){
-      $tab[":$field"]=encrypt(htmlentities($data[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+      $tab[":$field"]=encrypt_vwpp(htmlentities($data[$field],ENT_QUOTES|ENT_IGNORE,"utf-8"));
     }
     $tab[":semester"]=$data['semester'];
     $tab[":student"]=$data['student'];
@@ -261,8 +261,8 @@ class univ4{
 
   public function updateModalites($data){
     $tab=array();
-    $tab[":modalites1"]=encrypt(htmlentities($data["modalites1"],ENT_QUOTES|ENT_IGNORE,"utf-8"));
-    $tab[":modalites"]=encrypt(htmlentities($data["modalites"],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+    $tab[":modalites1"]=encrypt_vwpp(htmlentities($data["modalites1"],ENT_QUOTES|ENT_IGNORE,"utf-8"));
+    $tab[":modalites"]=encrypt_vwpp(htmlentities($data["modalites"],ENT_QUOTES|ENT_IGNORE,"utf-8"));
    
     $db=new dbh();
     $db->prepare("UPDATE `courses_univ4` SET modalites=:modalites,modalites1=:modalites1 WHERE `id`='{$data['id']}';");

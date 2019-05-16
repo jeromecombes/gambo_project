@@ -24,7 +24,7 @@ class univ_reg{
     $db=new dbh();
     $db->prepare("INSERT INTO `{$GLOBALS['dbprefix']}univ_reg3` (university,student,semester)
       VALUES (:university,:student,:semester);");
-    $db->execute(array(":university"=>encrypt($univ,$this->student),":student"=>$this->student,":semester"=>$this->semester));
+    $db->execute(array(":university"=>encrypt_vwpp($univ,$this->student),":student"=>$this->student,":semester"=>$this->semester));
 
     $db=new db();
     $db->delete("univ_reg_lock1","semester='{$this->semester}' AND student='{$this->student}'");
@@ -38,7 +38,7 @@ class univ_reg{
     $db=new db();
     $db->select("univ_reg3","*","semester='{$this->semester}' AND student='{$this->student}'");
     if($db->result){
-      $this->university=decrypt($db->result[0]['university'],$this->student);
+      $this->university=decrypt_vwpp($db->result[0]['university'],$this->student);
     }
     
     $db=new db();
@@ -59,7 +59,7 @@ class univ_reg{
     }
 
     foreach($db->result as $elem){
-      $this->elements[$elem['question']]=decrypt($elem['response'],$this->student);
+      $this->elements[$elem['question']]=decrypt_vwpp($elem['response'],$this->student);
     }
   }
 
@@ -84,7 +84,7 @@ class univ_reg{
     if($db->result){
       foreach($db->result as $elem){
 	if($students[$elem['student']]['lastname']){	// Permet de vérifier si l'étudiant existe toujours
-	  $tab[$elem['student']][0][$elem['question']]=decrypt($elem['response'],$elem['student']);
+	  $tab[$elem['student']][0][$elem['question']]=decrypt_vwpp($elem['response'],$elem['student']);
 	}
       }
     }
@@ -94,7 +94,7 @@ class univ_reg{
     if($db->result){
       foreach($db->result as $elem){
 	if(array_key_exists($elem['student'],$students) and array_key_exists("lastname",$students[$elem['student']])){
-	  $tab[$elem['student']][1][$elem['question']]=decrypt($elem['response'],$elem['student']);
+	  $tab[$elem['student']][1][$elem['question']]=decrypt_vwpp($elem['response'],$elem['student']);
 	}
       }
     }
@@ -104,7 +104,7 @@ class univ_reg{
     if($db->result){
       foreach($db->result as $elem){
 	if(array_key_exists($elem['student'],$students) and array_key_exists("lastname",$students[$elem['student']])){
-	  $tab[$elem['student']][2]=decrypt($elem['university'],$elem['student']);
+	  $tab[$elem['student']][2]=decrypt_vwpp($elem['university'],$elem['student']);
 	}
       }
     }
@@ -123,7 +123,7 @@ class univ_reg{
 
     $keys=array_keys($data);
     foreach($keys as $key){
-      $db->execute(array(":question"=>$key, ":response"=>encrypt(htmlentities($data[$key],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student), ":semester"=>$this->semester, ":student"=>$this->student));
+      $db->execute(array(":question"=>$key, ":response"=>encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student), ":semester"=>$this->semester, ":student"=>$this->student));
     }
   }
 

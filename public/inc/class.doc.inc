@@ -158,43 +158,6 @@ class doc{
     }
   }
 
-  public function getPhoto($student){
-    $this->photo=null;
-    $db=new dbh();
-    $db->prepare('select * from documents where student=:student and rel=:rel order by timestamp desc');
-    $db->execute(array(':student' => $student, ':rel' => "Photo"));
-    if($db->result){
-      $type2=decrypt($db->result[0]['type2'],$student);
-      if(!in_array($type2,array("jpeg","jpg","png"))){
-	return;
-      }
-
-      $Fnm = __DIR__."/../data/photo_$student.$type2";
-      // Vérifie si le fichier existe dans /data et s'il n'existe pas une nouvelle version dans la BDD
-      $age=null;
-      if(file_exists($Fnm)){
-	$age=filemtime($Fnm);
-      }
-      // Si fichier n'existe pas dans /data ou si version plus récente dans la base de données
-      // On le créé à partir de la BDD
-      if($db->result[0]['timestamp']>$age){
-
-        // Open and decrypt document
-        $this->getLink($db->result[0]['id']);
-
-        $doc = file_get_contents($this->link);
-        $doc=decrypt($doc,$student);
-
-        $inF = fopen($Fnm,"w");
-	fputs($inF,$doc);
-	fclose($inF);
-      }
-      $url = $GLOBALS['config']['url']."/data/photo_$student.$type2";
-      $this->photo="<img src='$url' alt='$student' style='width:200px;'/>\n";
-      return;
-    }
-  }
-  
   private function getFolder($id){
     // Get link to document
     $db = new db();

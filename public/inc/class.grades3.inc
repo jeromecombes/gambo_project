@@ -16,10 +16,10 @@ class grades{
     
     foreach($db->result as $elem){
       $this->grades[$elem['course']][$elem['course_id']]['course_id']=$elem['course_id'];
-      $this->grades[$elem['course']][$elem['course_id']]['note']=$elem['note']?decrypt($elem['note'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['grade']=$elem['grade']?decrypt($elem['grade'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['date1']=$elem['date1']?decrypt($elem['date1'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['date2']=$elem['date2']?decrypt($elem['date2'],$student):null;
+      $this->grades[$elem['course']][$elem['course_id']]['note']=$elem['note']?decrypt_vwpp($elem['note'],$student):null;
+      $this->grades[$elem['course']][$elem['course_id']]['grade']=$elem['grade']?decrypt_vwpp($elem['grade'],$student):null;
+      $this->grades[$elem['course']][$elem['course_id']]['date1']=$elem['date1']?decrypt_vwpp($elem['date1'],$student):null;
+      $this->grades[$elem['course']][$elem['course_id']]['date2']=$elem['date2']?decrypt_vwpp($elem['date2'],$student):null;
       //	Example : 	$this->grades["VWPP"][1]=array(1,18,"A");
       //			$this->grades["VWPP"][2]=array(2,16,"A-");
       //			$this->grades["UNIV"][1]=array(1,18,"A");
@@ -43,10 +43,10 @@ class grades{
 	$this->grades[$elem['student']]['lastExcel']=html_entity_decode($s->elements['lastname'],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	$this->grades[$elem['student']]['firstExcel']=html_entity_decode($s->elements['firstname'],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	$this->grades[$elem['student']]['student']=$elem['student'];
-	$this->grades[$elem['student']]['note']=$elem['note']?decrypt($elem['note'],$elem['student']):null;
-	$this->grades[$elem['student']]['grade']=$elem['grade']?decrypt($elem['grade'],$elem['student']):null;
-	$this->grades[$elem['student']]['date1']=$elem['date1']?decrypt($elem['date1'],$elem['student']):null;
-	$this->grades[$elem['student']]['date2']=$elem['date2']?decrypt($elem['date2'],$elem['student']):null;
+	$this->grades[$elem['student']]['note']=$elem['note']?decrypt_vwpp($elem['note'],$elem['student']):null;
+	$this->grades[$elem['student']]['grade']=$elem['grade']?decrypt_vwpp($elem['grade'],$elem['student']):null;
+	$this->grades[$elem['student']]['date1']=$elem['date1']?decrypt_vwpp($elem['date1'],$elem['student']):null;
+	$this->grades[$elem['student']]['date2']=$elem['date2']?decrypt_vwpp($elem['date2'],$elem['student']):null;
       }
     }
   }
@@ -74,7 +74,7 @@ class grades{
       $field=is_numeric($grade)?"note":"grade";		//	Grade FR or US
     }							//	Or date1 or date2 if specified
 					    
-    $grade=encrypt($grade,$student);
+    $grade=encrypt_vwpp($grade,$student);
 
     if($id){						//	Update note or grade
       $sql="UPDATE `{$GLOBALS['dbprefix']}grades` set $field=:grade WHERE id=:id";

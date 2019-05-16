@@ -12,8 +12,8 @@ $db=new db();
 $db->select("courses","*","semester='$semester'");
 for($i=0;$i<$db->nb;$i++){
   $courses[$db->result[$i]['id']]['id']=$db->result[$i]['id'];
-  $courses[$db->result[$i]['id']]['professor']=decrypt($db->result[$i]['professor']);
-  $courses[$db->result[$i]['id']]['title']=decrypt($db->result[$i]['title']);
+  $courses[$db->result[$i]['id']]['professor']=decrypt_vwpp($db->result[$i]['professor']);
+  $courses[$db->result[$i]['id']]['title']=decrypt_vwpp($db->result[$i]['title']);
 }
 
 //	Get courses attribution

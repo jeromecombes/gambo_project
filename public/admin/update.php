@@ -41,7 +41,7 @@ if(array_key_exists("data",$_POST)){
   $keys=array_keys($_POST['data']);
   foreach($keys as $elem){
     $crypt_key=in_array($elem,array("lastname","firstname","email"))?null:$_POST['std_id'];
-    $response=encrypt(htmlentities(trim($_POST['data'][$elem]),ENT_QUOTES | ENT_IGNORE,"UTF-8"),$crypt_key);
+    $response=encrypt_vwpp(htmlentities(trim($_POST['data'][$elem]),ENT_QUOTES | ENT_IGNORE,"UTF-8"),$crypt_key);
     $dataInsert[]=array(":student"=>$_POST['std_id'],":semestre"=>$_POST['semestre'],":question"=>$elem,":response"=>$response);
   }
 
@@ -112,7 +112,7 @@ if(array_key_exists("std",$_POST)){
   $keys=array_keys($std);	//	Encrypt data
   foreach($keys as $elem){
     $crypt_key=in_array($elem,array("lastname","firstname","email"))?null:$_POST['std_id'];
-    $std[$elem]=encrypt(htmlentities(trim($std[$elem]),ENT_QUOTES | ENT_IGNORE,"UTF-8"),$crypt_key);
+    $std[$elem]=encrypt_vwpp(htmlentities(trim($std[$elem]),ENT_QUOTES | ENT_IGNORE,"UTF-8"),$crypt_key);
     $dataUpdate[":{$elem}"]=$std[$elem];
     $sql_tab[]="`{$elem}`=:{$elem}";
     }

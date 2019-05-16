@@ -63,7 +63,7 @@ values
 (:student,:semester,:university,:ufr,:ufr_en,:parcours,:parcours_en,:departement,:departement_en,:niveau,:cm_code,:cm_name,:cm_name_en,:cm_prof,:td_prof);");
 
 foreach($tab as $elem){
-	$insert=array(":student"=>$elem[0],":semester"=>"Spring_2012",":university"=>encrypt($elem[1],$elem[0]),":ufr"=>encrypt($elem[2],$elem[0]),":ufr_en"=>encrypt($elem[3],$elem[0]),":parcours"=>encrypt($elem[4],$elem[0]),":parcours_en"=>encrypt($elem[5],$elem[0]),":departement"=>encrypt($elem[6],$elem[0]),":departement_en"=>encrypt($elem[7],$elem[0]),":niveau"=>encrypt($elem[8],$elem[0]),":cm_code"=>encrypt($elem[9],$elem[0]),":cm_name"=>encrypt($elem[10],$elem[0]),":cm_name_en"=>encrypt($elem[11],$elem[0]),":cm_prof"=>encrypt($elem[12],$elem[0]),":td_prof"=>encrypt($elem[13],$elem[0]));
+	$insert=array(":student"=>$elem[0],":semester"=>"Spring_2012",":university"=>encrypt_vwpp($elem[1],$elem[0]),":ufr"=>encrypt_vwpp($elem[2],$elem[0]),":ufr_en"=>encrypt_vwpp($elem[3],$elem[0]),":parcours"=>encrypt_vwpp($elem[4],$elem[0]),":parcours_en"=>encrypt_vwpp($elem[5],$elem[0]),":departement"=>encrypt_vwpp($elem[6],$elem[0]),":departement_en"=>encrypt_vwpp($elem[7],$elem[0]),":niveau"=>encrypt_vwpp($elem[8],$elem[0]),":cm_code"=>encrypt_vwpp($elem[9],$elem[0]),":cm_name"=>encrypt_vwpp($elem[10],$elem[0]),":cm_name_en"=>encrypt_vwpp($elem[11],$elem[0]),":cm_prof"=>encrypt_vwpp($elem[12],$elem[0]),":td_prof"=>encrypt_vwpp($elem[13],$elem[0]));
 	$db->execute($insert);
 
 }

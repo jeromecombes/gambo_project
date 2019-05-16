@@ -68,14 +68,14 @@ class courses{
     foreach($db->result as $elem){
       $tmp=array("id"=>$elem['id']);
       foreach($fields as $field){
-	$tmp[$field]=decrypt($elem[$field],$student);
+	$tmp[$field]=decrypt_vwpp($elem[$field],$student);
       }
       $this->univ_courses[]=$tmp;
 */
 
-/*      $this->univ_courses[]=array("id"=>$elem['id'],"cm_code"=>decrypt($elem['cm_code'],$student),
-      "cm_name"=>decrypt($elem['cm_name'],$student),"cm_name_en"=>decrypt($elem['cm_name_en'],$student),
-      "cm_prof"=>decrypt($elem['cm_prof'],$student));*/
+/*      $this->univ_courses[]=array("id"=>$elem['id'],"cm_code"=>decrypt_vwpp($elem['cm_code'],$student),
+      "cm_name"=>decrypt_vwpp($elem['cm_name'],$student),"cm_name_en"=>decrypt_vwpp($elem['cm_name_en'],$student),
+      "cm_prof"=>decrypt_vwpp($elem['cm_prof'],$student));*/
 //     }
 
     //			CIPH Courses
@@ -86,12 +86,12 @@ class courses{
     foreach($db->result as $elem){
       $tmp=array("id"=>$elem['id']);
       foreach($fields as $field){
-	$tmp[$field]=decrypt($elem[$field],$student);
+	$tmp[$field]=decrypt_vwpp($elem[$field],$student);
       }
       $this->ciph_courses[]=$tmp;
 
-/*      $this->ciph_courses[]=array("id"=>$elem['id'],"titre"=>decrypt($elem['titre'],$student),
-      "instructeur"=>decrypt($elem['instructeur'],$student));*/
+/*      $this->ciph_courses[]=array("id"=>$elem['id'],"titre"=>decrypt_vwpp($elem['titre'],$student),
+      "instructeur"=>decrypt_vwpp($elem['instructeur'],$student));*/
     }
 
 
@@ -113,7 +113,7 @@ class courses{
     $course["id"]=$id;
     $course["type"]=$db->result[0]['type'];
     foreach($cryptFields as $field){
-      $course[$field]=decrypt($db->result[0][$field]);
+      $course[$field]=decrypt_vwpp($db->result[0][$field]);
     }
   $this->course=$course;
   }
@@ -129,7 +129,7 @@ class courses{
       $courses[$elem['id']]["id"]=$elem['id'];
       $courses[$elem['id']]["type"]=$elem['type'];
       foreach($cryptFields as $field){
-	$courses[$elem['id']][$field]=decrypt($elem[$field]);
+	$courses[$elem['id']][$field]=decrypt_vwpp($elem[$field]);
       }
     }
     

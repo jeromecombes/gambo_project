@@ -98,7 +98,7 @@ class student{
     $db->prepare("UPDATE {$GLOBALS['config']['dbprefix']}students SET tin=:tin WHERE id=:id;");
 
     foreach($students as $elem){
-      $db->execute(array(":tin"=>encrypt("",$elem),":id"=>$elem));
+      $db->execute(array(":tin"=>encrypt_vwpp("",$elem),":id"=>$elem));
     }
   }
 
@@ -135,11 +135,11 @@ class student{
 	if(in_array($key,array("id","token","password","semestre","semester","guest")))
 	  $this->elements[$key]=$elem[$key];
 	elseif(in_array($key,array("lastname","firstname","email")))
-	  $this->elements[$key]=$elem[$key]?decrypt($elem[$key]):null;
+	  $this->elements[$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
 	elseif($key=="university")
 	  $this->elements[$key]=$elem[$key];
 	elseif(!is_numeric($key) and $key!="semesters")
- 	  $this->elements[$key]=$elem[$key]?decrypt($elem[$key],$elem['id']):null;
+ 	  $this->elements[$key]=$elem[$key]?decrypt_vwpp($elem[$key],$elem['id']):null;
       }
 
       //	Add HomeInstitution if Vassar or Wesleyan
@@ -197,14 +197,14 @@ class student{
 	sort($students[$elem['id']]["semesters"]);
 	$students[$elem['id']]["semestersJoin"]=join(", ",$students[$elem['id']]["semesters"]);
 // 	$stdExcel[$elem['id']]["semestersJoin"]=html_entity_decode($students[$elem['id']]["semestersJoin"],ENT_QUOTES,"utf-8");
-	$students[$elem['id']]["homeInstitution"]="toto".decrypt($elem['homeInstitution'],$elem['id']);
+	$students[$elem['id']]["homeInstitution"]="toto".decrypt_vwpp($elem['homeInstitution'],$elem['id']);
 	foreach($keys as $key){
 	  if(in_array($key,array("id","token","password","semestre","semester")))
 	    $students[$elem['id']][$key]=$elem[$key];
 	  elseif(in_array($key,array("lastname","firstname","email")))
-	    $students[$elem['id']][$key]=$elem[$key]?decrypt($elem[$key]):null;
+	    $students[$elem['id']][$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
 	  elseif(!is_numeric($key) and $key!="semesters")
-	    $students[$elem['id']][$key]=$elem[$key]?decrypt($elem[$key],$elem['id']):null;
+	    $students[$elem['id']][$key]=$elem[$key]?decrypt_vwpp($elem[$key],$elem['id']):null;
 // 	 if(!is_array($students[$elem['id']][$key]))
 // 	  $stdExcel[$elem['id']][$key]=html_entity_decode($students[$elem['id']][$key],ENT_QUOTES,"utf-8");
 	}
@@ -282,11 +282,11 @@ class student{
       foreach($keys as $key){
 	if(in_array($key,$this->cryptedFieldsNoID)){
 	  $set[]="$key=:$key";
-	  $values[":$key"]=encrypt(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+	  $values[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
 	}
 	elseif(in_array($key,$this->cryptedFields)){
 	  $set[]="$key=:$key";
-	  $values[":$key"]=encrypt(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
+	  $values[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
 	}
 	elseif($key=="semesters"){
 	  sort($data[$key]);

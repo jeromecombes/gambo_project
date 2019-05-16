@@ -37,10 +37,10 @@ class univ{
 	  $this->element[$key]=$db->result[0][$key];
 	}
 	elseif(in_array($key,array("university","cm_code"))){
-	  $this->element[$key]=decrypt($db->result[0][$key]);
+	  $this->element[$key]=decrypt_vwpp($db->result[0][$key]);
 	}
 	elseif(!is_numeric($key)){
-	  $this->element[$key]=$db->result[0][$key]?decrypt($db->result[0][$key],$student):null;
+	  $this->element[$key]=$db->result[0][$key]?decrypt_vwpp($db->result[0][$key],$student):null;
 	}
       }
       $s=new student();
@@ -52,8 +52,8 @@ class univ{
   }
 
   function fetchByCode($univ,$code){
-    $univ=encrypt($univ);
-    $code=encrypt($code);
+    $univ=encrypt_vwpp($univ);
+    $code=encrypt_vwpp($code);
 
     $db=new dbh();
     $db->prepare("select * from {$GLOBALS['dbprefix']}courses_univ WHERE university=:university AND cm_code=:cm_code;");
@@ -67,10 +67,10 @@ class univ{
 	  $this->element[$key]=$db->result[0][$key];
 	}
 	elseif(in_array($key,array("university","cm_code"))){
-	  $this->element[$key]=decrypt($db->result[0][$key]);
+	  $this->element[$key]=decrypt_vwpp($db->result[0][$key]);
 	}
 	elseif(!is_numeric($key)){
-	  $this->element[$key]=$db->result[0][$key]?decrypt($db->result[0][$key],$student):null;
+	  $this->element[$key]=$db->result[0][$key]?decrypt_vwpp($db->result[0][$key],$student):null;
 	}
       }
 
@@ -114,11 +114,11 @@ class univ{
 	    $this->elemExcel[$i][$key]=html_entity_decode($elem[$key],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	  }
 	  elseif(in_array($key,array("university","cm_code"))){
-	    $this->elements[$i][$key]=decrypt($elem[$key]);
-	    $this->elemExcel[$i][$key]=decrypt($elem[$key]);
+	    $this->elements[$i][$key]=decrypt_vwpp($elem[$key]);
+	    $this->elemExcel[$i][$key]=decrypt_vwpp($elem[$key]);
 	  }
 	  elseif(!is_numeric($key)){
-	    $this->elements[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key],$elem['student']):null;
+	    $this->elements[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key],$elem['student']):null;
 	    $this->elemExcel[$i][$key]=html_entity_decode($this->elements[$i][$key],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	  }
 	}
@@ -141,7 +141,7 @@ class univ{
 	  $this->elements[$i][$key]=$elem[$key];
 	}
 	else{
-	  $this->elements[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key],$elem['student']):null;
+	  $this->elements[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key],$elem['student']):null;
 	  if($this->elements[$i][$key] and !in_array($this->elements[$i][$key],$this->autocomplete[$key]))
 	    $this->autocomplete[$key][]=addslashes(html_entity_decode($this->elements[$i][$key],ENT_QUOTES,"UTF-8"));
 	}
@@ -164,11 +164,11 @@ class univ{
       foreach($keys as $key){
 	if(in_array($key,$this->cryptedFields)){
 	  $set[]="$key=:$key";
-	  $values[":$key"]=encrypt(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
+	  $values[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
 	}
 	elseif(in_array($key,$this->cryptedFields2)){
 	  $set[]="$key=:$key";
-	  $values[":$key"]=encrypt(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+	  $values[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
 	}
 
       }

@@ -21,8 +21,8 @@ class tutorat{
     $db=new db();
     $db->select("tutorat","*","student='$student' AND semester='$semester'");
     $data=$db->result[0];
-    $data=array("tuteur"=>decrypt($data['tuteur']),"day"=>decrypt($data['day']),
-	"start"=>decrypt($data['start']),"end"=>decrypt($data['end']), "lock"=>$data['lock'], "id"=>$data['id']);
+    $data=array("tuteur"=>decrypt_vwpp($data['tuteur']),"day"=>decrypt_vwpp($data['day']),
+	"start"=>decrypt_vwpp($data['start']),"end"=>decrypt_vwpp($data['end']), "lock"=>$data['lock'], "id"=>$data['id']);
     $this->elements=$data;
   }
 
@@ -43,8 +43,8 @@ class tutorat{
     foreach($db->result as $elem){	//	A continuer
       $lastname=$students[$elem['student']]['lastname'];
       $firstname=$students[$elem['student']]['firstname'];
-      $tab[$elem['student']]=array("tuteur"=>decrypt($elem['tuteur']),"day"=>decrypt($elem['day']),
-	  "start"=>decrypt($elem['start']),"end"=>decrypt($elem['end']),"lastname"=>$lastname,"firstname"=>$firstname);
+      $tab[$elem['student']]=array("tuteur"=>decrypt_vwpp($elem['tuteur']),"day"=>decrypt_vwpp($elem['day']),
+	  "start"=>decrypt_vwpp($elem['start']),"end"=>decrypt_vwpp($elem['end']),"lastname"=>$lastname,"firstname"=>$firstname);
     }
     $this->elements=$tab;
   }

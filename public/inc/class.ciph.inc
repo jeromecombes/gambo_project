@@ -29,7 +29,7 @@ class ciph{
 	  $this->element[$key]=$db->result[0][$key];
 	}
 	elseif(!is_numeric($key)){
-	  $this->element[$key]=$db->result[0][$key]?decrypt($db->result[0][$key],$student):null;
+	  $this->element[$key]=$db->result[0][$key]?decrypt_vwpp($db->result[0][$key],$student):null;
 	}
       }
       $s=new student();
@@ -68,7 +68,7 @@ class ciph{
 	    $this->elemExcel[$i][$key]=html_entity_decode($elem[$key],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	  }
 	  elseif(!is_numeric($key)){
-	    $this->elements[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt($elem[$key],$elem['student']):null;
+	    $this->elements[$i][$key]=($elem[$key] and !is_numeric($key))?decrypt_vwpp($elem[$key],$elem['student']):null;
 	    $this->elemExcel[$i][$key]=html_entity_decode($this->elements[$i][$key],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	  }
 	}

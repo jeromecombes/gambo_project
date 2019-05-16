@@ -23,13 +23,13 @@ $semester=$_SESSION['vwpp']['semestre'];
 
 //	Variables for Reid Hall
 /*if($_POST['univ']=="rh"){
-  $professor=encrypt(htmlentities($_POST['professor'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $title=encrypt(htmlentities($_POST['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $nom=encrypt(htmlentities($_POST['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $code=encrypt(htmlentities($_POST['code'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $jour=encrypt(htmlentities($_POST['jour'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $debut=encrypt(htmlentities($_POST['debut'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $fin=encrypt(htmlentities($_POST['fin'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $professor=encrypt_vwpp(htmlentities($_POST['professor'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $title=encrypt_vwpp(htmlentities($_POST['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $nom=encrypt_vwpp(htmlentities($_POST['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $code=encrypt_vwpp(htmlentities($_POST['code'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $jour=encrypt_vwpp(htmlentities($_POST['jour'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $debut=encrypt_vwpp(htmlentities($_POST['debut'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $fin=encrypt_vwpp(htmlentities($_POST['fin'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
   $type=$_POST['type'];
 }*/
 		//	Update RH
@@ -53,22 +53,22 @@ if($_POST['univ']=="rh"){
 
 //	Variables for University
 if($_POST['univ']=="univ"){
-  $university=encrypt(htmlentities($_POST['university'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $ufr=encrypt(htmlentities($_POST['ufr'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $ufr_name=encrypt(htmlentities($_POST['ufr_name'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $parcours=encrypt(htmlentities($_POST['parcours'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $stream=encrypt(htmlentities($_POST['stream'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $course_year=encrypt(htmlentities($_POST['course_year'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $course_code=encrypt(htmlentities($_POST['course_code'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $cm_td=encrypt(htmlentities($_POST['cm_td'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $groupe=encrypt(htmlentities($_POST['groupe'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $credits=encrypt(htmlentities($_POST['credits'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $nom=encrypt(htmlentities($_POST['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $title=encrypt(htmlentities($_POST['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $prof_group=encrypt(htmlentities($_POST['prof_group'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
-  $prof_lecture=encrypt(htmlentities($_POST['prof_lecture'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
-  $email=encrypt(htmlentities($_POST['email'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
-  $telephone=encrypt(htmlentities($_POST['telephone'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
+  $university=encrypt_vwpp(htmlentities($_POST['university'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $ufr=encrypt_vwpp(htmlentities($_POST['ufr'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $ufr_name=encrypt_vwpp(htmlentities($_POST['ufr_name'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $parcours=encrypt_vwpp(htmlentities($_POST['parcours'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $stream=encrypt_vwpp(htmlentities($_POST['stream'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $course_year=encrypt_vwpp(htmlentities($_POST['course_year'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $course_code=encrypt_vwpp(htmlentities($_POST['course_code'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $cm_td=encrypt_vwpp(htmlentities($_POST['cm_td'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $groupe=encrypt_vwpp(htmlentities($_POST['groupe'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $credits=encrypt_vwpp(htmlentities($_POST['credits'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $nom=encrypt_vwpp(htmlentities($_POST['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $title=encrypt_vwpp(htmlentities($_POST['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $prof_group=encrypt_vwpp(htmlentities($_POST['prof_group'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
+  $prof_lecture=encrypt_vwpp(htmlentities($_POST['prof_lecture'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
+  $email=encrypt_vwpp(htmlentities($_POST['email'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
+  $telephone=encrypt_vwpp(htmlentities($_POST['telephone'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
 }
   
 		//	Update Univ

@@ -63,9 +63,9 @@ class housing{
   
     $elements=array();
     foreach($db->result as $elem){
-      $elements[$elem['student']][$elem['question']]=decrypt($elem['response'],$elem['student']);
-      $excelElem[$elem['student']][$elem['question']]=str_replace("\r\n"," - ",html_entity_decode(decrypt($elem['response'],$elem['student']),ENT_QUOTES,"utf-8"));
-      $shortElem[$elem['student']][$elem['question']]=substr(decrypt($elem['response'],$elem['student']),0,100);
+      $elements[$elem['student']][$elem['question']]=decrypt_vwpp($elem['response'],$elem['student']);
+      $excelElem[$elem['student']][$elem['question']]=str_replace("\r\n"," - ",html_entity_decode(decrypt_vwpp($elem['response'],$elem['student']),ENT_QUOTES,"utf-8"));
+      $shortElem[$elem['student']][$elem['question']]=substr(decrypt_vwpp($elem['response'],$elem['student']),0,100);
     }
 
 	  //	Add student's information (student ID, lastname and firstname
@@ -166,7 +166,7 @@ class housing{
     $keys=array_keys($db->result[0]);
     foreach($keys as $key){
       if($key!="id"){
-	$logement[$key]=decrypt($db->result[0][$key]);
+	$logement[$key]=decrypt_vwpp($db->result[0][$key]);
       }
     }
     $this->logement=$logement;
@@ -200,7 +200,7 @@ class housing{
       $logements[$elem['id']]["studentFirstname"]=$this->studentFirstname;
       foreach($keys as $key){
 	if($key!="id" and !is_numeric($key)){
-	  $logements[$elem['id']][$key]=decrypt($elem[$key]);
+	  $logements[$elem['id']][$key]=decrypt_vwpp($elem[$key]);
 	}
       }
     }
@@ -251,7 +251,7 @@ class housing{
     }
     foreach($keys as $key){
       if(in_array($key,$fields)){
-	$values[":$key"]=encrypt($data[$key]);
+	$values[":$key"]=encrypt_vwpp($data[$key]);
       }
     }
 
@@ -294,8 +294,8 @@ class housing{
       INNER JOIN $table1 ON $table2.student=$table1.id 
       WHERE $table2.logement=$logement AND $table2.semester='{$this->semester}';");
     if($db->result){
-      $this->studentLastname=decrypt($db->result[0]['lastname']);
-      $this->studentFirstname=decrypt($db->result[0]['firstname']);
+      $this->studentLastname=decrypt_vwpp($db->result[0]['lastname']);
+      $this->studentFirstname=decrypt_vwpp($db->result[0]['firstname']);
     }
   }
 

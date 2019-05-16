@@ -16,8 +16,8 @@ class stage{
     $db=new db();
     $db->select("stages","*","student='{$this->student}' AND semester='{$this->semester}'");
     if($db->result){
-      $stage=decrypt($db->result[0]['stage'],$this->student);
-      $notes=$db->result[0]['notes']?decrypt($db->result[0]['notes'],$this->student):null;
+      $stage=decrypt_vwpp($db->result[0]['stage'],$this->student);
+      $notes=$db->result[0]['notes']?decrypt_vwpp($db->result[0]['notes'],$this->student):null;
       $notes2=str_replace("\n","<br/>",$notes);
       $this->elements=array("Oui",$stage,"id"=>$db->result[0]['id'],"lock"=>$db->result[0]['lock'],
       "notes"=>$notes,"notes2"=>$notes2);
@@ -43,8 +43,8 @@ class stage{
     if($db->result){
       foreach($db->result as $elem){
 	if(in_array($elem['student'],$studentsTab)){
-	  $stage=decrypt($elem['stage'],$elem['student']);
-	  $notes=$elem['notes']?decrypt($elem['notes'],$elem['student']):null;
+	  $stage=decrypt_vwpp($elem['stage'],$elem['student']);
+	  $notes=$elem['notes']?decrypt_vwpp($elem['notes'],$elem['student']):null;
 	  $notes2=str_replace("\n","<br/>",$notes);
 	  $lastname=$students[$elem['student']]['lastname'];
 	  $firstname=$students[$elem['student']]['firstname'];
@@ -57,8 +57,8 @@ class stage{
   }
 
   public function update($data){
-    $stage=encrypt(htmlentities($data[1],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student);
-    $notes=encrypt(htmlentities($data["notes"],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student);
+    $stage=encrypt_vwpp(htmlentities($data[1],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student);
+    $notes=encrypt_vwpp(htmlentities($data["notes"],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student);
     $this->fetch();
     if($this->elements[0]=="Oui" and $data[0]=="Non"){
       $db=new db();

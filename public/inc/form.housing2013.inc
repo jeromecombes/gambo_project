@@ -24,7 +24,7 @@ $db=new db();
 $db->select("housing","*","student='$std_id' AND semestre='$semestre'");
 if($db->result){
   foreach($db->result as $elem){
-    $housing[$elem['question']]=decrypt($elem['response'],$std_id);
+    $housing[$elem['question']]=decrypt_vwpp($elem['response'],$std_id);
     $housing[$elem['question']]=str_replace("\n","<br/>",$housing[$elem['question']]);
   }
 }

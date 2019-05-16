@@ -25,7 +25,7 @@ elseif(in_array($form,$multiple_evals))
 $db=new db();
 $db->select("evaluations","*",$filter,"ORDER BY question");
 foreach($db->result as $elem){
-  $data[$elem['question']]=decrypt($elem['response'],$std_id);
+  $data[$elem['question']]=decrypt_vwpp($elem['response'],$std_id);
 }
 
 $isForm=$db->result[0]['closed']?false:true;	// display form with inputs or texts only

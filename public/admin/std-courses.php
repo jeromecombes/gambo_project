@@ -65,9 +65,9 @@ if($db->result){
     foreach($keys as $key){
       if(!is_numeric($key) and !in_array($key,array("id","semester","student"))){
 	if(in_array($key,array("university","cm_code")))
-	  $univ[$i][$key]=decrypt($elem[$key]);
+	  $univ[$i][$key]=decrypt_vwpp($elem[$key]);
 	else
-	  $univ[$i][$key]=decrypt($elem[$key],$student);
+	  $univ[$i][$key]=decrypt_vwpp($elem[$key],$student);
       }
       $univ[$i]['id']=$elem['id'];
     }

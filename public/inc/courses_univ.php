@@ -33,14 +33,14 @@ foreach($u->elements as $elem){
 // $db->select("courses_univ","*","student='$student' AND semester='$semester'");
 // if($db->result[0]){
 //   $keys=array_keys($db->result[0]);
-//   for($i=0;$i<$db->nb;$i++){		// decrypt data and store it into $stdCourses
+//   for($i=0;$i<$db->nb;$i++){		// decrypt_vwpp data and store it into $stdCourses
 //     foreach($keys as $key){
 //       if(!in_array($key,array('id','student','semester','lock','ref')))
 // 	 if(!empty($db->result[$i][$key])){
 // 	  if(in_array($key,array("university","cm_code")))
-// 	    $stdCourses[$i][$key]=decrypt($db->result[$i][$key]);
+// 	    $stdCourses[$i][$key]=decrypt_vwpp($db->result[$i][$key]);
 // 	  else
-// 	    $stdCourses[$i][$key]=decrypt($db->result[$i][$key],$db->result[$i]['student']);
+// 	    $stdCourses[$i][$key]=decrypt_vwpp($db->result[$i][$key],$db->result[$i]['student']);
 // 	 }
 // 	  else{
 // 	  $stdCourses[$i][$key]=null;

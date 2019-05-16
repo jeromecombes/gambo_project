@@ -33,7 +33,7 @@ class evaluation{
       $db=new db();
       $db->select("evaluations","*","timestamp='$timestamp' AND student='$student'");
       foreach($db->result as $elem){
-	$this->elements[$elem['question']]=$elem["response"]?decrypt($elem["response"],$student):null;
+	$this->elements[$elem['question']]=$elem["response"]?decrypt_vwpp($elem["response"],$student):null;
       }
     }
   }
@@ -62,7 +62,7 @@ class evaluation{
 	  $offset=$elem['question']<11?2:3;
 	}
 
-	$response=$elem["response"]?decrypt($elem["response"],$elem['student']):null;
+	$response=$elem["response"]?decrypt_vwpp($elem["response"],$elem['student']):null;
 	$tab["{$elem['timestamp']}_{$elem['student']}"][$elem['question']-$offset]=$response;
 
 	$response=str_replace(array("\n","\r","\t")," ",$response);

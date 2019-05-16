@@ -23,11 +23,11 @@ $db=new db();
 $db->select("courses_ciph","*","student='$student' AND semester='$semester'");
 if($db->result[0]){
   $keys=array_keys($db->result[0]);
-  for($i=0;$i<$db->nb;$i++){		// decrypt data and store it into $stdCourses
+  for($i=0;$i<$db->nb;$i++){		// decrypt_vwpp data and store it into $stdCourses
     foreach($keys as $key){
       if(!in_array($key,array('id','student','semester','lock'))){
 	if(!empty($db->result[$i][$key])){
-	  $stdCourses[$i][$key]=decrypt($db->result[$i][$key],$db->result[$i]['student']);
+	  $stdCourses[$i][$key]=decrypt_vwpp($db->result[$i][$key],$db->result[$i]['student']);
 	}
 	else{
 	  $stdCourses[$i][$key]=null;

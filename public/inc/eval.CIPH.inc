@@ -11,8 +11,8 @@ This script needs :
 
 $db=new db();
 $db->select("courses_ciph","*","id=$courseId");
-$data[1]=decrypt($db->result[0]['instructeur'],$std_id);
-$data[2]=decrypt($db->result[0]['titre'],$std_id);
+$data[1]=decrypt_vwpp($db->result[0]['instructeur'],$std_id);
+$data[2]=decrypt_vwpp($db->result[0]['titre'],$std_id);
 
 $displayForm=$isForm?null:"style='display:none;'";
 $displayText=$isForm?"style='display:none;'":"class='response'";

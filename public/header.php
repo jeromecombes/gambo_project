@@ -16,7 +16,7 @@ switch($title){
     $db=new db();
     $db->select("students","lastname,firstname","id='$student'");
     if($db->result){
-      $title=decrypt($db->result[0]['firstname'])." ".decrypt($db->result[0]['lastname']);
+      $title=decrypt_vwpp($db->result[0]['firstname'])." ".decrypt_vwpp($db->result[0]['lastname']);
     }
     else { $title="VWPP Database"; }
     break;

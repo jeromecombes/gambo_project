@@ -57,7 +57,7 @@ if($db->result){
     foreach($db->result as $elem){
       $db2=new db();
       $db2->select("evaluations","*","courseId='{$elem['id']}' AND form='ReidHall' AND student='$std_id' AND semester='$semester'");
-      $RHcourses[]=array("id"=>$elem['id'],"title"=>decrypt($elem['title']),"professor"=>decrypt($elem['professor']),"closed"=>$db2->result[0]['closed']);
+      $RHcourses[]=array("id"=>$elem['id'],"title"=>decrypt_vwpp($elem['title']),"professor"=>decrypt_vwpp($elem['professor']),"closed"=>$db2->result[0]['closed']);
     }
   }
 }
@@ -80,9 +80,9 @@ $db=new db();
 $db->select("courses_ciph","*","student='$std_id' AND semester='{$_SESSION['vwpp']['semestre']}'");
 if($db->result){
   foreach($db->result as $elem){
-    if(decrypt($elem['cm_name'],$std_id)){
-      $titre=decrypt($elem['titre'],$std_id);
-      $instructeur=decrypt($elem['instructeur'],$std_id);
+    if(decrypt_vwpp($elem['cm_name'],$std_id)){
+      $titre=decrypt_vwpp($elem['titre'],$std_id);
+      $instructeur=decrypt_vwpp($elem['instructeur'],$std_id);
       $db2=new db();
       $db2->select("evaluations","*","courseId='{$elem['id']}' AND form='ciph' AND student='$std_id' AND semester='$semester'");
       $closed=$db2->result[0]['closed'];

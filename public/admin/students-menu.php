@@ -4,8 +4,8 @@ $current_id=array_key_exists("menu_id",$_SESSION['vwpp'])?$_SESSION['vwpp']['men
 
 $db=new db();
 $db->select("students","*","id='{$_SESSION['vwpp']['std-id']}'");
-$titleMenu=decrypt($db->result[0]['lastname']);
-$titleMenu.=" ".decrypt($db->result[0]['firstname']);
+$titleMenu=decrypt_vwpp($db->result[0]['lastname']);
+$titleMenu.=" ".decrypt_vwpp($db->result[0]['firstname']);
 
 echo <<<EOD
 <div id='onglets'>

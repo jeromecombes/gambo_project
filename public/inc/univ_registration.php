@@ -8,9 +8,9 @@ $std_id=isset($_SESSION['vwpp']['student'])?$_SESSION['vwpp']['student']:$GLOBAL
 $db=new db();
 $db->select("students","*","id='$std_id'");
 if($db->result){
-  $std['lastname']=decrypt($db->result[0]['lastname']);
-  $std['firstname']=decrypt($db->result[0]['firstname']);
-  $std['email']=decrypt($db->result[0]['email']);
+  $std['lastname']=decrypt_vwpp($db->result[0]['lastname']);
+  $std['firstname']=decrypt_vwpp($db->result[0]['firstname']);
+  $std['email']=decrypt_vwpp($db->result[0]['email']);
 }
 
 //	Get data from table 'univ_reg'
@@ -24,7 +24,7 @@ $db=new db();
 $db->select("univ_reg","*","student='$std_id' AND semestre='$semestre'");
 if($db->result){
   foreach($db->result as $elem){
-    $data[$elem['question']]=decrypt($elem['response'],$std_id);
+    $data[$elem['question']]=decrypt_vwpp($elem['response'],$std_id);
 //     $data[$elem['question']]=str_replace("\n","<br/>",$data[$elem['question']]);
   }
 }

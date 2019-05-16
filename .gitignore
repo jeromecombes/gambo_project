@@ -12,5 +12,6 @@ yarn-error.log
 .env
 *~
 public/inc/config.php
+public/data/*
 /documents
 .*swp

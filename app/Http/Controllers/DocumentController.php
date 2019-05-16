@@ -180,6 +180,36 @@ class DocumentController extends Controller
     }
 
     /**
+     * Get student photo
+     *
+     * @param  Int $student
+     * @return String $img
+     */
+
+    public function get_photo(int $student)
+    {
+        $doc=Document::where('student', $student)
+            ->where('rel', 'Photo')->first();
+
+        if (!$doc) {
+            return null;
+        }
+
+        $type = $doc->type;
+        $folder = date('Y/m/', $doc->timestamp);
+        $file = $folder.$doc->id;
+
+        if (!is_file(storage_path().'/app/'.$file)) {
+            return null;
+        }
+
+        $content = base64_encode(decrypt(Storage::get($file)));
+        $src = 'data: '.$type.';base64,'.$content;
+
+        return "<img src='$src' alt='Photo' style='width:200px;'/>\n";
+    }
+
+    /**
      * Encrypt files and save them in the right folder
      *
      * @param  Array $files

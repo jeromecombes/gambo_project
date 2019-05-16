@@ -28,7 +28,7 @@ class reidhall{
 	  $this->element[$key]=$db->result[0][$key];
 	}
 	else{
-	  $this->element[$key]=$db->result[0][$key]?decrypt($db->result[0][$key]):null;
+	  $this->element[$key]=$db->result[0][$key]?decrypt_vwpp($db->result[0][$key]):null;
 	}
       }
     }
@@ -44,7 +44,7 @@ class reidhall{
 	  if(in_array($key,array("id","type"))){
 	    $this->elements[$elem['id']][$key]=$elem[$key];
 	  }elseif(!is_numeric($key)){
-	    $this->elements[$elem['id']][$key]=$elem[$key]?decrypt($elem[$key]):null;
+	    $this->elements[$elem['id']][$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
 	  }
 	  
 	  $this->elemExcel[$elem['id']][$key]=null;
@@ -92,13 +92,13 @@ class reidhall{
   }
 
   function update($array){
-    $professor=encrypt(htmlentities($array['professor'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-    $title=encrypt(htmlentities($array['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-    $nom=encrypt(htmlentities($array['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-    $code=encrypt(htmlentities($array['code'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-    $jour=encrypt(htmlentities($array['jour'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-    $debut=encrypt(htmlentities($array['debut'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-    $fin=encrypt(htmlentities($array['fin'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $professor=encrypt_vwpp(htmlentities($array['professor'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $title=encrypt_vwpp(htmlentities($array['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $nom=encrypt_vwpp(htmlentities($array['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $code=encrypt_vwpp(htmlentities($array['code'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $jour=encrypt_vwpp(htmlentities($array['jour'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $debut=encrypt_vwpp(htmlentities($array['debut'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+    $fin=encrypt_vwpp(htmlentities($array['fin'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
     $type=$array['type'];
     $id=$array['id'];
     $data=array(":title"=>$title, ":nom"=>$nom, ":code"=>$code, ":professor"=>$professor, ":type"=>$type, ":jour"=>$jour, ":debut"=>$debut, ":fin"=>$fin, ":id"=>$id);

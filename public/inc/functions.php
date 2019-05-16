@@ -629,7 +629,7 @@ function delete_rnt($n){
 }
 
 function encryptTab($n){
-  return encrypt($n);
+  return encrypt_vwpp($n);
 }
 
 function entities($n){
@@ -644,7 +644,7 @@ function entity_decode($n){
     return html_entity_decode($n,ENT_QUOTES|ENT_IGNORE,"utf-8");
 }
 
-function decrypt($crypted_token, $key=null)
+function decrypt_vwpp($crypted_token, $key=null)
 {
     if($crypted_token === null){
         return null;
@@ -663,7 +663,7 @@ function decrypt($crypted_token, $key=null)
     return $decrypted_token; 
 }
 
-function encrypt($string, $key=null)
+function encrypt_vwpp($string, $key=null)
 {
     if($string === null){
         return null;

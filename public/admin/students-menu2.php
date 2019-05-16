@@ -7,8 +7,8 @@ $student=$_SESSION['vwpp']['std-id'];
 
 $db=new db();
 $db->select("students","*","id='{$_SESSION['vwpp']['std-id']}'");
-$titleMenu=decrypt($db->result[0]['lastname']);
-$titleMenu.=", ".decrypt($db->result[0]['firstname']);
+$titleMenu=decrypt_vwpp($db->result[0]['lastname']);
+$titleMenu.=", ".decrypt_vwpp($db->result[0]['firstname']);
 
 
 echo <<<EOD

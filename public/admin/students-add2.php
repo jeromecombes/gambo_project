@@ -21,7 +21,7 @@ foreach($_POST['students'] as $elem){
     $visiting=$elem[3]==1?", Visiting":null;
     $studentsList[]="<li>{$elem[0]} {$elem[1]}, {$elem[2]}{$visiting}</li>";
     for($i=0;$i<3;$i++){		// Encrypt lastname, firstname and email
-      $elem[$i]=encrypt(htmlentities(trim($elem[$i]),ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+      $elem[$i]=encrypt_vwpp(htmlentities(trim($elem[$i]),ENT_QUOTES | ENT_IGNORE,"UTF-8"));
     }
     $std[]=array(":lastname"=>$elem[0],":firstname"=>$elem[1],":email"=>$elem[2],
     ":token"=> $token, ":password"=>$password, ":university"=>$_SESSION['vwpp']['login_univ'],

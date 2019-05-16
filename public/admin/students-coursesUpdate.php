@@ -26,9 +26,9 @@ elseif($_POST['id']){	// and ($_POST['univ']=="univ" or $_POST['univ']=="ciph"))
   $keys=array_keys($_POST);
   foreach($keys as $key){
     if(in_array($key,array("university","cm_code")))
-      $data[":{$key}"]=encrypt(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+      $data[":{$key}"]=encrypt_vwpp(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
     else
-      $data[":{$key}"]=encrypt(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
+      $data[":{$key}"]=encrypt_vwpp(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
     $sql[]="{$key}=:{$key}";
   }
 
@@ -49,9 +49,9 @@ else{
   $keys=array_keys($_POST);
   foreach($keys as $key){
     if(in_array($key,array("university","cm_code")))
-      $data[":{$key}"]=encrypt(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+      $data[":{$key}"]=encrypt_vwpp(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
     else
-      $data[":{$key}"]=encrypt(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
+      $data[":{$key}"]=encrypt_vwpp(htmlentities($_POST[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
   }
   $fields="(student, semester, ".join(", ",$keys).")";
   $values="(:student, :semester, :".join(", :",$keys).")";

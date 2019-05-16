@@ -25,7 +25,7 @@ $db->query("SELECT {$dbprefix}courses_ciph.instructeur AS instructeur, {$dbprefi
 $ciph=array();
 if($db->result){
   foreach($db->result as $elem){
-    $ciph[]=array("id"=>$elem['id'],"titre"=>decrypt($elem['titre'],$elem['student']),"instructeur"=>decrypt($elem['instructeur'],$elem['student']));
+    $ciph[]=array("id"=>$elem['id'],"titre"=>decrypt_vwpp($elem['titre'],$elem['student']),"instructeur"=>decrypt_vwpp($elem['instructeur'],$elem['student']));
   }
 }
 usort($ciph,"cmp_title");
@@ -42,7 +42,7 @@ $db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses
 $reidHall=array();
 if($db->result){
   foreach($db->result as $elem){
-    $reidHall[]=array("id"=>$elem['id'],"title"=>decrypt($elem['title']),"professor"=>decrypt($elem['professor']));
+    $reidHall[]=array("id"=>$elem['id'],"title"=>decrypt_vwpp($elem['title']),"professor"=>decrypt_vwpp($elem['professor']));
   }
 }
 usort($reidHall,"cmp_title");
@@ -66,7 +66,7 @@ $db->query("SELECT {$dbprefix}courses_univ.cm_prof AS cm_prof, {$dbprefix}course
 $univ=array();
 if($db->result){
   foreach($db->result as $elem){
-    $univ[]=array("id"=>$elem['id'],"cm_name"=>decrypt($elem['cm_name'],$elem['student']),"cm_prof"=>decrypt($elem['cm_prof'],$elem['student']));
+    $univ[]=array("id"=>$elem['id'],"cm_name"=>decrypt_vwpp($elem['cm_name'],$elem['student']),"cm_prof"=>decrypt_vwpp($elem['cm_prof'],$elem['student']));
   }
 }
 usort($univ,"cmp_title");

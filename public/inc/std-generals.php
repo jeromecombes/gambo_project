@@ -1,8 +1,23 @@
 <?php
 // Last Update : 2016-10-11
-
+ini_set('display_errors','on');
 require_once "class.housing.inc";
 require_once "class.doc.inc";
+
+// Laravel init : for DocumentController
+define('LARAVEL_START', microtime(true));
+require __DIR__.'/../../vendor/autoload.php';
+
+$app = require_once __DIR__.'/../../bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+
+use App\Http\Controllers\DocumentController;
+
+$d = new DocumentController();
+$photo = $d->get_photo($std['id']);
 
 $selected[0]=$std['gender']=="Female"?"selected='selected'":null;
 $selected[1]=$std['gender']=="Male"?"selected='selected'":null;
@@ -19,8 +34,8 @@ $months=array("01" => "January", "02" => "Febuary","03" => "March", "04" => "Apr
   "11" => "November", "12" => "December");
 
 //	Photo
-$d=new doc();
-$d->getPhoto($std['id']);
+// $d=new doc();
+// $d->getPhoto($std['id']);
 
 echo <<<EOD
 <div id='div$id' style='display:$display;'>
@@ -86,7 +101,7 @@ echo "<tr><td>French Univ. Student number</td><td>{$std['frenchNumber']}</td></t
 echo <<<EOD
 </table>
 </td>
-<td style='padding-top:20px;'><div style='position:absolute; right:20px;'>{$d->photo}</div></td>
+<td style='padding-top:20px;'><div style='position:absolute; right:20px;'>$photo</div></td>
 </tr></table>
 EOD;
 
@@ -269,7 +284,7 @@ echo "<td><input type='text' name='std[frenchNumber]' value='{$std['frenchNumber
 echo <<<EOD
 </table>
 </td>
-<td style='padding-top:20px;'>{$d->photo}</td>
+<td style='padding-top:20px;'>$photo</td>
 </tr></table>
 
 <p style='text-align:right'>

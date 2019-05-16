@@ -25,7 +25,7 @@ if(array_key_exists("data",$_POST)){
     else{
       $response=htmlentities($_POST['data'][$elem],ENT_QUOTES | ENT_IGNORE,"UTF-8");
     }
-    $response=encrypt($response,$std_id);
+    $response=encrypt_vwpp($response,$std_id);
     $dataInsert[]=array(":student"=>$std_id,":timestamp"=>$timestamp,":form"=>$form,":courseId"=>$courseId,":question"=>$elem,":response"=>$response,":closed"=>$closed,":semester"=>$_SESSION['vwpp']['semestre']);
   }
 
