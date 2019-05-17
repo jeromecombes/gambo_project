@@ -52,6 +52,7 @@ class DocumentController extends Controller
 
         if (!empty($request->student)) {
             $student = $request->student;
+            $_SESSION['vwpp']['std-id'] = $student;
         }
 
         $request->session()->put('student', $student);
@@ -59,6 +60,7 @@ class DocumentController extends Controller
         $request->session()->put('semester', $_SESSION['vwpp']['semestre']);
 
         $request->session()->put('access', $_SESSION['vwpp']['access']);
+        $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
 
         if ($student) {
             $std = Student::find($student);

@@ -22,6 +22,7 @@ Route::get('/documents', 'DocumentController@index')
 
 Route::get('/documents/{student}', 'DocumentController@index')
     ->middleware('old.session')
+    ->where('student', '[0-9]+')
     ->name('document.index');
 
 Route::get('/documents/add', 'DocumentController@add')

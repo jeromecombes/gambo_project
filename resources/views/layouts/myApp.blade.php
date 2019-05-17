@@ -42,8 +42,8 @@
                 </div>
                 <div id='loginName'>
                     <span>
-                    @if($_SESSION['vwpp']['login_name'])
-                        {{ $_SESSION['vwpp']['login_name'] }}
+                    @if(session('login_name'))
+                        {{ session('login_name') }}
                     @endif
                     </span>
                     <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>

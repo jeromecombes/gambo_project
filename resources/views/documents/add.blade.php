@@ -12,7 +12,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
     <form method='POST' enctype='multipart/form-data' action='/documents'>
     {{ csrf_field() }}
     
-    <input type='hidden' name='student' value='{{session('student')}}' />
+    <input type='hidden' name='student' value="{{session('student')}}" />
 
         <table>
             <thead>
