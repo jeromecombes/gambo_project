@@ -20,6 +20,10 @@ Route::get('/documents', 'DocumentController@index')
     ->middleware('old.session')
     ->name('document.index');
 
+Route::get('/documents/{student}', 'DocumentController@index')
+    ->middleware('old.session')
+    ->name('document.index');
+
 Route::get('/documents/add', 'DocumentController@add')
     ->middleware('old.session')
     ->name('document.add');

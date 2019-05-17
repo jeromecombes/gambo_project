@@ -1,6 +1,4 @@
 <?php
-// Last update : 2015-10-14
-
 $semester=filter_input(INPUT_GET,"semestre",FILTER_SANITIZE_STRING);
 $semester=(array_key_exists("semestre",$_SESSION["vwpp"]) or $semester)?true:false;
 
@@ -39,7 +37,7 @@ if($semester){
   echo "<li id='li4' class='ui-state-default ui-corner-top'><a href='eval_index.php'>Evaluations</a></li>\n";
 
   if(in_array(3,$_SESSION['vwpp']['access']))
-    echo "<li id='li8' class='ui-state-default ui-corner-top'><a href='documents.php'>Documents</a></li>\n";
+    echo "<li id='li8' class='ui-state-default ui-corner-top'><a href='/documents'>Documents</a></li>\n";
 }
 
 if(in_array(9,$_SESSION['vwpp']['access']))

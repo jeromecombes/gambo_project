@@ -1,6 +1,4 @@
 <?php
-// Last update : 2016-01-07
-
 $post['semester']=filter_input(INPUT_POST,"semester",FILTER_SANITIZE_STRING);
 $get['semester']=filter_input(INPUT_GET,"semester",FILTER_SANITIZE_STRING);
 $request['semester']=$post['semester']?$post['semester']:$get['semester'];
@@ -39,7 +37,7 @@ if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or count(
   <li id='li1' class='ui-state-default ui-corner-top'><a href='univ_registration.php'>Univ. Reg.</a></li>
   <li id='li3' class='ui-state-default ui-corner-top'><a href='courses.php'>Course Reg.</a></li>
   <li id='li4' class='ui-state-default ui-corner-top' $displayEval ><a href='eval_index.php'>Evaluations</a></li>
-  <li id='li8' class='ui-state-default ui-corner-top'><a href='documents.php'>Documents</a></li>
+  <li id='li8' class='ui-state-default ui-corner-top'><a href='documents'>Documents</a></li>
   <li id='li9' class='ui-state-default ui-corner-top'><a href='schedule.php'>Schedule</a></li>
   <li id='li10' class='ui-state-default ui-corner-top'><a href='trip_index.php'>Trip</a></li>
   <li id='li6' class='ui-state-default ui-corner-top'><a href='myAccount.php'>My Account</a></li>

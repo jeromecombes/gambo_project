@@ -30,7 +30,8 @@ get_menu2("Housing",2,2);
 get_menu2("Univ. Reg.",5,17);
 get_menu2("Courses",4,23);
 get_menu2("Grades",7,array(18,19,20));
-get_menu2("Documents",3,3);
+echo "<li class='ui-state-default ui-corner-top $class'><a href='/documents'>Documents</a></li>\n";
+echo "<script type='text/JavaScript'>li_ids.push($id);</script>\n";
 get_menu2("Schedule",8,1);
 
 echo "<li  class='ui-state-default ui-corner-top back-to-list'><a href='students-list.php'>Back to list</a></li>\n";

@@ -1,5 +1,12 @@
 <?php
 
+// TODO : Admin file edition
+// TODO : Admin file deletion
+// TODO : Admin mass export doc (see admin/exportDocs.php)
+// TODO : Admin deletion of exported file (see admin/deleteExportedFiles.php)
+// TODO : Then, delete admin/exportDocs.php, admin/deleteExportedFiles.php, inc/class.doc.php)
+// TODO : Move Initialization of Laravel session with old session to index.php. See middleware Old.Session
+
 namespace App\Http\Controllers;
 
 use App\Document;
@@ -36,13 +43,38 @@ class DocumentController extends Controller
      */
     public function index(Request $request)
     {
+        //Initialize Laravel session with old session
+
         $admin = $_SESSION['vwpp']['category'] == 'admin';
         $request->session()->put('admin', $admin);
 
         $student = !empty($_SESSION['vwpp']['student']) ? $_SESSION['vwpp']['student'] : null;
+
+        if (!empty($request->student)) {
+            $student = $request->student;
+        }
+
         $request->session()->put('student', $student);
 
         $request->session()->put('semester', $_SESSION['vwpp']['semestre']);
+
+        $request->session()->put('access', $_SESSION['vwpp']['access']);
+
+        if ($student) {
+            $std = Student::find($student);
+            $request->session()->put('student_name', $std->full_name);
+        }
+
+        if (!empty($_SESSION["vwpp"]["studentsList"])) {
+            $students_list = $_SESSION["vwpp"]["studentsList"];
+            $request->session()->put('students_list', $students_list);
+
+            $key = array_search($student, $students_list);
+            $student_previous = array_key_exists($key-1, $students_list) ? $students_list[$key-1] : null;
+            $student_next = array_key_exists($key+1, $students_list) ? $students_list[$key+1] : null;
+            $request->session()->put('student_previous', $student_previous);
+            $request->session()->put('student_next', $student_next);
+        }
 
         $documents = $this->get();
         return view('documents.index', compact('documents'));

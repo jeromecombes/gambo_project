@@ -63,13 +63,6 @@ if(!array_key_exists('vwpp',$_SESSION)){
 }				// Else, show the requested page
 ?>
 <div id='body'>
-<form name='position' action='#'>
-<input type='hidden' name='x' />
-<input type='hidden' name='y' />
-</form>
-<div style='position:relative;top:30px;'>
-<iframe id='calendrier' style='display:none' scrolling='no'></iframe>
-</div>
 
 <?php
 $msg=filter_input(INPUT_GET,"msg",FILTER_SANITIZE_STRING);

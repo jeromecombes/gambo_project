@@ -16,6 +16,7 @@ $response = $kernel->handle(
 
 use App\Http\Controllers\DocumentController;
 
+//	Photo
 $d = new DocumentController();
 $photo = $d->get_photo($std['id']);
 
@@ -32,10 +33,6 @@ $logement=$l->logement;
 $months=array("01" => "January", "02" => "Febuary","03" => "March", "04" => "April", "05" => "May",
   "06" => "June", "07" => "July", "08" => "August", "09" => "September", "10" => "October", 
   "11" => "November", "12" => "December");
-
-//	Photo
-// $d=new doc();
-// $d->getPhoto($std['id']);
 
 echo <<<EOD
 <div id='div$id' style='display:$display;'>

@@ -31,7 +31,15 @@
 
         <div id='body'>
             <div class="content">
-                <div id='title'>VWPP Database</div>
+                <div id='title'>
+                    @if(!session('admin'))
+                        VWPP Database
+                    @elseif(!session('student'))
+                        VWPP Database - Admin
+                    @else
+                        VWPP Database - {{ session('student_name') }}
+                    @endif
+                </div>
                 <div id='loginName'>
                     <span>
                     @if($_SESSION['vwpp']['login_name'])
@@ -47,8 +55,14 @@
 
                 <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
 
-                    @if($_SESSION['vwpp']['category'] == 'student')
-                        @include('includes.student_menu')
+                    @if(session('admin'))
+                        @if(session('student'))
+                            @include('includes.menu_admin_student')
+                        @else
+                            @include('includes.menu_admin')
+                        @endif
+                    @else
+                        @include('includes.menu_student')
                     @endif
 
                     @if (session('success'))

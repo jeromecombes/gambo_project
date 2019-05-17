@@ -45,29 +45,6 @@ function alertDelete(msg,id){
     location.href="courses-update.php?id="+id+"&delete=";
 }
 
-
-function calendar(form,champ,admin)
-	{
-	if(admin)
-	  url="../inc/calendar/index.php?form="+form+"&champ="+champ;
-	else
-	  url="inc/calendar/index.php?form="+form+"&champ="+champ;
-	
-	X=document.body.clientWidth;
-	Y=document.body.clientHeight;
-	x=document.position.x.value;
-	y=document.position.y.value;
-	if(x>X-210)
-		x=X-210;
-/*	if(y>Y-180)
-		y=Y-180;*/
-y=y-40;
-	document.getElementById('calendrier').style.left=x+"px";
-	document.getElementById('calendrier').style.top=y+"px";
-	document.getElementById('calendrier').style.display="";
-	document.getElementById('calendrier').src=url;
-	}
-
 function change_menu(id){
   for(i=0;i<li_ids.length;i++)
     if(!document.getElementById("li"+li_ids[i]))
@@ -227,11 +204,6 @@ function delete_course(univ,id,admin){
       document.location.href="courses-update.php?id="+id+"&univ="+univ+"&delete=";
 }
 
-function delete_doc(id){
-  if(confirm("Do you really want to delete this file ?"))
-    document.location.href="deleteDoc.php?id="+id;
-}
-  
 function delete_line(i){
   document.getElementById("q"+i).value="";
   document.getElementById("t"+i).selectedIndex=0;
@@ -919,51 +891,6 @@ function verifNote2(form){
   }
   
 }
-
-/***********		Position du pointeur		*************/
-// Detection du navigateur
-nc6=(typeof(window.controllers) !='undefined' && typeof(window.locationbar) != 'undefined')?true:false;
-nc4=(document.layers)?true:false;
-ie4=(document.all)? true:false;
-
-// on lance la detection des mouvements du pointeur
-// instructions pour netscape 4.x
-if(nc4)
-	{
-	document.captureEvents(Event.MOUSEMOVE);
-	}
-// Instructions pour Netscape 6.x
-if(nc6) 
-	{
-	//~ document.addEventListener("mousemove",document.onmousemove,true);
-	suivre_souris;
-	}
-// Instructions pour IE
-document.onmousemove=suivre_souris;
-// fonction execut�e pour chaque mouvement de pointeur
-function suivre_souris(e)
-	{
-	// Instruction pour Netscape 4 et sup�rieur
-	if(nc4 || nc6)
-		{
-		// On affete � x et y les positions X et Y du pointeur lors de l'�venement move
-		var x=e.pageX;
-		var y=e.pageY;
-		}
-	// Instructions �quivalentes pour Internet Explorer
-	if(ie4)
-		{
-		var x = event.x;
-		var y = event.y;
-		}
-	// On affecte les donn�es obtenues au champs du formulaire
-	//~ if(document.position)
-		//~ {
-		document.position.x.value=x;
-		document.position.y.value=y;
-		//~ }
-	}
-/***********		FIN Position du pointeur		*************/
 
 $(document).ready(function(){
 

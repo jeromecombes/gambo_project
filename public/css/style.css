@@ -297,19 +297,6 @@ footer a,
   color: #777;
 }
 
-
-
-
-#calendrier {		
-	position:absolute;
-	z-index:10;
-	background:#FFFFFF;
-	width:190px;
-	height:165px;
-	}
-
-
-
 ul.ui-widget-header{
   font-size:0.9em;
 }
