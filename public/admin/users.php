@@ -7,7 +7,7 @@ access_ctrl(9);
 
 		//	select users
 $db=new db();
-$db->select("users",null,null,"order by lastname,firstname");
+$db->select("users",null,'admin=1',"order by lastname,firstname");
 		//	login-ctrl
 /*
 foreach($db->result as $elem)

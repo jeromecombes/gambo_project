@@ -730,11 +730,15 @@ function login_ctrl(){
     $std=new student();			// try to log students
     $std->setToken(trim($login));
     $std->setPassword($password);
+    $std->email = $login;
+    $std->cleared_password = $password;
     $std->login();
     if(!$std->auth){			// if not, try to log admin
       $u=new user();
       $u->setToken($login);
       $u->setPassword($password);
+      $u->email = $login;
+      $u->cleared_password = $password;
       $u->login();
     }
 
