@@ -919,9 +919,9 @@ $(document).ready(function(){
   		$(this).dataTable({
       		"bJQueryUI": true,
       		"sPaginationType": "full_numbers",
-      		"bStateSave": false,
+                "bStateSave": true,
       		"aLengthMenu" : [[25,50,75,100,-1],[25,50,75,100,"All"]],
-      		"iDisplayLength" : -1,
+                "iDisplayLength" : 25,
       		"aaSorting" : sort,
       		"aoColumns" : aoCol,
   		});
