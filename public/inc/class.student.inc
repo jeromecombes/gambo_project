@@ -36,14 +36,17 @@ class student{
   public function createPassword($sendMail=false){
     $this->fetchAll();
     $data=array();
+    $users_data=array();
     if(is_array($this->list))
     foreach($this->list as $elem){
       $clearPassword=genTrivialPassword();
-      $password=md5($clearPassword);
-      $token=md5($this->elements[$elem]["email"]);
+      $password = password_hash($clearPassword, PASSWORD_BCRYPT);
+      $email = $this->elements[$elem]["email"];
+      $token = md5($email);
       $this->elements[$elem]['clearPassword']=$clearPassword;
       $this->elements[$elem]['password']=$password;
       $data[]=array(":id"=>$elem,":password"=>$password,":token"=>$token);
+      $users_data[]=array(":password"=>$password,":email"=>$email,":name"=>$email);
       if($sendMail){
 	$this->createWelcomeMessage($elem);  
 	$mail=new vwppMail();
@@ -57,11 +60,17 @@ class student{
 	}
       }
     }
-    $sql="UPDATE {$GLOBALS['config']['dbprefix']}students SET password=:password, token=:token
-	  WHERE id=:id;";
+    $sql="UPDATE {$GLOBALS['config']['dbprefix']}students SET password=:password, token=:token WHERE id=:id;";
     $db=new dbh();
     $db->prepare($sql);
     foreach($data as $elem){
+      $db->execute($elem);
+    }
+
+    $sql="UPDATE {$GLOBALS['config']['dbprefix']}users SET password=:password, name=:name WHERE email=:email;";
+    $db=new dbh();
+    $db->prepare($sql);
+    foreach($users_data as $elem){
       $db->execute($elem);
     }
   }
@@ -261,7 +270,7 @@ class student{
                         'login' => '',
                         'lastname' => '',
                         'firstname' => '',
-                        'name' => '',
+                        'name' => $this->email,
                         'admin' => '0',
                         'email' => $this->email,
                         'password' => $new_password)

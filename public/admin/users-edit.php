@@ -1,5 +1,4 @@
 <?php
-// Last update : 2015-09-15, Jérôme Combes
 
 //		Enregistrement des infos dans la BDD
 if(isset($_POST['id'])){
@@ -7,8 +6,9 @@ if(isset($_POST['id'])){
   access_ctrl(10);
   $id=array('id'=>$_POST['id']);
   $_POST['access']=isset($_POST['access'])?serialize($_POST['access']):serialize(array());
-  if($_POST['password'])
-    $_POST['password']=md5($_POST['password']);
+  if (!empty($_POST['password'])) {
+    $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+  }
   unset($_POST['password2']);
 
   $_POST['token']=md5($_POST['email']);
@@ -19,6 +19,9 @@ if(isset($_POST['id'])){
 		$db->update2("users",$_POST,$id);
 	} else {
 		unset($_POST['id']);
+		$_POST['admin'] = 1;
+		$_POST['login'] = '';
+		$_POST['name'] = $_POST['email'];
 		$db->insert2("users",$_POST);
 	}  
   header("Location:users.php?msg=update_success");

@@ -45,7 +45,7 @@ class user{
             if ($password_db == $this->password) {
                 $new_password = password_hash($this->cleared_password,PASSWORD_BCRYPT);
                 $db2 = new db();
-                $db2->update('users', "`password` = '$new_password', `name`=''", "`id` = '$id'");
+                $db2->update('users', "`password` = '$new_password', `name`='{$db->result[0]['email']}'", "`id` = '$id'");
                 $auth = true;
             }
         } else {

@@ -1,23 +1,24 @@
 <?php
-/*
-VWPP Database V 3.0
-Last update 13/06/2013, Jérôme Combes
-*/
 
 require_once "../inc/config.php";
 require_once "../inc/class.mails.inc";
 require_once "../inc/class.users.inc";
 access_ctrl(4);
 
-$password="password"; // 	faire mot de passe aleatoire
 $semester=$_SESSION['vwpp']['semestre'];
 $semesters=serialize(array($semester));
 $studentsList=array();
 
+$std = array();
+$std2 = array();
+
 foreach($_POST['students'] as $elem){
   if($elem!=array('','','')){
-    $token=md5(trim($elem[2]));
-    $password=md5("password");
+    $elem[3] = empty($elem[3]) ? 0 : 1;
+    $email = trim($elem[2]);
+    $token = md5($email);
+    $password = genTrivialPassword();
+    $password = password_hash($password, PASSWORD_BCRYPT);
     $visiting=$elem[3]==1?", Visiting":null;
     $studentsList[]="<li>{$elem[0]} {$elem[1]}, {$elem[2]}{$visiting}</li>";
     for($i=0;$i<3;$i++){		// Encrypt lastname, firstname and email
@@ -26,14 +27,28 @@ foreach($_POST['students'] as $elem){
     $std[]=array(":lastname"=>$elem[0],":firstname"=>$elem[1],":email"=>$elem[2],
     ":token"=> $token, ":password"=>$password, ":university"=>$_SESSION['vwpp']['login_univ'],
     ":guest"=>$elem[3],":semestre"=>$semester,":semesters"=>$semesters);
+
+    // Create student in tabke users for Laravel authentication
+    $std2[]=array(":email"=>$email, ":name"=>$email, ":password"=>$password);
   }
 }
 
-$sql="INSERT INTO {$dbprefix}students (lastname, firstname, email, token, password, university, guest, semestre, semesters) VALUES 
-  (:lastname, :firstname, :email, :token, :password, :university, :guest, :semestre, :semesters);";
+$sql="INSERT INTO {$dbprefix}students (lastname, firstname, email, token, password, university, guest, semestre, semesters, dob, citizenship1, citizenship2, town, university2, graduation, resultatTCF, tin) VALUES 
+  (:lastname, :firstname, :email, :token, :password, :university, :guest, :semestre, :semesters, '', '', '', '', '', '', '', '');";
 $db=new dbh();
 $db->prepare($sql);
+
+
 foreach($std as $elem){
+  $db->execute($elem);
+}
+
+// Create student in tabke users for Laravel authentication
+$sql="INSERT INTO {$dbprefix}users (login, lastname, firstname, name, admin, email, password) VALUES ('', '', '', :name, '0', :email, :password);";
+$db = new dbh();
+$db->prepare($sql);
+
+foreach($std2 as $elem){
   $db->execute($elem);
 }
 

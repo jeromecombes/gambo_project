@@ -678,11 +678,19 @@ function encrypt_vwpp($string, $key=null)
     return $crypted_string;
 }
 
-function genTrivialPassword($len = 8){
-  $r = '';
-  for($i=0; $i<$len; $i++)
-    $r .= chr(rand(0, 25) + ord('a'));
-  return $r;
+function genTrivialPassword(){
+    $characters[0] = 'abcdefghijklmnopqrstuvwxyz';
+    $characters[1] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters[2] = '0123456789';
+
+    $randstring = '';
+    foreach($characters as $chars) {
+        for ($i = 0; $i < 3; $i++) {
+            $randstring .= $chars[rand(0, strlen($chars))];
+        }
+    }
+
+    return $randstring;
 }
 
 

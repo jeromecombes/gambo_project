@@ -22,8 +22,9 @@ class password{
   public function changePassword($current,$new,$confirm){
     $this->getPassword();
     $error=1;
-    if(md5($current)!=$this->currentPassword)
+    if (!password_verify($current, $this->currentPassword)) {
       $msg="wrong_current_password";
+    }
     elseif($new!=$confirm)
       $msg="passwords_dont_match";
     elseif(strlen($new)<6)
@@ -42,11 +43,21 @@ class password{
   }
 
   public function setPassword($password){
+    $password = password_hash($password, PASSWORD_BCRYPT);
     $db=new db();
-    if($this->id)
-      $db->update("students","password=MD5('$password')","id='{$this->id}'");
-    else
-      $db->update("users","password=MD5('$password')","token=md5('{$this->email}')");
+    if ($this->id) {
+      $db->update("students","password='$password'","id='{$this->id}'");
+
+      $db2 = new db();
+      $db2->select('students','email',"id='{$this->id}'");
+      $email = decrypt_vwpp($db2->result[0]['email']);
+
+      $db2 = new db();
+      $db2->update("users","password='$password', name='$email'","email='$email'");
+
+    } else {
+      $db->update("users","password='$password'","token=md5('{$this->email}')");
+    }
   }
 
 }
