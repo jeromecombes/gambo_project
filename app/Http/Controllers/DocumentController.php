@@ -55,12 +55,12 @@ class DocumentController extends Controller
             $_SESSION['vwpp']['std-id'] = $student;
         }
 
-        $request->session()->put('student', $student);
-
-        $request->session()->put('semester', $_SESSION['vwpp']['semestre']);
+        $_SESSION['vwpp']['student'] = $student;
 
         $request->session()->put('access', $_SESSION['vwpp']['access']);
         $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
+        $request->session()->put('semester', $_SESSION['vwpp']['semestre']);
+        $request->session()->put('student', $student);
 
         if ($student) {
             $std = Student::find($student);

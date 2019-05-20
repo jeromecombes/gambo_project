@@ -4,16 +4,7 @@ ini_set('display_errors','on');
 require_once "class.housing.inc";
 require_once "class.doc.inc";
 
-// Laravel init : for DocumentController
-define('LARAVEL_START', microtime(true));
-require __DIR__.'/../../vendor/autoload.php';
-
-$app = require_once __DIR__.'/../../bootstrap/app.php';
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
+require_once('init_laravel.php');
 use App\Http\Controllers\DocumentController;
 
 //	Photo

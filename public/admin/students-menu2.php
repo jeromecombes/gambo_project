@@ -1,6 +1,4 @@
 <?php
-// Last update : 2015-11-14
-
 // menu id
 $current_id=array_key_exists("menu_id",$_SESSION['vwpp'])?$_SESSION['vwpp']['menu_id']:1;
 $student=$_SESSION['vwpp']['std-id'];
@@ -36,7 +34,7 @@ get_menu2("Schedule",8,1);
 
 echo "<li  class='ui-state-default ui-corner-top back-to-list'><a href='students-list.php'>Back to list</a></li>\n";
 
-$studentsList=$_SESSION["vwpp"]["studentsList"];
+$studentsList = !empty($_SESSION["vwpp"]["studentsList"]) ? $_SESSION["vwpp"]["studentsList"] : array();
 $key=array_search($student,$studentsList);
 if(array_key_exists($key-1,$studentsList)){
   $previousId=$studentsList[$key-1];
