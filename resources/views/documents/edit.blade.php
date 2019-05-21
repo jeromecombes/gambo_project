@@ -19,22 +19,29 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                 <tr>
                     <th>Name</th>
                     <th>Document</th>
+                    <th>Admin Only</th>
                     <th>Type</th>
                     <th>Size</th>
                     <th>Date</th>
-                    <th>Admin Only</th>
                 </tr>
             </thead>
 
             <tbody>
             @foreach ($documents as $doc)
                 <tr>
-                    <td><a href='/preview.php?id={{ $doc->id }}' target='_blank'> {{ $doc->name }}</a></td>
-                    <td>{{ $doc->rel }}</td>
+                    <td>
+                        {!! Form::hidden("id[$doc->id]", old('id', $doc->id)) !!}
+                        {!! Form::text("name[$doc->id]", old('name', $doc->name), ['class' => 'form-control', 'required' => 'required']) !!}
+                    </td>
+                    <td>
+                        {!! Form::select("rel[$doc->id]", $document_types, old('rel', $doc->rel), ['class' => 'form-control']) !!}
+                    </td>
+                    <td>
+                        {!! Form::checkbox("adminOnly[$doc->id]", 1, old('adminOnly', $doc->adminOnly), ['class' => 'form-control']) !!}
+                    </td>
                     <td>{{ $doc->type }}</td>
                     <td style='white-space:nowrap; text-align:right;'>{{ $doc->size }}</td>
                     <td style='white-space:nowrap;'>{{ $doc->time }}</td>
-                    <td>{{ $doc->visibility }}</td>
                 </tr>
             @endforeach
 

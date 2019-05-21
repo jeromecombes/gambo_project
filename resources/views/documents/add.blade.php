@@ -9,7 +9,8 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
 </p>
 
 <fieldset>
-    <form method='POST' enctype='multipart/form-data' action='/documents'>
+    <form method='post' enctype='multipart/form-data' action='/documents'>
+    <input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
     
     <input type='hidden' name='student' value="{{session('student')}}" />

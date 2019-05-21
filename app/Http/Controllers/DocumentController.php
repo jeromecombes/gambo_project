@@ -339,12 +339,18 @@ class DocumentController extends Controller
     public function edit(Document $document)
     {
         $documents = $this->get();
-        
+
         $document_types = array_merge(array(''), explode(',', getenv('DOCUMENT_TYPES')));
         sort($document_types);
 
-        return view('documents.edit', compact('documents', 'document_types'));
+        $tmp = array();
+        foreach ($document_types as $elem) {
+            $tmp[$elem] = $elem;
+        }
 
+        $document_types = $tmp;
+
+        return view('documents.edit', compact('documents', 'document_types'));
     }
 
     /**
@@ -356,7 +362,19 @@ class DocumentController extends Controller
      */
     public function update(Request $request, Document $document)
     {
-        //
+
+        foreach ($request->id as $id) {
+            $doc = Document::findOrFail($id);
+            $doc->name = encrypt($request->name[$id]);
+            $doc->rel = $request->rel[$id];
+            $doc->adminOnly = !empty($request->adminOnly[$id]) ? 1 : 0;
+            $doc->save();
+        }
+
+        $msgType = "success";
+        $message = "Documents have been successfully updated";
+
+        return redirect('documents')->with($msgType, $message);
     }
 
     /**

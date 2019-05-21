@@ -34,9 +34,13 @@ Route::get('/documents/edit', 'DocumentController@edit')
     ->middleware('admin')
     ->name('document.edit');
 
-Route::post('/documents', 'DocumentController@store')
+Route::put('/documents', 'DocumentController@store')
     ->middleware('old.session')
     ->name('document.store');
+
+Route::post('/documents', 'DocumentController@update')
+    ->middleware('old.session')
+    ->name('document.update');
 
 Route::get('/show/{id}', 'DocumentController@show')
     ->middleware('old.session')
