@@ -10,7 +10,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
 
 <fieldset>
     <form method='post' enctype='multipart/form-data' action='/documents'>
-    <input type="hidden" name="_method" value="PUT">
+    {!! method_field('put') !!}
     {{ csrf_field() }}
     
     <input type='hidden' name='student' value="{{session('student')}}" />

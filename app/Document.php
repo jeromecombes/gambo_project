@@ -43,6 +43,11 @@ class Document extends Model
         return decrypt($value);
     }
 
+    public function getPathAttribute()
+    {
+        return date('Y/m/', $this->timestamp).$this->id;
+    }
+
     public function getRealnameAttribute($value)
     {
         return decrypt($value);

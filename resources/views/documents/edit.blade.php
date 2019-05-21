@@ -23,6 +23,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                     <th>Type</th>
                     <th>Size</th>
                     <th>Date</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -42,6 +43,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                     <td>{{ $doc->type }}</td>
                     <td style='white-space:nowrap; text-align:right;'>{{ $doc->size }}</td>
                     <td style='white-space:nowrap;'>{{ $doc->time }}</td>
+                    <td><img src='/css/images/delete.png' alt='Delete' onclick='delete_doc({{ $doc->id }});' style='cursor:pointer;'/></td>
                 </tr>
             @endforeach
 

@@ -196,6 +196,21 @@ function delete_check(form){
     document.forms[form].submit();
 }
 
+function delete_doc(id) {
+    if (confirm("Do you really want to delete this document ?")) {
+//         document.location.href = '/documents/'+id+'/destroy';
+        $.ajax({
+            url: '/documents',
+            type: 'post',
+            datatype: 'json',
+            data: {id : id, _method: 'delete', _token: $('input[name=_token]').val()},
+            success: function(){
+                document.location.href = '/documents';
+            }
+        });
+    }
+}
+
 function delete_course(univ,id,admin){
    if(confirm("Voulez-vous vraiment supprimer ce cours ?"))
     if(admin)

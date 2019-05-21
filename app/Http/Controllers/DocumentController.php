@@ -229,16 +229,12 @@ class DocumentController extends Controller
             return null;
         }
 
-        $type = $doc->type;
-        $folder = date('Y/m/', $doc->timestamp);
-        $file = $folder.$doc->id;
-
-        if (!is_file(storage_path().'/app/'.$file)) {
+        if (!is_file(storage_path().'/app/'.$doc->path)) {
             return null;
         }
 
-        $content = base64_encode(decrypt(Storage::get($file)));
-        $src = 'data: '.$type.';base64,'.$content;
+        $content = base64_encode(decrypt(Storage::get($doc->path)));
+        $src = 'data: '.$doc->type.';base64,'.$content;
 
         return "<img src='$src' alt='Photo' style='width:200px;'/>\n";
     }
@@ -282,10 +278,10 @@ class DocumentController extends Controller
             $document = encrypt(Storage::get('tmp/'.$filename));
 
             // Store the encrypted file
-            Storage::put(date('Y/m/', $doc->timestamp).$doc->id, $document);
+            Storage::put($doc->path, $document);
 
             // Test / compare checksums
-            $test = decrypt(Storage::get(date('Y/m/', $doc->timestamp).$doc->id));
+            $test = decrypt(Storage::get($doc->path));
             $checksum2 = md5($test);
 
             if ($checksum1 != $checksum2) {
@@ -319,9 +315,7 @@ class DocumentController extends Controller
             return view('documents.access_denied');
         }
 
-        $folder = date('Y/m/', $doc->timestamp);
-        $file = $folder.$doc->id;
-        $content = decrypt(Storage::get($file));
+        $content = decrypt(Storage::get($doc->path));
 
         header('Content-Disposition: inline; filename='.$doc->name);
         header('Content-type:'.$doc->type);
@@ -380,19 +374,27 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Document $document
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Document $document)
+    public function destroy(Request $request)
     {
-        //
+        $doc = Document::findOrFail($request->id);
+
+        Storage::delete($doc->path);
+
+        $doc->delete();
+
+        $msgType = "success";
+        $message = "Document have been successfully deleted";
+
+        return redirect('documents')->with($msgType, $message);
     }
 
     /**
      * Retrieve documents for logged in or selected student
      *
      * @param  int $student (optional student ID)
-     * @param  \Illuminate\Http\Request  $request
      * @return \App\Document
      */
     private function get(int $student = 0)
@@ -510,8 +512,8 @@ class DocumentController extends Controller
                         continue;
                     }
 
-                    if (file_exists(storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id)) {
-//                         echo storage_path('app/').date('Y/m/', $doc->timestamp).$doc->id." Already exists<br/><br/>";
+                    if (file_exists(storage_path('app/').$doc->path)) {
+//                         echo storage_path('app/').$doc->path." Already exists<br/><br/>";
                         continue;
                     }
 
@@ -530,10 +532,10 @@ class DocumentController extends Controller
                     $document = encrypt($content);
 
                     // Store the encrypted file
-                    Storage::put(date('Y/m/', $doc->timestamp).$doc->id, $document);
+                    Storage::put($doc->path, $document);
 
                     // Test / compare checksums
-                    $test = decrypt(Storage::get(date('Y/m/', $doc->timestamp).$doc->id));
+                    $test = decrypt(Storage::get($doc->path));
                     $checksum2 = md5($test);
 
                     if ($checksum1 != $checksum2) {

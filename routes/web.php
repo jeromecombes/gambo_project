@@ -42,6 +42,11 @@ Route::post('/documents', 'DocumentController@update')
     ->middleware('old.session')
     ->name('document.update');
 
+Route::delete('/documents', 'DocumentController@destroy')
+    ->where('id', '[0-9]+')
+    ->middleware('old.session')
+    ->name('document.destroy');
+
 Route::get('/show/{id}', 'DocumentController@show')
     ->middleware('old.session')
     ->name('document.show');
