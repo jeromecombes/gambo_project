@@ -406,7 +406,9 @@ class DocumentController extends Controller
             } else {
                 $semester = session('semester');
                 $students = Student::where('semestre', $semester)->pluck('id')->toArray();
-                $documents = Document::whereIn('student', $students)->get();
+                $documents = Document::whereIn('student', $students)
+                    ->select('documents.name', 'documents.type', 'documents.type2', 'documents.size', 'documents.timestamp', 'documents.adminOnly')
+                    ->withStudents()->get();
             }
         } else {
             $documents = Document::where('student',$student)->where('adminOnly', 0)->get();

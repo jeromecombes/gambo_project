@@ -14,7 +14,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
         <table class='datatable' data-sort='[]'>
             <thead>
                 <tr>
-                    @if(session('admin'))
+                    @if(session('admin') and !session('student'))
                         <th>Student</th>
                     @endif
                     <th>Name</th>
@@ -31,8 +31,8 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
 
             @foreach($documents as $doc)
                 <tr>
-                    @if(session('admin'))
-                        <td>{{ $doc->student }}</td>
+                    @if(session('admin') and !session('student'))
+                        <td>{{ $doc->firstname }} {{ $doc->lastname }}</td>
                     @endif
                     <td><a href='/show/{{ $doc->id }}' target='_blank'> {{ $doc->name }}</a></td>
                     <td>{{ $doc->rel }}</td>
