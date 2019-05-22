@@ -1,8 +1,5 @@
 <?php
-// Last Update : 2016-10-11
-ini_set('display_errors','on');
 require_once "class.housing.inc";
-require_once "class.doc.inc";
 
 require_once('init_laravel.php');
 use App\Http\Controllers\DocumentController;

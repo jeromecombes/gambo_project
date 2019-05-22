@@ -1,12 +1,5 @@
 <?php
 
-// TODO : Admin file edition
-// TODO : Admin file deletion
-// TODO : Admin mass export doc (see admin/exportDocs.php)
-// TODO : Admin deletion of exported file (see admin/deleteExportedFiles.php)
-// TODO : Then, delete admin/exportDocs.php, admin/deleteExportedFiles.php, inc/class.doc.php)
-// TODO : Move Initialization of Laravel session with old session to index.php. See middleware Old.Session
-
 namespace App\Http\Controllers;
 
 use App\Document;
@@ -580,5 +573,64 @@ class DocumentController extends Controller
         return $decrypted_token;
     }
 
+    /**
+     * Export all files for selected semester
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export_all(Request $request)
+    {
+        ini_set('max_execution_time', 300);
+
+        $semester = $request->semester;
+
+        $doc = Document::where('students.semesters', 'like', "%$semester%")
+            ->select('documents.id', 'documents.name', 'documents.type', 'documents.type2', 'documents.size', 'documents.timestamp', 'documents.adminOnly')
+            ->withStudents()
+            ->orderBy('students.lastname', 'asc', 'students.firstname', 'asc')
+            ->get();
+
+        echo "<table>\n";
+        foreach ($doc as $d) {
+            echo "<tr><td>".$d->lastname.'</td><td>'.$d->firstname.'</td><td>'.$d->name.'</td><td>'.$d->rel.'</td><td>'.$d->type.'</td><td>'.$d->path.'</td>';
+
+            if (!is_file(storage_path().'/app/'.$d->path)) {
+                echo "<td>File doesn't exist !</td></tr>\n";
+
+                if ($request->delete) {
+                    Storage::delete($d->path);
+                    $d->delete();
+                    echo "<td>File removed from database</td>";
+                }
+
+                continue;
+            }
+
+            switch ($d->type) {
+                case 'application/pdf'          : $ext = '.pdf';   break;
+                case 'application/download'     : $ext = '.ods';   break;
+                case 'image/jpeg'               : $ext = '.jpeg';   break;
+                default                         : $ext = null;      break;
+            }
+
+            $semester = str_replace(' ', '_', $semester);
+            $path = "export/".$semester.'/'.$d->lastname.'_'.$d->firstname.'/'.$d->name.'_'.$d->id.$ext;
+
+            $content = decrypt(Storage::get($d->path));
+            Storage::put($path, $content);
+
+            echo "<td>Exported in $path</td>";
+
+            if ($request->delete) {
+                Storage::delete($d->path);
+                $d->delete();
+                echo "<td>Originl file destroyed</td>";
+            }
+
+            echo "</tr>\n";
+        }
+        echo "<table>\n";
+    }
 
 }
