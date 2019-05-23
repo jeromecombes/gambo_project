@@ -428,7 +428,7 @@ class DocumentController extends Controller
      */
     public function convert_db()
     {
-        $doc=Document::where('timestamp', '<=', 1557927192)->get();
+        $doc=Document::all();
         
         echo "count : ".$doc->count();
         echo "<br><br>";
