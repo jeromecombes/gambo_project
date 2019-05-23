@@ -387,10 +387,9 @@ class DocumentController extends Controller
     /**
      * Retrieve documents for logged in or selected student
      *
-     * @param  int $student (optional student ID)
      * @return \App\Document
      */
-    private function get(int $student = 0)
+    private function get()
     {
         $student = session('student');
 
@@ -402,7 +401,7 @@ class DocumentController extends Controller
                 $semester = session('semester');
                 $students = Student::where('semestre', $semester)->pluck('id')->toArray();
                 $documents = Document::whereIn('student', $students)
-                    ->select('documents.name', 'documents.type', 'documents.type2', 'documents.size', 'documents.timestamp', 'documents.adminOnly')
+                    ->select('documents.id', 'documents.name', 'documents.type', 'documents.type2', 'documents.size', 'documents.timestamp', 'documents.adminOnly')
                     ->withStudents()->get();
             }
         } else {
@@ -443,6 +442,11 @@ class DocumentController extends Controller
             $type2 = $this->old_decrypt($d->type2, $d->student);
             
             echo "$name / $size / $type <br/>";
+            if (empty($name)) {
+                echo "Error : Empty name<br/>";
+                continue;
+            }
+
             $d->name = encrypt($name);
             $d->size = encrypt($size);
             $d->type = encrypt($type);
@@ -462,6 +466,8 @@ class DocumentController extends Controller
     {
         $start = 2012;
         $end = 2019;
+
+        ini_set('max_execution_time', 300);
 
         $i = 0;
 
@@ -537,8 +543,8 @@ class DocumentController extends Controller
                     }
 
                     $i++;
-                    if ($i >= 40) {
-                        return "40 files converted";
+                    if ($i >= 100) {
+                        return "100 files converted";
                     }
                 }
             }         
