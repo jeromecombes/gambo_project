@@ -1,5 +1,4 @@
 <?php
-// Last update : 2017-05-05
 session_start();
 
 if(in_array(22,$_SESSION['vwpp']['access'])){		// voir qui a rempli les évaluations
@@ -120,7 +119,7 @@ echo "<a href='eval_tab.php?form=CIPH'>Table</a>,&nbsp;\n";
 echo "<a href='eval_all.php?form=CIPH'>Individual evaluations</a>\n";
 echo "</p>\n";
 
-echo "<h4 style='margin-bottom:0px;'>Intership Evaluations</h4><p style='margin:0 0 0 30px;'>";
+echo "<h4 style='margin-bottom:0px;'>Internship Evaluations</h4><p style='margin:0 0 0 30px;'>";
 echo "<a href='eval_tab.php?form=intership'>Table</a>,&nbsp;\n";
 echo "<a href='eval_all.php?form=intership'>Individual evaluations</a>\n";
 echo "</p>\n";

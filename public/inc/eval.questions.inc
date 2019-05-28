@@ -1,6 +1,4 @@
 <?php
-// Last update : 2017-05-05, Jérôme Combes
-
 //	Program questions
 $quest["program"]=array();
 $quest["program"][]="1. Main benefits";
@@ -166,11 +164,11 @@ $quest["method"][]="5. Comments";
 $quest["method"][]="Name";
   
 
-//	Intership
+//	Internship
 $quest["intership"]=array();
 $quest["intership"][]="Your name";
 $quest["intership"][]="Your University";
-$quest["intership"][]="Place of intership";
+$quest["intership"][]="Place of internship";
 $quest["intership"][]="1. Beginning date";
 $quest["intership"][]="1. End date";
 $quest["intership"][]="1. Hours per week";
@@ -195,7 +193,7 @@ $quest["intership"][]="2. Regular tasks";
 $quest["intership"][]="3a. % French";
 $quest["intership"][]="3b. % English";
 $quest["intership"][]="4. Interaction";
-$quest["intership"][]="5. Intership pertinent";
+$quest["intership"][]="5. Internship pertinent";
 $quest["intership"][]="6. Did you take any relevant courses";
 $quest["intership"][]="7. How your supervisor directed your work";
 $quest["intership"][]="8. Stage influence";

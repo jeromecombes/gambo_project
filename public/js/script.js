@@ -27,14 +27,6 @@ function add_fields(i){
    document.getElementById("tr_"+i).style.display="";
 }
 
-function addTD(cm_id,admin){
-  td_id=document.getElementById("TD_"+cm_id+"_28").value;
-  if(admin)
-    document.location.href="../inc/courses_univ3Update.php?action=addTD&cm="+cm_id+"&td="+td_id;
-  else
-    document.location.href="inc/courses_univ3Update.php?action=addTD&cm="+cm_id+"&td="+td_id;
-}
-
 function addUnivCourse(me){
   me.style.display="none";
   document.getElementById("newUnivCourse").style.display="block";
@@ -140,10 +132,6 @@ function checkLink(me,admin,id){
       document.getElementById("institutionAutreTr"+id).style.display="";
     }
   }
-}
-
-function courses_ref(id){
-    file("courses_ref.php?id="+id);
 }
 
 function ctrlAddTD(me){
@@ -431,135 +419,6 @@ function file(fichier){
    else return(false);
 }
 
-function getCMInfo(admin){
-  code=document.formCM.code.value;
-  univ=document.formCM.university.value;
-  if(admin)
-    fichier=file("../inc/getCMInfo.php?univ="+univ+"&code="+code);	// Univ ne passe pas (&eacute;) ???
-  else
-    fichier=file("inc/getCMInfo.php?univ="+univ+"&code="+code);
-
-  if(fichier){
-    tab=fichier.split("=%!");
-    for(i=0;i<tab.length;i++){
-      tab2=tab[i].split("!%=");
-      if(document.getElementById("CM2_"+tab2[0])){
-	if(tab2[0]=="university")			//	University, replace "UP" with "Université ..."
-	  tab2[1]=tab2[1].replace("UP","Universit&eacute; Paris ");
-	if(tab2[0]=="debut1" || tab2[0]=="debut2" || tab2[0]=="fin1" ||tab2[0]=="fin2")
-	  tab2[1]=tab2[1].replace(":","h");		//	Hours, replace ":" with "h"
-	if(tab2[0]=="email")				//	Add mailto for emails
-	  tab2[1]="<a href='mailto:"+tab2[1]+"'>"+tab2[1]+"</a>";
-	if(tab2[0]=="jour1" && tab2[1])			//	Show Hours (Horaires) only if there is a value
-	  document.getElementById("CM2_horaires1").style.display="";
-	if(tab2[0]=="jour2" && tab2[1])			//	Idem
-	  document.getElementById("CM2_horaires2").style.display="";
-	document.getElementById("CM2_"+tab2[0]).innerHTML=tab2[1];	// Show info
-      }
-      if(tab2[0]=="id")
-	document.formCM2.cm.value=tab2[1];		//	Set hidden ID
-    }
-    document.getElementById("fieldSetUniv2").style.display="";		// Display appropriate DIV
-    document.getElementById("fieldSetUniv3").style.display="none";
-  }
-  else{
-    document.getElementById("fieldSetUniv2").style.display="none";	// Display appropriate DIV
-    document.getElementById("fieldSetUniv3").style.display="";
-    document.getElementById("CM3_university").innerHTML=document.formCM.university.value.replace("UP","Universit&eacute; Paris ");
-    document.getElementById("CM3_code").innerHTML=document.formCM.code.value.replace("UP","Universit&eacute; Paris ");
-    document.formCM3.university.value=document.formCM.university.value;
-    document.formCM3.code.value=document.formCM.code.value;
-    document.location.href="#CM3";
-  }
-  
-  return false;
-}
-
-function getTDInfo(id,admin){
-  code=document.getElementById("TD_"+id+"_code").value;
-  univ=document.getElementById("TD_"+id+"_univ").value;
-  
-  //	Hide TD form
-  document.getElementById("TD_"+id+"_7").style.display="none";
-  document.getElementById("TD_"+id+"_8").style.display="none";
-  document.getElementById("TD_"+id+"_12").style.display="none";
-  document.getElementById("TD_"+id+"_13").style.display="none";
-  document.getElementById("TD_"+id+"_14").style.display="none";
-  document.getElementById("TD_"+id+"_15").style.display="none";
-  document.getElementById("TD_"+id+"_16").style.display="none";
-  document.getElementById("TD_"+id+"_17").style.display="none";
-  //	Hide TD Info
-  document.getElementById("TD_"+id+"_1").style.display="none";
-  document.getElementById("TD_"+id+"_2").style.display="none";
-  document.getElementById("TD_"+id+"_3").style.display="none";
-  document.getElementById("TD_"+id+"_4").style.display="none";
-  document.getElementById("TD_"+id+"_18").style.display="none";
-  document.getElementById("TD_"+id+"_23").style.display="none";
-  document.getElementById("TD_"+id+"_25").style.display="none";
-  document.getElementById("TD_"+id+"_27").style.display="none";
-
-  if(admin)
-    fichier=file("../inc/getTDInfo.php?univ="+univ+"&code="+code);	// Univ ne passe pas (&eacute;) ???
-  else
-    fichier=file("inc/getTDInfo.php?univ="+univ+"&code="+code);
-
-  if(fichier){
-    tab=fichier.split("=%!");
-    for(i=0;i<tab.length;i++){
-      tab2=tab[i].split("!%=");
-      if(tab2[0]=="nom")
-	nom=tab2[1];
-      if(tab2[0]=="prof")
-	prof=tab2[1];
-      if(tab2[0]=="email")
-	email=tab2[1];
-      if(tab2[0]=="horaires1")
-	horaires1=tab2[1];
-      if(tab2[0]=="horaires2")
-	horaires2=tab2[1];
-      if(tab2[0]=="id")
-	td_id=tab2[1];
-    }
-
-    document.getElementById("TD_"+id+"_19").innerHTML=code;
-    document.getElementById("TD_"+id+"_20").innerHTML=nom;
-    document.getElementById("TD_"+id+"_21").innerHTML=prof;
-    document.getElementById("TD_"+id+"_22").innerHTML="<a href='mailto:"+email+"'>"+email+"</a>";
-    document.getElementById("TD_"+id+"_24").innerHTML=horaires1;
-    document.getElementById("TD_"+id+"_26").innerHTML=horaires2;
-    document.getElementById("TD_"+id+"_28").value=td_id;
-    
-    document.getElementById("TD_"+id+"_1").style.display="";
-    document.getElementById("TD_"+id+"_2").style.display="";
-    document.getElementById("TD_"+id+"_3").style.display="";
-    document.getElementById("TD_"+id+"_4").style.display="";
-    document.getElementById("TD_"+id+"_18").style.display="";
-    document.getElementById("TD_"+id+"_23").style.display="";
-    document.getElementById("TD_"+id+"_25").style.display="";
-    document.getElementById("TD_"+id+"_27").style.display="";
-
-    document.location.href="#TD3_"+id;
-  
-  }
-  else{
-    //	Display TD form
-    document.getElementById("TD_"+id+"_7").style.display="";
-    document.getElementById("TD_"+id+"_8").style.display="";
-    document.getElementById("TD_"+id+"_9").innerHTML=code;
-    document.getElementById("TD_"+id+"_10").value=code;
-    document.getElementById("TD_"+id+"_11").value=univ;
-    document.getElementById("TD_"+id+"_12").style.display="";
-    document.getElementById("TD_"+id+"_13").style.display="";
-    document.getElementById("TD_"+id+"_14").style.display="";
-    document.getElementById("TD_"+id+"_15").style.display="";
-    document.getElementById("TD_"+id+"_16").style.display="";
-    document.getElementById("TD_"+id+"_17").style.display="";
-    document.location.href="#TD2_"+id;
-  }
-  
-  return false;
-}
-
 function js_autocomplete(me){			// supprimer les éléments ne contenant pas à me.value
 //   auto=autocomplete[me.name].join(",");	// afficher les éléments dans un <div> flotant
 //    alert(auto);				// click sur element -> me.value=element
@@ -577,12 +436,6 @@ function lock2(table){
   document.location.href="students-view2.php?error=0&msg="+msg;
 }
 
-function lockCM(id){
-  file("../inc/courses_univ3_lock.php?action=lockCM&id="+id);
-  document.getElementById("lockCM_"+id).style.display="none";
-  document.getElementById("unLockCM_"+id).style.display="";
-}
-
 function lockCourse4(id){
   lock=file("courses4Lock.php?id="+id);
   if(lock==1){
@@ -591,12 +444,6 @@ function lockCourse4(id){
   else{
     document.getElementById("lock"+id).value="Verrouiller";
   }
-}
-
-function lockTD(id){
-  file("../inc/courses_univ3_lock.php?action=lockTD&id="+id);
-  document.getElementById("lockTD_"+id).style.display="none";
-  document.getElementById("unLockTD_"+id).style.display="";
 }
 
 function lockRH(me,student){
@@ -838,19 +685,6 @@ function tripFormValidation(){
   }
   
   return myReturn;
-}
-
-
-function unLockCM(id){
-  file("../inc/courses_univ3_lock.php?action=unLockCM&id="+id);
-  document.getElementById("lockCM_"+id).style.display="";
-  document.getElementById("unLockCM_"+id).style.display="none";
-}
-
-function unLockTD(id){
-  file("../inc/courses_univ3_lock.php?action=unLockTD&id="+id);
-  document.getElementById("lockTD_"+id).style.display="";
-  document.getElementById("unLockTD_"+id).style.display="none";
 }
 
 

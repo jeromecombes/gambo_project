@@ -1,4 +1,5 @@
 <?php
+$housing[1]=isset($housing[1])?$housing[1]:null;
 $housing[2]=$housing[1]=="Yes"?"No":($housing[1]=="No"?"Yes":null);
 $displayBack=$_SESSION['vwpp']['category']=="admin"?null:"style='display:none;'";
 
@@ -137,6 +138,9 @@ non-dormitory style living?</td></tr>
 <div class='response'>{$housing[14]}</div></td></tr>
 
 <tr><td style='text-align:justify;' colspan='2'>
+Please note : Student smoking is prohibited in host homes.</td></tr>
+
+<tr><td style='text-align:justify;' colspan='2'>
 11. Do you smoke?</td>
 <td colspan='4'><div class='response2'>{$housing[15]}</div></td></tr>
 
@@ -145,13 +149,28 @@ non-dormitory style living?</td></tr>
 <div class='response2'>{$housing[16]}</div></td></tr>
 
 <tr><td colspan='5'>
-<h3>V. Dietary considerations</h3>
+<h3 style='text-align:justify;'>V. The VWPP housing is described in detail in the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>You must read through this description 
+VERY carefully and then answer the following questions</u>.</h3>
+
 </td></tr>
 
 <tr><td colspan='5' style='text-align:justify;'>
-Please be as specific as possible below, and please let 
-<a href='mailto:housing@vwpp.org'>housing@vwpp.org</a> know if any of these change between filling out 
-this form and your arrival.</td></tr>
+1. What is your principal concern or priority regarding housing?
+<div class='response'>{$housing[28]}</div></td></tr>
+
+<tr><td colspan='5' style='text-align:justify;'>
+2. <u>Please note</u> : every student participating on the VWPP should be prepared to live in a room in a
+French host's apartment (chambre dans un appartement- accueil en famille) with 3 family dinners and all breakfasts provided.
+
+<tr><td colspan='5'>
+<h3>VI. Dietary considerations</h3>
+</td></tr>
+
+<tr><td colspan='5' style='text-align:justify;'>
+Please note : French host homes are rarely solely vegetarian and almost never non-dairy or gluten free. 
+Non-allergen meals and packaging cannot be guaranteed in France. If any of these specific dietary concerns 
+apply to you and are noted below, we will do our best to accommodate them but cannot guarantee them.
+</td></tr>
 
 <tr><td colspan='2' style='text-align:justify;'>
 1. Are you a vegetarian now?</td>
@@ -205,40 +224,6 @@ by them when considering your housing?</td></tr>
 6. Do you have any allergies to cats, dogs, or are you allergic to anything else?
 <div class='response'>{$housing[27]}</div></td></tr>
 
-<tr><td colspan='5'>
-<h3>VI. The housing options are described in detail in the “Types of Housing” section of the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>Please read through the descriptions 
-VERY carefully and then answer the following questions</u>.</h3>
-</td></tr>
-
-<tr><td colspan='5' style='text-align:justify;'>
-1. What is your principal concern or priority regarding housing?
-<div class='response'>{$housing[28]}</div></td></tr>
-
-<tr><td colspan='5' style='text-align:justify;'>
-2. Please mark your first and second choice of type of housing:<br/>
-<i><u>Please note</u>: every student should be prepared to live in a room in a French host’s apartment 
-(chambre dans un appartement- accueil en famille) since the availability of  “colocations” cannot be 
-guaranteed every semester.
-<!-- <div class='response'>{$housing[29]}</div> -->
-</td></tr>
-
-<tr><td colspan='5' style='text-align:justify;'>
-<ul style='margin:0 0 0 0;'><li>
-“Chambre dans un appartement- accueil en famille”: 7 breakfasts and 3 dinners included are provided by 
-the family.</li></ul></td></tr>
-<tr><td colspan='2'>&nbsp;</td>
-<td><div class='response2'>{$housing[30]}</div></td></tr>
-
-<tr><td colspan='5' style='text-align:justify;'>
-<ul style='margin:0 0 0 0;'><li>
-“Colocation” Furnished apartment with a young French adult or student/s, with 7 breakfasts and 3 dinners 
-stipend – cooking together or on own.</li></ul></td></tr>
-<tr><td colspan='2'>&nbsp;</td>
-<td><div class='response2'>{$housing[31]}</div></td></tr>
-
-<tr><td colspan='5'style='text-align:justify;'><i>
-Note: Students who choose this option must be ready to accept to be placed in a “chambre dans un 
-appartement-accueil en famille”.</i></td></tr>
 
 <tr><td colspan='5'>
 <h3>Other information</h3>
@@ -252,7 +237,7 @@ housing: children, animals, interests, neatness, study habits, noise, sleeping h
 </table>
 
 
-<h3>...</h3>
+<!-- <h3>...</h3> -->
 <table>
 EOD;
 foreach($customForm as $elem){
@@ -261,7 +246,7 @@ foreach($customForm as $elem){
 echo "</table>\n";
 echo "<h3>Thank you for submitting your Housing questionnaire online.</h3>\n";
 
-get_button("Edit",$id,7,"right");	// text, div id, acl, align
+get_button("Edit","$id",7,"right");	// text, div id, acl, align
 echo "<!-- </fieldset> --> </div></div>\n";	
 
 ?>

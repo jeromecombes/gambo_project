@@ -1,6 +1,4 @@
 <?php
-// Last update : 2017-05-05, Jérôme Combes
-
 require_once "../header.php";
 require_once "../inc/class.ciph.inc";
 require_once "../inc/class.eval.inc";
@@ -25,7 +23,7 @@ echo "<h3>Evaluations for {$_SESSION['vwpp']['semester']}</h3>\n";
 echo "<table class='datatable' data-sort='[[0,\"asc\"],[1,\"asc\"]]' style='text-align:center;'>\n";
 echo "<thead>\n";
 echo "<tr><th>Lastname</th><th>Firstname</th><th>Program</th><th>VWPP Courses</th>
-  <th>Univ. Courses</th><th>CIPh</th><th>Tutorats</th><th>Ateliers Linguistiques</th><th>Ateliers M&eacute;thodologiques</th><th>Intership</th></tr>\n";
+  <th>Univ. Courses</th><th>CIPh</th><th>Tutorats</th><th>Ateliers Linguistiques</th><th>Ateliers M&eacute;thodologiques</th><th>Internship</th></tr>\n";
 echo "</thead>\n";
 echo "<tbody>\n";
 foreach($students as $s){

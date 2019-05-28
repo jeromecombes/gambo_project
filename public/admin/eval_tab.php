@@ -1,6 +1,4 @@
 <?php
-// Last update : 2017-05-05, Jérôme Combes
-
 require_once "../header.php";
 require_once "menu.php";
 require_once "../inc/eval.questions.inc";
@@ -18,7 +16,7 @@ $result=$eval->elements;
 
 switch($form){
   case "CIPH" : $title="CIPH and other institutions evaluations for {$_SESSION['vwpp']['semester']}"; break;
-  case "intership" : $title="Intership evaluations for {$_SESSION['vwpp']['semester']}"; break;
+  case "intership" : $title="Internship evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "program" : $title="Program evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "ReidHall" : $title="VWPP Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "tutorats" : $title="Tutorial evaluations for {$_SESSION['vwpp']['semester']}"; break;

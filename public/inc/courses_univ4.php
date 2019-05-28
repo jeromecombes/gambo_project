@@ -1,7 +1,4 @@
 <?php
-// Last Update 2015-10-21, Jérôme Combes
-
-require_once "class.univ.inc";
 require_once "class.univ4.inc";
 /*	Needed :
 $student (int)

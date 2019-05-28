@@ -1,6 +1,4 @@
 <?php
-// Last update : 2018-10-18, Jérôme Combes
- 
 require_once "class.univ_reg.inc";
 require_once "class.dates.inc";
 
@@ -297,7 +295,7 @@ if($dates['date5'] or $dates['date6'] or $dates['date7']){
     echo <<<EOD
         <tr><td colspan='6' style='padding:20px 0 0 0;text-align:justify';>
         <b>7.Please indicate if your choice of university is motivated by the calendar and explain your reason</b> : 
-        job, intership, graduation ...</td></tr>
+        job, internship, graduation ...</td></tr>
 
         <tr><td colspan='6'>
         <textarea style='display:none;' name='data[22]' class='inputField' >{$data[22]}</textarea>

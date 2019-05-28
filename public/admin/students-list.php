@@ -139,7 +139,7 @@ EOD;
     if(in_array(17,$_SESSION['vwpp']['access']))
       echo "<option value='Univ_reg'>Export Univ. Reg. to Excel</option>\n";
     if(in_array(23,$_SESSION['vwpp']['access'])){
-      echo "<option value='intership'>Export Intership to Excel</option>\n";
+      echo "<option value='intership'>Export Internship to Excel</option>\n";
       echo "<option value='tutorial'>Export Tutorial to Excel</option>\n";
     }
     echo "<option value='Email'>Send email (with Email Program)</option>\n";

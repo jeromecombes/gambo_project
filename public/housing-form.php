@@ -19,10 +19,8 @@ if(!$h->accepted){
   echo $GLOBALS['lang']['accept_charte'];
   echo "<p><a href='housing.php'>Retour</a></p>\n";
 }
-elseif(intval($tmp)<20132)	// Before Fall 2013
-  require_once "inc/form.housing.inc";
-else
-  require_once "inc/form.housing2013.inc";
+
+require_once "inc/form.housing.inc";
 
 require_once "footer.php";
 ?>

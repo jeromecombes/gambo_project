@@ -97,7 +97,7 @@ $t->fetch();
 $tuteur=$t->elements['tuteur'];
 
 
-// Intership
+// Internship
 $s=new stage();
 $s->fetch();
 $intershipInfo=$s->elements;
@@ -221,14 +221,14 @@ echo "</li>\n";
 
 echo "</ul>\n";
 
-// Intership : sélectionner le stage enregistré (comme univ, ciph, Reid Hall)
+// Internship : sélectionner le stage enregistré (comme univ, ciph, Reid Hall)
 // 
 
 if($intershipInfo[0]=="Oui"){
-    echo "<h3 style='margin-bottom:0px;'>Intership Evaluation</h3>";
+    echo "<h3 style='margin-bottom:0px;'>Internship Evaluation</h3>";
     echo "<ul>";
     if(empty($intership)){
-        echo "<li style='margin:20px 0 0 0;'><a href='{$folder}eval_index2.php?form=intership'>Intership Evaluation {$intershipInfo[1]}</a></li>\n";
+        echo "<li style='margin:20px 0 0 0;'><a href='{$folder}eval_index2.php?form=intership'>Internship Evaluation {$intershipInfo[1]}</a></li>\n";
     }
     foreach($intership as $elem){
       $date=date("M,d Y",$elem['timestamp']);
@@ -237,7 +237,7 @@ if($intershipInfo[0]=="Oui"){
       $e=new evaluation();
       $e->fetch($elem['id']);
       $place=$e->elements[3];
-      echo "<li>Intership Evaluation : {$intershipInfo[1]} $closed</li>\n";
+      echo "<li>Internship Evaluation : {$intershipInfo[1]} $closed</li>\n";
     }
     echo "</ul>\n";
 }

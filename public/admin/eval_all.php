@@ -1,6 +1,4 @@
 <?php
-// Last update : 2017-05-05, Jérôme Combes
-
 require_once "../header.php";
 require_once "../inc/class.student.inc";
 require_once "../inc/class.univ4.inc";
@@ -153,9 +151,9 @@ elseif($form=="CIPH"){
   echo "</ul>\n";
 }
 elseif($form=="intership"){
-  echo "<h3 style='margin-bottom:0px;'>Intership Evaluations</h3><ul>";
+  echo "<h3 style='margin-bottom:0px;'>Internship Evaluations</h3><ul>";
   foreach($result as $elem){
-    echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>Intership Evaluation ({$elem['id']})</a></li>\n";
+    echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>Internship Evaluation ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }

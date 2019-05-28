@@ -22,7 +22,6 @@ echo <<<EOD
 <div>
 EOD;
 $univ="univ";
-// include("courses-univ.php");
 include("inc/courses_univ4.php");
 
 echo <<<EOD
@@ -30,11 +29,6 @@ echo <<<EOD
 <!-- <h3 style='margin-top:50px;'><u>Cours au CIPh ou autres institutions</u></h3>
 <div> -->
 EOD;
-
-// $isForm=false;
-// $univ="ciph";
-// // include("courses-univ.php");
-// include("inc/courses_ciph2.php");
 
 include("inc/form.tutorat.inc");
 

@@ -410,7 +410,7 @@ students there :</b></td></tr>
 <td $displayForm colspan='2'><input type='text' name='data[48]' value='{$data[48]}'/></td>
 <td $displayText colspan='2'>{$data[48]}</td></tr>
 
-<tr><td colspan='4' style='padding-top:25px;'><b>13) INTERSHIP/EXPERIENTIAL LEARNING : 
+<tr><td colspan='4' style='padding-top:25px;'><b>13) INTERNSHIP/EXPERIENTIAL LEARNING : 
 Did you undertake a "stage" ?</b>
 <font $displayText>{$data[49]}</font></td></tr>
 

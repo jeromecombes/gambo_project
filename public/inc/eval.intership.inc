@@ -40,7 +40,7 @@ echo <<<EOD
 <td style='width:25%;'>&nbsp;</td><td style='width:25%;'>&nbsp;</td></tr>
 <tr><td colspan='4'>
 <h2>VASSAR-WESLEYAN PROGRAM IN PARIS<br/>
-Intership Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
+Internship Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 </td></tr>
 
 <tr><td colspan='2'><b>Your name :</b></td>
@@ -51,7 +51,7 @@ Intership Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 <td $displayForm colspan='2'><input type='text' name='data[2]' value='{$data[2]}' /></td>
 <td $displayText colspan='2'>{$data[2]}</td></tr>
 
-<tr><td colspan='4'><b>Place of intership (name of association, company, etc...) :</b></td></tr>
+<tr><td colspan='4'><b>Place of internship (name of association, company, etc...) :</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[3]'>{$data[3]}</textarea>
 <div $displayText>{$data[3]}</div></td></tr>
@@ -123,13 +123,13 @@ Intership Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 <textarea $displayForm name='data[23]'>{$data[23]}</textarea>
 <div $displayText>{$data[23]}</div></td></tr>
 
-<tr><td colspan='4'><b>2. What regular tasks were included in your intership ?</b></td></tr>
+<tr><td colspan='4'><b>2. What regular tasks were included in your internship ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[24]'>{$data[24]}</textarea>
 <div $displayText>{$data[24]}</div></td></tr>
 
 <tr><td colspan='4'><b>3.a) Please estimate the amount of time (in %) you used French 
-in your intership</b>
+in your internship</b>
 <font $displayText>{$data[25]}</font></td></tr>
 <tr $displayForm>
 <td><input type='radio' name='data[25]' {$checked[3]} value='More than 80%' />More than 80%</td>
@@ -138,7 +138,7 @@ in your intership</b>
 <td><input type='radio' name='data[25]' {$checked[6]} value='Less than 50%' />Less than 50%</td></tr>
 
 <tr><td colspan='4' style='padding-left:30px;'><b>b) Please estimate the amount of time (in %) 
-you used English in your intership</b>
+you used English in your internship</b>
 <font $displayText>{$data[26]}</font></td></tr>
 <tr $displayForm>
 <td><input type='radio' name='data[26]' {$checked[7]} value='More than 80%' />More than 80%</td>
@@ -152,7 +152,7 @@ colleagues</b></td></tr>
 <textarea $displayForm name='data[27]'>{$data[27]}</textarea>
 <div $displayText>{$data[27]}</div></td></tr>
 
-<tr><td colspan='4'><b>5. How was the intership pertinent to your interests and/or 
+<tr><td colspan='4'><b>5. How was the internship pertinent to your interests and/or 
 background or experience ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[28]'>{$data[28]}</textarea>

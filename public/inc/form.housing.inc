@@ -13,7 +13,11 @@ $std=$std->elements;
 
 
 //	Get data from table 'housing'
+// On peuple le tableau housing pour éviter les "undefined index"
 $housing=array();
+for($i=1; $i<33; $i++){
+  $housing[$i]=null;
+}
 $db=new db();
 $db->select("housing","*","student='$std_id' AND semestre='$semestre'");
 if($db->result){
@@ -59,17 +63,7 @@ if($std['country'])
   $tmp[]=$std['country'];
 $address=join(", ",$tmp);
 
-$tmp=explode(" ",$_SESSION['vwpp']['semester']);
-$tmp=$tmp[1].($tmp[0]=="Spring"?1:2);
-
-
-if(intval($tmp)<20132){	// Before Fall 2013
-  include "form.housing2.inc";
-  include "form.housing3.inc";
-}
-else{
-  include "form.housing20132.inc";
-  include "form.housing20133.inc";
-}
+include "form.housing2.inc";
+include "form.housing3.inc";
 
 ?>

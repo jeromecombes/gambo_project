@@ -219,20 +219,12 @@ echo <<<EOD
 <h3 style='margin-top:50px;'>University Courses</h3>
 <div>
 EOD;
-// include("courses_univ.php");
-
 
 include("courses_univ4.php");	//	Nouvelles tables (courses_cm, courses_td courses_univ3)
 
 echo "</div>\n";
-// echo <<<EOD
-// 
-// <h3 style='margin-top:50px;'>Independent study, or courses at CIPh or other institutions</h3>
-// <div>
-// EOD;
 
 $isForm=false;
-// include("courses_ciph.php");
 
 include("form.tutorat.inc");
 

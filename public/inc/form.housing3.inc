@@ -1,7 +1,6 @@
 <?php
-
-for($i=0;$i<count($housing);$i++){
-  $housing[$i]=str_replace("<br/>",null,$housing[$i]);
+for($i=1;$i<count($housing)+1;$i++){
+  $housing[$i]=isset($housing[$i])?str_replace("<br/>",null,$housing[$i]):null;
 }
 
 $checked[1]=$housing[1]=="Yes"?"checked='checked'":null;
@@ -71,7 +70,7 @@ the Office of International Studies (Wesleyan).
 </p>
 
 
-<table style='width:1170px;' border='0'>
+<table border='0'>
 <tr><td colspan='5'><h3>I. Personal details</h3></td></tr>
 <tr><td>1. Last Name : </td>
 <td colspan='2'><div class='response2'>{$std['lastname']}</div></td>
@@ -190,6 +189,9 @@ non-dormitory style living?</td></tr>
 <tr><td colspan='5' style='text-align:justify;font-weight:bold;'>
 <textarea name='data[14]'>{$housing[14]}</textarea></td></tr>
 
+<tr><td colspan='2' style='text-align:justify;'>
+Please note : Student smoking is prohibited in host homes.</td></tr>
+
 <tr><td colspan='1' style='text-align:justify;'>
 11. Do you smoke?</td>
 <td colspan='4'><b>
@@ -198,20 +200,35 @@ non-dormitory style living?</td></tr>
 <input type='radio' name='data[15]' value='Regular smoker' {$checked['15reg']} /> Regular smoker
 <input type='radio' name='data[15]' value='Occasional smoker' {$checked['15occ']} /> Occasional smoker</td></tr>
 
-<tr><td colspan='5' style='text-align:justify;'>
+<tr><td colspan='1' style='text-align:justify;'>
 12. Can you live with smokers if you are placed to live with them? 
-<b>
+</td><td><b>
 <input type='radio' name='data[16]' value='Yes' {$checked['16yes']} /> Yes
 <input type='radio' name='data[16]' value='No' {$checked['16no']} /> No
 </b></td></tr>
 
 <tr><td colspan='5'>
-<h3>V. Dietary considerations</h3>
+<h3 style='text-align:justify;'>V. The VWPP housing is described in detail in the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>You must read through this description 
+VERY carefully and then answer the following questions</u>.</h3>
+</td></tr>
+
+<tr><td colspan='5'style='text-align:justify;'>
+1. What is your principal concern or priority regarding housing?</td></tr>
+<tr><td colspan='5' style='text-align:justify;font-weight:bold;'>
+<textarea name='data[28]'>{$housing[28]}</textarea></td></tr>
+
+<tr><td colspan='5'style='text-align:justify;'>
+2. <u>Please note</u> : every student participating on the VWPP should be prepared to live in a room in a
+French host's apartment (chambre dans un appartement- accueil en famille) with 3 family dinners and all breakfasts provided.
+
+<tr><td colspan='5'>
+<h3>VI. Dietary considerations</h3>
 </td></tr>
 <tr><td colspan='5' style='text-align:justify;'>
-Please be as specific as possible below, and please let 
-<a href='mailto:housing@vwpp.org'>housing@vwpp.org</a> know if any of these change between filling out 
-this form and your arrival.</td></tr>
+Please note : French host homes are rarely solely vegetarian and almost never non-dairy or gluten free. 
+Non-allergen meals and packaging cannot be guaranteed in France. If any of these specific dietary concerns 
+apply to you and are noted below, we will do our best to accommodate them but cannot guarantee them.
+</td></tr>
 
 <tr><td colspan='2' style='text-align:justify;'>
 1. Are you a vegetarian now?</td>
@@ -292,44 +309,6 @@ by them when considering your housing?</td></tr>
 <tr><td colspan='5' style='text-align:justify;font-weight:bold;'>
 <textarea name='data[27]'>{$housing[27]}</textarea></td></tr>
 
-<tr><td colspan='5'>
-<h3>VI. The housing options are described in detail in the “Types of Housing” section of the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>Please read through the descriptions 
-VERY carefully and then answer the following questions</u>.</h3>
-</td></tr>
-
-<tr><td colspan='5'style='text-align:justify;'>
-1. What is your principal concern or priority regarding housing?</td></tr>
-<tr><td colspan='5' style='text-align:justify;font-weight:bold;'>
-<textarea name='data[28]'>{$housing[28]}</textarea></td></tr>
-
-<tr><td colspan='5'style='text-align:justify;'>
-2. Please mark your first and second choice of type of housing:<br/>
-<i><u>Please note</u>: every student should be prepared to live in a room in a French host’s apartment 
-(chambre dans un appartement- accueil en famille) since the availability of  “colocations” cannot be 
-guaranteed every semester.</td></tr>
-
-<tr><td colspan='5'style='text-align:justify;'>
-<ul style='margin:0 0 0 0;'><li>
-“Chambre dans un appartement- accueil en famille”: 7 breakfasts and 3 dinners included are provided by 
-the family.
-<font font-weight:bold;text-align:right;'>
-<input type='radio' name='data[30]' value='First' {$checked['30First']} /> First
-<input type='radio' name='data[30]' value='Second' {$checked['30Second']} /> Second
-</font></li></ul></td></tr>
-
-<tr><td colspan='5'style='text-align:justify;'>
-<ul style='margin:0 0 0 0;'><li>
-“Colocation” Furnished apartment with a young French adult or student/s, with 7 breakfasts and 3 dinners 
-stipend – cooking together or on own. 			
-
-<font font-weight:bold;text-align:right;'>
-<input type='radio' name='data[31]' value='First' {$checked['31First']} /> First
-<input type='radio' name='data[31]' value='Second' {$checked['31Second']} /> Second
-</font></li></ul></td></tr>
-
-<tr><td colspan='5'style='text-align:justify;'><i>
-Note: Students who choose this option must be ready to accept to be placed in a “chambre dans un 
-appartement-accueil en famille”.</i></td></tr>
 
 <tr><td colspan='5'>
 <h3>Other information</h3>
@@ -343,8 +322,8 @@ housing: children, animals, interests, neatness, study habits, noise, sleeping h
 </table>
 
 
-<h3>...</h3>
-<table style='width:800px;margin-left:50px;'>
+<!-- <h3>...</h3> -->
+<table style='margin-left:50px;'>
 EOD;
 foreach($customForm as $elem){
   echo "<tr><td>{$elem['question']}</td><td>";
@@ -357,7 +336,7 @@ echo <<<EOD
 
 <p style='text-align:right'>
 <!-- <a href='javascript:document.stdform$id.submit();'>Submit</a>  -->
-<input type='button' value='Submit' onclick='document.stdform$id.submit();' />
+<input type='button' value='Submit' onclick='document.stdform$id.submit();' class='myUI-button-right'/>
 </p>
 
 <!-- </fieldset> --> </div></form></div>
