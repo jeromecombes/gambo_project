@@ -53,8 +53,8 @@ if($semestre){
       $students[$i]['gender']=decrypt_vwpp($students[$i]['gender'],$students[$i]['id']);
       $students[$i]['email']=decrypt_vwpp($students[$i]['email']);
       $students[$i]['univ']=$students[$i]['university'];
-      $students[$i]['homeInstitution']=decrypt_vwpp($students[$i]['homeInstitution'],$students[$i]['id']);
-      $students[$i]['university']=$students[$i]['guest']?$students[$i]['homeInstitution']:$students[$i]['university'];
+      $students[$i]['home_insttitution']=decrypt_vwpp($students[$i]['home_insttitution'],$students[$i]['id']);
+      $students[$i]['university']=$students[$i]['guest']?$students[$i]['home_insttitution']:$students[$i]['university'];
       $dob=strToTime(decrypt_vwpp($students[$i]['dob'],$students[$i]['id']));
       $students[$i]['dob']=$dob;
       $dob=$dob?date("M d, Y",$dob):null;

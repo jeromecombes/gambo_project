@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    private function decrypt($crypted_token)
+    private function decrypt($crypted_token, $id = true)
     {
-        $key = $this->student;
-        
+
+        $key = $id ? $this->id : null;
+
         if($crypted_token === null){
             return null;
         }
@@ -27,18 +28,46 @@ class Student extends Model
         return $decrypted_token; 
     }
 
-    public function getFirstnameAttribute($value)
+    public function getEmailAttribute($value)
     {
-        return $this->decrypt($value);
+        return $this->decrypt($value, false);
     }
 
-    public function getLastnameAttribute($value)
+    public function getFirstnameAttribute($value)
     {
-        return $this->decrypt($value);
+        return $this->decrypt($value, false);
     }
 
     public function getFullnameAttribute()
     {
         return $this->lastname.', '.$this->firstname;
     }
+
+    public function getGenderAttribute($value)
+    {
+        return $this->decrypt($value);
+    }
+
+    public function getHome_institutionAttribute($value)
+    {
+        return $this->decrypt($value);
+    }
+
+    public function getLastnameAttribute($value)
+    {
+        return $this->decrypt($value, false);
+    }
+
+    public function getUniversity2Attribute($value)
+    {
+        return $this->decrypt($value);
+    }
+
+    public function scopeWithUniv_reg($query)
+    {
+        $query->leftjoin('univ_reg3', 'univ_reg3.student', '=', 'students.id')
+            ->where('univ_reg3.semester', session('semester'))
+            ->addSelect('univ_reg3.university as univ_reg');
+    }
+
 }

@@ -3,10 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Univ_reg3;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+
+    /**
+     * Display a listing of students for admins
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_index(Request $request)
+    {
+        // Semester
+        $request->session()->put('semester', $_SESSION['vwpp']['semester']);
+        $semester = session('semester');
+
+//         $students = Student::where('semesters', 'like', "%$semester%")
+//             ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university')
+//             ->withUniv_reg()->get();
+
+        $students = Student::where('semesters', 'like', "%$semester%")->get();
+
+        // TODO : Add french university, from univ_reg3 table
+//         $univ_reg = Univ_reg3::where('semester', $semester)->get();
+
+        // Count students
+        $vassar = $students->where('university', 'Vassar')->where('guest', '<>', '1')->count();
+        $wesleyan = $students->where('university', 'Wesleyan')->where('guest', '<>', '1')->count();
+        $other = $students->where('guest', '1')->count();
+
+        // View
+        return view('admin.students', compact('students', 'vassar', 'wesleyan', 'other'));
+    }
+
     /**
      * Display a listing of the resource.
      *

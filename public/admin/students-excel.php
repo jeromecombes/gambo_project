@@ -46,7 +46,7 @@ else{
 }
 
 
-$fields=Array ("lastname","firstname","gender","homeInstitution","semestersJoin","frenchUniv","frenchNumber",
+$fields=Array ("lastname","firstname","gender","home_institution","semestersJoin","frenchUniv","frenchNumber",
   "citizenship1","citizenship2","dob","placeOB","countryOB","tin","email","cellphone","contactlast",
   "contactfirst","street","city","zip","state","country","contactemail","contactphone","contactmobile",
   "h_address","h_zipcode","h_city","h_phonenumber","h_lastname","h_firstname","h_cellphone","h_email",

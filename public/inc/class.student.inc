@@ -25,7 +25,7 @@ class student{
   public $cryptedFieldsMD5=array("token","password");
   public $cryptedFields=array("gender","dob","citizenship1","citizenship2","town","university",
       "university2","graduation","city","street","zip","state","country","contactlast","contactfirst","contactphone",
-      "contactmobile","contactemail","cellphone","homeInstitution","placeOB","countryOB","frenchNumber","resultatTCF","tin");
+      "contactmobile","contactemail","cellphone","home_institution","placeOB","countryOB","frenchNumber","resultatTCF","tin");
 
   function __construct(){
     if(array_key_exists("vwpp",$_SESSION) and array_key_exists("semester",$_SESSION['vwpp'])){
@@ -152,8 +152,8 @@ class student{
       }
 
       //	Add HomeInstitution if Vassar or Wesleyan
-      if(!$this->elements["homeInstitution"]){
-	$this->elements["homeInstitution"]=$this->elements["university"];
+      if(!$this->elements["home_institution"]){
+	$this->elements["home_institution"]=$this->elements["university"];
       }
 
       //	Add DOB
@@ -206,7 +206,7 @@ class student{
 	sort($students[$elem['id']]["semesters"]);
 	$students[$elem['id']]["semestersJoin"]=join(", ",$students[$elem['id']]["semesters"]);
 // 	$stdExcel[$elem['id']]["semestersJoin"]=html_entity_decode($students[$elem['id']]["semestersJoin"],ENT_QUOTES,"utf-8");
-	$students[$elem['id']]["homeInstitution"]="toto".decrypt_vwpp($elem['homeInstitution'],$elem['id']);
+	$students[$elem['id']]["home_institution"]="toto".decrypt_vwpp($elem['home_institution'],$elem['id']);
 	foreach($keys as $key){
 	  if(in_array($key,array("id","token","password","semestre","semester")))
 	    $students[$elem['id']][$key]=$elem[$key];
@@ -217,9 +217,9 @@ class student{
 // 	 if(!is_array($students[$elem['id']][$key]))
 // 	  $stdExcel[$elem['id']][$key]=html_entity_decode($students[$elem['id']][$key],ENT_QUOTES,"utf-8");
 	}
-	if(empty($students[$elem['id']]["homeInstitution"]))
-	  $students[$elem['id']]["homeInstitution"]=$elem['university'];
-// 	$stdExcel[$elem['id']]["homeInstitution"]=html_entity_decode($students[$elem['id']]["homeInstitution"],ENT_QUOTES,"utf-8");
+	if(empty($students[$elem['id']]["home_institution"]))
+	  $students[$elem['id']]["home_institution"]=$elem['university'];
+// 	$stdExcel[$elem['id']]["home_institution"]=html_entity_decode($students[$elem['id']]["home_institution"],ENT_QUOTES,"utf-8");
 
 	//	Add French University
 	$u=new univ_reg();
