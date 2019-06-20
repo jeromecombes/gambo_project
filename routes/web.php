@@ -55,11 +55,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-/** CONVERT : @see and adapt DocumentController::convert and App/Document */
-/** TODO Remove methods convert* after migration */
-Route::get('/convert', 'DocumentController@convert')->name('document.convert');
-
 // EXPORT Files : Decrypt and export files for given semester in storage/app/export/
 Route::get('/export/{semester}', 'DocumentController@export_all')
     ->middleware('old.session')
