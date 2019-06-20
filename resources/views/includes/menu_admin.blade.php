@@ -1,7 +1,6 @@
 <nav>
     <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
         <li id='li0' class='ui-state-default ui-corner-top'><a href='index.php'>Home</a></li>
-
         @if(session('semester'))
             @if(in_array(24, session('access')))
                 <li id='li11' class='ui-state-default ui-corner-top'><a href='/admin/dates.php'>Dates</a></li>

@@ -1,6 +1,10 @@
 <?php
-$semester=filter_input(INPUT_GET,"semestre",FILTER_SANITIZE_STRING);
-$semester=(array_key_exists("semestre",$_SESSION["vwpp"]) or $semester)?true:false;
+$semestre = filter_input(INPUT_GET, 'semestre', FILTER_SANITIZE_STRING);
+$semester = filter_input(INPUT_POST, 'semester', FILTER_SANITIZE_STRING);
+
+if (!$semester) {
+    $semester = (!empty($_SESSION['vwpp']['semestre']) or $semestre) ? true : false;
+}
 
 echo <<<EOD
 <div id='title'>VWPP Database - Admin</div>
@@ -15,7 +19,7 @@ echo <<<EOD
 <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
 <nav>
 <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
-<li id='li0' class='ui-state-default ui-corner-top'><a href='index.php'>Home</a></li>
+<li id='li0' class='ui-state-default ui-corner-top'><a href='/admin2'>Home</a></li>
 EOD;
 if($semester){
   if(in_array(24,$_SESSION['vwpp']['access']))

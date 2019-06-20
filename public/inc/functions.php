@@ -772,7 +772,7 @@ function login_ctrl(){
     and array_key_exists("category",$_SESSION['vwpp'])
     and $_SESSION['vwpp']['category']=="admin" 
     and !stripos($_SERVER['PHP_SELF'],"admin")){
-    header("Location: admin");		// redirect admin to admin pages
+    header("Location: admin2");		// redirect admin to admin pages
   }
 }
 

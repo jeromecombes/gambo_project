@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Admin home
+Route::get('/admin2', 'AdminController@index')
+    ->middleware('old.session')
+    ->middleware('old.admin')
+    ->middleware('old.access')
+    ->middleware('admin')
+    ->name('admin.index');
+// TODO Rename to admin when migration completed
+
 // Documents
 Route::get('/documents', 'DocumentController@index')
     ->middleware('old.session')

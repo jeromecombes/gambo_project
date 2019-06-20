@@ -1,15 +1,18 @@
 <?php
-// Last update : 2016-03-13
-
 require_once "../inc/class.univ_reg.inc";
 require_once "../inc/class.dates.inc";
 require_once "../header.php";
 require_once "menu.php";
 
 $semestre=filter_input(INPUT_GET,"semestre",FILTER_SANITIZE_STRING);
+$semester = filter_input(INPUT_POST, 'semester', FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET,"sort",FILTER_SANITIZE_STRING);
 
 $_SESSION['vwpp']['student'] = null;
+
+if ($semester) {
+    $semestre = str_replace(" ","_",$semester);
+}
 
 if($semestre){
   $_SESSION['vwpp']['semestre']=$semestre;
