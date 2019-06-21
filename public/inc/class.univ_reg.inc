@@ -20,9 +20,9 @@ class univ_reg{
 
   public function attrib($univ){
     $db=new db();
-    $db->delete("univ_reg3","semester='{$this->semester}' AND student='{$this->student}'");
+    $db->delete("univ_reg3s","semester='{$this->semester}' AND student='{$this->student}'");
     $db=new dbh();
-    $db->prepare("INSERT INTO `{$GLOBALS['dbprefix']}univ_reg3` (university,student,semester)
+    $db->prepare("INSERT INTO `{$GLOBALS['dbprefix']}univ_reg3s` (university,student,semester)
       VALUES (:university,:student,:semester);");
     $db->execute(array(":university"=>encrypt_vwpp($univ,$this->student),":student"=>$this->student,":semester"=>$this->semester));
 
@@ -36,7 +36,7 @@ class univ_reg{
   
   public function getAttrib(){
     $db=new db();
-    $db->select("univ_reg3","*","semester='{$this->semester}' AND student='{$this->student}'");
+    $db->select("univ_reg3s","*","semester='{$this->semester}' AND student='{$this->student}'");
     if($db->result){
       $this->university=decrypt_vwpp($db->result[0]['university'],$this->student);
     }
@@ -100,7 +100,7 @@ class univ_reg{
     }
 
     $db=new db();
-    $db->select("univ_reg3","*","semester='{$this->semester}'");
+    $db->select("univ_reg3s","*","semester='{$this->semester}'");
     if($db->result){
       foreach($db->result as $elem){
 	if(array_key_exists($elem['student'],$students) and array_key_exists("lastname",$students[$elem['student']])){

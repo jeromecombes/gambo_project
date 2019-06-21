@@ -21,14 +21,9 @@ class StudentController extends Controller
         $request->session()->put('semester', $_SESSION['vwpp']['semester']);
         $semester = session('semester');
 
-//         $students = Student::where('semesters', 'like', "%$semester%")
-//             ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university')
-//             ->withUniv_reg()->get();
-
-        $students = Student::where('semesters', 'like', "%$semester%")->get();
-
-        // TODO : Add french university, from univ_reg3 table
-//         $univ_reg = Univ_reg3::where('semester', $semester)->get();
+        $students = Student::where('semesters', 'like', "%$semester%")
+            ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university')
+            ->withUniv_reg()->get();
 
         // Count students
         $vassar = $students->where('university', 'Vassar')->where('guest', '<>', '1')->count();

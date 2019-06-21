@@ -28,11 +28,6 @@ class Univ_reg3 extends Model
         return $decrypted_token; 
     }
 
-    public function getUniv_regAttribute($value)
-    {
-        return $this->decrypt($value);
-    }
-
     public function getUniversityAttribute($value)
     {
         return $this->decrypt($value);

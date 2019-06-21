@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+
     private function decrypt($crypted_token, $id = true)
     {
 
@@ -58,6 +59,11 @@ class Student extends Model
         return $this->decrypt($value, false);
     }
 
+    public function getUnivregAttribute($value)
+    {
+        return $this->decrypt($value);
+    }
+
     public function getUniversity2Attribute($value)
     {
         return $this->decrypt($value);
@@ -65,9 +71,9 @@ class Student extends Model
 
     public function scopeWithUniv_reg($query)
     {
-        $query->leftjoin('univ_reg3', 'univ_reg3.student', '=', 'students.id')
-            ->where('univ_reg3.semester', session('semester'))
-            ->addSelect('univ_reg3.university as univ_reg');
+        $query->leftjoin('univ_reg3s', 'univ_reg3s.student', '=', 'students.id')
+            ->where('univ_reg3s.semester', session('semester'))
+            ->addSelect('univ_reg3s.university as univreg');
     }
 
 }
