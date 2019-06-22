@@ -1,5 +1,3 @@
-// Last update : 2018-10-15, Jérôme Combes
-
 var li_ids=new Array();
 var logins=new Array();
 
@@ -862,6 +860,14 @@ $(document).ready(function(){
 });
 
 $(function(){
+
+    $('#check_all').click(function() {
+        $('.check_item').prop('checked', false);
+        if ($(this).prop('checked')) {
+            $('.check_item:visible').prop('checked', true);
+        }
+    });
+
   $("#enableEvaluation").click(function(){
     $.ajax({
       url: "enableEval.php",

@@ -76,7 +76,7 @@ echo <<<EOD
 EOD;
 echo count($std['semesters'])>1?"<tr><td>Semesters with VWPP</td>":"<tr><td>Semester with VWPP</td>";
 echo "<td>{$std['semestersJoin']}</td></tr>\n";
-echo "<tr><td>Home Institution</td><td>{$std['home_insttitution']}</td></tr>\n";
+echo "<tr><td>Home Institution</td><td>{$std['home_institution']}</td></tr>\n";
 echo "<tr><td>Résultat TCF</td><td>{$std['resultatTCF']}</td></tr>\n";
 echo "<tr><td>French University</td><td>{$std['frenchUniv']}</td></tr>\n";
 echo "<tr><td>French Univ. Student number</td><td>{$std['frenchNumber']}</td></tr>\n";

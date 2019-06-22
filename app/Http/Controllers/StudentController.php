@@ -22,13 +22,23 @@ class StudentController extends Controller
         $semester = session('semester');
 
         $students = Student::where('semesters', 'like', "%$semester%")
-            ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university')
+            ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university', 'students.guest')
             ->withUniv_reg()->get();
 
         // Count students
-        $vassar = $students->where('university', 'Vassar')->where('guest', '<>', '1')->count();
-        $wesleyan = $students->where('university', 'Wesleyan')->where('guest', '<>', '1')->count();
-        $other = $students->where('guest', '1')->count();
+        $vassar = $students->where('university', 'Vassar')->where('guest', '!=', '1')->count();
+        $wesleyan = $students->where('university', 'Wesleyan')->where('guest', '!=', '1')->count();
+        $other = $students->where('guest', 1)->count();
+
+        // Filter on home institution (Vassar or Wesleyan)
+        $login_univ = $_SESSION['vwpp']['login_univ'];
+        if ($login_univ != 'VWPP') {
+            foreach ($students as $key => $value) {
+                if ($value->university != $login_univ) {
+                    $students->forget($key);
+                }
+            }
+        }
 
         // View
         return view('admin.students', compact('students', 'vassar', 'wesleyan', 'other'));
