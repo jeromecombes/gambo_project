@@ -7,7 +7,7 @@ require_once "menu.php";
 
 if(!$_POST['students']){
   echo "<p style=color:red;font-weight:bold;'>No student selected</p>\n";
-  echo "<a href='students-list.php'>Back to list</a>\n";
+  echo "<a href='/admin/students'>Back to list</a>\n";
   require_once "../footer.php";
   exit;
 }
@@ -26,7 +26,7 @@ $students=serialize($students);
 
 echo <<<EOD
 <h3>Email</h3>
-<a href='students-list.php'>Back to list</a><br/><br/>
+<a href='/admin/students'>Back to list</a><br/><br/>
 
 <div class='fieldset'>
 <form action='students-email2.php' method='post'>
@@ -42,7 +42,7 @@ echo <<<EOD
 <tr><td colspan='2'><textarea name='message' cols='100' rows='5'></textarea></td></tr>
 
 <tr><td colspan='2' style='text-align:center'>
-<input type='button' value='Cancel' onclick='document.location.href="students-list.php";' />
+<input type='button' value='Cancel' onclick='document.location.href="/admin/students";' />
 <input type='submit' value='Send' style='margin-left:40px;'/>
 </table>
 </form>

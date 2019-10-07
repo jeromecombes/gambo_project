@@ -20,7 +20,7 @@ get_menu("Grades",7,array(18,19,20));
 get_menu("Upload Docs",3,3);
 
 echo <<<EOD
-<li style='position:absolute;right:0px;'><a href='students-list.php'>Back to list</a></li>
+<li style='position:absolute;right:0px;'><a href='/admin/students'>Back to list</a></li>
 </ul></div>
 <div id='information_{$_GET['error']}'>{$GLOBALS['lang'][$_GET['msg']]}</div>
 <script type='text/JavaScript'>setTimeout("document.getElementById('information_{$_GET['error']}').style.display='none'",3000);</script>

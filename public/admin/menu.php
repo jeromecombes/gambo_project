@@ -25,7 +25,7 @@ if($semester){
   if(in_array(24,$_SESSION['vwpp']['access']))
     echo "<li id='li11' class='ui-state-default ui-corner-top'><a href='dates.php'>Dates</a></li>\n";
 
-  echo "<li id='li5' class='ui-state-default ui-corner-top'><a href='students-list.php'>Students</a></li>\n";
+  echo "<li id='li5' class='ui-state-default ui-corner-top'><a href='/admin/students'>Students</a></li>\n";
 
   if(in_array(2,$_SESSION['vwpp']['access']))
     echo "<li id='li7' class='ui-state-default ui-corner-top'><a href='housing.php'>Housing</a></li>\n";
