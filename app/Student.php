@@ -69,10 +69,14 @@ class Student extends Model
         return $this->decrypt($value);
     }
 
+    public function setUnivregAttribute($value)
+    {
+        $this->univreg = $value;
+    }
+
     public function scopeWithUniv_reg($query)
     {
         $query->leftjoin('univ_reg3s', 'univ_reg3s.student', '=', 'students.id')
-            ->where('univ_reg3s.semester', session('semester'))
             ->addSelect('univ_reg3s.university as univreg');
     }
 

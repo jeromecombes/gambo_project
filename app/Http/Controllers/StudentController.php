@@ -23,7 +23,19 @@ class StudentController extends Controller
 
         $students = Student::where('semesters', 'like', "%$semester%")
             ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university', 'students.guest')
-            ->withUniv_reg()->get();
+            ->get();
+
+        // Add university registration information
+        $univ_reg = Univ_reg3::where('semester', $semester)->get();
+
+        foreach ($students as $key => $student) {
+            $univ = null;
+            foreach ($univ_reg as $elem) {
+                if ($elem->student == $student->id) {
+                    $students[$key]->setUnivregAttribute($elem->university);
+                }
+            }
+        }
 
         // Count students
         $vassar = $students->where('university', 'Vassar')->where('guest', '!=', '1')->count();
