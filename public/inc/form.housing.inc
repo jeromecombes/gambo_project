@@ -63,7 +63,13 @@ if($std['country'])
   $tmp[]=$std['country'];
 $address=join(", ",$tmp);
 
-include "form.housing2.inc";
-include "form.housing3.inc";
+$year = substr($semestre, -4);
 
+if ($year < 2020) {
+    include "form.housing2.inc";
+    include "form.housing3.inc";
+} else {
+    include "form.housing_2020_2.inc";
+    include "form.housing_2020_3.inc";
+}
 ?>
