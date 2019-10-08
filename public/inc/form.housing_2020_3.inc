@@ -190,7 +190,7 @@ VERY carefully and then answer the following questions</u>.</h3>
 </td></tr>
 
 <tr><td colspan='5'style='text-align:justify;'>
-1. My major priority / concern for housing (plaese list one.)</td></tr>
+1. My major priority / concern for housing (please list ONLY ONE.)</td></tr>
 <tr><td colspan='5' style='text-align:justify;font-weight:bold;'>
 <textarea name='data[28]'>{$housing[28]}</textarea></td></tr>
 

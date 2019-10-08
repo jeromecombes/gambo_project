@@ -137,7 +137,7 @@ VERY carefully and then answer the following questions</u>.</h3>
 </td></tr>
 
 <tr><td colspan='5' style='text-align:justify;'>
-1. My major priority / concern for housing (please list one.)
+1. My major priority / concern for housing (please list ONLY ONE.)
 <div class='response'>{$housing[28]}</div></td></tr>
 
 <tr><td colspan='5'>
