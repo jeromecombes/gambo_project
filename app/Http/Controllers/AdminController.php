@@ -33,4 +33,16 @@ class AdminController extends Controller
 
         return view('admin.index', compact('semesters', 'semester'));
     }
+
+    /**
+     * Set the semester
+     *
+     */
+    public function semester(Request $request)
+    {
+        $request->session()->put('semester', $request->semester);
+        $_SESSION['vwpp']['semester'] = $request->semester;
+
+        return redirect('/admin/students');
+    }
 }

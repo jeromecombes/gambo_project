@@ -161,11 +161,16 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $student
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(Request $request)
     {
-        //
+        $students = Student::findOrFail($request->students);
+        foreach ($students as $student) {
+            $student->delete();
+        }
+
+        return redirect('/admin/students')->with('success', 'Selected students have been successfuly deleted');;
     }
 }

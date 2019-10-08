@@ -14,5 +14,5 @@ foreach($_POST['students'] as $student){
   $db->insert2("courses_rh",array("semester"=>$semester,"student"=>$student));
 }
 
-header("Location: students-list.php?error=0&msg=update_success");
+header("Location: /admin/students?error=0&msg=update_success");
 ?>

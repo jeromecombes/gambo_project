@@ -37,5 +37,5 @@ if($mail->error){
   $msg="send_email_error";
 }
 
-header("Location: students-list.php?error=$error&msg=$msg");
+header("Location: /admin/students?error=$error&msg=$msg");
 ?>

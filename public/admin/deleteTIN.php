@@ -17,5 +17,5 @@ else{
   $error=0;
 }
 
-header("Location: students-list.php?msg=$msg&error=$error");
+header("Location: /admin/students?msg=$msg&error=$error");
 ?>

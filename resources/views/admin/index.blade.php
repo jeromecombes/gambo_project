@@ -8,7 +8,7 @@ Please choose the semester to which you would like to add students. You can also
 By clicking on the appropriate tab at the top, you can add or edit information regarding students, courses, grades, housing, evaluations or users for the semester chosen.<br/><br/>
 </p>
 
-{{ Form::open(array('url' => '/admin/students-list.php')) }}
+{{ Form::open(array('url' => '/admin/semester')) }}
 
     <table>
         <tr>

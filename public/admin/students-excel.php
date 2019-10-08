@@ -1,8 +1,4 @@
 <?php
-// Last update : 2015-05-29
-// ini_set('display_errors',1);
-// ini_set('error_reporting',E_ALL);
-
 require_once "../inc/config.php";
 require_once "../inc/class.housing.inc";
 require_once "../inc/class.student.inc";
@@ -36,15 +32,8 @@ for($i=0;$i<count($students);$i++){
 
 $Fnm = "../data/students_{$_SESSION['vwpp']['semestre']}";
 
-if($_GET['type']=="csv"){
-  $separate="';'";
-  $Fnm.=".csv";
-}
-else{
-  $separate="\t";
-  $Fnm.=".xls";
-}
-
+$separate="\t";
+$Fnm.=".xls";
 
 $fields=Array ("lastname","firstname","gender","home_institution","semestersJoin","frenchUniv","frenchNumber",
   "citizenship1","citizenship2","dob","placeOB","countryOB","tin","email","cellphone","contactlast",
@@ -66,7 +55,8 @@ $lines[]=join($line1,$separate);
 foreach($students as $student){
   $cells=array();
   foreach($fields as $field){
-    $cells[]=$student[$field];
+    $value = !empty($student[$field]) ? $student[$field] : null;
+    $cells[] = $value;
    }
   $lines[]=join($cells,$separate);
 }

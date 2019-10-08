@@ -257,7 +257,7 @@ else{
 }
 echo "</ul></td></tr>\n";
 echo "<tr><td>Home Institution</td>\n";
-echo "<tr><td>Home Institution</td><td>{$std['home_insttitution']}</td></tr>\n";
+echo "<tr><td>Home Institution</td><td>{$std['home_institution']}</td></tr>\n";
 if($_SESSION['vwpp']['category']=="admin")
   echo "<tr><td>Résultat TCF</td><td><input type='text' name='std[resultatTCF]' value='{$std['resultatTCF']}' /></td></tr>\n";
 else

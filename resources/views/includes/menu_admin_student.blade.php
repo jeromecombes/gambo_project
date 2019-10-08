@@ -32,6 +32,6 @@
             <li class='ui-state-default ui-corner-top li-next'><a href="/documents/{{session('student_next')}}">Next</a></li>
         @endif
 
-            <li  class='ui-state-default ui-corner-top back-to-list'><a href='/admin/students-list.php'>Back to list</a></li>
+            <li  class='ui-state-default ui-corner-top back-to-list'><a href='/admin/students'>Back to list</a></li>
     </ul>
 </nav>

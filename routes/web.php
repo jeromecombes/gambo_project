@@ -24,13 +24,29 @@ Route::get('/admin2', 'AdminController@index')
     ->name('admin.index');
 // TODO Rename to admin when migration completed
 
+// Set the semester
+Route::post('/admin/semester', 'AdminController@semester')
+    ->middleware('old.session')
+    ->middleware('old.admin')
+    ->middleware('old.access')
+    ->middleware('admin')
+    ->name('admin.semester');
+
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
     ->middleware('old.session')
     ->middleware('old.admin')
     ->middleware('old.access')
     ->middleware('admin')
-    ->name('admin.index');
+    ->name('student.index');
+
+// Admin Student Delete
+Route::delete('/admin/students', 'StudentController@destroy')
+    ->middleware('old.session')
+    ->middleware('old.admin')
+    ->middleware('old.access')
+    ->middleware('admin')
+    ->name('student.destroy');
 
 // Documents
 Route::get('/documents', 'DocumentController@index')

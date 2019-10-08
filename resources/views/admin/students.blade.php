@@ -16,7 +16,7 @@
 </table>
 
 @if($students->count())
-    <form name='form2' action='#' method='get'>
+    {{ Form::open(array('method'  => 'delete', 'name' => 'form1', 'url' => '/admin/students')) }}
     <table class='datatable' data-sort='[]'>
         <thead>
             <tr>
@@ -35,7 +35,7 @@
         @foreach($students as $student)
             <tr>
                 <td>
-                    <input type='checkbox' name='students[]' class='check_item studentsCheckbox' value='{{ $student->id }}' onclick='setTimeout("select_action(\"form2\")",5);'/>
+                    <input type='checkbox' name='students[]' class='check_item studentsCheckbox' value='{{ $student->id }}' onclick='setTimeout("select_action(\"form1\")",5);'/>
                     <input type='hidden' id='mail_{{ $student->id }}' value='{{ $student->mail }}' />
                     <a href='students-view2.php?id={{ $student->id }}' class='studentsEdit' >
                         <img src='../img/edit.png' alt='view' border='0'/>
@@ -51,20 +51,20 @@
         @endforeach
 
     </table>
-    </form>
+    {{ Form::close() }}
 
     <br/>
-    <form name='form3' action='students-list.php' method='get'>
+    {{ Form::open(array('name' => 'form2', 'url' => '/admin/students')) }}
         <div class='marginBottom'>
             For selected students :
-            <select name='action' id='action' onchange='select_action("form2");' style='width:250px;' class='ui-widget-content ui-corner-all'>
+            <select name='action' id='action' onchange='select_action("form1");' style='width:250px;' class='ui-widget-content ui-corner-all'>
                 @foreach($options as $option)
                     <option value='{{ $option->value }}'>{{ $option->text }}</option>
                 @endforeach
             </select>
-            <input type='button' id='submit_button' value='Go' disabled='disabled' onclick='submit_action("form3","form2");' class='myUI-button marginLeft' />
+            <input type='button' id='submit_button' value='Go' disabled='disabled' onclick='submit_action("form2","form1");' class='myUI-button marginLeft' />
         </div>
-    </form>
+    {{ Form::close() }}
 
 @endif
 

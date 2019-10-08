@@ -11,5 +11,5 @@ foreach($_POST['students'] as $student){
   $db->delete("courses_rh","student='$student' AND semester='$semester'");
 }
 
-header("Location: students-list.php?error=0&msg=update_success");
+header("Location: /admin/students?error=0&msg=update_success");
 ?>
