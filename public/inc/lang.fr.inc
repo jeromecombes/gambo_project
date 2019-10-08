@@ -1,14 +1,10 @@
 <?php
-// 2015-11-14
-
 $lang["update_success"]="Mise à jour réussie";
 $lang["update_error"]="La mise à jour a échoué";
 $lang["insert_success"]="Informations enregistrées";
 $lang["insert_error"]="La mise à jour a échoué";
 $lang["delete_success"]="Suppression réussie";
 $lang["delete_error"]="Erreur lors de la suppression";
-$lang["deleteTIN_success"]="TIN supprimé avec succés";
-$lang["deleteTIN_error"]="Erreur lors de la suppression du TIN";
 $lang["send_email_success"]="Le mail a bien été envoyé";
 $lang["send_emails_success"]="Les mails ont bien été envoyés";
 $lang["wrong_current_password"]="Mot de passe actuel incorrect";

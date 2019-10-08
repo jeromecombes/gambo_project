@@ -68,9 +68,6 @@ class StudentController extends Controller
         if (in_array(4,$_SESSION['vwpp']['access'])) {
             $options[] = (object) array('value' => 'CreatePassword', 'text' => 'Send emails with passwords');
         }
-        if (in_array(6,$_SESSION['vwpp']['access'])) {
-            $options[] = (object) array('value' => 'DeleteTIN', 'text' => 'Delete TIN');
-        }
         if (in_array(5,$_SESSION['vwpp']['access'])) {
         $options[] = (object) array('value' => 'Delete', 'text' => 'Delete');
         }

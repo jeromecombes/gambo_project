@@ -18,14 +18,13 @@ class student{
   public $password=null;
   public $token=null;
   public $semester;
-  public $tin;
   public $university=null;				// university filter
 
   public $cryptedFieldsNoID=array("lastname","firstname","email");
   public $cryptedFieldsMD5=array("token","password");
   public $cryptedFields=array("gender","dob","citizenship1","citizenship2","town","university",
       "university2","graduation","city","street","zip","state","country","contactlast","contactfirst","contactphone",
-      "contactmobile","contactemail","cellphone","home_institution","placeOB","countryOB","frenchNumber","resultatTCF","tin");
+      "contactmobile","contactemail","cellphone","home_institution","placeOB","countryOB","frenchNumber","resultatTCF");
 
   function __construct(){
     if(array_key_exists("vwpp",$_SESSION) and array_key_exists("semester",$_SESSION['vwpp'])){
@@ -83,32 +82,6 @@ class student{
     $message=$GLOBALS['config']['Messages-Welcome'];
     $message=str_replace(array("[FIRSTNAME]","[LASTNAME]","[EMAIL]","[PASSWORD]"),array($firstname,$lastname,$email,$password),$message);
     $this->welcomeMessage[$id]=$message;
-  }
-  
-  public function deleteTIN(){
-    if(!in_array(6,$_SESSION['vwpp']['access'])){
-      $this->error=true;
-      return;
-    }
-    
-    $students=$this->list;
-
-    if(!is_array($students)){
-      $this->error=true;
-      return;
-    }
-
-    $db=new dbh();
-    $db->prepare("INSERT INTO {$GLOBALS['config']['dbprefix']}log (message) VALUES (:message);");
-    $insert=array(":message"=>"User #{$_SESSION['vwpp']['login_id']}, {$_SESSION['vwpp']['semestre']} : delete TIN for students ".join("; ",$students));
-    $db->execute($insert);
-    
-    $db=new dbh();
-    $db->prepare("UPDATE {$GLOBALS['config']['dbprefix']}students SET tin=:tin WHERE id=:id;");
-
-    foreach($students as $elem){
-      $db->execute(array(":tin"=>encrypt_vwpp("",$elem),":id"=>$elem));
-    }
   }
 
   public function fetch(){
