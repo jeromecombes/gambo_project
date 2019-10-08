@@ -18,6 +18,8 @@ class AdminController extends Controller
         LaravelSession::forget('semester');
         LaravelSession::forget('student');
 
+        $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
+
         $oldestYear = date('Y') - 5;
         $semesters = array('' => '');
         for ($i = date('Y')+1; $i >= $oldestYear; $i--){
