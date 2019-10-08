@@ -16,7 +16,7 @@
 </table>
 
 @if($students->count())
-    {{ Form::open(array('method'  => 'delete', 'name' => 'form1', 'url' => '/admin/students')) }}
+    {{ Form::open(array('name' => 'form1', 'url' => '/admin/students')) }}
     <table class='datatable' data-sort='[]'>
         <thead>
             <tr>

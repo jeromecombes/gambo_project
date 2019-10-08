@@ -41,7 +41,7 @@ Route::get('/admin/students', 'StudentController@admin_index')
     ->name('student.index');
 
 // Admin Student Delete
-Route::delete('/admin/students', 'StudentController@destroy')
+Route::post('/admin/students/delete', 'StudentController@destroy')
     ->middleware('old.session')
     ->middleware('old.admin')
     ->middleware('old.access')
@@ -83,6 +83,22 @@ Route::delete('/documents', 'DocumentController@destroy')
 Route::get('/show/{id}', 'DocumentController@show')
     ->middleware('old.session')
     ->name('document.show');
+
+// TEST
+// Housing
+Route::get('/admin/housing', 'HousingController@index')
+    ->middleware('old.session')
+    ->name('housing.index');
+
+// Lock housing forms
+Route::post('/admin/housing/lock', 'HousingClosedController@lock')
+    ->middleware('old.session')
+    ->name('housing.lock');
+
+// Unlock housing forms
+Route::post('/admin/housing/unlock', 'HousingClosedController@unlock')
+    ->middleware('old.session')
+    ->name('housing.unlock');
 
 Auth::routes();
 

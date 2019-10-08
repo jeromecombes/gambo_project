@@ -177,11 +177,6 @@ function ctrl_form_univreg(){
   return true;
 }
 
-function delete_check(form){
-  if(confirm("Do you really want to delete selected items ?"))
-    document.forms[form].submit();
-}
-
 function delete_doc(id) {
     if (confirm("Do you really want to delete this document ?")) {
 //         document.location.href = '/documents/'+id+'/destroy';
@@ -544,7 +539,12 @@ function select_action(form){
 
 function submit_action(form,form2){		// a finir
   switch(document.forms[form].action.value){
-    case "Delete" : delete_check(form2);	break;
+    case "Delete" : 
+        if(confirm("Do you really want to delete selected items ?")) {
+            document.forms[form2].action="/admin/students/delete";
+            document.forms[form2].submit();
+        }
+        break;
 
     case "CreatePassword" :
 	if(confirm("The password of selected students will be changed.\nContinue ?")){
@@ -603,11 +603,11 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();	break;
 
     case "closeHousing" :
-	  document.forms[form2].action="housing-close.php";
+	  document.forms[form2].action="/admin/housing/lock";
 	  document.forms[form2].submit();	break;
 	  
     case "openHousing" :
-	  document.forms[form2].action="housing-open.php";
+	  document.forms[form2].action="/admin/housing/unlock";
 	  document.forms[form2].submit();	break;
 
     case "lockVWPP" :
