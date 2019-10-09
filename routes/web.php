@@ -90,6 +90,36 @@ Route::get('/admin/housing', 'HousingController@index')
     ->middleware('old.session')
     ->name('housing.index');
 
+// Lock RH Courses forms
+Route::post('/admin/RHCourses/lock', 'CoursesRHController@lock')
+    ->middleware('old.session')
+    ->name('RHCourses.lock');
+
+// Unlock RH Courses forms
+Route::post('/admin/RHCourses/unlock', 'CoursesRHController@unlock')
+    ->middleware('old.session')
+    ->name('RHCourses.unlock');
+
+// Show RH Courses affectations
+Route::post('/admin/RHCourses/show', 'CoursesRH2Controller@lock')
+    ->middleware('old.session')
+    ->name('RHCourses.show');
+
+// Hide RH Courses
+Route::post('/admin/RHCourses/hide', 'CoursesRH2Controller@unlock')
+    ->middleware('old.session')
+    ->name('RHCourses.hide');
+
+// Show Univ. Reg.
+Route::post('/admin/UnivReg/show', 'UnivRegShowController@lock')
+    ->middleware('old.session')
+    ->name('UnivReg.show');
+
+// Hide Univ. Reg.
+Route::post('/admin/UnivReg/hide', 'UnivRegShowController@unlock')
+    ->middleware('old.session')
+    ->name('UnivReg.hide');
+
 // Lock housing forms
 Route::post('/admin/housing/lock', 'HousingClosedController@lock')
     ->middleware('old.session')

@@ -611,27 +611,27 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();	break;
 
     case "lockVWPP" :
-	  document.forms[form2].action="lockRH3.php";
+	  document.forms[form2].action="/admin/RHCourses/lock";
 	  document.forms[form2].submit();	break;
 
     case "unlockVWPP" :
-	  document.forms[form2].action="lockRH4.php";
+	  document.forms[form2].action="/admin/RHCourses/unlock";
 	  document.forms[form2].submit();	break;
 
     case "publishVWPP" :
-	  document.forms[form2].action="lockRH5.php";
+	  document.forms[form2].action="/admin/RHCourses/show";
 	  document.forms[form2].submit();	break;
 
     case "hideVWPP" :
-	  document.forms[form2].action="lockRH6.php";
+	  document.forms[form2].action="/admin/RHCourses/hide";
 	  document.forms[form2].submit();	break;
 
     case "publishUnivReg" :
-	  document.forms[form2].action="lockRH7.php";
+	  document.forms[form2].action="/admin/UnivReg/show";
 	  document.forms[form2].submit();	break;
 
     case "hideUnivReg" :
-	  document.forms[form2].action="lockRH8.php";
+	  document.forms[form2].action="/admin/UnivReg/hide";
 	  document.forms[form2].submit();	break;
 
     case "Univ_reg" :
