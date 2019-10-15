@@ -11,7 +11,7 @@ $h->deleteLogement($id);
 $error=$h->error?1:0;
 $msg=$h->error?"delete_error":"delete_success";
 
-header("Location: housing-list.php?error=$error&msg=$msg");
+header("Location: /admin/hosts?error=$error&msg=$msg");
 
 
 ?>

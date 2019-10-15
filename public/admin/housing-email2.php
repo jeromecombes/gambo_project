@@ -42,5 +42,5 @@ else{
   }
 }
 
-header("Location: housing-list.php?error=$error&msg=$msg");
+header("Location: /admin/hosts?error=$error&msg=$msg");
 ?>

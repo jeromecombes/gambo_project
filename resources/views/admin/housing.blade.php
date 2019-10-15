@@ -4,7 +4,7 @@
 <h3>Housing</h3>
 
 <p>
-    <a href="{{ asset('admin/housing-list.php') }}">Liste des logements</a>
+    <a href="{{ asset('admin/hosts') }}">Liste des logements</a>
 </p>
 <p>
     <a href="{{ asset('admin/housing-request.php') }}">Demande des étudiants</a>

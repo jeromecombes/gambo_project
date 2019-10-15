@@ -24,7 +24,7 @@ $fields[]=array("cellphone","Portable","cellphone2","Portable 2");
 $fields[]=array("email","E-mail","email2","E-mail 2");
 ?>
 <h3>Housing - <?php echo $_SESSION['vwpp']['semester']; ?></h3>
-<a href='housing.php'>Housing Home</a> > <a href='housing-list.php'>Liste des logements</a>
+<a href='housing.php'>Housing Home</a> > <a href='/admin/hosts'>Liste des logements</a>
 <br/><br/>
 
 <form method='post' action='housing-update.php' name='form_1'>
@@ -52,7 +52,7 @@ echo "<tr><td colspan='4' style='padding-top:20px;'>Etudiant(e) attribué(e) : {
 ?>
 
 <tr><td colspan='4' style='text-align:right;padding-top:20px;'>
-<input type='button' value='Retour' onclick='document.location.href="housing-list.php";' id='form_1_<?php echo $i++; ?>' class='myUI-button-right' />
+<input type='button' value='Retour' onclick='document.location.href="/admin/hosts";' id='form_1_<?php echo $i++; ?>' class='myUI-button-right' />
 
 <?php
 if(in_array(7,$_SESSION['vwpp']['access'])){

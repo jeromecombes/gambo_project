@@ -89,6 +89,10 @@ Route::get('/admin/housing', 'HousingController@index')
     ->middleware('old.session')
     ->name('housing.index');
 
+Route::get('/admin/hosts', 'HostController@index')
+    ->middleware('old.session')
+    ->name('hosts.index');
+
 // Lock RH Courses forms
 Route::post('/admin/RHCourses/lock', 'CoursesRHController@lock')
     ->middleware('old.session')
