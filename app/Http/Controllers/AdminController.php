@@ -44,6 +44,7 @@ class AdminController extends Controller
     {
         $request->session()->put('semester', $request->semester);
         $_SESSION['vwpp']['semester'] = $request->semester;
+        $_SESSION['vwpp']['semestre'] = $request->semester;
 
         return redirect('/admin/students');
     }
