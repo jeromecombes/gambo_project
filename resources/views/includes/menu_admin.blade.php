@@ -6,10 +6,10 @@
                 <li id='li11' class="ui-state-default ui-corner-top {{ (request()->is('admin/dates')) ? 'ui-state-active' : '' }}"><a href='/admin/dates.php'>Dates</a></li>
             @endif
 
-            <li id='li5' class="ui-state-default ui-corner-top {{ (request()->is('admin/students')) ? 'ui-state-active' : '' }}"><a href='/admin/students'>Students</a></li>
+            <li id='li5' class="ui-state-default ui-corner-top {{ (request()->is('admin/students')) ? 'ui-state-active' : '' }}"><a href="{{ asset('admin/students') }}">Students</a></li>
 
             @if(in_array(2, session('access')))
-                <li id='li7' class="ui-state-default ui-corner-top {{ (request()->is('admin/housing')) ? 'ui-state-active' : '' }}"><a href='/admin/housing.php'>Housing</a></li>
+                <li id='li7' class="ui-state-default ui-corner-top {{ (request()->is('admin/housing')) ? 'ui-state-active' : '' }}"><a href="{{ asset('admin/housing') }}">Housing</a></li>
             @endif
 
             <li id='li10' class="ui-state-default ui-corner-top {{ (request()->is('admin/univ_reg')) ? 'ui-state-active' : '' }}"><a href='/admin/univ_reg.php'>Univ. reg.</a></li>
@@ -25,7 +25,7 @@
             <li id='li4' class="ui-state-default ui-corner-top {{ (request()->is('admin/evaluations')) ? 'ui-state-active' : '' }}"><a href='/admin/eval_index.php'>Evaluations</a></li>
 
             @if(in_array(3, session('access')))
-                <li id='li8' class="ui-state-default ui-corner-top {{ (request()->is('documents')) ? 'ui-state-active' : '' }}"><a href='/documents'>Documents</a></li>
+                <li id='li8' class="ui-state-default ui-corner-top {{ (request()->is('documents')) ? 'ui-state-active' : '' }}"><a href="{{ asset('documents') }}">Documents</a></li>
             @endif
         @endif
 

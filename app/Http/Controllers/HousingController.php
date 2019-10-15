@@ -15,23 +15,7 @@ class HousingController extends Controller
      */
     public function index(Request $request)
     {
-        // TEST
-        $semester = $request->session()->get('semester');
-        $semester = str_replace(' ', '_', $semester);
-        $house = Housing::where('semestre', $semester)->get();
-        
-        // TEST
-        foreach ($house as $h) {
-            echo $h->id;
-            echo "<br/>";
-            echo $h->student;
-            echo "<br/>";
-            echo $h->semester;
-            echo "<br/>";
-            echo $h->response;
-            echo "<hr/>";
-        }
-        //
+    return view('admin.housing');
     }
 
     /**

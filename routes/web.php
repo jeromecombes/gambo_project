@@ -84,7 +84,6 @@ Route::get('/show/{id}', 'DocumentController@show')
     ->middleware('old.session')
     ->name('document.show');
 
-// TEST
 // Housing
 Route::get('/admin/housing', 'HousingController@index')
     ->middleware('old.session')
