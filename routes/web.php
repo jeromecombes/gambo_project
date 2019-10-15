@@ -87,10 +87,14 @@ Route::get('/show/{id}', 'DocumentController@show')
 // Housing
 Route::get('/admin/housing', 'HousingController@index')
     ->middleware('old.session')
+    ->middleware('Semester')
+    ->middleware('AccessHousing')
     ->name('housing.index');
 
 Route::get('/admin/hosts', 'HostController@index')
     ->middleware('old.session')
+    ->middleware('Semester')
+    ->middleware('AccessHousing')
     ->name('hosts.index');
 
 // Lock RH Courses forms

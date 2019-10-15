@@ -61,5 +61,7 @@ class Kernel extends HttpKernel
         'old.access' => \App\Http\Middleware\OldAccess::class,
         'old.admin' => \App\Http\Middleware\OldAdmin::class,
         'old.session' => \App\Http\Middleware\OldSession::class,
+        'AccessHousing' => \App\Http\Middleware\AccessHousing::class,
+        'Semester' => \App\Http\Middleware\Semester::class,
     ];
 }

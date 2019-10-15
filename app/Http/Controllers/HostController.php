@@ -41,14 +41,12 @@ class HostController extends Controller
             ->withStudents()
             ->get();
 
-        foreach ($hosts as $key => $value) {
-            foreach ($assignment as $assign) {
-                if ($value->id == $assign->logement) {
-                    $hosts[$key]->studentname = $assign->studentname;
-                    continue;
-                }
+        $hosts->each(function ($host) use ($assignment) {
+            $student = $assignment->where('logement', $host->id)->first();
+            if ($student) {
+                $host->studentname = $student->studentname;
             }
-        }
+        });
 
         // Edit access
         $edit_access = in_array(7, session('access'));
