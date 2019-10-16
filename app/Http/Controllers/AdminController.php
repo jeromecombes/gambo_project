@@ -21,6 +21,7 @@ class AdminController extends Controller
         }
 
         $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
+        $request->session()->put('login_univ', $_SESSION['vwpp']['login_univ']);
 
         $oldestYear = date('Y') - 5;
         $semesters = array('' => '');

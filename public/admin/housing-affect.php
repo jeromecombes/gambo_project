@@ -1,6 +1,4 @@
 <?php
-// Last update : 2015-03-22
-
 require_once "../header.php";
 require_once "../inc/class.housing.inc";
 require_once "../inc/class.student.inc";
@@ -30,7 +28,7 @@ $logement=$l->logement;
 
 echo "<h3>Housing - Affectation</h3>\n";
 echo "<a href='housing.php'>Housing</a> > \n";
-echo "<a href='housing-request.php'>Demandes</a>\n";
+echo "<a href='/admin/housing/requests'>Demandes</a>\n";
 
 echo "<p>Affectation d'un logement pour {$student['firstname']} {$student['lastname']} pour $semester.</p>";
 

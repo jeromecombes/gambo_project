@@ -80,6 +80,12 @@ Route::get('/admin/housing', 'HousingController@index')
     ->middleware('role:2')
     ->name('housing.index');
 
+Route::get('/admin/housing/requests', 'HousingController@requests')
+    ->middleware('admin')
+    ->middleware('semester')
+    ->middleware('role:2')
+    ->name('housing.requests');
+
 Route::get('/admin/hosts', 'HostController@index')
     ->middleware('admin')
     ->middleware('semester')

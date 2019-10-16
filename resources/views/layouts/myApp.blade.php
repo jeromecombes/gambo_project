@@ -17,7 +17,7 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/print.css') }}" rel="stylesheet" media='print'>
 
-        <link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
+        <link rel='shortcut icon' href="{{ asset('favicon.ico') }}" type='image/x-icon' />
 
         <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/jquery-1.10.2.js'></script>
         <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/ui/jquery-ui.js'></script>
@@ -48,8 +48,8 @@
                     </span>
                     <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
                     <div id='myMenu'>
-                        <a href='myAccount.php'>My Account</a><br/>
-                        <a href='logout.php'>Logout</a>
+                        <a href="{{ asset('myAccount.php') }}">My Account</a><br/>
+                        <a href="{{ asset('logout.php') }}">Logout</a>
                     </div>
                 </div>
 

@@ -24,7 +24,7 @@ $fields[]=array("cellphone","Portable","cellphone2","Portable 2");
 $fields[]=array("email","E-mail","email2","E-mail 2");
 ?>
 <h3>Housing - <?php echo $_SESSION['vwpp']['semester']; ?></h3>
-<a href='housing.php'>Housing Home</a> > <a href='/admin/hosts'>Liste des logements</a>
+<a href='/admin/housing'>Housing Home</a> > <a href='/admin/hosts'>Liste des logements</a>
 <br/><br/>
 
 <form method='post' action='housing-update.php' name='form_1'>
