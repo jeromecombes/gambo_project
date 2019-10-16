@@ -15,8 +15,10 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        LaravelSession::forget('semester');
-        LaravelSession::forget('student');
+        if (session('warning') != 'Access denied') {
+            LaravelSession::forget('semester');
+            LaravelSession::forget('student');
+        }
 
         $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
 

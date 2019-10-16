@@ -17,34 +17,23 @@ Route::get('/', function () {
 
 // Admin home
 Route::get('/admin2', 'AdminController@index')
-    ->middleware('old.session')
-    ->middleware('old.admin')
-    ->middleware('old.access')
     ->middleware('admin')
     ->name('admin.index');
 // TODO Rename to admin when migration completed
 
 // Set the semester
 Route::post('/admin/semester', 'AdminController@semester')
-    ->middleware('old.session')
-    ->middleware('old.admin')
-    ->middleware('old.access')
     ->middleware('admin')
     ->name('admin.semester');
 
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
-    ->middleware('old.session')
-    ->middleware('old.admin')
-    ->middleware('old.access')
     ->middleware('admin')
+    ->middleware('semester')
     ->name('student.index');
 
 // Admin Student Delete
 Route::post('/admin/students/delete', 'StudentController@destroy')
-    ->middleware('old.session')
-    ->middleware('old.admin')
-    ->middleware('old.access')
     ->middleware('admin')
     ->name('student.destroy');
 
@@ -86,55 +75,55 @@ Route::get('/show/{id}', 'DocumentController@show')
 
 // Housing
 Route::get('/admin/housing', 'HousingController@index')
-    ->middleware('old.session')
-    ->middleware('Semester')
-    ->middleware('AccessHousing')
+    ->middleware('admin')
+    ->middleware('semester')
+    ->middleware('role:2')
     ->name('housing.index');
 
 Route::get('/admin/hosts', 'HostController@index')
-    ->middleware('old.session')
-    ->middleware('Semester')
-    ->middleware('AccessHousing')
+    ->middleware('admin')
+    ->middleware('semester')
+    ->middleware('role:2')
     ->name('hosts.index');
 
 // Lock RH Courses forms
 Route::post('/admin/RHCourses/lock', 'CoursesRHController@lock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('RHCourses.lock');
 
 // Unlock RH Courses forms
 Route::post('/admin/RHCourses/unlock', 'CoursesRHController@unlock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('RHCourses.unlock');
 
 // Show RH Courses affectations
 Route::post('/admin/RHCourses/show', 'CoursesRH2Controller@lock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('RHCourses.show');
 
 // Hide RH Courses
 Route::post('/admin/RHCourses/hide', 'CoursesRH2Controller@unlock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('RHCourses.hide');
 
 // Show Univ. Reg.
 Route::post('/admin/UnivReg/show', 'UnivRegShowController@lock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('UnivReg.show');
 
 // Hide Univ. Reg.
 Route::post('/admin/UnivReg/hide', 'UnivRegShowController@unlock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('UnivReg.hide');
 
 // Lock housing forms
 Route::post('/admin/housing/lock', 'HousingClosedController@lock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('housing.lock');
 
 // Unlock housing forms
 Route::post('/admin/housing/unlock', 'HousingClosedController@unlock')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('housing.unlock');
 
 Auth::routes();
@@ -143,10 +132,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // EXPORT Files : Decrypt and export files for given semester in storage/app/export/
 Route::get('/export/{semester}', 'DocumentController@export_all')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('document.export');
 
 // EXPORT Files and delete originals : Decrypt, export files for given semester in storage/app/export/ and delete originals
 Route::get('/export/{semester}/{delete}', 'DocumentController@export_all')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->name('document.export_delete');
