@@ -55,7 +55,7 @@ class tutorat{
     $semester=$this->semester;
 
     $tutorat=array_map("entities",$tutorat);
-    $tutorat=array_map("encrypt",$tutorat);
+    $tutorat=array_map("encrypt_vwpp",$tutorat);
 
     $data=array(":semester"=>$semester,":student"=>$student,":tuteur"=>$tutorat['tuteur'],
       ":day"=>$tutorat['day'],":start"=>$tutorat['start'],":end"=>$tutorat['end']);
