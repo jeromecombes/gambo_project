@@ -14,7 +14,7 @@ $g=new grades();
 $g->fetch($student);
 $grades=$g->grades;
 
-$grades_tab=array("A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F","Pass","S","DS");
+$grades_tab=array("A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F","Pass","S","DS","W");
 
 echo <<<EOD
 <div id='div$id' style='display:$display;'>

@@ -1,6 +1,4 @@
 <?php
-// Last update : 2016-03-12
-
 require_once("../inc/config.php");
 require_once("../inc/class.ciph.inc");
 require_once("../inc/class.courses.inc");
@@ -59,7 +57,7 @@ for($i=0;$i<count($students);$i++){
   $students[$i]['date1']=$g->grades[$students[$i]['id']]['date1'];
   $students[$i]['date2']=$g->grades[$students[$i]['id']]['date2'];
 }
-$grades_tab=array("A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F","Pass","S","DS");
+$grades_tab=array("A+","A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F","Pass","S","DS","W");
 
 echo <<<EOD
 <h3>Grades, {$_SESSION['vwpp']['semester']}</h3>

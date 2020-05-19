@@ -48,7 +48,7 @@ echo "<script type='text/JavaScript' src='{$config['folder']}/js/jquery-ui-1.10.
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/dataTables/jquery.dataTables.min.js'></script>\n";
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/dataTables/sort.js'></script>\n";
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/CJScript.js'></script>\n";
-echo "<script type='text/JavaScript' src='{$config['folder']}/js/script.js'></script>\n";
+echo "<script type='text/JavaScript' src='{$config['folder']}/js/script.js?rev=20200519'></script>\n";
 
 ?>
 <noscript><center><h1>ATTENTION : JavaScript is needed</h1></center></noscript>

@@ -701,12 +701,18 @@ function verifNote(form,me){
   me.value=me.value.replace(",",".");
   me.value=me.value.replace(";",".");
   me.value=me.value.replace(" ","");
-  me.value=me.value.replace("-","");
+// Update 2020-05-19 : symbol - is now authorized. Asked by Vinay Swamy
+//   me.value=me.value.replace("-","");
   me.value=me.value.replace("+","");
+
   if(me.value && (me.value>20 || !isNumeric(me.value) || me.value.length>5)){
     me.style.background="red";
   }
   else{
+    me.style.background="white";
+  }
+// Update 2020-05-19 : symbol - is now authorized. Asked by Vinay Swamy  
+  if (me.value == '-') {
     me.style.background="white";
   }
   
