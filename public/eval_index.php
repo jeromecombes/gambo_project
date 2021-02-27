@@ -120,106 +120,107 @@ echo "Program Evaluation $closed";
 if($showClosed or !$closed){ echo "</a>"; }
 echo "</li></ul>\n";
 
-echo "<h3 style='margin-bottom:0px;'>VWPP Course Evaluation</h3><ul>";
-if(empty($RHcourses)){
-  echo "<li style='color:red;font-weight:bold;'>No VWPP courses selected</li>\n";
-}
-foreach($RHcourses as $elem){
-  $closed=$elem['closed']?"(done)":null;
-  echo "<li>\n";
-  if($showClosed or !$closed){ 
-    echo "<a href='{$folder}eval_index2.php?form=ReidHall&amp;courseId={$elem['id']}'>\n";
-  }
-  echo "Evaluation for {$elem['title']}, {$elem['professor']} $closed";
-  if($showClosed or !$closed){ echo "</a>"; }
-  echo "</li>\n";
-}
-echo "</ul>\n";
-
-echo "<h3 style='margin-bottom:0px;'>University Course Evaluation</h3>";
-echo "<ul>\n";
-if($univCourses){
-    foreach($univCourses as $elem){
-      $closed=$elem['closed']?"(done)":null;
-      echo "<li>\n";
-      if($showClosed or !$closed){
-        echo "<a href='{$folder}eval_index2.php?form=univ&amp;courseId={$elem['id']}'>\n";
-      }
-      echo "University Course Evaluation : {$elem['name']}, {$elem['prof']} $closed";
-      if($showClosed or !$closed){ echo "</a>"; }
-      echo "</li>\n";
+if ($semester != 'Spring_2020' ) {
+    echo "<h3 style='margin-bottom:0px;'>VWPP Course Evaluation</h3><ul>";
+    if(empty($RHcourses)){
+    echo "<li style='color:red;font-weight:bold;'>No VWPP courses selected</li>\n";
     }
-}
-echo "</ul>\n";
-
-echo "<h3 style='margin-bottom:0px;'>Evaluation of courses taken at CIPh or other institutions</h3>";
-echo "<ul>\n";
-foreach($ciphCourses as $elem){
-//   if($elem['titre']){
+    foreach($RHcourses as $elem){
     $closed=$elem['closed']?"(done)":null;
-    echo "<li>";
-    if($showClosed or !$closed){
-      echo "<a href='{$folder}eval_index2.php?form=CIPH&amp;courseId={$elem['id']}'>";
+    echo "<li>\n";
+    if($showClosed or !$closed){ 
+        echo "<a href='{$folder}eval_index2.php?form=ReidHall&amp;courseId={$elem['id']}'>\n";
     }
-    echo "CIPh Evaluation : {$elem['titre']}, {$elem['instructeur']} $closed\n";
+    echo "Evaluation for {$elem['title']}, {$elem['professor']} $closed";
     if($showClosed or !$closed){ echo "</a>"; }
     echo "</li>\n";
-//   }
+    }
+    echo "</ul>\n";
+
+    echo "<h3 style='margin-bottom:0px;'>University Course Evaluation</h3>";
+    echo "<ul>\n";
+    if($univCourses){
+        foreach($univCourses as $elem){
+        $closed=$elem['closed']?"(done)":null;
+        echo "<li>\n";
+        if($showClosed or !$closed){
+            echo "<a href='{$folder}eval_index2.php?form=univ&amp;courseId={$elem['id']}'>\n";
+        }
+        echo "University Course Evaluation : {$elem['name']}, {$elem['prof']} $closed";
+        if($showClosed or !$closed){ echo "</a>"; }
+        echo "</li>\n";
+        }
+    }
+    echo "</ul>\n";
+
+    echo "<h3 style='margin-bottom:0px;'>Evaluation of courses taken at CIPh or other institutions</h3>";
+    echo "<ul>\n";
+    foreach($ciphCourses as $elem){
+    //   if($elem['titre']){
+        $closed=$elem['closed']?"(done)":null;
+        echo "<li>";
+        if($showClosed or !$closed){
+        echo "<a href='{$folder}eval_index2.php?form=CIPH&amp;courseId={$elem['id']}'>";
+        }
+        echo "CIPh Evaluation : {$elem['titre']}, {$elem['instructeur']} $closed\n";
+        if($showClosed or !$closed){ echo "</a>"; }
+        echo "</li>\n";
+    //   }
+    }
+    echo "</ul>\n";
+
+    $closed=!empty($tutorats)?"(done)":null;
+    echo "<h3 style='margin-bottom:0px;'>Tutorial Evaluations</h3>";
+    echo "<ul><li style='margin:20px 0 0 0;'>\n";
+    if($showClosed or !$closed){
+    echo "<a href='{$folder}eval_index2.php?form=tutorats'>";
+    }
+    echo "Tutorial Evaluations : $tuteur $closed\n";
+    if($showClosed or !$closed){
+    echo "</a>\n";
+    }
+    echo "</li>\n";
+
+
+    /*foreach($tutorats as $elem){
+    $date=date("M,d Y",$elem['timestamp']);
+    $hour= date("H:i", $elem['timestamp']);
+    $closed=$elem['closed']?"(done)":null;
+    $e=new evaluation();
+    $e->fetch($elem['id']);
+    $instructor=$e->elements[1];
+    echo "<li>Tutorats Evaluation : $instructor $closed</li>\n";
+    }*/
+    echo "</ul>\n";
+
+
+    echo "<h3 style='margin-bottom:0px;'>Ateliers</h3>";
+    echo "<ul>\n";
+
+    $closed=!empty($linguistique)?"(done)":null;
+    echo "<li style='20px 0 0 0;'>\n";
+    if($showClosed or !$closed){
+    echo "<a href='{$folder}eval_index2.php?form=linguistique'>";
+    }
+    echo "Ateliers Linguistiques\n";
+    if($showClosed or !$closed){
+    echo "</a>\n";
+    }
+    echo "</li>\n";
+
+    $closed=!empty($method)?"(done)":null;
+    echo "<li style='margin:0 0 0 0;'>\n";
+    if($showClosed or !$closed){
+    echo "<a href='{$folder}eval_index2.php?form=method'>";
+    }
+    echo "Ateliers Methodologiques\n";
+    if($showClosed or !$closed){
+    echo "</a>\n";
+    }
+    echo "</li>\n";
+
+    echo "</ul>\n";
 }
-echo "</ul>\n";
-
-
-$closed=!empty($tutorats)?"(done)":null;
-echo "<h3 style='margin-bottom:0px;'>Tutorial Evaluations</h3>";
-echo "<ul><li style='margin:20px 0 0 0;'>\n";
-if($showClosed or !$closed){
-  echo "<a href='{$folder}eval_index2.php?form=tutorats'>";
-}
-echo "Tutorial Evaluations : $tuteur $closed\n";
-if($showClosed or !$closed){
-  echo "</a>\n";
-}
-echo "</li>\n";
-
-
-/*foreach($tutorats as $elem){
-  $date=date("M,d Y",$elem['timestamp']);
-  $hour= date("H:i", $elem['timestamp']);
-  $closed=$elem['closed']?"(done)":null;
-  $e=new evaluation();
-  $e->fetch($elem['id']);
-  $instructor=$e->elements[1];
-  echo "<li>Tutorats Evaluation : $instructor $closed</li>\n";
-}*/
-echo "</ul>\n";
-
-
-echo "<h3 style='margin-bottom:0px;'>Ateliers</h3>";
-echo "<ul>\n";
-
-$closed=!empty($linguistique)?"(done)":null;
-echo "<li style='20px 0 0 0;'>\n";
-if($showClosed or !$closed){
-  echo "<a href='{$folder}eval_index2.php?form=linguistique'>";
-}
-echo "Ateliers Linguistiques\n";
-if($showClosed or !$closed){
-  echo "</a>\n";
-}
-echo "</li>\n";
-
-$closed=!empty($method)?"(done)":null;
-echo "<li style='margin:0 0 0 0;'>\n";
-if($showClosed or !$closed){
-  echo "<a href='{$folder}eval_index2.php?form=method'>";
-}
-echo "Ateliers Methodologiques\n";
-if($showClosed or !$closed){
-  echo "</a>\n";
-}
-echo "</li>\n";
-
-echo "</ul>\n";
 
 // Internship : sélectionner le stage enregistré (comme univ, ciph, Reid Hall)
 // 

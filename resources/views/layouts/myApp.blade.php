@@ -15,7 +15,7 @@
         <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/dataTables/jquery.dataTables_themeroller.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/print.css') }}" rel="stylesheet" media='print'>
+        <link href="{{ asset('css/print.css') }}?rev=20190529" rel="stylesheet" media='print'>
 
         <link rel='shortcut icon' href="{{ asset('favicon.ico') }}" type='image/x-icon' />
 
@@ -24,7 +24,7 @@
         <script type='text/JavaScript' src='/js/dataTables/jquery.dataTables.min.js'></script>
         <script type='text/JavaScript' src='/js/dataTables/sort.js'></script>
         <script type='text/JavaScript' src='/js/CJScript.js'></script>
-        <script type='text/JavaScript' src='/js/script.js'></script>
+        <script type='text/JavaScript' src='/js/script.js?rev=20190529'></script>
     </head>
 
     <body>
