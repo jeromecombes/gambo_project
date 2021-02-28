@@ -13,6 +13,4 @@ yarn-error.log
 *~
 public/inc/config.php
 public/data/*
-/documents
 .*swp
-storage/debugbar/
