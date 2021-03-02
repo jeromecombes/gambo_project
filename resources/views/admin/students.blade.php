@@ -11,7 +11,7 @@
         <td>Vassar : {{ $vassar }}</td>
         <td>Wesleyan : {{ $wesleyan }}</td>
         <td>Other : {{ $other }}</td>
-        <td><a href='#' class ='btn btn-primary'>Add students</a></td>
+        <td><a href='{{ asset("admin/students-add.php") }}' class ='btn btn-primary'>Add students</a></td>
     </tr>
 </table>
 
