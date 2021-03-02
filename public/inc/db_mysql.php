@@ -20,6 +20,7 @@ class db{
 
   function connect(){
     $this->conn=mysqli_connect($this->host,$this->user,$this->password,$this->dbname);
+    $this->conn->set_charset("utf8mb4");
     if(mysqli_connect_errno($this->conn)){
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
@@ -150,7 +151,7 @@ class dbh{
     $this->dbuser=$GLOBALS['config']['dbuser'];
     $this->dbpass=$GLOBALS['config']['dbpass'];
 
-    $this->pdo=new PDO("mysql:host={$this->dbhost};dbname={$this->dbname}",$this->dbuser,$this->dbpass);
+    $this->pdo=new PDO("mysql:host={$this->dbhost};dbname={$this->dbname};charset=utf8mb4",$this->dbuser,$this->dbpass);
   }
 
   function exec($sql){
