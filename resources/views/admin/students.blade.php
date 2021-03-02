@@ -17,7 +17,7 @@
 
 @if($students->count())
     {{ Form::open(array('name' => 'form1', 'url' => '/admin/students')) }}
-    <table class='datatable' data-sort='[]'>
+    <table class='datatable' data-sort='[["1","asc"],["2","asc"]]'>
         <thead>
             <tr>
                 <th class='dataTableNoSort'>
