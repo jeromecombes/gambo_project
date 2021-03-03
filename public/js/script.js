@@ -897,6 +897,7 @@ $(function(){
       url: "ajax.studentsList.php",
       dataType: "json",
       type: "post",
+      async:false,
       data: {list: JSON.stringify(tab)},
     });
   });

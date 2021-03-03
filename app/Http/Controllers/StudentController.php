@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use App\Univ_reg3;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session as LaravelSession;
 
 class StudentController extends Controller
 {
@@ -17,6 +18,8 @@ class StudentController extends Controller
      */
     public function admin_index(Request $request)
     {
+        LaravelSession::forget('student');
+
         // Semester
         $request->session()->put('semester', $_SESSION['vwpp']['semester']);
         $semester = session('semester');

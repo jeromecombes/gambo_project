@@ -1,6 +1,4 @@
 <?php
-// Update : 2015-10-20
-
 session_start();
 
 $list=filter_input(INPUT_POST,"list",FILTER_SANITIZE_STRING);
@@ -11,5 +9,6 @@ if($list){
 }else{
   $_SESSION["vwpp"]["studentsList"]=null;
 }
+
+echo json_encode('ok');
 ?>
-  
