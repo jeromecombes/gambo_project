@@ -46,7 +46,10 @@ class Kernel extends HttpKernel
             'old.session',
             'old.admin',
             'old.access',
+            'old.semester',
+            'old.student',
             'is.admin',
+            'student.list',
         ],
     ];
 
@@ -68,7 +71,10 @@ class Kernel extends HttpKernel
         'old.access' => \App\Http\Middleware\OldAccess::class,
         'old.admin' => \App\Http\Middleware\OldAdmin::class,
         'old.session' => \App\Http\Middleware\OldSession::class,
+        'old.semester' => \App\Http\Middleware\OldSemester::class,
+        'old.student' => \App\Http\Middleware\OldStudent::class,
         'semester' => \App\Http\Middleware\Semester::class,
+        'student.list' => \App\Http\Middleware\StudentList::class,
         'role' => \App\Http\Middleware\CheckRole::class,
     ];
 }

@@ -26,6 +26,17 @@ Route::post('/admin/semester', 'AdminController@semester')
     ->middleware('admin')
     ->name('admin.semester');
 
+// Admin Student General Info
+Route::get('/student', 'StudentController@general')
+    ->middleware('admin')
+    ->middleware('semester')
+    ->name('student.general');
+
+Route::get('/student/{student}', 'StudentController@general')
+    ->middleware('admin')
+    ->middleware('semester')
+    ->name('student.general');
+
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
     ->middleware('admin')
@@ -40,10 +51,11 @@ Route::post('/admin/students/delete', 'StudentController@destroy')
 // Documents
 Route::get('/documents', 'DocumentController@index')
     ->middleware('old.session')
+    ->middleware('old.student')
     ->name('document.index');
 
 Route::get('/documents/{student}', 'DocumentController@index')
-    ->middleware('old.session')
+    ->middleware('admin')
     ->where('student', '[0-9]+')
     ->name('document.index');
 
@@ -52,7 +64,6 @@ Route::get('/documents/add', 'DocumentController@add')
     ->name('document.add');
 
 Route::get('/documents/edit', 'DocumentController@edit')
-    ->middleware('old.session')
     ->middleware('admin')
     ->name('document.edit');
 

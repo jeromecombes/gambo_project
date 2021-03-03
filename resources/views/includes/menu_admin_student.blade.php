@@ -1,6 +1,6 @@
 <nav>
     <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all' id='student-menu' >
-            <li id='li5' class='ui-state-default ui-corner-top'><a href='/admin/students-view2.php?menu_id=1'>General info</a></li>
+            <li id='li5' class='ui-state-default ui-corner-top @if (Request::is("*student*")) ui-state-active @endif'><a href='/student'>General info</a></li>
 
         @if(in_array(2, session('access')))
             <li id='li7' class='ui-state-default ui-corner-top'><a href='/admin/students-view2.php?menu_id=2'>Housing</a></li>
@@ -19,17 +19,17 @@
         @endif
 
         @if(in_array(3, session('access')))
-            <li id='li8' class='ui-state-default ui-corner-top ui-state-active'><a href='/documents'>Documents</a></li>
+            <li id='li8' class='ui-state-default ui-corner-top @if (Request::is("*documents*")) ui-state-active @endif'><a href='/documents'>Documents</a></li>
         @endif
 
             <li id='li4' class='ui-state-default ui-corner-top'><a href='/admin/students-view2.php?menu_id=8'>Schedule</a></li>
         
         @if(session('student_previous'))
-            <li class='ui-state-default ui-corner-top li-previous'><a href="/documents/{{session('student_previous')}}">Previous</a></li>
+            <li class='ui-state-default ui-corner-top li-previous'><a href="/{{ Request::segment(1) }}/{{session('student_previous')}}">Previous</a></li>
         @endif
 
         @if(session('student_next'))
-            <li class='ui-state-default ui-corner-top li-next'><a href="/documents/{{session('student_next')}}">Next</a></li>
+            <li class='ui-state-default ui-corner-top li-next'><a href="/{{ Request::segment(1) }}/{{session('student_next')}}">Next</a></li>
         @endif
 
             <li  class='ui-state-default ui-corner-top back-to-list'><a href='/admin/students'>Back to list</a></li>

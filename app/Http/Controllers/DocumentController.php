@@ -36,41 +36,6 @@ class DocumentController extends Controller
      */
     public function index(Request $request)
     {
-        //Initialize Laravel session with old session
-
-        $admin = $_SESSION['vwpp']['category'] == 'admin';
-        $request->session()->put('admin', $admin);
-
-        $student = !empty($_SESSION['vwpp']['student']) ? $_SESSION['vwpp']['student'] : null;
-
-        if (!empty($request->student)) {
-            $student = $request->student;
-            $_SESSION['vwpp']['std-id'] = $student;
-        }
-
-        $_SESSION['vwpp']['student'] = $student;
-
-        $request->session()->put('access', $_SESSION['vwpp']['access']);
-        $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
-        $request->session()->put('semester', $_SESSION['vwpp']['semestre']);
-        $request->session()->put('student', $student);
-
-        if ($student) {
-            $std = Student::find($student);
-            $request->session()->put('student_name', $std->full_name);
-        }
-
-        if (!empty($_SESSION["vwpp"]["studentsList"])) {
-            $students_list = $_SESSION["vwpp"]["studentsList"];
-            $request->session()->put('students_list', $students_list);
-
-            $key = array_search($student, $students_list);
-            $student_previous = array_key_exists($key-1, $students_list) ? $students_list[$key-1] : null;
-            $student_next = array_key_exists($key+1, $students_list) ? $students_list[$key+1] : null;
-            $request->session()->put('student_previous', $student_previous);
-            $request->session()->put('student_next', $student_next);
-        }
-
         $documents = $this->get();
         return view('documents.index', compact('documents'));
     }
@@ -398,7 +363,7 @@ class DocumentController extends Controller
             if ($student) {
                 $documents = Document::where('student',$student)->get();
             } else {
-                $semester = session('semester');
+                $semester = str_replace(' ', '_', session('semester'));
                 $students = Student::where('semestre', $semester)->pluck('id')->toArray();
                 $documents = Document::whereIn('student', $students)
                     ->select('documents.id', 'documents.name', 'documents.type', 'documents.type2', 'documents.size', 'documents.timestamp', 'documents.adminOnly')

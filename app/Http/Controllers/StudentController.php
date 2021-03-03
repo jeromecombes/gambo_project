@@ -19,6 +19,8 @@ class StudentController extends Controller
     public function admin_index(Request $request)
     {
         LaravelSession::forget('student');
+        // Clear old session
+        $_SESSION['vwpp']['student'] = null;
 
         // Semester
         $request->session()->put('semester', $_SESSION['vwpp']['semester']);
@@ -91,6 +93,21 @@ class StudentController extends Controller
 
         // View
         return view('admin.students', compact('students', 'options', 'vassar', 'wesleyan', 'other'));
+    }
+
+    /**
+     * Display general information of a student
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function general(Request $request)
+    {
+        $id = $request->id ?? session('student');
+        $student = Student::find($id);
+
+        // View
+        return view('students.general', compact('student'));
     }
 
     /**
