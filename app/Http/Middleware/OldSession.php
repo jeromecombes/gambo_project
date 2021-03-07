@@ -18,6 +18,8 @@ class OldSession
         // Check if session exists (old system)
         session_start();
 
+        $request->session()->put('login_name', $_SESSION['vwpp']['login_name']);
+
         if (empty($_SESSION['vwpp']['category'])) {
             return redirect('/');
         }

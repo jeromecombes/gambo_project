@@ -52,6 +52,7 @@ Route::post('/admin/students/delete', 'StudentController@destroy')
 Route::get('/documents', 'DocumentController@index')
     ->middleware('old.session')
     ->middleware('old.student')
+    ->middleware('student.list')
     ->name('document.index');
 
 Route::get('/documents/{student}', 'DocumentController@index')
@@ -142,6 +143,8 @@ Route::post('/admin/housing/lock', 'HousingClosedController@lock')
 Route::post('/admin/housing/unlock', 'HousingClosedController@unlock')
     ->middleware('admin')
     ->name('housing.unlock');
+
+Route::get('/logout', 'MyAuthController@logout')->name('mylogout');
 
 Auth::routes();
 

@@ -20,7 +20,7 @@ echo <<<EOD
   <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
   <div id='myMenu'>
     <a href='myAccount.php'>My Account</a><br/>
-    <a href='logout.php'>Logout</a>
+    <a href='logout'>Logout</a>
   </div>
 </div>
 
