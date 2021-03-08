@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Host;
+use App\HousingAssignment;
 use App\Student;
 use App\Univ_reg3;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
 
@@ -103,11 +106,41 @@ class StudentController extends Controller
      */
     public function general(Request $request)
     {
+        include_once( __DIR__ . '/../../../public/inc/states.inc');
+
+        $edit = $request->edit;
+
         $id = $request->id ?? session('student');
         $student = Student::find($id);
 
+        $document = new DocumentController();
+        $photo = $document->get_photo($id);
+
+        $housing = HousingAssignment::where('student', $id)->where('semester', session('semester'))->first();
+        $host = $housing ? Host::find($housing->logement) : null;
+
+        $univ_reg = Univ_reg3::where('student', $id)->where('semester', session('semester'))->first();
+        $french_univ = $univ_reg ? $univ_reg->university : null;
+
+        $months = array(
+            (object) array( 'id' => '01', 'name' => 'January'),
+            (object) array( 'id' => '02', 'name' => 'Febuary'),
+            (object) array( 'id' => '03', 'name' => 'March'),
+            (object) array( 'id' => '04', 'name' => 'April'),
+            (object) array( 'id' => '05', 'name' => 'May'),
+            (object) array( 'id' => '06', 'name' => 'June'),
+            (object) array( 'id' => '07', 'name' => 'July'),
+            (object) array( 'id' => '08', 'name' => 'August'),
+            (object) array( 'id' => '09', 'name' => 'September'),
+            (object) array( 'id' => '10', 'name' => 'October'),
+            (object) array( 'id' => '11', 'name' => 'November'),
+            (object) array( 'id' => '12', 'name' => 'December'),
+        );
+
+        $years = array(date("Y") - 15, date("Y") - 30);
+
         // View
-        return view('students.general', compact('student'));
+        return view('students.general', compact('student', 'photo', 'host', 'french_univ', 'countries', 'states', 'months', 'years', 'edit'));
     }
 
     /**
