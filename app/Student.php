@@ -7,6 +7,8 @@ use App\MyModel;
 class Student extends MyModel
 {
 
+    // Get
+
     public function getCellphoneAttribute($value)
     {
         return $this->decrypt($value);
@@ -162,10 +164,141 @@ class Student extends MyModel
         return $this->decrypt($value);
     }
 
+    // Set
+
+    public function setCellphoneAttribute($value)
+    {
+        $this->attributes['cellphone'] = $this->encrypt($value);
+    }
+
+    public function setCitizenship1Attribute($value)
+    {
+        $this->attributes['citizenship1'] = $this->encrypt($value);
+    }
+
+    public function setCitizenship2Attribute($value)
+    {
+        $this->attributes['citizenship2'] = $this->encrypt($value);
+    }
+
+    public function setCityAttribute($value)
+    {
+        $this->attributes['city'] = $this->encrypt($value);
+    }
+
+    public function setContactemailAttribute($value)
+    {
+        $this->attributes['contactemail'] = $this->encrypt($value);
+    }
+
+    public function setContactfirstAttribute($value)
+    {
+        $this->attributes['contactfirst'] = $this->encrypt($value);
+    }
+
+    public function setContactlastAttribute($value)
+    {
+        $this->attributes['contactlast'] = $this->encrypt($value);
+    }
+
+    public function setContactmobileAttribute($value)
+    {
+        $this->attributes['contactmobile'] = $this->encrypt($value);
+    }
+
+    public function setContactphoneAttribute($value)
+    {
+        $this->attributes['contactphone'] = $this->encrypt($value);
+    }
+
+    public function setCountryAttribute($value)
+    {
+        $this->attributes['country'] = $this->encrypt($value);
+    }
+
+    public function setCountryOBAttribute($value)
+    {
+        $this->attributes['countryOB'] = $this->encrypt($value);
+    }
+
+    public function setDobAttribute($value)
+    {
+        $this->attributes['dob'] = $this->encrypt($value->format('Y-n-d'));
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = $this->encrypt($value, false);
+    }
+
+    public function setFirstnameAttribute($value)
+    {
+        $this->attributes['firstname'] = $this->encrypt($value, false);
+    }
+
+    public function setFrenchNumberAttribute($value)
+    {
+        $this->attributes['frenchNumber'] = $this->encrypt($value);
+    }
+
+    public function setGenderAttribute($value)
+    {
+        $this->attributes['gender'] = $this->encrypt($value);
+    }
+
+    public function setLastnameAttribute($value)
+    {
+        $this->attributes['lastname'] = $this->encrypt($value, false);
+    }
+
+    public function setLogementAttribute($value)
+    {
+        $this->attributes['logement'] = $this->encrypt($value);
+    }
+
+    public function setPlaceOBAttribute($value)
+    {
+        $this->attributes['placeOB'] = $this->encrypt($value);
+    }
+
+    public function setResultatTCFAttribute($value)
+    {
+        $this->attributes['resultatTCF'] = $this->encrypt($value);
+    }
+
+    public function setSemestersAttribute($value)
+    {
+        $this->attributes['semesters'] = serialize($value);
+    }
+
+    public function setStateAttribute($value)
+    {
+        $this->attributes['state'] = $this->encrypt($value);
+    }
+
+    public function setStreetAttribute($value)
+    {
+        $this->attributes['street'] = $this->encrypt($value);
+    }
+
+    public function setUniversity2Attribute($value)
+    {
+        $this->attributes['university2'] = $this->encrypt($value);
+    }
+
+    public function setZipAttribute($value)
+    {
+        $this->attributes['zip'] = $this->encrypt($value);
+    }
+
+    //
+
     public function setUnivregAttribute($value)
     {
         $this->univreg = $value;
     }
+
+    //
 
     public function scopeWithUniv_reg($query)
     {

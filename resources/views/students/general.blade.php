@@ -1,10 +1,9 @@
 @extends('layouts.myApp')
 @section('content')
 
-<form name='stdform$id' action='update.php' method='post' />
-  <input type='hidden' name='std_id' value='{{ $student->id}}' />
-  <input type='hidden' name='table' value='students' />
-  <input type='hidden' name='acl' value='6' />
+<form name='form' action='/student' method='post' />
+  {{ csrf_field() }}
+  <input type='hidden' name='id' value='{{ $student->id}}' />
 
   <h3>Personal Details and Contact Information</h3>
 
@@ -26,7 +25,7 @@
               <td style='width:220px;'>Lastname</td>
               <td style='width:360px;'>
                 @if ($edit)
-                  <input type='text' name='std[lastname]' value='{{ $student->lastname}}'/>
+                  <input type='text' name='lastname' value='{{ $student->lastname}}'/>
                 @else
                   {{ $student->lastname}}
                 @endif
@@ -36,7 +35,7 @@
               <td>Firstname</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[firstname]' value='{{ $student->firstname}}'/>
+                  <input type='text' name='firstname' value='{{ $student->firstname}}'/>
                 @else
                   {{ $student->firstname}}
                 @endif
@@ -46,7 +45,7 @@
               <td>Gender</td>
               <td>
                 @if ($edit)
-                  <select name='std[gender]'>
+                  <select name='gender'>
                     <option value=''>&nbsp;</option>
                     <option value='Female' @if ($student->gender == 'Female') selected='selected' @endif >Female</option>
                     <option value='Male' @if ($student->gender == 'Male') selected='selected' @endif >Male</option>
@@ -60,10 +59,10 @@
               <td>Citizenship 1</td>
               <td>
                 @if ($edit)
-                  <select name='std[citizenship1]'/>
+                  <select name='citizenship1'/>
                     <option value=''>&nbsp;</option>
                     @foreach ($countries as $country)
-                      <option value='$elem' @if ($student->citizenship1 == $country) selected='selected' @endif >{{ $country }}</option>
+                      <option value='{{ $country }}' @if ($student->citizenship1 == $country) selected='selected' @endif >{{ $country }}</option>
                     @endforeach
                   </select>
                 @else
@@ -75,10 +74,10 @@
               <td>Citizenship 2</td>
               <td>
                 @if ($edit)
-                  <select name='std[citizenship2]'/>
+                  <select name='citizenship2'/>
                     <option value=''>&nbsp;</option>
                     @foreach ($countries as $country)
-                      <option value='$elem' @if ($student->citizenship2 == $country) selected='selected' @endif >{{ $country }}</option>
+                      <option value='{{ $country }}' @if ($student->citizenship2 == $country) selected='selected' @endif >{{ $country }}</option>
                     @endforeach
                   </select>
                 @else
@@ -90,21 +89,21 @@
               <td>Date of birth </td>
               <td>
                 @if ($edit)
-                  <select name='std[mob]' style='width:30%;'>
+                  <select name='mob' style='width:30%;'>
                     <option value=''>Month</option>
                     @foreach ($months as $month)
                       <option value='{{ $month->id }}' @if ($student->dob->format('n') == $month->id) selected='selected' @endif >{{ $month->name }}</option>\n";
                     @endforeach
                   </select>
 
-                  <select name='std[dayob]' style='width:30%;'>
+                  <select name='dob' style='width:30%;'>
                     <option value=''>Day</option>
                     @for ($i = 1; $i < 32; $i++)
                       <option value='{{ str_pad($i,2,'0',STR_PAD_LEFT) }}' @if ($student->dob->format('d') == $i) selected='selected' @endif >{{ str_pad($i,2,'0',STR_PAD_LEFT) }}</option>
                     @endfor
                   </select>
 
-                  <select name='std[yob]' style='width:30%;'>
+                  <select name='yob' style='width:30%;'>
                     <option value=''>Year</option>
                     @for ($i = $years[0]; $i > $years[1]; $i--)
                       <option value='{{ $i }}' @if ($student->dob->format('Y') == $i) selected='selected' @endif >{{ $i }}</option>
@@ -119,7 +118,7 @@
               <td>Place of birth (City, State)</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[placeOB]' value='{{ $student->placeOB }}' />
+                  <input type='text' name='placeOB' value='{{ $student->placeOB }}' />
                 @else
                   {{ $student->placeOB }}
                 @endif
@@ -129,7 +128,7 @@
               <td>Country of birth</td>
               <td>
                 @if ($edit)
-                  <select name='std[countryOB]'/>
+                  <select name='countryOB'/>
                     <option value=''>&nbsp;</option>
                     @foreach ($countries as $country)
                       <option value='{{ $country }}' @if ($student->countryOB == $country) selected='selected' @endif >{{ $country }}</option>
@@ -147,7 +146,7 @@
               <td>Email</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[email]' value='{{ $student->email }}'/>
+                  <input type='text' name='email' value='{{ $student->email }}'/>
                 @else
                   {{ $student->email }}
                 @endif
@@ -157,7 +156,7 @@
               <td>Cellphone in France</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[cellphone]' value='{{ $student->cellphone }}'/>
+                  <input type='text' name='cellphone' value='{{ $student->cellphone }}'/>
                 @else
                   {{ $student->cellphone }}
                 @endif
@@ -216,7 +215,7 @@
               <td style='width:40%;'>Lastname</td>
               <td style='width:60%;'>
                 @if ($edit)
-                  <input type='text' name='std[contactlast]' value='{{ $student->contactlast }}'/>
+                  <input type='text' name='contactlast' value='{{ $student->contactlast }}'/>
                 @else
                   {{ $student->contactlast }}
                 @endif
@@ -226,7 +225,7 @@
               <td>Firstname</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[contactfirst]' value='{{ $student->contactfirst }}'/>
+                  <input type='text' name='contactfirst' value='{{ $student->contactfirst }}'/>
                 @else
                   {{ $student->contactfirst }}
                 @endif
@@ -236,7 +235,7 @@
               <td>Street</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[street]' value='{{ $student->street }}'/>
+                  <input type='text' name='street' value='{{ $student->street }}'/>
                 @else
                   {{ $student->street }}
                 @endif
@@ -246,7 +245,7 @@
               <td>City</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[city]' value='{{ $student->city }}'/>
+                  <input type='text' name='city' value='{{ $student->city }}'/>
                 @else
                   {{ $student->city }}
                 @endif
@@ -256,7 +255,7 @@
               <td>Zip code</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[zip]' value='{{ $student->zip }}'/>
+                  <input type='text' name='zip' value='{{ $student->zip }}'/>
                 @else
                   {{ $student->zip }}
                 @endif
@@ -266,7 +265,7 @@
               <td>State</td>
               <td>
                 @if ($edit)
-                  <select name='std[state]'/>
+                  <select name='state'/>
                     <option value=''>&nbsp;</option>
                     @foreach ($states as $state)
                       <option value='{{ $state }}' @if ($student->state == $state) selected='selected' @endif >{{ $state }}</option>
@@ -281,7 +280,7 @@
               <td>Country</td>
               <td>
                 @if ($edit)
-                  <select name='std[country]'/>
+                  <select name='country'/>
                     <option value=''>&nbsp;</option>
                     @foreach ($countries as $country)
                       <option value='{{ $country }}' @if ($student->country == $country) selected='selected' @endif >{{ $country }}</option>
@@ -296,7 +295,7 @@
               <td>Phone number</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[contactphone]' value='{{ $student->contactphone }}'/>
+                  <input type='text' name='contactphone' value='{{ $student->contactphone }}'/>
                 @else
                   {{ $student->contactphone }}
                 @endif
@@ -306,7 +305,7 @@
               <td>Cellphone number</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[contactmobile]' value='{{ $student->contactmobile }}'/>
+                  <input type='text' name='contactmobile' value='{{ $student->contactmobile }}'/>
                 @else
                   {{ $student->contactmobile }}
                 @endif
@@ -316,7 +315,7 @@
               <td>Email</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[contactemail]' value='{{ $student->contactemail }}'/>
+                  <input type='text' name='contactemail' value='{{ $student->contactemail }}'/>
                 @else
                   {{ $student->contactemail }}
                 @endif
@@ -335,13 +334,13 @@
                   @if (session('admin') and $edit)
                     <ul style='margin-top:0px;'>
                       <li>{{ $student->semesters[0] }}</li>
-                      <li>{{ $student->newSemester }} ? <input type='checkbox' name='std[semesters][]' value='{{ $student->newSemester }}' @if ($student->newSemesterChecked) checked='checked' @endif /></li>
+                      <li>{{ $student->newSemester }} ? <input type='checkbox' name='semesters[]' value='{{ $student->newSemester }}' @if ($student->newSemesterChecked) checked='checked' @endif /></li>
                     </ul>
                   @else
                     {{ $student->semesters[0] }}
                     @if ($student->newSemesterChecked)
                       , {{ $student->newSemester }}
-                      <input type='hidden' name='std[semesters][]' value='{{ $student->newSemester }}' />
+                      <input type='hidden' name='semesters[]' value='{{ $student->newSemester }}' />
                     @endif
                   @endif
                 </td>
@@ -361,7 +360,7 @@
               <td>Résultat TCF</td>
               <td>
                 @if (session('admin') and $edit)
-                  <input type='text' name='std[resultatTCF]' value='{{ $student->resultatTCF }}' />
+                  <input type='text' name='resultatTCF' value='{{ $student->resultatTCF }}' />
                 @else
                   {{ $student->resultatTCF }}
                 @endif
@@ -375,7 +374,7 @@
               <td>French Univ. Student number</td>
               <td>
                 @if ($edit)
-                  <input type='text' name='std[frenchNumber]' value='{{ $student->frenchNumber }}' />
+                  <input type='text' name='frenchNumber' value='{{ $student->frenchNumber }}' />
                 @else
                   {{ $student->frenchNumber }}
                 @endif
@@ -389,9 +388,9 @@
 
     <p style='text-align:right'>
       @if ($edit)
-        <input type='hidden' name='std[semesters][]' value='{{ $student->semesters[0] }}'/>
+        <input type='hidden' name='semesters[]' value='{{ $student->semesters[0] }}'/>
         <a href='{{ asset("student/{$student->id}") }}' class='myUI-button-right'>Cancel</a>
-        <input type='button' onclick='document.stdform$id.submit();' value='Done' class='myUI-button-right'/>
+        <input type='submit' value='Done' class='myUI-button-right'/>
       @else
         <a href='{{ asset("student/{$student->id}/edit") }}' class='myUI-button-right'>Edit</a>
       @endif

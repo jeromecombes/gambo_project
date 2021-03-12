@@ -38,9 +38,9 @@ $config['Mail-SMTPSecure'] = (empty($_ENV['MAIL_ENCRYPTION']) or $_ENV['MAIL_ENC
 $config['Mail-SMTPAuth'] = (empty($_ENV['MAIL_USERNAME']) or $_ENV['MAIL_USERNAME'] == 'null') ? false : true;
 $config['Mail-Username'] = $_ENV['MAIL_USERNAME'];
 $config['Mail-Password'] = $_ENV['MAIL_PASSWORD'];
-$config['Mail-From'] = $_ENV['MAIL_FROM'];
+$config['Mail-From'] = $_ENV['MAIL_FROM_ADDRESS'];
 $config['Mail-FromName'] = $_ENV['MAIL_FROM_NAME'];
-$config['Mail-Sender'] = $_ENV['MAIL_FROM'];
+$config['Mail-Sender'] = $_ENV['MAIL_FROM_ADDRESS'];
 
 // Notification des formulaire de voyage
 $config['emailForTripForm'] = explode(',', $_ENV['MAIL_TRIP_FORM']);

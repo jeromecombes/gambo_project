@@ -6,9 +6,12 @@ use App\Host;
 use App\HousingAssignment;
 use App\Student;
 use App\Univ_reg3;
+use App\User;
 use App\Http\Controllers\DocumentController;
+use App\Mail\Cellphone_changed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
+use Illuminate\Support\Facades\Mail;
 
 class StudentController extends Controller
 {
@@ -144,6 +147,84 @@ class StudentController extends Controller
     }
 
     /**
+     * Update general information of a student
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function general_update(Request $request)
+    {
+
+        $id = $request->id;
+        $student = Student::find($id);
+
+        // Get initial cellphone
+        $cellphone = $student->cellphone;
+
+        // Token
+        $mail = trim(strtolower($request->email));
+        $mail = htmlentities($mail, ENT_QUOTES | ENT_IGNORE, 'UTF-8');
+        $token = md5($mail);
+
+        // Semesters
+        $student->semesters = $request->semesters;
+
+        // Date of birth
+        if ($request->yob and $request->mob and $request->dob) {
+            $dob = new \DateTime($request->yob . '-' . $request->mob . '-' . $request->dob);
+        }
+
+        $student->lastname = $request->lastname;
+        $student->firstname = $request->firstname;
+        $student->gender = $request->gender;
+        $student->citizenship1 = $request->citizenship1;
+        $student->citizenship2 = $request->citizenship2;
+        $student->dob = $dob;
+        $student->placeOB = $request->placeOB;
+        $student->countryOB = $request->countryOB;
+        $student->email = $request->email;
+        $student->cellphone = $request->cellphone;
+        $student->contactlast = $request->contactlast;
+        $student->contactfirst = $request->contactfirst;
+        $student->street = $request->street;
+        $student->city = $request->city;
+        $student->zip = $request->zip;
+        $student->state = $request->state;
+        $student->country = $request->country;
+        $student->contactphone = $request->contactphone;
+        $student->contactmobile = $request->contactmobile;
+        $student->contactemail = $request->contactemail;
+        $student->resultatTCF = $request->resultatTCF;
+        $student->semesters = $request->semesters;
+        $student->token = $token;
+
+        if ($request->frenchNumber) {
+            $student->frenchNumber = $request->frenchNumber;
+        }
+
+        $student->save();
+
+        if ($cellphone != $request->cellphone) {
+            $users = User::where('admin', 1)->where('alerts', 1)->get();
+
+            if ($users->isNotEmpty()) {
+
+                $data = (object) array(
+                    'firstname' => $request->firstname,
+                    'lastname' => $request->lastname,
+                    'cellphone' => $request->cellphone,
+                );
+
+                foreach($users as $user) {
+                    Mail::to($user->email)->send(new Cellphone_changed($data));
+                }
+            }
+        }
+
+        return redirect("/student/$id")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -221,6 +302,6 @@ class StudentController extends Controller
             $student->delete();
         }
 
-        return redirect('/admin/students')->with('success', 'Selected students have been successfuly deleted');;
+        return redirect('/admin/students')->with('success', 'Selected students have been successfuly deleted');
     }
 }

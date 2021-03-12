@@ -43,6 +43,9 @@ Route::get('/student/{student}/{edit}', 'StudentController@general')
     ->where('edit', 'edit')
     ->name('student.general.edit');
 
+Route::post('/student', 'StudentController@general_update')
+    ->name('student.general.update');
+
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
     ->middleware('admin')

@@ -37,7 +37,7 @@
                 <td>
                     <input type='checkbox' name='students[]' class='check_item studentsCheckbox' value='{{ $student->id }}' onclick='setTimeout("select_action(\"form1\")",5);'/>
                     <input type='hidden' id='mail_{{ $student->id }}' value='{{ $student->mail }}' />
-                    <a href='students-view2.php?id={{ $student->id }}' class='studentsEdit' >
+                    <a href='{{ asset("student") }}/{{ $student->id }}' class='studentsEdit' >
                         <img src='../img/edit.png' alt='view' border='0'/>
                     </a>
                 </td>

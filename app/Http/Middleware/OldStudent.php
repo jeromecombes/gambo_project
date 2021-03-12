@@ -28,6 +28,7 @@ class OldStudent
         if ($student) {
             $request->session()->put('student', $student);
             $request->session()->put('student_name', Student::find($student)->full_name);
+            $_SESSION['vwpp']['std-id'] = $student;
         }
 
         return $next($request);
