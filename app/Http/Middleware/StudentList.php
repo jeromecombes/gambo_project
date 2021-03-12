@@ -16,6 +16,10 @@ class StudentList
      */
     public function handle($request, Closure $next)
     {
+        if (!session('admin')) {
+            return $next($request);
+        }
+
         // Current student
         $student = $request->id ?? session('student');
         $request->session()->put('student', $student);

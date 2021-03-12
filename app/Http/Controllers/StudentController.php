@@ -113,7 +113,11 @@ class StudentController extends Controller
 
         $edit = $request->edit;
 
-        $id = $request->id ?? session('student');
+        $id = session('student');
+        if (session('admin') and $request->id) {
+            $id = $request->id;
+        }
+
         $student = Student::find($id);
 
         $document = new DocumentController();
@@ -221,7 +225,7 @@ class StudentController extends Controller
             }
         }
 
-        return redirect("/student/$id")->with('success', 'Mise à jour réussie');
+        return redirect("/student")->with('success', 'Mise à jour réussie');
     }
 
     /**

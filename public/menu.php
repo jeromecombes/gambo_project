@@ -32,7 +32,7 @@ EOD;
 
 if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or count($_SESSION['vwpp']['semesters'])==1){
   echo <<<EOD
-  <li id='li7' class='ui-state-default ui-corner-top'><a href='general.php'>General Info.</a></li>
+  <li id='li7' class='ui-state-default ui-corner-top'><a href='/student'>General Info.</a></li>
   <li id='li2' class='ui-state-default ui-corner-top'><a href='housing.php'>Housing</a></li>
   <li id='li1' class='ui-state-default ui-corner-top'><a href='univ_registration.php'>Univ. Reg.</a></li>
   <li id='li3' class='ui-state-default ui-corner-top'><a href='courses.php'>Course Reg.</a></li>

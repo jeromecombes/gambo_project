@@ -28,8 +28,9 @@ Route::post('/admin/semester', 'AdminController@semester')
 
 // Admin Student General Info
 Route::get('/student', 'StudentController@general')
-    ->middleware('admin')
-    ->middleware('semester')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
     ->name('student.general');
 
 Route::get('/student/{student}', 'StudentController@general')
@@ -38,8 +39,10 @@ Route::get('/student/{student}', 'StudentController@general')
     ->name('student.general');
 
 Route::get('/student/{student}/{edit}', 'StudentController@general')
-    ->middleware('admin')
-    ->middleware('semester')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
     ->where('edit', 'edit')
     ->name('student.general.edit');
 
