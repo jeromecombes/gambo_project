@@ -3,7 +3,7 @@
             <li id='li5' class='ui-state-default ui-corner-top @if (Request::is("*student*")) ui-state-active @endif'><a href='/student'>General info</a></li>
 
         @if(in_array(2, session('access')))
-            <li id='li7' class='ui-state-default ui-corner-top'><a href='/admin/students-view2.php?menu_id=2'>Housing</a></li>
+            <li id='li7' class='ui-state-default ui-corner-top @if (Request::is("*housing*")) ui-state-active @endif'><a href='/housing'>Housing</a></li>
         @endif
 
         @if(in_array(17, session('access')))

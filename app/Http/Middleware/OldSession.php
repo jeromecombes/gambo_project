@@ -26,6 +26,10 @@ class OldSession
             $request->session()->put('student', $_SESSION['vwpp']['student']);
         }
 
+        if (!empty($_SESSION['vwpp']['semester'])) {
+            $request->session()->put('semester', $_SESSION['vwpp']['semester']);
+        }
+
         if (empty($_SESSION['vwpp']['category'])) {
             return redirect('/');
         }

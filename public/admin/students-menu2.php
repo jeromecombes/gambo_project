@@ -24,7 +24,7 @@ echo <<<EOD
 <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all' id='student-menu'>
 EOD;
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/student'>General info</a></li>\n";
-get_menu2("Housing",2,2);
+echo "<li class='ui-state-default ui-corner-top $class'><a href='/housing'>Housing</a></li>\n";
 get_menu2("Univ. Reg.",5,17);
 get_menu2("Courses",4,23);
 get_menu2("Grades",7,array(18,19,20));

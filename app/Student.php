@@ -9,6 +9,28 @@ class Student extends MyModel
 
     // Get
 
+    public function getAddressAttribute($value)
+    {
+        $tab = array();
+
+        if ($this->street) {
+            $tab[] = $this->street;
+        }
+        if ($this->city) {
+            $tab[] = $this->city;
+        }
+        if ($this->state) {
+            $tab[] = $this->state;
+        }
+        if ($this->country) {
+            $tab[] = $this->country;
+        }
+
+        $address = join(", ",$tab);
+
+        return $address;
+    }
+
     public function getCellphoneAttribute($value)
     {
         return $this->decrypt($value);
@@ -130,6 +152,11 @@ class Student extends MyModel
     public function getResultatTCFAttribute($value)
     {
         return $this->decrypt($value);
+    }
+
+    public function getSemesterAttribute($value)
+    {
+        return str_replace('_', ' ',$this->semestre);
     }
 
     public function getSemestersAttribute($value)

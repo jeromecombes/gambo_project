@@ -3,6 +3,7 @@
 namespace App;
 
 use App\MyModel;
+use App\HostAvailable;
 
 class Host extends MyModel
 {
@@ -10,6 +11,17 @@ class Host extends MyModel
      * @var string
      */
     protected $table = 'logements';
+
+    public function getHosts($semester = null)
+    {
+        // Get available hosts
+        $semester = $semester ?? session('semester');
+
+        $hosts_available = new HostAvailable();
+        $hosts_ids = $hosts_available->getIds($semester);
+
+        return $this->whereIn('id', $hosts_ids)->get();
+    }
 
     public function getLastnameAttribute($value)
     {

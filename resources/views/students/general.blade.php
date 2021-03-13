@@ -390,7 +390,7 @@
       @if ($edit)
         <input type='hidden' name='semesters[]' value='{{ $student->semesters[0] }}'/>
         <a href='{{ asset("student/{$student->id}") }}' class='myUI-button-right'>Cancel</a>
-        <input type='submit' value='Done' class='myUI-button-right'/>
+        <input type='submit' value='Submit' class='myUI-button-right'/>
       @else
         <a href='{{ asset("student/{$student->id}/edit") }}' class='myUI-button-right'>Edit</a>
       @endif

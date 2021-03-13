@@ -20,4 +20,15 @@ class Housing extends MyModel
     {
         return str_replace('_', ' ', $this->semestre);
     }
+
+    public function setresponseAttribute($value)
+    {
+        $this->attributes['response'] = $this->encrypt($value, $this->student);
+    }
+
+    public function setsemesterAttribute($value)
+    {
+        $this->semestre = str_replace(' ', '_', $value);
+    }
+
 }

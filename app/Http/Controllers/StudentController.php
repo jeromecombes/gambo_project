@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Host;
+use App\HostAvailable;
+use App\Housing;
 use App\HousingAssignment;
 use App\Student;
 use App\Univ_reg3;
@@ -226,6 +228,80 @@ class StudentController extends Controller
         }
 
         return redirect("/student")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
+     * Display housing information of a student
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function housing(Request $request)
+    {
+
+        $edit = $request->edit;
+
+        // Get student info
+        $id = session('student');
+        if (session('admin') and $request->id) {
+            $id = $request->id;
+        }
+
+        $student = Student::find($id);
+
+        // Get available hosts
+        $h = new Host();
+        $hosts = $h->getHosts();
+
+        // Get the selected host
+        $selected_host = null;
+        if (count($hosts) > 0) {
+            $host = HousingAssignment::where('student', $student->id)->first();
+            if ($host) {
+                $selected_host = $hosts->find($host->logement);
+            }
+        }
+
+        // Get housing's answers
+        $semester = str_replace(' ', '_', session('semester'));
+        $housing = Housing::where('student', $student->id)
+            ->where('semestre', $semester)->get();
+
+        $answer = array();
+        for ($i = 1; $i <=29; $i++) {
+            $h = $housing->where('question', $i)->first();
+            $answer[$i] = $h ? $h->response : null;
+        }
+
+        // View
+        return view('students.housing', compact('edit', 'student', 'hosts', 'selected_host', 'answer'));
+    }
+
+    /**
+     * Update housing
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function housing_update(Request $request)
+    {
+
+        $student = $request->student;
+        $semester = str_replace(' ', '_', session('semester'));
+        
+        $housing = Housing::where('student', $student)
+            ->where('semestre', $semester)->delete();
+
+        foreach ($request->question as $question => $answer) {
+            $housing = new Housing();
+            $housing->student = $student;
+            $housing->semester = $semester;
+            $housing->question = $question;
+            $housing->response = $answer;
+            $housing->save();
+        }
+
+        return redirect("/housing")->with('success', 'Mise à jour réussie');
     }
 
     /**

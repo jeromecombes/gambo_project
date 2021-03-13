@@ -26,7 +26,7 @@ Route::post('/admin/semester', 'AdminController@semester')
     ->middleware('admin')
     ->name('admin.semester');
 
-// Admin Student General Info
+// Student General Info
 Route::get('/student', 'StudentController@general')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -34,8 +34,10 @@ Route::get('/student', 'StudentController@general')
     ->name('student.general');
 
 Route::get('/student/{student}', 'StudentController@general')
-    ->middleware('admin')
-    ->middleware('semester')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
     ->name('student.general');
 
 Route::get('/student/{student}/{edit}', 'StudentController@general')
@@ -48,6 +50,31 @@ Route::get('/student/{student}/{edit}', 'StudentController@general')
 
 Route::post('/student', 'StudentController@general_update')
     ->name('student.general.update');
+
+// Student Housing
+Route::get('/housing', 'StudentController@housing')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->name('student.housing');
+
+Route::get('/housing/{student}', 'StudentController@housing')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->name('student.housing');
+
+Route::get('/housing/{student}/{edit}', 'StudentController@housing')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->where('edit', 'edit')
+    ->name('student.housing.edit');
+
+Route::post('/housing', 'StudentController@housing_update')
+    ->name('student.housing.update');
 
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
