@@ -1,5 +1,4 @@
 <?php
-// Last Update 27/09/2013, Jérôme Combes
 
 require_once "inc/config.php";
 require_once "inc/class.student.inc";
@@ -61,51 +60,6 @@ if(array_key_exists("data",$_POST)){
     $db->execute($elem);
 
 }
-
-
-//	Student form
-if(array_key_exists("std",$_POST)){
-  $_POST['std']['id']=$_POST['std_id'];
-  $std=$_POST['std'];
-
-			      //	Send a notification if the student's cellphone change
-  $s=new student();
-  $s->id=$std_id;
-  $s->fetch();
-  if(strcmp($s->elements['cellphone'],$std['cellphone'])){
-    $u=new user();
-    $u->fetchUsersAlerts();
-    $users=$u->elements;
-
-    if(!empty($users)){
-      $message="Le num&eacute;ro de t&eacute;l&eacute;phone de <b>{$std['firstname']} {$std['lastname']}</b> a chang&eacute; : <br/>\n";
-      $message.="Son nouveau num&eacute;ro est le \"<b>{$std['cellphone']}</b>\"";
-      $message.="<br/><br/>Auteur : {$_SESSION['vwpp']['login_name']}";
-      $message.="<br/><br/>The VWPP Database";
-      $mail=new vwppMail();
-      foreach($users as $elem){
-	$mail->addAddress($elem);
-      }
-      $mail->subject="VWPP Database, Numéro de téléphone modifié";
-      $mail->body = $message;
-      $mail->send();
-    }
-  }
-
-			      //	Date of birth
-  if($_POST['std']['dob']){
-    $_POST['std']['dob']=$_POST['std']['yob']."-".$_POST['std']['mob']."-".$_POST['std']['dob'];
-  }
-  unset($_POST['std']['mob']);
-  unset($_POST['std']['yob']);
-
-  $std=new student();
-  $std->update($_POST['std']);
-  if($std->error){
-    $error=true;
-  }
-}
-
 
 $error=$error?1:0;
 $msg=$error?"update_error":"update_success";

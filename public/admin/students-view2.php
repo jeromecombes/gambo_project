@@ -1,5 +1,4 @@
 <?php
-// Update : 2015-10-20
 
 $title="studentName";
 require_once "../header.php";
@@ -37,7 +36,6 @@ require_once "students-menu2.php";
 
 switch($menu_id){
 	//	page name, page id, required access
-  case 1 : get_page("std-generals.php",1,1);			break;
   case 5 : get_page("univ_registration.php",5,17);		break;
   case 2 : get_page("std-housing-home.php",2,2);
 	   get_page("form.housing.inc",6,2);			break;
