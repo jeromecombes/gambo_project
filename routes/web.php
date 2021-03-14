@@ -56,6 +56,7 @@ Route::get('/housing', 'StudentController@housing')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
+    ->middleware('role:2')
     ->name('student.housing');
 
 Route::get('/housing/{student}', 'StudentController@housing')
@@ -63,6 +64,7 @@ Route::get('/housing/{student}', 'StudentController@housing')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
+    ->middleware('role:2')
     ->name('student.housing');
 
 Route::get('/housing/{student}/{edit}', 'StudentController@housing')
@@ -70,14 +72,17 @@ Route::get('/housing/{student}/{edit}', 'StudentController@housing')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
+    ->middleware('role:7')
     ->where('edit', 'edit')
     ->name('student.housing.edit');
 
 Route::post('/housing', 'StudentController@housing_update')
+    ->middleware('role:7')
     ->name('student.housing.update');
 
 Route::post('/housing_assignment', 'StudentController@housing_assignment')
     ->middleware('admin')
+    ->middleware('role:7')
     ->name('student.housing_assignment');
 
 // Admin Student list

@@ -20,6 +20,11 @@ class CheckRole
 //             // Redirect...
 //         }
 
+        // Don't check for students
+        if (!session('admin')) {
+            return $next($request);
+        }
+
         if (!in_array($role, session('access'))) {
             return redirect()->route('admin.index')->with('warning', 'Access denied');
         }
