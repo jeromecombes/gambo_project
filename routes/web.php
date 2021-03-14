@@ -76,6 +76,10 @@ Route::get('/housing/{student}/{edit}', 'StudentController@housing')
 Route::post('/housing', 'StudentController@housing_update')
     ->name('student.housing.update');
 
+Route::post('/housing_assignment', 'StudentController@housing_assignment')
+    ->middleware('admin')
+    ->name('student.housing_assignment');
+
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
     ->middleware('admin')

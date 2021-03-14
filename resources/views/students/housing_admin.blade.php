@@ -2,14 +2,14 @@
   @if (in_array(7, session('access')))
     <p>Affectation d'un logement pour {{ $student->firstname }} {{ $student->lastname }} pour {{ session('semester') }}.</p>
 
-    <form method='post' action='housing-affect2.php'>
-      <input type='hidden' name='student' value='{$student['id']}' />
-      <input type='hidden' name='page' value='students-view2.php' />
+    <form name='housing_assignment' method='post' action='/housing_assignment' >
+      {{ csrf_field() }}
+      <input type='hidden' name='student' value='{{ $student->id }}' />
 
       <table>
         <tr>
           <td style='width:500px;'>
-            <select name='logement'>
+            <select name='host'>
               <option value=''>&nbsp;</option>
 
               @foreach ($hosts as $host)

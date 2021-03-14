@@ -27,6 +27,7 @@ class StudentList
         if ($student) {
             $std = Student::find($student);
             $request->session()->put('student_name', $std->full_name);
+            $request->session()->put('student', $student);
         }
 
         // Student list

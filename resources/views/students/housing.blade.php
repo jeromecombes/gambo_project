@@ -3,7 +3,7 @@
 
 <h3>Housing</h3>
 
-@if (session('admin'))
+@if (session('admin') and !$edit)
   @include('students.housing_admin')
 @endif
 

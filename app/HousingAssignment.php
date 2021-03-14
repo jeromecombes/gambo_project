@@ -10,6 +10,7 @@ class HousingAssignment extends MyModel
      * @var string
      */
     protected $table = 'housing_affect';
+    protected $fillable = ['student', 'semester', 'logement'];
 
     public function scopeWithStudents($query)
     {

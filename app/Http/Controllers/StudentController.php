@@ -305,6 +305,28 @@ class StudentController extends Controller
     }
 
     /**
+     * Update housing assignment
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function housing_assignment(Request $request)
+    {
+
+        $assignment = HousingAssignment::updateOrCreate(
+            array(
+                'student' => $request->student,
+                'semester' => session('semester'),
+            ),
+            array(
+                'logement' => $request->host,
+            )
+        );
+
+        return redirect("/housing")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
