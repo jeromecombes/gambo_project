@@ -216,10 +216,68 @@
 
       <tr>
         <td colspan='5' style='text-align:justify;'>
-          4. What are your principal reasons for coming to Paris?
+            4. Have you lived in an independent living situation before such as an apartment or house, or non-dormitory style living?
         </td>
       </tr>
       <tr>
+        <td colspan='2' style='text-align:justify;font-weight:bold;'>
+          @if ($edit)
+            <input type='radio' name='question[8]' value='Yes' @if ($answer[8] == 'Yes') checked='checked' @endif /> Yes
+            <input type='radio' name='question[8]' value='No' @if ($answer[8] == 'No') checked='checked' @endif /> No
+          @else
+            <div class='response'>{{ $answer[8] }}</div>
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;'>
+            5. With roommates?
+        </td>
+      </tr>
+      <tr>
+        <td colspan='2' style='text-align:justify;font-weight:bold;'>
+          @if ($edit)
+            <input type='radio' name='question[9]' value='Yes' @if ($answer[9] == 'Yes') checked='checked' @endif /> Yes
+            <input type='radio' name='question[9]' value='No' @if ($answer[9] == 'No') checked='checked' @endif /> No
+          @else
+            <div class='response'>{{ $answer[9] }}</div>
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;'>
+            6. Did you cook for yourself?
+        </td>
+      </tr>
+      <tr>
+        <td colspan='2' style='text-align:justify;font-weight:bold;'>
+          @if ($edit)
+            <input type='radio' name='question[10]' value='Yes' @if ($answer[10] == 'Yes') checked='checked' @endif /> Yes
+            <input type='radio' name='question[10]' value='No' @if ($answer[10] == 'No') checked='checked' @endif /> No
+          @else
+            <div class='response'>{{ $answer[10] }}</div>
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;'>
+            7. How does this experience influence your current preference in housing in Paris?
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;font-weight:bold;'>
+          @if ($edit)
+            <textarea name='question[11]'>{{ $answer[11] }}</textarea>
+          @else
+            <div class='response'>{{ $answer[11] }}</div>
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;'>
+            8. What are your principal reasons for coming to Paris?
+        </td>
+      </tr>
         <td colspan='5' style='text-align:justify;font-weight:bold;'>
           @if ($edit)
             <textarea name='question[12]'>{{ $answer[12] }}</textarea>
@@ -228,10 +286,9 @@
           @endif
         </td>
       </tr>
-
       <tr>
         <td colspan='5' style='text-align:justify;'>
-          5. What are your main academic interests?
+          9. What are your main academic interests?
         </td></tr>
       <tr>
         <td colspan='5' style='text-align:justify;font-weight:bold;'>
@@ -245,7 +302,7 @@
 
       <tr>
         <td colspan='5' style='text-align:justify;'>
-          6. What are your extra-curricular and leisure time interests and activities?
+          10. What are your extra-curricular and leisure time interests and activities?
         </td></tr>
       <tr>
         <td colspan='5' style='text-align:justify;font-weight:bold;'>
@@ -265,7 +322,7 @@
 
       <tr>
         <td colspan='1' style='text-align:justify;'>
-          7. Do you smoke?
+          11. Do you smoke?
         </td>
         <td colspan='4' style='font-weight:bold;'>
           @if ($edit)
@@ -280,7 +337,7 @@
 
       <tr>
         <td colspan='1' style='text-align:justify;'>
-          8. Can you live with smokers if you are placed to live with them? 
+          12. Can you live with smokers if you are placed to live with them?
         </td>
         <td style='font-weigh:bold;'>
           @if ($edit)
@@ -301,7 +358,7 @@
 
       <tr>
         <td colspan='5'style='text-align:justify;'>
-          1. My major priority / concern for housing (please list ONLY ONE.)
+          1. What is your principal concern or priority regarding housing?
         </td>
       </tr>
       <tr>
@@ -315,13 +372,19 @@
       </tr>
 
       <tr>
+        <td colspan='5' style='text-align:justify;'>
+          2. <u>Please note</u> : every student participating on the VWPP should be prepared to live in a room in a French host's apartment (chambre dans un appartement - accueil en famille) with 3 family dinners and all breakfasts provided.
+        </td>
+      </tr>
+
+      <tr>
         <td colspan='5'>
           <h3>VI. Dietary considerations</h3>
         </td>
       </tr>
       <tr>
         <td colspan='5' style='text-align:justify;'>
-          Please note : French host homes are rarely solely vegetarian and almost never vegan, non-dairy or gluten free. Non-allergen meals and packaging cannot be guaranteed in France. If any of these specific dietary concerns apply to you and are noted below, we will do our best to accommodate them but cannot guarantee them.
+          Please note : French host homes are rarely solely vegetarian and almost never non-dairy or gluten free. Non-allergen meals and packaging cannot be guaranteed in France. If any of these specific dietary concerns apply to you and are noted below, we will do our best to accommodate them but cannot guarantee them.
         </td>
       </tr>
 
@@ -340,22 +403,8 @@
       </tr>
 
       <tr>
-        <td colspan='2' style='text-align:justify;'>
-          2. Are you a vegan now?
-        </td>
-        <td style='text-align:justify;font-weight:bold;'>
-          @if ($edit)
-            <input type='radio' name='question[29]' value='Yes' @if ($answer[29] == 'Yes') checked='checked' @endif /> Yes
-            <input type='radio' name='question[29]' value='No' @if ($answer[29] == 'No') checked='checked' @endif /> No
-          @else
-            <div class='response2'>{{ $answer[29] }}</div>
-          @endif
-        </td>
-      </tr>
-
-      <tr>
         <td colspan='5' style='text-align:justify;'>
-          3. Do you eat:
+          2. Do you eat:
         </td>
       </tr>
 
@@ -431,7 +480,7 @@
 
       <tr>
         <td colspan='2' style='text-align:justify;'>
-          4. Do you occasionally eat red meat?
+          3. Do you occasionally eat red meat?
         </td>
         <td colspan='2' style='text-align:justify;font-weight:bold;'>
           @if ($edit)
@@ -445,7 +494,7 @@
 
       <tr>
         <td colspan='5'style='text-align:justify;'>
-          5. Please note any specific:
+          4. Please note any specific:
         </td>
       </tr>
 
@@ -481,7 +530,7 @@
 
       <tr>
         <td colspan='5'style='text-align:justify;'>
-          6. Do you think you will adhere strictly to these dietary habits in France and do we need to abide 
+          5. Do you think you will adhere strictly to these dietary habits in France and do we need to abide 
           by them when considering your housing?
         </td>
       </tr>
@@ -499,7 +548,7 @@
 
       <tr>
         <td colspan='5' style='text-align:justify;'>
-          7. Do you have any allergies to cats, dogs, or are you allergic to anything else?
+          6. Do you have any allergies to cats, dogs, or are you allergic to anything else?
         </td>
       </tr>
       <tr>
@@ -508,6 +557,26 @@
             <textarea name='question[27]'>{{ $answer[27] }}</textarea>
           @else
             <div class='response'>{{ $answer[27] }}</div>
+          @endif
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan='5'>
+          <h3>Other information</h3>
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;'>
+          Please provide any further information that will assist us in securing the best housing arrangements for you by commenting on any of the following topics that are important to you with reference to your housing: children, animals, interests, neatness, study habits, noise, sleeping habits. (120 words)
+        </td>
+      </tr>
+      <tr>
+        <td colspan='5' style='text-align:justify;font-weight:bold;'>
+          @if ($edit)
+            <textarea name='question[32]'>{{ $answer[32] }}</textarea>
+          @else
+            <div class='response'>{{ $answer[32] }}</div>
           @endif
         </td>
       </tr>

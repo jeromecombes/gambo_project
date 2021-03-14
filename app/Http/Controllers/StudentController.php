@@ -268,7 +268,7 @@ class StudentController extends Controller
             ->where('semestre', $semester)->get();
 
         $answer = array();
-        for ($i = 1; $i <=29; $i++) {
+        for ($i = 1; $i <=32; $i++) {
             $h = $housing->where('question', $i)->first();
             $answer[$i] = $h ? $h->response : null;
         }
