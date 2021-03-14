@@ -6,6 +6,7 @@ use App\Host;
 use App\HostAvailable;
 use App\Housing;
 use App\HousingAssignment;
+use App\HousingTerm;
 use App\Student;
 use App\Univ_reg3;
 use App\User;
@@ -273,8 +274,14 @@ class StudentController extends Controller
             $answer[$i] = $h ? $h->response : null;
         }
 
+        // Check if terms are accepted
+        $terms = HousingTerm::where('student', $id)
+            ->where('semester', session('semester'))
+            ->first();
+        $terms_accepted = !empty($terms) ? true : false;
+
         // View
-        return view('students.housing', compact('edit', 'student', 'hosts', 'selected_host', 'answer'));
+        return view('students.housing', compact('edit', 'student', 'hosts', 'selected_host', 'answer', 'terms_accepted'));
     }
 
     /**

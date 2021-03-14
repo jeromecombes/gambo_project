@@ -389,10 +389,10 @@
     <p style='text-align:right'>
       @if ($edit)
         <input type='hidden' name='semesters[]' value='{{ $student->semesters[0] }}'/>
-        <a href='{{ asset("student/{$student->id}") }}' class='myUI-button-right'>Cancel</a>
-        <input type='submit' value='Submit' class='myUI-button-right'/>
+        <input type='button' value='Cancel' class='btn' onclick='document.location.href="/student";' />
+        <input type='submit' value='Submit' class='btn btn-primary'/>
       @else
-        <a href='{{ asset("student/{$student->id}/edit") }}' class='myUI-button-right'>Edit</a>
+        <a href='{{ asset("student/{$student->id}/edit") }}' class='btn btn-primary'>Edit</a>
       @endif
     </p>
   </fieldset>

@@ -4,20 +4,14 @@ var logins=new Array();
 // function activEval(semester){
 //     file("activEval.php?semester="+semester);
 // }
-function accept_housing_charte(me){
-  file("housing-accept.php");
+function accept_housing_charte(me) {
+  file("/housing-accept.php");
   if(me.checked){
-     document.getElementById("text").style.display="none";
-     document.getElementById("link").style.display="";
+     document.location.reload();
   }
   else
     me.checked=true;
-/*  else{
-     document.getElementById("text").style.display="";
-     document.getElementById("link").style.display="none";
-  }*/
 }
-
 
 function add_fields(i){
  i++;

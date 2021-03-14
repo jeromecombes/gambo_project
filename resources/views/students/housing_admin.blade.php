@@ -19,7 +19,7 @@
             </select>
           </td>
           <td>
-            <input type='submit' value='OK' class='myUI-button' />
+            <input type='submit' value='Submit' class='btn btn-primary' />
           </td>
         </tr>
       </table>
