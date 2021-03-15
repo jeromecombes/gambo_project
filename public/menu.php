@@ -34,7 +34,7 @@ if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or count(
   echo <<<EOD
   <li id='li7' class='ui-state-default ui-corner-top'><a href='/student'>General Info.</a></li>
   <li id='li2' class='ui-state-default ui-corner-top'><a href='/housing'>Housing</a></li>
-  <li id='li1' class='ui-state-default ui-corner-top'><a href='univ_registration.php'>Univ. Reg.</a></li>
+  <li id='li1' class='ui-state-default ui-corner-top'><a href='/univ_reg'>Univ. Reg.</a></li>
   <li id='li3' class='ui-state-default ui-corner-top'><a href='courses.php'>Course Reg.</a></li>
   <li id='li4' class='ui-state-default ui-corner-top' $displayEval ><a href='eval_index.php'>Evaluations</a></li>
   <li id='li8' class='ui-state-default ui-corner-top'><a href='documents'>Documents</a></li>

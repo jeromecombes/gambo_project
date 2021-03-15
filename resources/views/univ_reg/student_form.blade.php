@@ -1,9 +1,9 @@
 @extends('layouts.myApp')
 @section('content')
 
-  @include('univ_reg.student_form_intro')
-
   @if (session('admin') or $published)
+
+    @include('univ_reg.student_form_intro')
 
     @if (substr(session('semester'), -4) < 2019)
 

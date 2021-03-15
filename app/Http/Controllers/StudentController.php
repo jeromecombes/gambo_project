@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Host;
 use App\HousingAssignment;
 use App\Student;
-use App\Univ_reg3;
+use App\FinalReg;
 use App\User;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
@@ -37,15 +37,11 @@ class StudentController extends Controller
             ->get();
 
         // Add university registration information
-        $univ_reg = Univ_reg3::where('semester', $semester)->get();
+        $univ_reg = FinalReg::where('semester', $semester)->get();
 
         foreach ($students as $key => $student) {
-            $univ = null;
-            foreach ($univ_reg as $elem) {
-                if ($elem->student == $student->id) {
-                    $students[$key]->setUnivregAttribute($elem->university);
-                }
-            }
+            $univ = $univ_reg->where('student', $student->id)->first();
+            $students[$key]->setUnivregAttribute($univ->university ?? null);
         }
 
         // Count students
@@ -122,7 +118,7 @@ class StudentController extends Controller
         $housing = HousingAssignment::where('student', $id)->where('semester', session('semester'))->first();
         $host = $housing ? Host::find($housing->logement) : null;
 
-        $univ_reg = Univ_reg3::where('student', $id)->where('semester', session('semester'))->first();
+        $univ_reg = FinalReg::findMeOne();
         $french_univ = $univ_reg ? $univ_reg->university : null;
 
         $months = array(

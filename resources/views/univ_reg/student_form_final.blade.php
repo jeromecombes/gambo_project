@@ -1,17 +1,20 @@
 @if (!$edit)
   @if (session('admin'))
     <fieldset>
-      <form method='post' action='/univ_reg_admin'>
+
+      <form method='post' action='/final_reg'>
+        {{ csrf_field() }}
+
         <table>
           <tr>
             <td colspan='2'>
               <h3>University Registration</h3>
             </td>
           </tr>
+
           <tr>
             <td>University</td>
             <td>
-              <input type='hidden' name='action' value='attrib' />
               <select name='university' style='width:800px;'>
                 <option value=''>&nbsp;</option>
                 <option value='Paris 3' @if ($university == 'Paris 3') selected='selected' @endif >Paris 3</option>
@@ -26,21 +29,26 @@
             </td>
           </tr>
         </table>
+
       </form>
     </fieldset>
+
   @elseif ($university and $published)
     <fieldset>
+
       <table>
         <tr>
           <td colspan='2'>
             <h3>University Registration</h3>
           </td>
         </tr>
+
         <tr>
           <td>University</td>
           <td class='response'>{{ $university }}</td>
         </tr>
       </table>
     </fieldset>
+
   @endif
 @endif

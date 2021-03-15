@@ -109,7 +109,15 @@ Route::get('/univ_reg/{student}/{edit}', 'UnivRegController@student_form')
     ->middleware('role:17')
     ->where('edit', 'edit')
     ->name('univ_reg.student_form.edit');
-    
+
+Route::post('/univ_reg', 'UnivRegController@univ_reg_update')
+    ->middleware('role:17')
+    ->name('univ_reg.univ_reg.update');
+
+Route::post('/final_reg', 'UnivRegController@final_reg_update')
+    ->middleware('role:17')
+    ->name('univ_reg.final_reg.update');
+
 // Admin Student list
 Route::get('/students', 'StudentController@admin_index')
     ->middleware('admin')

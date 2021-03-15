@@ -161,7 +161,7 @@ class HousingController extends Controller
     public function student_assignment(Request $request)
     {
 
-        $assignment = HousingAssignment::updateOrCreate(
+        HousingAssignment::updateOrCreate(
             array(
                 'student' => $request->student,
                 'semester' => session('semester'),

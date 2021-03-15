@@ -70,4 +70,50 @@ class UnivRegController extends Controller
         return view('univ_reg.student_form', compact('edit', 'student', 'published', 'locked', 'dates', 'university', 'answer', 'answer_plus', 'countries', 'states'));
     }
 
+    /**
+     * Update Final Reg
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function final_reg_update(Request $request)
+    {
+        FinalReg::updateOrCreate(
+            array(
+                'student' => session('student'),
+                'semester' => session('semester'),
+            ),
+            array(
+                'university' => $request->university,
+            )
+        );
+
+        return redirect("/univ_reg")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
+     * Update Univ Reg
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_reg_update(Request $request)
+    {
+        $semester = str_replace(' ', '_', session('semester'));
+
+        UnivReg::where('student', session('student'))
+            ->where('semestre', $semester)->delete();
+
+        foreach ($request->question as $question => $answer) {
+            $univ_reg = new UnivReg();
+            $univ_reg->student = session('student');
+            $univ_reg->semester = session('semester');
+            $univ_reg->question = $question;
+            $univ_reg->response = $answer;
+            $univ_reg->save();
+        }
+
+        return redirect("/univ_reg")->with('success', 'Mise à jour réussie');
+    }
+
 }
