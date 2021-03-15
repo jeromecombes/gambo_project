@@ -94,12 +94,7 @@ class HousingController extends Controller
         $edit = $request->edit;
 
         // Get student info
-        $id = session('student');
-        if (session('admin') and $request->id) {
-            $id = $request->id;
-        }
-
-        $student = Student::find($id);
+        $student = Student::find(session('student'));
 
         // Get available hosts
         $hosts = Host::getHosts();

@@ -888,7 +888,7 @@ $(function(){
       tab.push($(this).val());
     });
     $.ajax({
-      url: "ajax.studentsList.php",
+      url: "/admin/ajax.studentsList.php",
       dataType: "json",
       type: "post",
       async:false,

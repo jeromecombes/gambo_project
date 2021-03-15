@@ -21,8 +21,7 @@ class StudentList
         }
 
         // Current student
-        $student = $request->id ?? session('student');
-        $request->session()->put('student', $student);
+        $student = $request->student ?? session('student');
 
         if ($student) {
             $std = Student::find($student);

@@ -29,8 +29,7 @@ class UnivRegController extends Controller
         $edit = $request->edit;
 
         // Get student info
-        $id = session('student');
-        $student = Student::find($id);
+        $student = Student::find(session('student'));
 
         // Get univ registration
         $final_reg = FinalReg::findMeOne();

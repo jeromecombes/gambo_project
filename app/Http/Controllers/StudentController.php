@@ -114,10 +114,6 @@ class StudentController extends Controller
         $edit = $request->edit;
 
         $id = session('student');
-        if (session('admin') and $request->id) {
-            $id = $request->id;
-        }
-
         $student = Student::find($id);
 
         $document = new DocumentController();
@@ -159,8 +155,7 @@ class StudentController extends Controller
     public function student_form_update(Request $request)
     {
 
-        $id = $request->id;
-        $student = Student::find($id);
+        $student = Student::find(session('student'));
 
         // Get initial cellphone
         $cellphone = $student->cellphone;
