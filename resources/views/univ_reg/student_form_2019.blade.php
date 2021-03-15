@@ -14,7 +14,7 @@
       </tr>
 
       <tr>
-        <td style='padding-left:30px;width:500px;'>a. Graduation year</td>
+        <td style='padding-left:30px; width:500px;'>a. Graduation year</td>
         <td>
           @if ($edit)
             <select name='answer[2]'>
@@ -92,15 +92,16 @@
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td style='font-weight:bold;' rowspan='2'>3. Do you have a disability or special needs ?</td>
+        <td style='font-weight:bold;'>3. Do you have a disability or special needs ?</td>
         @if ($edit)
           <td style='padding-left:30px;'>
-            <input type='radio' name='answer[7]' value='Oui' {$checked[0]} /> Oui
+            <input type='radio' name='answer[7]' value='Oui' @if ($answer[7] == 'Oui' ) checked='checked' @endif /> Oui
           </td>
         </tr>
-        <tr id='univreg2b_1_radio_1'>
+        <tr>
+          <td>&nbsp;</td>
           <td style='padding-left:30px;'>
-            <input type='radio' name='answer[7]' value='Non' {$checked[1]} /> Non
+            <input type='radio' name='answer[7]' value='Non' @if ($answer[7] == 'Non' ) checked='checked' @endif /> Non
           </td>
         @else
           <td class='response'>{{ $answer[7] }}</td>
@@ -175,10 +176,10 @@
         <tr>
           <td colspan='6' style='padding:20px 0 0 0; text-align:justify;'>
             Please note that each university has a different calendar :<br/>
-            Paris 3, end of course <b>{{ $dates['date5'] }}</b><br/>
-            Paris 4, end of course <b>{{ $dates['date6'] }}</b><br/>
-            Paris 7, end of course <b>{{ $dates['date7'] }}</b><br/>
-            Paris 12, end of course <b>{{ $dates['date8'] }}</b><br/>
+            Paris 3, end of course <b>{{ $dates->date5 }}</b><br/>
+            Paris 4, end of course <b>{{ $dates->date6 }}</b><br/>
+            Paris 7, end of course <b>{{ $dates->date7 }}</b><br/>
+            Paris 12, end of course <b>{{ $dates->date8 }}</b><br/>
           </td>
         </tr>
       @endif

@@ -12,7 +12,7 @@ class Host extends MyModel
      */
     protected $table = 'logements';
 
-    public function getHosts($semester = null)
+    protected function getHosts($semester = null)
     {
         // Get available hosts
         $semester = $semester ?? session('semester');

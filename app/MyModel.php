@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 class MyModel extends Model
 {
@@ -55,5 +56,56 @@ class MyModel extends Model
             unset($crypted_token, $enc_method, $enc_key, $enc_iv, $regs);
         }
         return $decrypted_token; 
+    }
+
+    protected function findMe()
+    {
+        $column = 'semester';
+        $semester = session('semester');
+
+        if ($this->hasAttribute('semestre')) {
+            $column = 'semestre';
+            $semester = str_replace(' ', '_', session('semester'));
+        }
+
+        $object = $this::where('student', session('student'))
+            ->where($column, $semester)
+            ->get();
+
+        return $object;
+    }
+
+    protected function findMeOne()
+    {
+        $column = 'semester';
+        $semester = session('semester');
+
+        if ($this->hasAttribute('semestre')) {
+            $column = 'semestre';
+            $semester = str_replace(' ', '_', session('semester'));
+        }
+
+        $object = $this::where('student', session('student'))
+            ->where($column, $semester)
+            ->first();
+
+        return $object;
+    }
+
+    public function getResponseAttribute($value)
+    {
+        return $this->hasAttribute('response') ? $this->decrypt($value, $this->student) : null;
+    }
+
+    public function setResponseAttribute($value)
+    {
+        if ($this->hasAttribute('response')) {
+            $this->attributes['response'] = $this->encrypt($value, $this->student);
+        }
+    }
+
+    public function hasAttribute($attr)
+    {
+        return Schema::hasColumn($this->getTable(), $attr);
     }
 }

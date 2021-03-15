@@ -244,7 +244,7 @@
           @if ($edit)
             <input type='submit' value='Valider' class='btn btn-primary' />
           @else
-            @if (session('admin') or !$loecked)
+            @if (session('admin') or !$locked)
               <input type='button' value='Edit' onclick='location.href="/univ_reg_plus/{{ $student->id }}/edit";' class='btn btn-primary' />
             @endif
           @endif

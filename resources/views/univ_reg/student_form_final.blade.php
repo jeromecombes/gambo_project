@@ -38,7 +38,7 @@
         </tr>
         <tr>
           <td>University</td>
-          <td class='response'>$university</td>
+          <td class='response'>{{ $university }}</td>
         </tr>
       </table>
     </fieldset>

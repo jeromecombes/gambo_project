@@ -4,14 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UnivRegShow extends MyModel
+class UnivRegLock extends MyModel
 {
     /**
      * @var string
      */
-    protected $table = 'univ_reg_show';
-
-    public $timestamps = false;
+    protected $table = 'univ_reg_lock1';
 
     /**
      * The attributes that are mass assignable.

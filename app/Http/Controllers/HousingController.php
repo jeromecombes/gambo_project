@@ -102,8 +102,7 @@ class HousingController extends Controller
         $student = Student::find($id);
 
         // Get available hosts
-        $h = new Host();
-        $hosts = $h->getHosts();
+        $hosts = Host::getHosts();
 
         // Get the selected host
         $selected_host = null;
@@ -115,9 +114,7 @@ class HousingController extends Controller
         }
 
         // Get housing's answers
-        $semester = str_replace(' ', '_', session('semester'));
-        $housing = Housing::where('student', $student->id)
-            ->where('semestre', $semester)->get();
+        $housing = Housing::findMe();
 
         $answer = array();
         for ($i = 1; $i <=32; $i++) {
@@ -126,9 +123,7 @@ class HousingController extends Controller
         }
 
         // Check if terms are accepted
-        $terms = HousingTerm::where('student', $id)
-            ->where('semester', session('semester'))
-            ->first();
+        $terms = HousingTerm::findMeOne();
         $terms_accepted = !empty($terms) ? true : false;
 
         // View

@@ -46,10 +46,10 @@
         <tr>
           <td colspan='6' style='padding:20px 0 0 0; text-align:justify;'>
             Please note that each university has a different calendar :<br/>
-            Paris 3, end of course <b>{{ $dates['date5'] }}</b><br/>
-            Paris 4, end of course <b>{{ $dates['date6'] }}</b><br/>
-            Paris 7, end of course <b>{{ $dates['date7'] }}</b><br/>
-            Paris 12, end of course <b>{{ $dates['date8'] }}</b><br/>
+            Paris 3, end of course <b>{{ $dates->date5 }}</b><br/>
+            Paris 4, end of course <b>{{ $dates->date6 }}</b><br/>
+            Paris 7, end of course <b>{{ $dates->date7 }}</b><br/>
+            Paris 12, end of course <b>{{ $dates->date8 }}</b><br/>
           </td>
         </tr>
       @endif
