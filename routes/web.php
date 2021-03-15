@@ -85,6 +85,31 @@ Route::post('/housing_assignment', 'StudentController@housing_assignment')
     ->middleware('role:7')
     ->name('student.housing_assignment');
 
+// Student Univ registration
+Route::get('/univ_reg', 'StudentController@univ_reg')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:17')
+    ->name('student.univ_reg');
+
+Route::get('/univ_reg/{student}', 'StudentController@univ_reg')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->middleware('role:17')
+    ->name('student.univ_reg');
+
+Route::get('/univ_reg/{student}/{edit}', 'StudentController@univ_reg')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->middleware('role:17')
+    ->where('edit', 'edit')
+    ->name('student.univ_reg.edit');
+    
 // Admin Student list
 Route::get('/admin/students', 'StudentController@admin_index')
     ->middleware('admin')

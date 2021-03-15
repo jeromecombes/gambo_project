@@ -242,6 +242,8 @@ font.response {
 fieldset{
   background:#F8F8F8;
   border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 30px;
 }
 
 .fieldset {

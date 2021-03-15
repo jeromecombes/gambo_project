@@ -334,6 +334,44 @@ class StudentController extends Controller
     }
 
     /**
+     * Display univ registration
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_reg(Request $request)
+    {
+
+        include_once( __DIR__ . '/../../../public/inc/states.inc');
+
+        $edit = $request->edit;
+
+        // Get student info
+        $id = session('student');
+        $student = Student::find($id);
+
+        // TEST
+        $locked = true;
+        $published = true;
+        $dates = array(
+            'date5' => 'November 4, 2012',
+            'date6' => 'November 4, 2012',
+            'date7' => 'November 4, 2012',
+            'date8' => 'November 4, 2012',
+        );
+        $university = false;
+        for ($i = 1; $i <=22; $i++) {
+            $answer[$i] = 'test';
+        }
+        for ($i = 0; $i <=16; $i++) {
+            $answer_plus[$i] = 'test';
+        }
+
+        // View
+        return view('students.univ_reg', compact('edit', 'student', 'published', 'locked', 'dates', 'university', 'answer', 'answer_plus', 'countries', 'states'));
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
