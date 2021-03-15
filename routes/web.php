@@ -27,97 +27,97 @@ Route::post('/admin/semester', 'AdminController@semester')
     ->name('admin.semester');
 
 // Student General Info
-Route::get('/student', 'StudentController@general')
+Route::get('/student', 'StudentController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
-    ->name('student.general');
+    ->name('student.student_form');
 
-Route::get('/student/{student}', 'StudentController@general')
+Route::get('/student/{student}', 'StudentController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
-    ->name('student.general');
+    ->name('student.student_form_id');
 
-Route::get('/student/{student}/{edit}', 'StudentController@general')
+Route::get('/student/{student}/{edit}', 'StudentController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
     ->where('edit', 'edit')
-    ->name('student.general.edit');
+    ->name('student.student_form.edit');
 
-Route::post('/student', 'StudentController@general_update')
-    ->name('student.general.update');
+Route::post('/student', 'StudentController@student_form_update')
+    ->name('student.student_form.update');
 
 // Student Housing
-Route::get('/housing', 'StudentController@housing')
+Route::get('/housing', 'HousingController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('role:2')
-    ->name('student.housing');
+    ->name('housing.student_form');
 
-Route::get('/housing/{student}', 'StudentController@housing')
+Route::get('/housing/{student}', 'HousingController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
     ->middleware('role:2')
-    ->name('student.housing');
+    ->name('housing.student_form_id');
 
-Route::get('/housing/{student}/{edit}', 'StudentController@housing')
+Route::get('/housing/{student}/{edit}', 'HousingController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
     ->middleware('role:7')
     ->where('edit', 'edit')
-    ->name('student.housing.edit');
+    ->name('housing.student_form.edit');
 
-Route::post('/housing', 'StudentController@housing_update')
+Route::post('/housing', 'HousingController@student_form_update')
     ->middleware('role:7')
-    ->name('student.housing.update');
+    ->name('housing.student_form.update');
 
-Route::post('/housing_assignment', 'StudentController@housing_assignment')
+Route::post('/housing_assignment', 'HousingController@student_assignment')
     ->middleware('admin')
     ->middleware('role:7')
-    ->name('student.housing_assignment');
+    ->name('housing.student_assignment');
 
 // Student Univ registration
-Route::get('/univ_reg', 'StudentController@univ_reg')
+Route::get('/univ_reg', 'UnivRegController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('role:17')
-    ->name('student.univ_reg');
+    ->name('univ_reg.student_form');
 
-Route::get('/univ_reg/{student}', 'StudentController@univ_reg')
+Route::get('/univ_reg/{student}', 'UnivRegController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
     ->middleware('role:17')
-    ->name('student.univ_reg');
+    ->name('univ_reg.student_form_id');
 
-Route::get('/univ_reg/{student}/{edit}', 'StudentController@univ_reg')
+Route::get('/univ_reg/{student}/{edit}', 'UnivRegController@student_form')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('this.student')
     ->middleware('role:17')
     ->where('edit', 'edit')
-    ->name('student.univ_reg.edit');
+    ->name('univ_reg.student_form.edit');
     
 // Admin Student list
-Route::get('/admin/students', 'StudentController@admin_index')
+Route::get('/students', 'StudentController@admin_index')
     ->middleware('admin')
     ->middleware('semester')
     ->name('student.index');
 
 // Admin Student Delete
-Route::post('/admin/students/delete', 'StudentController@destroy')
+Route::post('/students/delete', 'StudentController@destroy')
     ->middleware('admin')
     ->name('student.destroy');
 

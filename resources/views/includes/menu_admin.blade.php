@@ -6,7 +6,7 @@
                 <li id='li11' class="ui-state-default ui-corner-top {{ (request()->is('admin/dates')) ? 'ui-state-active' : '' }}"><a href='/admin/dates.php'>Dates</a></li>
             @endif
 
-            <li id='li5' class="ui-state-default ui-corner-top {{ (request()->is('admin/students')) ? 'ui-state-active' : '' }}"><a href="{{ asset('admin/students') }}">Students</a></li>
+            <li id='li5' class="ui-state-default ui-corner-top {{ (request()->is('students')) ? 'ui-state-active' : '' }}"><a href="{{ asset('students') }}">Students</a></li>
 
             @if(in_array(2, session('access')))
                 <li id='li7' class="ui-state-default ui-corner-top {{ (request()->is('admin/housing')) ? 'ui-state-active' : '' }}"><a href="{{ asset('admin/housing') }}">Housing</a></li>

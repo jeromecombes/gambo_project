@@ -79,5 +79,5 @@ if(!empty($users)){
   }
 }
 
-header("Location: /admin/students?error=$error&msg=$msg");
+header("Location: /students?error=$error&msg=$msg");
 ?>

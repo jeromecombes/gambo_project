@@ -16,7 +16,7 @@
 </table>
 
 @if($students->count())
-    {{ Form::open(array('name' => 'form1', 'url' => '/admin/students')) }}
+    {{ Form::open(array('name' => 'form1', 'url' => '/students')) }}
     <table class='datatable' data-sort='[["1","asc"],["2","asc"]]'>
         <thead>
             <tr>
@@ -54,7 +54,7 @@
     {{ Form::close() }}
 
     <br/>
-    {{ Form::open(array('name' => 'form2', 'url' => '/admin/students')) }}
+    {{ Form::open(array('name' => 'form2', 'url' => '/students')) }}
         <div class='marginBottom'>
             For selected students :
             <select name='action' id='action' onchange='select_action("form1");' style='width:250px;' class='ui-widget-content ui-corner-all'>

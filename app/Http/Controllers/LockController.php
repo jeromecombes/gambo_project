@@ -22,7 +22,7 @@ class LockController extends Controller
             $model->firstOrCreate(['semester' => $semester, 'student' => $student]);
         }
 
-        return redirect('/admin/students')->with('success', 'Update successful');
+        return redirect('/students')->with('success', 'Update successful');
     }
 
     /**
@@ -41,6 +41,6 @@ class LockController extends Controller
             ->whereIn('student', $students)
             ->delete();
 
-        return redirect('/admin/students')->with('success', 'Update successful');
+        return redirect('/students')->with('success', 'Update successful');
     }
 }

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Host;
-use App\HostAvailable;
-use App\Housing;
 use App\HousingAssignment;
-use App\HousingTerm;
 use App\Student;
 use App\Univ_reg3;
 use App\User;
@@ -110,7 +107,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function general(Request $request)
+    public function student_form(Request $request)
     {
         include_once( __DIR__ . '/../../../public/inc/states.inc');
 
@@ -150,7 +147,7 @@ class StudentController extends Controller
         $years = array(date("Y") - 15, date("Y") - 30);
 
         // View
-        return view('students.general', compact('student', 'photo', 'host', 'french_univ', 'countries', 'states', 'months', 'years', 'edit'));
+        return view('students.student_form', compact('student', 'photo', 'host', 'french_univ', 'countries', 'states', 'months', 'years', 'edit'));
     }
 
     /**
@@ -159,7 +156,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function general_update(Request $request)
+    public function student_form_update(Request $request)
     {
 
         $id = $request->id;
@@ -229,146 +226,6 @@ class StudentController extends Controller
         }
 
         return redirect("/student")->with('success', 'Mise à jour réussie');
-    }
-
-    /**
-     * Display housing information of a student
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function housing(Request $request)
-    {
-
-        $edit = $request->edit;
-
-        // Get student info
-        $id = session('student');
-        if (session('admin') and $request->id) {
-            $id = $request->id;
-        }
-
-        $student = Student::find($id);
-
-        // Get available hosts
-        $h = new Host();
-        $hosts = $h->getHosts();
-
-        // Get the selected host
-        $selected_host = null;
-        if (count($hosts) > 0) {
-            $host = HousingAssignment::where('student', $student->id)->first();
-            if ($host) {
-                $selected_host = $hosts->find($host->logement);
-            }
-        }
-
-        // Get housing's answers
-        $semester = str_replace(' ', '_', session('semester'));
-        $housing = Housing::where('student', $student->id)
-            ->where('semestre', $semester)->get();
-
-        $answer = array();
-        for ($i = 1; $i <=32; $i++) {
-            $h = $housing->where('question', $i)->first();
-            $answer[$i] = $h ? $h->response : null;
-        }
-
-        // Check if terms are accepted
-        $terms = HousingTerm::where('student', $id)
-            ->where('semester', session('semester'))
-            ->first();
-        $terms_accepted = !empty($terms) ? true : false;
-
-        // View
-        return view('students.housing', compact('edit', 'student', 'hosts', 'selected_host', 'answer', 'terms_accepted'));
-    }
-
-    /**
-     * Update housing
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function housing_update(Request $request)
-    {
-
-        $student = $request->student;
-        $semester = str_replace(' ', '_', session('semester'));
-        
-        $housing = Housing::where('student', $student)
-            ->where('semestre', $semester)->delete();
-
-        foreach ($request->question as $question => $answer) {
-            $housing = new Housing();
-            $housing->student = $student;
-            $housing->semester = $semester;
-            $housing->question = $question;
-            $housing->response = $answer;
-            $housing->save();
-        }
-
-        return redirect("/housing")->with('success', 'Mise à jour réussie');
-    }
-
-    /**
-     * Update housing assignment
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function housing_assignment(Request $request)
-    {
-
-        $assignment = HousingAssignment::updateOrCreate(
-            array(
-                'student' => $request->student,
-                'semester' => session('semester'),
-            ),
-            array(
-                'logement' => $request->host,
-            )
-        );
-
-        return redirect("/housing")->with('success', 'Mise à jour réussie');
-    }
-
-    /**
-     * Display univ registration
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function univ_reg(Request $request)
-    {
-
-        include_once( __DIR__ . '/../../../public/inc/states.inc');
-
-        $edit = $request->edit;
-
-        // Get student info
-        $id = session('student');
-        $student = Student::find($id);
-
-        // TEST
-        $locked = true;
-        $published = true;
-        $dates = array(
-            'date5' => 'November 4, 2012',
-            'date6' => 'November 4, 2012',
-            'date7' => 'November 4, 2012',
-            'date8' => 'November 4, 2012',
-        );
-        $university = false;
-        for ($i = 1; $i <=22; $i++) {
-            $answer[$i] = 'test';
-        }
-        for ($i = 0; $i <=16; $i++) {
-            $answer_plus[$i] = 'test';
-        }
-
-        // View
-        return view('students.univ_reg', compact('edit', 'student', 'published', 'locked', 'dates', 'university', 'answer', 'answer_plus', 'countries', 'states'));
     }
 
     /**
@@ -449,6 +306,6 @@ class StudentController extends Controller
             $student->delete();
         }
 
-        return redirect('/admin/students')->with('success', 'Selected students have been successfuly deleted');
+        return redirect('/students')->with('success', 'Selected students have been successfuly deleted');
     }
 }

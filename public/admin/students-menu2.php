@@ -32,7 +32,7 @@ echo "<li class='ui-state-default ui-corner-top $class'><a href='/documents'>Doc
 echo "<script type='text/JavaScript'>li_ids.push($id);</script>\n";
 get_menu2("Schedule",8,1);
 
-echo "<li  class='ui-state-default ui-corner-top back-to-list'><a href='/admin/students'>Back to list</a></li>\n";
+echo "<li  class='ui-state-default ui-corner-top back-to-list'><a href='/students'>Back to list</a></li>\n";
 
 $studentsList = !empty($_SESSION["vwpp"]["studentsList"]) ? $_SESSION["vwpp"]["studentsList"] : array();
 $key=array_search($student,$studentsList);

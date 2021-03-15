@@ -4,7 +4,7 @@
 <h3>Housing</h3>
 
 @if (session('admin') and !$edit)
-  @include('students.housing_admin')
+  @include('housing.student_form_admin')
 @endif
 
 
@@ -35,9 +35,9 @@
     <div class='fieldset'>
 
     @if (substr(session('semester'), -4) < 2020)
-      @include('students.housing_before_2020')
+      @include('housing.student_form_before_2020')
     @else
-      @include('students.housing_2020')
+      @include('housing.student_form_2020')
     @endif
 
       <p style='text-align:right'>

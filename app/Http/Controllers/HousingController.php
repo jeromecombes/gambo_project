@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Host;
 use App\Housing;
+use App\HousingAssignment;
+use App\HousingTerm;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -77,6 +80,108 @@ class HousingController extends Controller
         $edit_access = in_array(7, session('access'));
 
         return view('admin.housing_requests', compact('questions', 'questions_ids', 'answers', 'edit_access'));
+    }
+
+    /**
+     * Display the housing student form
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function student_form(Request $request)
+    {
+
+        $edit = $request->edit;
+
+        // Get student info
+        $id = session('student');
+        if (session('admin') and $request->id) {
+            $id = $request->id;
+        }
+
+        $student = Student::find($id);
+
+        // Get available hosts
+        $h = new Host();
+        $hosts = $h->getHosts();
+
+        // Get the selected host
+        $selected_host = null;
+        if (count($hosts) > 0) {
+            $host = HousingAssignment::where('student', $student->id)->first();
+            if ($host) {
+                $selected_host = $hosts->find($host->logement);
+            }
+        }
+
+        // Get housing's answers
+        $semester = str_replace(' ', '_', session('semester'));
+        $housing = Housing::where('student', $student->id)
+            ->where('semestre', $semester)->get();
+
+        $answer = array();
+        for ($i = 1; $i <=32; $i++) {
+            $h = $housing->where('question', $i)->first();
+            $answer[$i] = $h ? $h->response : null;
+        }
+
+        // Check if terms are accepted
+        $terms = HousingTerm::where('student', $id)
+            ->where('semester', session('semester'))
+            ->first();
+        $terms_accepted = !empty($terms) ? true : false;
+
+        // View
+        return view('housing.student_form', compact('edit', 'student', 'hosts', 'selected_host', 'answer', 'terms_accepted'));
+    }
+
+    /**
+     * Update housing student information
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function student_form_update(Request $request)
+    {
+
+        $student = $request->student;
+        $semester = str_replace(' ', '_', session('semester'));
+        
+        $housing = Housing::where('student', $student)
+            ->where('semestre', $semester)->delete();
+
+        foreach ($request->question as $question => $answer) {
+            $housing = new Housing();
+            $housing->student = $student;
+            $housing->semester = $semester;
+            $housing->question = $question;
+            $housing->response = $answer;
+            $housing->save();
+        }
+
+        return redirect("/housing")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
+     * Update housing assignment
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function student_assignment(Request $request)
+    {
+
+        $assignment = HousingAssignment::updateOrCreate(
+            array(
+                'student' => $request->student,
+                'semester' => session('semester'),
+            ),
+            array(
+                'logement' => $request->host,
+            )
+        );
+
+        return redirect("/housing")->with('success', 'Mise à jour réussie');
     }
 
     /**

@@ -535,7 +535,7 @@ function submit_action(form,form2){		// a finir
   switch(document.forms[form].action.value){
     case "Delete" : 
         if(confirm("Do you really want to delete selected items ?")) {
-            document.forms[form2].action="/admin/students/delete";
+            document.forms[form2].action="/students/delete";
             document.forms[form2].submit();
         }
         break;
