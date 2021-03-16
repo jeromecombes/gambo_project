@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__.'/../../vendor/autoload.php');
 
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../../');
+$evn_file = '.env';
+$dotenv = Dotenv\Dotenv::create(__DIR__ . '/../../', $evn_file);
 $dotenv->load();
 
 session_start();
