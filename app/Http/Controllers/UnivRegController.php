@@ -32,17 +32,17 @@ class UnivRegController extends Controller
         $student = Student::find(session('student'));
 
         // Get univ registration
-        $final_reg = FinalReg::findMeOne();
+        $final_reg = FinalReg::findMe();
         $university = $final_reg ? $final_reg->university : null;
 
         // Check if Univ registration is locked
-        $locked = UnivRegLock::findMeOne() ? true : false;
+        $locked = UnivRegLock::findMe() ? true : false;
 
         // Check if Univ registration is published
-        $published = UnivRegShow::findMeOne() ? true : false;
+        $published = UnivRegShow::findMe() ? true : false;
 
         // Get student form
-        $univ_reg = UnivReg::findMe();
+        $univ_reg = UnivReg::getMe();
 
         $answer = array();
         for ($i=0; $i <= 25; $i++) {
@@ -53,7 +53,7 @@ class UnivRegController extends Controller
         }
 
         // Get student extra form (before 2019)
-        $univ_reg_plus = UnivReg2::findMe();
+        $univ_reg_plus = UnivReg2::getMe();
 
         $answer_plus = array();
         for ($i=0; $i <= 16; $i++) {

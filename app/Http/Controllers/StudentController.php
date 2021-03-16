@@ -118,7 +118,7 @@ class StudentController extends Controller
         $housing = HousingAssignment::where('student', $id)->where('semester', session('semester'))->first();
         $host = $housing ? Host::find($housing->logement) : null;
 
-        $univ_reg = FinalReg::findMeOne();
+        $univ_reg = FinalReg::findMe();
         $french_univ = $univ_reg ? $univ_reg->university : null;
 
         $months = array(

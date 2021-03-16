@@ -58,7 +58,7 @@ class MyModel extends Model
         return $decrypted_token; 
     }
 
-    protected function findMe()
+    protected function getMe()
     {
         $column = 'semester';
         $semester = session('semester');
@@ -75,7 +75,7 @@ class MyModel extends Model
         return $object;
     }
 
-    protected function findMeOne()
+    protected function findMe()
     {
         $column = 'semester';
         $semester = session('semester');

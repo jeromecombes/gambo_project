@@ -109,7 +109,7 @@ class HousingController extends Controller
         }
 
         // Get housing's answers
-        $housing = Housing::findMe();
+        $housing = Housing::getMe();
 
         $answer = array();
         for ($i = 1; $i <=32; $i++) {
@@ -118,7 +118,7 @@ class HousingController extends Controller
         }
 
         // Check if terms are accepted
-        $terms = HousingTerm::findMeOne();
+        $terms = HousingTerm::findMe();
         $terms_accepted = !empty($terms) ? true : false;
 
         // View
