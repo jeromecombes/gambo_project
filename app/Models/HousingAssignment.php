@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use app\MyModel;
+use app\Models\MyModel;
 
 class HousingAssignment extends MyModel
 {

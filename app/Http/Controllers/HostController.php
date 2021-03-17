@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Host;
-use App\HostAvailable;
-use App\HousingAssignment;
-use App\Student;
+use App\Models\Host;
+use App\Models\HostAvailable;
+use App\Models\HousingAssignment;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class HostController extends Controller

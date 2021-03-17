@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\HostAvailable;
+use App\Models\HostAvailable;
 use Illuminate\Http\Request;
 
 class HostAvailableController extends Controller

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Dates;
-use App\FinalReg;
-use App\Student;
-use App\UnivReg;
-use App\UnivReg2;
-use App\UnivRegLock;
-use App\UnivRegShow;
+use App\Models\Dates;
+use App\Models\FinalReg;
+use App\Models\Student;
+use App\Models\UnivReg;
+use App\Models\UnivReg2;
+use App\Models\UnivRegLock;
+use App\Models\UnivRegShow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
 

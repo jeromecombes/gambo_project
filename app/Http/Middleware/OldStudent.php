@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Student;
+use App\Models\Student;
 
 class OldStudent
 {

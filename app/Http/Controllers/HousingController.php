@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Host;
-use App\Housing;
-use App\HousingAssignment;
-use App\HousingTerm;
-use App\Student;
+use App\Models\Host;
+use App\Models\Housing;
+use App\Models\HousingAssignment;
+use App\Models\HousingTerm;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class HousingController extends Controller

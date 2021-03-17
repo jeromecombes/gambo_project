@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Host;
-use App\HousingAssignment;
-use App\Student;
-use App\FinalReg;
-use App\User;
+use App\Models\Host;
+use App\Models\HousingAssignment;
+use App\Models\Student;
+use App\Models\FinalReg;
+use App\Models\User;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
 use Illuminate\Http\Request;

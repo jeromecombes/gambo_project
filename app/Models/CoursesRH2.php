@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HousingClosed extends Model
+class CoursesRH2 extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'housing_closed';
+    protected $table = 'courses_rh2';
 
     public $timestamps = false;
 

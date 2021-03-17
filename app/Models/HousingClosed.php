@@ -1,15 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UnivRegLock extends MyModel
+class HousingClosed extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'univ_reg_lock1';
+    protected $table = 'housing_closed';
+
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

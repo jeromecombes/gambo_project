@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\MyModel;
+use App\Models\MyModel;
 
 class Dates extends MyModel
 {

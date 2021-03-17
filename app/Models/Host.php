@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\MyModel;
-use App\HostAvailable;
+use App\Models\MyModel;
+use App\Models\HostAvailable;
 
 class Host extends MyModel
 {
