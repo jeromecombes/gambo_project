@@ -23,7 +23,7 @@ $config['dateFormat'] = $_ENV['DATE_FORMAT'];
 $config['crypt_key'] = $_ENV['APP_KEY2'];
 $config['folder']="";
 $config['url'] = $_ENV['APP_URL'];
-$config['sessionTimeOut'] = 1800;
+$config['sessionTimeOut'] = (int) $_ENV['SESSION_LIFETIME'] * 60;
 
 $config['documentType'] = explode(',', $_ENV['DOCUMENT_TYPES']);
 

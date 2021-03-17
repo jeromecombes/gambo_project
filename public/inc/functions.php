@@ -723,8 +723,7 @@ function ctrl_log_access(){	// Verify log_access (wrong authentications)
 //	Login control
 function login_ctrl(){
   if(isset($_SESSION['vwpp']['last_activity']) and (time()-$_SESSION['vwpp']['last_activity']>$GLOBALS['config']['sessionTimeOut'])){
-    unset($_SESSION['vwpp']);
-    header("Location: index.php");
+    header("Location: /logout");
   }
   if(isset($_SESSION['vwpp']['last_activity']))
     $_SESSION['vwpp']['last_activity']=time();
