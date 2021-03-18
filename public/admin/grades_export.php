@@ -31,7 +31,7 @@ $ciph=$c->elemExcel;
 $ciph=array_map("utf8_decode2",$ciph);
 usort($ciph,"cmp_institution");
 
-$Fnm = "../data/grades_{$_SESSION['vwpp']['semestre']}";
+$Fnm = "../data/grades_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
 if($_GET['type']=="csv"){
   $separate="';'";

@@ -5,9 +5,9 @@ $request['semester']=$post['semester']?$post['semester']:$get['semester'];
 $semester_session=isset($_SESSION['vwpp']['semestre'])?$_SESSION['vwpp']['semestre']:null;
 
 if(count($_SESSION['vwpp']['semesters'])==1){
-  $semester=str_replace(" ","_",$_SESSION['vwpp']['semesters'][0]);
+  $semester = $_SESSION['vwpp']['semesters'][0];
 }else{
-  $semester=$request['semester']?str_replace(" ","_",$request['semester']):$semester_session;
+  $semester = $request['semester'] ? $request['semester'] : $semester_session;
 }
 
 $db=new db();

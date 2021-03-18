@@ -33,20 +33,20 @@ class univ_reg{
       $db->insert2("univ_reg_lock1",array("student"=>$this->student, "semester"=>$this->semester));
     }
   }
-  
+
   public function getAttrib(){
     $db=new db();
     $db->select("univ_reg3s","*","semester='{$this->semester}' AND student='{$this->student}'");
     if($db->result){
       $this->university=decrypt_vwpp($db->result[0]['university'],$this->student);
     }
-    
+
     $db=new db();
     $db->select("univ_reg_show","*","semester='{$this->semester}' AND student='{$this->student}'");
     if($db->result){
       $this->published=true;
     }
-    
+
   }
 
   public function fetch(){
@@ -71,16 +71,15 @@ class univ_reg{
       $tab[$elem['id']]['student']=$elem['id'];
       $tab[$elem['id']]['lastname']=$elem['lastname'];
       $tab[$elem['id']]['firstname']=$elem['firstname'];
-      $tab[$elem['id']][0]=array("1"=>null,"2"=>null,"3"=>null,"4"=>null,"5"=>null,"6"=>null,"7"=>null,"8"=>null,"9"=>null, "10"=>null,"11"=>null,"12"=>null);	
+      $tab[$elem['id']][0]=array("1"=>null,"2"=>null,"3"=>null,"4"=>null,"5"=>null,"6"=>null,"7"=>null,"8"=>null,"9"=>null, "10"=>null,"11"=>null,"12"=>null);
      		// 9 = justification, 10 = IEP, 11 = Motivation by calendar, 12 = Paris 12
       $tab[$elem['id']][1]=array(null,null,null,null,null,null,null,null,null,null,null,null);
       $tab[$elem['id']][2]=null;
 
     }
 
-    $semestre=str_replace(" ","_",$this->semester);
     $db=new db();
-    $db->select("univ_reg","*","semestre='$semestre'");
+    $db->select("univ_reg","*","semester='{$this->semester}'");
     if($db->result){
       foreach($db->result as $elem){
 	if($students[$elem['student']]['lastname']){	// Permet de vérifier si l'étudiant existe toujours
@@ -116,9 +115,9 @@ class univ_reg{
   public function update($data){
     $db=new db();
     $db->delete("univ_reg2","semester='{$this->semester}' AND student='{$this->student}'");
-    
+
     $db=new dbh();
-    $db->prepare("INSERT INTO `{$GLOBALS['dbprefix']}univ_reg2` (question,response,semester,student) 
+    $db->prepare("INSERT INTO `{$GLOBALS['dbprefix']}univ_reg2` (question,response,semester,student)
       VALUES (:question,:response,:semester,:student);");
 
     $keys=array_keys($data);

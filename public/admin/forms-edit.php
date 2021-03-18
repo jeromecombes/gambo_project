@@ -16,7 +16,7 @@ switch($formId){
 echo "<h3>$formName form for $semestre</h3>\n";
 
 $db=new db();
-$db->select("forms","*","semestre='$semestre' AND formId='$formId'","ORDER BY ordre");
+$db->select("forms","*","semester='$semestre' AND formId='$formId'","ORDER BY ordre");
 $fields=$db->result?$db->result:array();
 
 echo "<form name='form' action='forms-update.php' method='post'>\n";

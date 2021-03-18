@@ -28,10 +28,10 @@ class student{
 
   function __construct(){
     if(array_key_exists("vwpp",$_SESSION) and array_key_exists("semester",$_SESSION['vwpp'])){
-      $this->semester=str_replace(array(" ","_"),"%",$_SESSION['vwpp']['semester']);
+      $this->semester = $_SESSION['vwpp']['semester'];
     }
   }
-  
+
   public function createPassword($sendMail=false){
     $this->fetchAll();
     $data=array();
@@ -47,7 +47,7 @@ class student{
       $data[]=array(":id"=>$elem,":password"=>$password,":token"=>$token);
       $users_data[]=array(":password"=>$password,":email"=>$email,":name"=>$email);
       if($sendMail){
-	$this->createWelcomeMessage($elem);  
+	$this->createWelcomeMessage($elem);
 	$mail=new vwppMail();
 	$mail->addAddress($this->elements[$elem]["email"]);
 	$mail->subject=$GLOBALS['config']['Messages-Welcome-Title'];
@@ -103,10 +103,10 @@ class student{
       $this->elements["semesters"]=unserialize($elem["semesters"]);
       if($this->elements["semesters"]){
 	for($i=0;$i<count($this->elements["semesters"]);$i++)
-	  $this->elements["semesters"][$i]=str_replace("_"," ",$this->elements["semesters"][$i]);
+	  $this->elements["semesters"][$i] = $this->elements["semesters"][$i];
       }
       if(!$this->elements["semesters"])
-	$this->elements["semesters"]=array(str_replace("_"," ",$elem["semestre"]));
+	$this->elements["semesters"] = array($elem["semester"]);
       sort($this->elements["semesters"]);
       $this->elements["semestersJoin"]=join(", ",$this->elements["semesters"]);
       $year=intval(substr($this->elements['semesters'][0],-4));
@@ -114,7 +114,7 @@ class student{
       $this->elements['checkedSemester']=in_array($this->elements['newSemester'],$this->elements['semesters'])?"checked='checked'":null;
 
       foreach($keys as $key){
-	if(in_array($key,array("id","token","password","semestre","semester","guest")))
+	if(in_array($key,array("id","token","password","semester","guest")))
 	  $this->elements[$key]=$elem[$key];
 	elseif(in_array($key,array("lastname","firstname","email")))
 	  $this->elements[$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
@@ -175,13 +175,13 @@ class student{
       foreach($db->result as $elem){
 	$students[$elem['id']]["semesters"]=unserialize($elem["semesters"]);
 	if(!$students[$elem['id']]["semesters"])
-	  $students[$elem['id']]["semesters"]=array($elem["semestre"]);
+	  $students[$elem['id']]["semesters"]=array($elem["semester"]);
 	sort($students[$elem['id']]["semesters"]);
 	$students[$elem['id']]["semestersJoin"]=join(", ",$students[$elem['id']]["semesters"]);
 // 	$stdExcel[$elem['id']]["semestersJoin"]=html_entity_decode($students[$elem['id']]["semestersJoin"],ENT_QUOTES,"utf-8");
 	$students[$elem['id']]["home_institution"]="toto".decrypt_vwpp($elem['home_institution'],$elem['id']);
 	foreach($keys as $key){
-	  if(in_array($key,array("id","token","password","semestre","semester")))
+	  if(in_array($key,array("id","token","password","semester")))
 	    $students[$elem['id']][$key]=$elem[$key];
 	  elseif(in_array($key,array("lastname","firstname","email")))
 	    $students[$elem['id']][$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
@@ -236,9 +236,9 @@ class student{
 
                 $db2 = new db();
                 $db2->update('students', "`password` = '$new_password'", "`id` = '$id'");
-                
+
                 $db2 = new db();
-                $db2->insert2('users', 
+                $db2->insert2('users',
                     array(
                         'login' => '',
                         'lastname' => '',

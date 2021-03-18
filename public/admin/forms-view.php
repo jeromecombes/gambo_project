@@ -3,7 +3,7 @@ require_once "../header.php";
 require_once "menu.php";
 //access_ctrl(13);
 
-$semestre=$_SESSION['vwpp']['semestre'];
+$semester=$_SESSION['vwpp']['semester'];
 
 if(isset($_GET['formId'])){
   $formId=$_SESSION['vwpp']['formId']=$_GET['formId'];
@@ -17,10 +17,10 @@ switch($formId){
   case 7 : $formName="Housing"; break;
 }
 
-echo "<h3>$formName form for $semestre</h3>\n";
+echo "<h3>$formName form for $semester</h3>\n";
 
 $db=new db();
-$db->select("forms","*","semestre='$semestre' AND formId='$formId'","order by ordre");
+$db->select("forms","*","semester='$semester' AND formId='$formId'","order by ordre");
 if(!$db->result){
   echo "This form does not exist.<br/>\n";
   if(in_array($formId,$_SESSION['vwpp']['access'])){

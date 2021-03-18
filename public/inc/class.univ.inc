@@ -15,7 +15,7 @@ class univ{
 
   function __construct(){
     $this->error=0;
-    $this->semester=str_replace(" ","_",$_SESSION['vwpp']['semester']);
+    $this->semester = $_SESSION['vwpp']['semester'];
     $this->element=array();
     $this->elements=array();
     $this->autocomplete=array();
@@ -178,7 +178,7 @@ class univ{
       $db=new dbh();
       $db->prepare($sql);
       $db->execute($values);
-      
+
       if($db->error){
 	$this->error=1;
 	$this->msg="update_error";

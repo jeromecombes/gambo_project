@@ -11,7 +11,7 @@ class evaluation{
     public $students = null;
 
   function __construct(){
-    $this->semester=str_replace(" ","_",$_SESSION['vwpp']['semester']);
+    $this->semester = $_SESSION['vwpp']['semester'];
     $this->form=null;
     $this->closed=null;
     $this->courseId=null;
@@ -120,7 +120,7 @@ class evaluation{
 	}
       }
     }
-  
+
     $this->elements=$tab;
     $this->elemExcel=$tabExcel;
 

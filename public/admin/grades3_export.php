@@ -33,7 +33,7 @@ $ciph=array_map("utf8_decode2",$ciph);
 usort($ciph,"cmp_institution");
 
 //	File Name
-$Fnm = "../data/grades_{$_SESSION['vwpp']['semestre']}";
+$Fnm = '../data/grades_' . str_replace(' ', '_', $_SESSION['vwpp']['semester']);
 
 //	File Format
 if($_GET['type']=="csv"){

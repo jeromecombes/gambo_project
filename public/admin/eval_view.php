@@ -13,7 +13,7 @@ $courseId=$eval->courseId;
 $std_id=$eval->student;
 $isForm=$eval->closed?false:true;	// display form with inputs or texts only
 
-$semester2=str_replace("_"," ",$_SESSION['vwpp']['semestre']);
+$semester2=$_SESSION['vwpp']['semestre'];
 
 switch($form){
   case "program"	: $back="Program Evaluations";			break;

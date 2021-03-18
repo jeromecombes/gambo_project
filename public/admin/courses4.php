@@ -1,6 +1,4 @@
 <?php
-// Last update : 2015-10-21
-
 require_once "../header.php";
 require_once "../inc/class.reidhall.inc";
 require_once "../inc/class.univ4.inc";
@@ -8,7 +6,7 @@ require_once "menu.php";
 
 access_ctrl(23);
 
-$semester=str_replace("_"," ",$_SESSION['vwpp']['semestre']);
+$semester = $_SESSION['vwpp']['semester'];
 
 //		Get VWPP Courses
 $rh=new reidhall();

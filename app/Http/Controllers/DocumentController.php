@@ -68,7 +68,7 @@ class DocumentController extends Controller
                 // Store file in tmp directory
                 $filename = Str::random(32);
                 $file->storeAs('tmp',$filename);
-                
+
                 // Store temporary information in database
                 $doc = new Document;
                 $doc->name = $filename;
@@ -77,7 +77,7 @@ class DocumentController extends Controller
                 $doc->rel = $request->post('rel'.$i) ? $request->post('rel'.$i) : 'Other';
                 $doc->adminOnly = !empty($request->post('admin'.$i)) ? 1 : 0;
                 $doc->save();
-                
+
                 $files[] = $filename;
             }
         }
@@ -363,8 +363,7 @@ class DocumentController extends Controller
             if ($student) {
                 $documents = Document::where('student',$student)->get();
             } else {
-                $semester = str_replace(' ', '_', session('semester'));
-                $students = Student::where('semestre', $semester)->pluck('id')->toArray();
+                $students = Student::where('semester', session('semester'))->pluck('id')->toArray();
                 $documents = Document::whereIn('student', $students)
                     ->select('documents.id', 'documents.name', 'documents.type', 'documents.type2', 'documents.size', 'documents.timestamp', 'documents.adminOnly')
                     ->withStudents()->get();

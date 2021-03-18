@@ -11,15 +11,15 @@ require_once "menu.php";
 access_ctrl(15);
 
 $semester=$_SESSION['vwpp']['semestre'];
-$semester2=str_replace("_"," ",$semester);
+
 //	CIPh
 $db=new db();
-$db->query("SELECT {$dbprefix}courses_ciph.instructeur AS instructeur, {$dbprefix}courses_ciph.titre AS titre, 
-  {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student 
-  FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_ciph 
-  ON {$dbprefix}courses_ciph.id={$dbprefix}evaluations.courseId 
-  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ciph' 
-  AND {$dbprefix}evaluations.semester='$semester' 
+$db->query("SELECT {$dbprefix}courses_ciph.instructeur AS instructeur, {$dbprefix}courses_ciph.titre AS titre,
+  {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student
+  FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_ciph
+  ON {$dbprefix}courses_ciph.id={$dbprefix}evaluations.courseId
+  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ciph'
+  AND {$dbprefix}evaluations.semester='$semester'
   GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
 $ciph=array();
 if($db->result){
@@ -32,11 +32,11 @@ usort($ciph,"cmp_title");
 
 //	Reid Hall
 $db=new db();
-$db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses.title AS title, 
-  {$dbprefix}evaluations.id AS id FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses 
-  ON {$dbprefix}courses.id={$dbprefix}evaluations.courseId 
-  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ReidHall' 
-  AND {$dbprefix}evaluations.semester='$semester' 
+$db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses.title AS title,
+  {$dbprefix}evaluations.id AS id FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses
+  ON {$dbprefix}courses.id={$dbprefix}evaluations.courseId
+  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ReidHall'
+  AND {$dbprefix}evaluations.semester='$semester'
   GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
 $reidHall=array();
 if($db->result){
@@ -55,12 +55,12 @@ $tutorats=$db->result;
 
 //	University
 $db=new db();
-$db->query("SELECT {$dbprefix}courses_univ.cm_prof AS cm_prof, {$dbprefix}courses_univ.cm_name AS cm_name, 
-  {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student 
-  FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_univ 
-  ON {$dbprefix}courses_univ.id={$dbprefix}evaluations.courseId 
-  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='univ' 
-  AND {$dbprefix}evaluations.semester='$semester' 
+$db->query("SELECT {$dbprefix}courses_univ.cm_prof AS cm_prof, {$dbprefix}courses_univ.cm_name AS cm_name,
+  {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student
+  FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_univ
+  ON {$dbprefix}courses_univ.id={$dbprefix}evaluations.courseId
+  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='univ'
+  AND {$dbprefix}evaluations.semester='$semester'
   GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
 $univ=array();
 if($db->result){
@@ -80,7 +80,7 @@ $db->select("eval_enabled","*","semester='$semester'");
 $buttonValue=$db->result?"Disable evaluations":"Enable evaluations";
 $buttonData=$db->result?1:0;
 
-echo "<h3>$semester2 Evaluation Forms :\n";
+echo "<h3>$semester Evaluation Forms :\n";
 echo "<span style='font-weight:normal;font-size:11pt;margin-left:150px;'>\n";
 echo "<input type='button' id='enableEvaluation' data-semester='$semester' data-enabled='$buttonData' value='$buttonValue' class='myUI-button' />\n";
 

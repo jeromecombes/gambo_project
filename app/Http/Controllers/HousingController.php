@@ -31,17 +31,14 @@ class HousingController extends Controller
     public function requests(Request $request)
     {
 
-        // Semester
-        $semester = str_replace(" ", "_", session('semester'));
-
         // Students information, students filter
         $university = session('login_univ');
         if ($university == 'VWPP') {
             // All students if loged in admin is from VWPP
-            $students = Student::where('semestre', $semester)->get();
+            $students = Student::where('semester', session('semester'))->get();
         } else {
             // Filter students if loged in admin is from Vassar or Wesleyan
-            $students = Student::where(array('semestre' => $semester, 'university' => $university))->get();
+            $students = Student::where(array('semester' => session('semester'), 'university' => $university))->get();
         }
 
         // Questions
@@ -49,7 +46,7 @@ class HousingController extends Controller
         $questions_ids = array_keys($questions);
 
         // Answers
-        $housing = Housing::where('semestre', $semester)->get();
+        $housing = Housing::where('semester', session('semester'))->get();
 
         $answers = array();
         foreach ($housing as $elem) {
@@ -135,15 +132,15 @@ class HousingController extends Controller
     {
 
         $student = $request->student;
-        $semester = str_replace(' ', '_', session('semester'));
-        
+
         $housing = Housing::where('student', $student)
-            ->where('semestre', $semester)->delete();
+            ->where('semester', session('semester'))
+            ->delete();
 
         foreach ($request->question as $question => $answer) {
             $housing = new Housing();
             $housing->student = $student;
-            $housing->semester = $semester;
+            $housing->semester = session('semester');
             $housing->question = $question;
             $housing->response = $answer;
             $housing->save();

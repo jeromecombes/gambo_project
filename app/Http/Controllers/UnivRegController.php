@@ -99,10 +99,9 @@ class UnivRegController extends Controller
      */
     public function univ_reg_update(Request $request)
     {
-        $semester = str_replace(' ', '_', session('semester'));
-
         UnivReg::where('student', session('student'))
-            ->where('semestre', $semester)->delete();
+            ->where('semester', session('semester'))
+            ->delete();
 
         foreach ($request->question as $question => $answer) {
             $univ_reg = new UnivReg();

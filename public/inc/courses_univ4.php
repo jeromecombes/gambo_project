@@ -18,7 +18,6 @@ $action=$admin?"../inc/courses_univ4Update.php":"inc/courses_univ4Update.php";
 $displayLock=$admin?null:"style='display:none;'";
 $deleteURL=$admin?"../inc/courses_univ4Delete.php":"inc/courses_univ4Delete.php";
 
-$semester=str_replace("_"," ",$semester);
 $hoursStart=8;
 $hoursEnd=21;
 $days=array(1=>array(1,"Lundi"),2=>array(2,"Mardi"),3=>array(3,"Mercredi"),4=>array(4,"Jeudi"),

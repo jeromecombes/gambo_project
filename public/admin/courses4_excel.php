@@ -24,7 +24,7 @@ foreach($univ as $elem){
 }
 $univ=$tab;
 
-$Fnm = "../data/courses_univ_{$_SESSION['vwpp']['semestre']}";
+$Fnm = "../data/courses_univ_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
 if($_GET['type']=="csv"){
   $separate="';'";

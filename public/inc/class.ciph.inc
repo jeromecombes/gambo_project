@@ -9,7 +9,7 @@ class ciph{
 
 
   function __construct(){
-    $this->semester=str_replace(" ","_",$_SESSION['vwpp']['semester']);
+    $this->semester =$_SESSION['vwpp']['semester'];
   }
 
   public function count2($student){
@@ -51,7 +51,7 @@ class ciph{
     foreach($db->result as $elem){
       $s=new student();
       $s->id=$elem['student'];
-      $s->university=$university;				// university filter	
+      $s->university=$university;				// university filter
       $s->fetch();
       if(!$s->elements['lastname']){
 	unset($this->elements[$i]);
@@ -61,7 +61,7 @@ class ciph{
 	$this->elements[$i]['studentFirstname']=$s->elements['firstname'];
 	$this->elemExcel[$i]['studentLastname']=html_entity_decode($s->elements['lastname'],ENT_QUOTES|ENT_IGNORE,"utf-8");
 	$this->elemExcel[$i]['studentFirstname']=html_entity_decode($s->elements['firstname'],ENT_QUOTES|ENT_IGNORE,"utf-8");
-	
+
 	foreach($keys as $key){
 	  if(in_array($key,array("id","student","semester","lock"))){
 	    $this->elements[$i][$key]=$elem[$key];

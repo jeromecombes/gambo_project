@@ -10,7 +10,7 @@ class reidhall{
     public $nb = 0;
 
   function __construct(){
-    $this->semester=str_replace(" ","_",$_SESSION['vwpp']['semester']);
+    $this->semester = $_SESSION['vwpp']['semester'];
     $this->element=array();
     $this->elements=array();
     $this->elemExcel=array();
@@ -46,7 +46,7 @@ class reidhall{
 	  }elseif(!is_numeric($key)){
 	    $this->elements[$elem['id']][$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
 	  }
-	  
+
 	  $this->elemExcel[$elem['id']][$key]=null;
 	  if(array_key_exists($key,$this->elements[$elem['id']])){
 	    $this->elemExcel[$elem['id']][$key]=html_entity_decode($this->elements[$elem['id']][$key],ENT_QUOTES|ENT_IGNORE,"utf-8");
@@ -74,7 +74,7 @@ class reidhall{
     $db->select("courses_attrib_rh","*","student=$student AND semester='{$this->semester}'");
     if(!$db->result)
       return false;
-    
+
     $i=0;
     if($db->result[0]['writing1'])
       $i++;
@@ -120,7 +120,7 @@ class reidhall{
   }
 
   function isLock($student){
-    $semester=str_replace("_"," ",$this->semester);
+    $semester = $this->semester;
     $db=new db();
     $db->select("courses_rh","*","semester='$semester' AND student='$student'");
     if($db->result)
@@ -129,7 +129,7 @@ class reidhall{
   }
 
   function isPublished($student){
-    $semester=str_replace("_"," ",$this->semester);
+    $semester = $this->semester;
     $db=new db();
     $db->select("courses_rh2","*","semester='$semester' AND student='$student'");
     if($db->result)

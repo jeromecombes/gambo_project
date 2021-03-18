@@ -154,11 +154,6 @@ class Student extends MyModel
         return $this->decrypt($value);
     }
 
-    public function getSemesterAttribute($value)
-    {
-        return str_replace('_', ' ',$this->semestre);
-    }
-
     public function getSemestersAttribute($value)
     {
         $semesters = unserialize($value);

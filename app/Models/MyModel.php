@@ -27,7 +27,7 @@ class MyModel extends Model
         $enc_iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($enc_method));
         $crypted_string = openssl_encrypt($string, $enc_method, $enc_key, 0, $enc_iv) . "::" . bin2hex($enc_iv);
         unset($string, $enc_method, $enc_key, $enc_iv);
-        
+
         return $crypted_string;
     }
 
@@ -55,21 +55,13 @@ class MyModel extends Model
             $decrypted_token = openssl_decrypt($crypted_token, $enc_method, $enc_key, 0, hex2bin($enc_iv));
             unset($crypted_token, $enc_method, $enc_key, $enc_iv, $regs);
         }
-        return $decrypted_token; 
+        return $decrypted_token;
     }
 
     protected function getMe()
     {
-        $column = 'semester';
-        $semester = session('semester');
-
-        if ($this->hasAttribute('semestre')) {
-            $column = 'semestre';
-            $semester = str_replace(' ', '_', session('semester'));
-        }
-
         $object = $this::where('student', session('student'))
-            ->where($column, $semester)
+            ->where('semester', session('semester'))
             ->get();
 
         return $object;
@@ -77,16 +69,8 @@ class MyModel extends Model
 
     protected function findMe()
     {
-        $column = 'semester';
-        $semester = session('semester');
-
-        if ($this->hasAttribute('semestre')) {
-            $column = 'semestre';
-            $semester = str_replace(' ', '_', session('semester'));
-        }
-
         $object = $this::where('student', session('student'))
-            ->where($column, $semester)
+            ->where('semester', session('semester'))
             ->first();
 
         return $object;

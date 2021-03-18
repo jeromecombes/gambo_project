@@ -8,7 +8,6 @@ access_ctrl(15);
 $_SESSION['vwpp']['eval_form']=isset($_GET['form'])?$_GET['form']:$_SESSION['vwpp']['eval_form'];
 $form=$_SESSION['vwpp']['eval_form'];
 $semester=$_SESSION['vwpp']['semestre'];
-$semester2=str_replace("_"," ",$semester);
 
 $result=array();
 
@@ -20,12 +19,12 @@ $students=$s->byUnivList;
 //	CIPh
 if($form=="CIPH"){
   $db=new db();
-  $db->query("SELECT {$dbprefix}courses_ciph.instructeur AS instructeur, {$dbprefix}courses_ciph.titre AS titre, 
-    {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student 
-    FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_ciph 
-    ON {$dbprefix}courses_ciph.id={$dbprefix}evaluations.courseId 
-    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ciph' 
-    AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student IN ($students) 
+  $db->query("SELECT {$dbprefix}courses_ciph.instructeur AS instructeur, {$dbprefix}courses_ciph.titre AS titre,
+    {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student
+    FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_ciph
+    ON {$dbprefix}courses_ciph.id={$dbprefix}evaluations.courseId
+    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ciph'
+    AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student IN ($students)
     GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
   if($db->result){
     foreach($db->result as $elem){
@@ -39,11 +38,11 @@ if($form=="CIPH"){
 //	Reid Hall
 elseif($form=="ReidHall"){
   $db=new db();
-  $db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses.title AS title, 
-    {$dbprefix}evaluations.id AS id FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses 
-    ON {$dbprefix}courses.id={$dbprefix}evaluations.courseId 
-    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ReidHall' 
-    AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student in ($students) 
+  $db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses.title AS title,
+    {$dbprefix}evaluations.id AS id FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses
+    ON {$dbprefix}courses.id={$dbprefix}evaluations.courseId
+    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ReidHall'
+    AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student in ($students)
     GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
   if($db->result){
     foreach($db->result as $elem){
@@ -69,8 +68,8 @@ elseif($form=="tutorats" or $form=="linguistique" or $form=="method"){
 elseif($form=="univ"){
   $db=new db();
   $db->query("SELECT * FROM {$dbprefix}evaluations
-  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='univ' 
-  AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student in ($students) 
+  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='univ'
+  AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student in ($students)
   GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
 
   $u=new univ4();
@@ -98,7 +97,7 @@ elseif($form=="program"){
 
 
 
-echo "<h3>Evaluations for $semester2</h3>\n";
+echo "<h3>Evaluations for $semester</h3>\n";
 echo "<a href='eval_index.php' style='margin-left:30px;'>All evaluations</a>\n";
 
 if($form=="program"){

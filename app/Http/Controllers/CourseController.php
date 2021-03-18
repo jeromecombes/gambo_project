@@ -33,11 +33,10 @@ class CourseController extends Controller
         $button_publish = RHCoursePublish::findMe() ? 'Hide' : 'Publish';
 
         // Reid Hall Courses
-        $semester = str_replace(' ', '_', session('semester'));
-        $rhCourses = RHCourse::where('semester', $semester)->orderBy('type')->get();
+        $rhCourses = RHCourse::where('semester', session('semester'))->orderBy('type')->get();
 
         // Reid Hall Courses Assignment
-        $rhCoursesAssign = RHCourseAssignment::where('semester', $semester)->get();
+        $rhCoursesAssign = RHCourseAssignment::where('semester', session('semester'))->get();
 
         // Count all
         $tab = array();
@@ -97,7 +96,6 @@ class CourseController extends Controller
     {
 
         $student = $request->student;
-        $semester = str_replace(' ', '_', session('semester'));
 
         return redirect("/courses")->with('success', 'Mise à jour réussie');
     }

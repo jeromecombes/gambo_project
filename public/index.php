@@ -12,12 +12,12 @@ $displayEval=$db->result?null:"style='display:none;'";
 //	Semester choice
 if(count($_SESSION['vwpp']['semesters'])==1){
   $_SESSION['vwpp']['semester']=$_SESSION['vwpp']['semesters'][0];
-  $_SESSION['vwpp']['semestre']=str_replace(" ","_",$_SESSION['vwpp']['semesters'][0]);
+  $_SESSION['vwpp']['semestre']=$_SESSION['vwpp']['semesters'][0];
 }
 elseif(!array_key_exists("semester",$_SESSION['vwpp'])){
   if($semester){
     $_SESSION['vwpp']['semester']=$_POST['semester'];
-    $_SESSION['vwpp']['semestre']=str_replace(" ","_",$_POST['semester']);
+    $_SESSION['vwpp']['semestre']=$_POST['semester'];
   }
   else{
     echo <<<EOD
@@ -46,10 +46,10 @@ $dates=$d->elements;
 
 echo <<<EOD
 <div id='home'>
-<p>Congratulations! You are soon going to be a student in the Vassar-Wesleyan Program in Paris. 
+<p>Congratulations! You are soon going to be a student in the Vassar-Wesleyan Program in Paris.
 It is very important that you provide all information requested on this site by the VWPP administration.</p>
 
-<p>Before you leave the US for France, please click on the appropriate tab to provide VWPP information 
+<p>Before you leave the US for France, please click on the appropriate tab to provide VWPP information
 regarding:
 <ul>
 <li>Personal details and contact information	by <b>{$dates['date1']}</b></li>
@@ -68,8 +68,8 @@ regarding:
 <li>les évaluations requises par le programme à la fin de votre séjour</li>
 </ul></p>
 
-<p>Merci de bien vouloir fournir toute information sollicitées dans les délais mentionnés par le 
-directeur du programme. Une fois que vous êtes inscrit(e) dans tous les cours, vous pouvez aussi 
+<p>Merci de bien vouloir fournir toute information sollicitées dans les délais mentionnés par le
+directeur du programme. Une fois que vous êtes inscrit(e) dans tous les cours, vous pouvez aussi
 consulter votre emploi du temps individuel en cliquant sur l’onglet “Schedule” ci-dessus.</p>
 </div>
 EOD;

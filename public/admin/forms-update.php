@@ -1,7 +1,7 @@
 <?php
 require_once "../inc/config.php";
 
-$semestre=$_SESSION['vwpp']['semestre'];
+$semester=$_SESSION['vwpp']['semester'];
 $formId=$_SESSION['vwpp']['formId'];
 
 access_ctrl($formId);
@@ -12,13 +12,13 @@ $delete=array();
 
 foreach($_POST['forms'] as $elem){
   if(empty($elem[0]) and !empty($elem[1])){		//	insert
-    $insert[]=array("question"=>$elem[1],"type"=>$elem[2],"responses"=>$elem[3],"ordre"=>$elem[4],"formId"=>$formId,"semestre"=>$semestre);
+    $insert[]=array("question"=>$elem[1],"type"=>$elem[2],"responses"=>$elem[3],"ordre"=>$elem[4],"formId"=>$formId,"semester"=>$semester);
   }
   elseif(!empty($elem[0]) and empty($elem[1])){		//	delete
     $delete[]=$elem[0];
   }
   elseif(!empty($elem[0]) and !empty($elem[1])){	//	update
-    $update[]=array("id"=>$elem[0],"question"=>$elem[1],"type"=>$elem[2],"responses"=>$elem[3],"ordre"=>$elem[4],"formId"=>$formId,"semestre"=>$semestre);
+    $update[]=array("id"=>$elem[0],"question"=>$elem[1],"type"=>$elem[2],"responses"=>$elem[3],"ordre"=>$elem[4],"formId"=>$formId,"semester"=>$semester);
   }
 }
 

@@ -16,7 +16,7 @@ $tab=array_map("delete_rnt",$tab);
 
 $year = substr($_SESSION['vwpp']['semestre'], -4);
 
-$Fnm = "../data/univ_reg_{$_SESSION['vwpp']['semestre']}";
+$Fnm = "../data/univ_reg_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
 if($_GET['type']=="csv"){
   $separate="';'";
@@ -48,7 +48,7 @@ $lines[]=join($title,$separate);
 if($year >= 2019) {
   foreach($tab as $elem){
     $cells=array($elem['lastname'],$elem['firstname']);
-    
+
     $cells[]=$elem[0][10];
     $cells[]=$elem[0][12];
     $cells[]=$elem[0][11];
@@ -70,11 +70,11 @@ if($year >= 2019) {
 } else {
   foreach($tab as $elem){
     $cells=array($elem['lastname'],$elem['firstname']);
-    
+
     for($i=1;$i<8;$i++){
       $cells[]=$elem[0][$i];
     }
-    
+
     $cells[]=$elem[0][12];
     $cells[]=$elem[0][8];
     $cells[]=$elem[0][9];

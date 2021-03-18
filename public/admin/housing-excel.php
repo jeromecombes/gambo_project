@@ -13,7 +13,7 @@ usort($housing,"cmp_lastname");
 $housing=array_map("utf8_decode2",$housing);
 $housing=array_map("delete_rnt",$housing);
 
-$Fnm = "../data/housing_{$_SESSION['vwpp']['semestre']}";
+$Fnm = "../data/housing_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
 if($_GET['type']=="csv"){
   $separate="';'";

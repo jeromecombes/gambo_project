@@ -20,7 +20,7 @@ class housing{
   public $closed2=false;
 
   function __construct(){
-    $this->semester=str_replace(array(" ","_")," ",$_SESSION['vwpp']['semester']);
+    $this->semester = $_SESSION['vwpp']['semester'];
   }
 
   public function accept_charte(){
@@ -55,12 +55,12 @@ class housing{
 
   public function fetchAll($university=null){
 	  //	Get housing information form housing table
-    $semester=str_replace(" ","_",$this->semester);
+    $semester = $this->semester;
     $db=new db();
-    $db->select("housing","*","semestre='$semester'","order by student,question");
+    $db->select("housing","*","semester='$semester'","order by student,question");
     if(!$db->result)
       return;
-  
+
     $elements=array();
     foreach($db->result as $elem){
       $elements[$elem['student']][$elem['question']]=decrypt_vwpp($elem['response'],$elem['student']);
@@ -97,7 +97,7 @@ class housing{
     usort($elements,"cmp_lastname");
     usort($excelElem,"cmp_lastname");
     usort($shortElem,"cmp_lastname");
-      
+
     $this->elements=$elements;
     $this->excelElem=$excelElem;
     $this->shortElem=$shortElem;
@@ -107,7 +107,7 @@ class housing{
   public function getQuestions(){
     $semester = $_SESSION['vwpp']['semestre'];
     $year = substr($semester, -4);
-    
+
     if ($year < 2020) {
         $questions=array();
         $questions[1]="Group flight";
@@ -167,7 +167,7 @@ class housing{
         $questions[27]="7 allergies";
         $questions[28]="1. principal concern";
     }
-    
+
     $this->questions=$questions;
     $this->questions_Ids=array_keys($questions);
   }
@@ -176,7 +176,7 @@ class housing{
 
   public function getLogement($id){
     $logement=array("lastname"=>null, "firstname"=>null, "address"=>null, "zipcode"=>null, "city"=>null,
-      "email"=>null, "phonenumber"=>null, "cellphone"=>null, "lastname2"=>null, "firstname2"=>null, 
+      "email"=>null, "phonenumber"=>null, "cellphone"=>null, "lastname2"=>null, "firstname2"=>null,
       "email2"=>null, "cellphone2"=>null);
 
     if(!$id){
@@ -211,7 +211,7 @@ class housing{
     $db->select("logements_dispo","*","start<='$semester' AND (end >='$semester' OR end=0)");
     if(!$db->result)
       return;
-    $ids=array();	
+    $ids=array();
     foreach($db->result as $elem){
       $ids[]=$elem['logement_id'];
     }
@@ -241,7 +241,7 @@ class housing{
   function getLogementsDispo(){
     $this->getLogements();
     $all=$this->logements;
-    
+
     $ids=array();
     $db=new db();
     $db->select("housing_affect","*","semester='{$this->semester}'");
@@ -278,7 +278,7 @@ class housing{
 	  $tab2[]=":$key";
 	}
       }
-      $sql="INSERT INTO {$GLOBALS['dbprefix']}logements (".join(",",$tab1).") VALUES (".join(",",$tab2).");";      
+      $sql="INSERT INTO {$GLOBALS['dbprefix']}logements (".join(",",$tab1).") VALUES (".join(",",$tab2).");";
     }
     foreach($keys as $key){
       if(in_array($key,$fields)){
@@ -322,7 +322,7 @@ class housing{
     $table2="{$GLOBALS['dbprefix']}housing_affect";
     $db=new db();
     $db->query("select $table1.lastname as lastname, $table1.firstname as firstname FROM $table2
-      INNER JOIN $table1 ON $table2.student=$table1.id 
+      INNER JOIN $table1 ON $table2.student=$table1.id
       WHERE $table2.logement=$logement AND $table2.semester='{$this->semester}';");
     if($db->result){
       $this->studentLastname=decrypt_vwpp($db->result[0]['lastname']);

@@ -19,7 +19,7 @@ $tab=array_map("entity_decode",$tab);
 $tab=array_map("delete_rnt",$tab);
 
 
-$Fnm = "../data/intership_{$_SESSION['vwpp']['semestre']}";
+$Fnm = "../data/intership_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
 if($_GET['type']=="csv"){
   $separate="';'";

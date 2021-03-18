@@ -26,15 +26,15 @@ foreach($_POST['students'] as $elem){
     }
     $std[]=array(":lastname"=>$elem[0],":firstname"=>$elem[1],":email"=>$elem[2],
     ":token"=> $token, ":password"=>$password, ":university"=>$_SESSION['vwpp']['login_univ'],
-    ":guest"=>$elem[3],":semestre"=>$semester,":semesters"=>$semesters);
+    ":guest"=>$elem[3],":semester"=>$semester,":semesters"=>$semesters);
 
     // Create student in tabke users for Laravel authentication
     $std2[]=array(":email"=>$email, ":name"=>$email, ":password"=>$password);
   }
 }
 
-$sql="INSERT INTO {$dbprefix}students (lastname, firstname, email, token, password, university, guest, semestre, semesters, dob, citizenship1, citizenship2, town, university2, graduation, resultatTCF, tin) VALUES 
-  (:lastname, :firstname, :email, :token, :password, :university, :guest, :semestre, :semesters, '', '', '', '', '', '', '', '');";
+$sql="INSERT INTO {$dbprefix}students (lastname, firstname, email, token, password, university, guest, semester, semesters, dob, citizenship1, citizenship2, town, university2, graduation, resultatTCF, tin) VALUES
+  (:lastname, :firstname, :email, :token, :password, :university, :guest, :semester, :semesters, '', '', '', '', '', '', '', '');";
 $db=new dbh();
 $db->prepare($sql);
 
