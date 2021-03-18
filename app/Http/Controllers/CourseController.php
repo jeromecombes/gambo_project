@@ -62,11 +62,26 @@ class CourseController extends Controller
             );
         }
 
-        usort($occurences['Seminar'], 'cmp_countDesc');
-        usort($occurences['Writing'], 'cmp_countDesc');
+        usort($occurences['Seminar'], 'cmp_count_desc');
+        usort($occurences['Writing'], 'cmp_count_desc');
 
-        // Student assignment
+        // Student assignment IDs
         $assignment = $rhCoursesAssign->where('student', session('student'))->first();
+
+        // Student assignment Text
+        $aw1 = $rhCourses->find($assignment->writing1);
+        $aw2 = $rhCourses->find($assignment->writing2);
+        $as1 = $rhCourses->find($assignment->seminar1);
+        $as2 = $rhCourses->find($assignment->seminar2);
+        $as3 = $rhCourses->find($assignment->seminar3);
+
+        $assignment_text = (object) array(
+            'writing1' => $aw1 ? $aw1->code . ' ' . $aw1->title . ', ' . $aw1->professor : null,
+            'writing2' => $aw2 ? $aw2->code . ' ' . $aw2->title . ', ' . $aw2->professor : null,
+            'seminar1' => $as1 ? $as1->code . ' ' . $as1->title . ', ' . $as1->professor : null,
+            'seminar2' => $as2 ? $as2->code . ' ' . $as2->title . ', ' . $as2->professor : null,
+            'seminar3' => $as3 ? $as3->code . ' ' . $as3->title . ', ' . $as3->professor : null,
+        );
 
         // Student Choices
         $choices = CourseChoice::findMe();
@@ -75,6 +90,7 @@ class CourseController extends Controller
             'edit',
             'student',
             'assignment',
+            'assignment_text',
             'button_lock',
             'button_publish',
             'choices',
@@ -83,21 +99,35 @@ class CourseController extends Controller
         );
 
         // View
-        return view('courses.admin_courses', $params);
+        return view('courses.admin', $params);
     }
 
     /**
-     * Update courses student information
+     * Reid Hall Courses Assignment
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function student_form_update(Request $request)
+    public function reidhall_assignment(Request $request)
     {
 
         $student = $request->student;
 
-        return redirect("/courses")->with('success', 'Mise à jour réussie');
+        RHCourseAssignment::updateOrCreate(array(
+                'student' => session('student'),
+                'semester' => session('semester'),
+            ),
+            array(
+                'writing1' => $request->writing1,
+                'writing2' => $request->writing2,
+                'writing3' => $request->writing3,
+                'seminar1' => $request->seminar1,
+                'seminar2' => $request->seminar2,
+                'seminar3' => $request->seminar3,
+            )
+        );
+
+        return redirect("/admin/courses")->with('success', 'Mise à jour réussie');
     }
 
 }

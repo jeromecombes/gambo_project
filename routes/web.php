@@ -140,7 +140,11 @@ Route::get('/admin/courses', [CourseController::class, 'student_form'])
     ->middleware('student.list')
     ->middleware('admin')
     ->middleware('role:23')
-    ->name('courses.student_form');
+    ->name('admin.courses.student_form');
+
+Route::post('/admin/courses/reidhall/assignment', [CourseController::class, 'reidhall_assignment'])
+    ->middleware('role:23')
+    ->name('admin.courses.reidhall.assignment');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])

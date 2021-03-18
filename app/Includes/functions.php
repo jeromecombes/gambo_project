@@ -1,6 +1,6 @@
 <?php
 
-function cmp_countDesc($a,$b) {
+function cmp_count_desc($a,$b) {
     if ($a['type'] == $b['type']) {
         if ($a['count'] == $b['count']) {
             return 0;

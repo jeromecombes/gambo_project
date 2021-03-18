@@ -1,0 +1,9 @@
+NOTES
+
+2021-03-18
+Upgrading prod env
+- mysqldump
+- git pull
+- composer update
+- php artisan migrate
+- Replace MAIL_DRIVER with MAIL_MAILER in .env
