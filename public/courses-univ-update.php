@@ -9,7 +9,7 @@ if($_POST['id'] and $_POST['form']=="rh"){		//	Update
 }
 elseif($_POST['form']=="rh"){				//	Insert
   unset($_POST['id']);
-  $insert=array_merge($_POST,array("semester"=>$_SESSION['vwpp']['semestre'],"student"=>$_SESSION['vwpp']['student']));
+  $insert=array_merge($_POST,array("semester"=>$_SESSION['vwpp']['semester'],"student"=>$_SESSION['vwpp']['student']));
   $db->insert2("courses_choices",$insert);
   $msg=$db->error?array("Error while updating","red"):array("Update success","green");
 }

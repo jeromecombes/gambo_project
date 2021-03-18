@@ -2,7 +2,7 @@
   @if (session('admin'))
     <fieldset>
 
-      <form method='post' action='/final_reg'>
+      <form method='post' action='/univ_reg3'>
         {{ csrf_field() }}
 
         <table>

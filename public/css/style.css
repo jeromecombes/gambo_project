@@ -258,7 +258,7 @@ legend{
 
 select{
   width:100%;
-  background:#FFFFFF; 
+  background:#FFFFFF;
 }
 
 #DataTables_Table_0_length select,
@@ -368,6 +368,7 @@ ul.ui-widget-header{
 .btn {
 	min-width:100px;
 	margin-left:20px;
+    margin-bottom: 5px;
 }
 
 section#content{

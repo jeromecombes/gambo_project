@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CoursesRHController;
 use App\Http\Controllers\CoursesRH2Controller;
 use App\Http\Controllers\DocumentController;
@@ -128,9 +129,18 @@ Route::post('/univ_reg', [UnivRegController::class, 'univ_reg_update'])
     ->middleware('role:17')
     ->name('univ_reg.univ_reg.update');
 
-Route::post('/final_reg', [UnivRegController::class, 'final_reg_update'])
+Route::post('/univ_reg3', [UnivRegController::class, 'univ_reg3_update'])
     ->middleware('role:17')
-    ->name('univ_reg.final_reg.update');
+    ->name('univ_reg.univ_reg3.update');
+
+// Courses
+Route::get('/admin/courses', [CourseController::class, 'student_form'])
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('admin')
+    ->middleware('role:23')
+    ->name('courses.student_form');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])

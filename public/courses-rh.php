@@ -4,7 +4,7 @@
 require_once "inc/class.reidhall.inc";
 
 $student=$_SESSION['vwpp']['student'];
-$semester=$_SESSION['vwpp']['semestre'];
+$semester=$_SESSION['vwpp']['semester'];
 
 //		Getting data from courses table
 $rh=new reidhall();

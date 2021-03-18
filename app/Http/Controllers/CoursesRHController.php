@@ -7,5 +7,5 @@ use App\Http\Controllers\LockController;
 
 class CoursesRHController extends LockController
 {
-    public $model = "App\CoursesRH";
+    public $model = "App\Models\RHCourseLock";
 }

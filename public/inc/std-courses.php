@@ -7,7 +7,7 @@ $student=$_SESSION['vwpp']['std-id'];
 
 //	Get student choices for RH courses
 $db=new db();
-$db->select("courses_choices","*","semester='$semester' AND student='$student'");
+$db->select("courses_choices","*","semester='{$_SESSION['vwpp']['semester']}' AND student='$student'");
 if($db->result){
   $choices=$db->result[0];
 }
@@ -103,49 +103,49 @@ echo <<<EOD
 <tr><td colspan='2'><b>Writing-Intensive Course</b></td></tr>
 
 <tr><td style='padding-left:30px;'>1<sup>st</sup> choice</td>
-<td>{$courses[$choices['a1']]['code']} 
+<td>{$courses[$choices['a1']]['code']}
 {$courses[$choices['a1']]['title']}</td>
 <td>{$courses[$choices['a1']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>2<sup>nd</sup> choice</td>
-<td>{$courses[$choices['b1']]['code']} 
+<td>{$courses[$choices['b1']]['code']}
 {$courses[$choices['b1']]['title']}</td>
 <td>{$courses[$choices['b1']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>3<sup>rd</sup> choice</td>
-<td>{$courses[$choices['c1']]['code']} 
+<td>{$courses[$choices['c1']]['code']}
 {$courses[$choices['c1']]['title']}</td>
 <td>{$courses[$choices['c1']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>4<sup>th</sup> choice</td>
-<td>{$courses[$choices['d1']]['code']} 
+<td>{$courses[$choices['d1']]['code']}
 {$courses[$choices['d1']]['title']}</td>
 <td>{$courses[$choices['d1']]['professor']}</td></tr>
 
 <tr><td colspan='2'><b>Seminar</b></td></tr>
 
 <tr><td style='padding-left:30px;'>1<sup>st</sup> choice</td>
-<td>{$courses[$choices['a2']]['code']} 
+<td>{$courses[$choices['a2']]['code']}
 {$courses[$choices['a2']]['title']}</td>
 <td>{$courses[$choices['a2']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>2<sup>nd</sup> choice</td>
-<td>{$courses[$choices['b2']]['code']} 
+<td>{$courses[$choices['b2']]['code']}
 {$courses[$choices['b2']]['title']}</td>
 <td>{$courses[$choices['b2']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>3<sup>rd</sup> choice</td>
-<td>{$courses[$choices['c2']]['code']} 
+<td>{$courses[$choices['c2']]['code']}
 {$courses[$choices['c2']]['title']}</td>
 <td>{$courses[$choices['c2']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>4<sup>th</sup> choice</td>
-<td>{$courses[$choices['d2']]['code']} 
+<td>{$courses[$choices['d2']]['code']}
 {$courses[$choices['d2']]['title']}</td>
 <td>{$courses[$choices['d2']]['professor']}</td></tr>
 
 <tr><td style='padding-left:30px;'>5<sup>th</sup> choice</td>
-<td>{$courses[$choices['e2']]['code']} 
+<td>{$courses[$choices['e2']]['code']}
 {$courses[$choices['e2']]['title']}</td>
 <td>{$courses[$choices['e2']]['professor']}</td></tr>
 

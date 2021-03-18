@@ -5,7 +5,7 @@ $student=$_SESSION['vwpp']['std-id'];
 
 //	Get student choices for RH courses
 $db=new db();
-$db->select("courses_choices","*","semester='$semester' AND student='$student'");
+$db->select("courses_choices","*","semester='{$_SESSION['vwpp']['semester']}' AND student='$student'");
 $choices=$db->result[0];
 
 //	Get list of RH courses
@@ -93,20 +93,20 @@ echo <<<EOD
 </td></tr>
 <tr><td colspan='2'><b>Writing-Intensive Course</b></td></tr>
 <tr><td style='padding-left:30px;'>1<sup>st</sup> choice</td>
-<td>{$courses[$choices['a1']]['code']} 
+<td>{$courses[$choices['a1']]['code']}
 {$courses[$choices['a1']]['title']}</td>
 <td>{$courses[$choices['a1']]['professor']}</td></tr>
 <tr><td style='padding-left:30px;'>2<sup>nd</sup> choice</td>
-<td>{$courses[$choices['b1']]['code']} 
+<td>{$courses[$choices['b1']]['code']}
 {$courses[$choices['b1']]['title']}</td>
 <td>{$courses[$choices['b1']]['professor']}</td></tr>
 <tr><td colspan='2'><b>Seminar</b></td></tr>
 <tr><td style='padding-left:30px;'>1<sup>st</sup> choice</td>
-<td>{$courses[$choices['a2']]['code']} 
+<td>{$courses[$choices['a2']]['code']}
 {$courses[$choices['a2']]['title']}</td>
 <td>{$courses[$choices['a2']]['professor']}</td></tr>
 <tr><td style='padding-left:30px;'>2<sup>nd</sup> choice</td>
-<td>{$courses[$choices['b2']]['code']} 
+<td>{$courses[$choices['b2']]['code']}
 {$courses[$choices['b2']]['title']}</td>
 <td>{$courses[$choices['b2']]['professor']}</td></tr>
 

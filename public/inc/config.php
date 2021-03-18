@@ -30,7 +30,7 @@ $config['documentType'] = explode(',', $_ENV['DOCUMENT_TYPES']);
 sort($config['documentType']);
 $config['documentType'][] = 'Other';
 
-$config['Mail-IsMail-IsSMTP'] = ($_ENV['MAIL_DRIVER'] == 'smtp') ? 'IsSMTP' : 'IsMail';
+$config['Mail-IsMail-IsSMTP'] = ($_ENV['MAIL_MAILER'] == 'smtp') ? 'IsSMTP' : 'IsMail';
 $config['Mail-WordWrap'] = 50;
 $config['Mail-Hostname'] = preg_replace('/.[^\/]*\/\/(.[^\/]*).*/', "$1", $_ENV['APP_URL']);
 $config['Mail-Host'] = $_ENV['MAIL_HOST'];
@@ -46,7 +46,7 @@ $config['Mail-Sender'] = $_ENV['MAIL_FROM_ADDRESS'];
 // Notification des formulaire de voyage
 $config['emailForTripForm'] = explode(',', $_ENV['MAIL_TRIP_FORM']);
 
-//	Messages (E-mails) 
+//	Messages (E-mails)
 $config['Messages-Welcome-Title'] = $_ENV['MAIL_WELCOME_SUBJECT'];
 $config['Messages-Welcome'] = $_ENV['MAIL_WELCOME_MESSAGE'];
 

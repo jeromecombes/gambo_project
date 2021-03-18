@@ -15,7 +15,7 @@ if($_POST['id'] and $_POST['univ']=="rh"){
 elseif($_POST['univ']=="rh"){
   unset($_POST['univ']);
   unset($_POST['id']);
-  $insert=array_merge($_POST,array("semester"=>$_SESSION['vwpp']['semestre'],"student"=>$_SESSION['vwpp']['student']));
+  $insert=array_merge($_POST,array("semester"=>$_SESSION['vwpp']['semester'],"student"=>$_SESSION['vwpp']['student']));
   $db->insert2("courses_choices",$insert);
   $msg=$db->error?"insert_error":"insert_success";
 }

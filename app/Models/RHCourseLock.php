@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CoursesRH2 extends Model
+class RHCourseLock extends MyModel
 {
     /**
      * @var string
      */
-    protected $table = 'courses_rh2';
+    protected $table = 'courses_rh';
 
     public $timestamps = false;
 

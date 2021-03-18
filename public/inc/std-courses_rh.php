@@ -4,7 +4,7 @@ $student=$_SESSION['vwpp']['std-id'];
 
 //	Get student choices
 $db=new db();
-$db->select("courses_choices","*","semester='$semester' AND student='$student'");
+$db->select("courses_choices","*","semester='{$_SESSION['vwpp']['semester']}' AND student='$student'");
 $choices=$db->result[0];
 
 //	Get list of courses

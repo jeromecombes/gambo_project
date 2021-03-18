@@ -21,15 +21,16 @@ class db{
   function connect(){
     $this->conn=mysqli_connect($this->host,$this->user,$this->password,$this->dbname);
     $this->conn->set_charset("utf8mb4");
+    mysqli_query($this->conn, "SET SESSION sql_mode = ''");
     if(mysqli_connect_errno($this->conn)){
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
   }
-	
+
   function query($requete){
     $this->connect();
     $req=mysqli_query($this->conn,$requete);
-		
+
     if(!$req){
       echo "<br/><br/>### ERREUR SQL ###<br/><br/>$requete<br/><br/>";
       echo mysqli_error($this->conn);
@@ -130,7 +131,7 @@ class db{
 
       $tab[]="'".join("','",$values)."'";
     }
-      
+
     $this->insert($table,$tab,$fields);
     }
   }

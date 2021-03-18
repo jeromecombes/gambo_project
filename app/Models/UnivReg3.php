@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\MyModel;
 
-class FinalReg extends MyModel
+class UnivReg3 extends MyModel
 {
     /**
      * @var string

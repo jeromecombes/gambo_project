@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dates;
-use App\Models\FinalReg;
 use App\Models\Student;
 use App\Models\UnivReg;
 use App\Models\UnivReg2;
+use App\Models\UnivReg3;
 use App\Models\UnivRegLock;
 use App\Models\UnivRegShow;
 use Illuminate\Http\Request;
@@ -32,8 +32,8 @@ class UnivRegController extends Controller
         $student = Student::find(session('student'));
 
         // Get univ registration
-        $final_reg = FinalReg::findMe();
-        $university = $final_reg ? $final_reg->university : null;
+        $univ_reg3 = UnivReg3::findMe();
+        $university = $univ_reg3 ? $univ_reg3->university : null;
 
         // Check if Univ registration is locked
         $locked = UnivRegLock::findMe() ? true : false;
@@ -71,14 +71,14 @@ class UnivRegController extends Controller
     }
 
     /**
-     * Update Final Reg
+     * Update Final Univ Registration
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function final_reg_update(Request $request)
+    public function univ_reg3_update(Request $request)
     {
-        FinalReg::updateOrCreate(
+        UnivReg3::updateOrCreate(
             array(
                 'student' => session('student'),
                 'semester' => session('semester'),

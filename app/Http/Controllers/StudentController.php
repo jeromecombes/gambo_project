@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Host;
 use App\Models\HousingAssignment;
 use App\Models\Student;
-use App\Models\FinalReg;
+use App\Models\UnivReg3;
 use App\Models\User;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
@@ -37,7 +37,7 @@ class StudentController extends Controller
             ->get();
 
         // Add university registration information
-        $univ_reg = FinalReg::where('semester', $semester)->get();
+        $univ_reg = UnivReg3::where('semester', $semester)->get();
 
         foreach ($students as $key => $student) {
             $univ = $univ_reg->where('student', $student->id)->first();
@@ -118,7 +118,7 @@ class StudentController extends Controller
         $housing = HousingAssignment::where('student', $id)->where('semester', session('semester'))->first();
         $host = $housing ? Host::find($housing->logement) : null;
 
-        $univ_reg = FinalReg::findMe();
+        $univ_reg = UnivReg3::findMe();
         $french_univ = $univ_reg ? $univ_reg->university : null;
 
         $months = array(
