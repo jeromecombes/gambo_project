@@ -43,7 +43,7 @@ function change_menu(id){
     document.getElementById("div"+id).style.display="";
   file("../inc/change_menu.php?id="+id);
   document.getElementById("div6").style.display="none";
-  
+
 }
 
 function changeNotifications(me){
@@ -133,14 +133,12 @@ function ctrlAddTD(me){
 }
 
 function ctrl_form1(){
-//   login_ctrl(document.form.login);
   password_ctrl(document.form.password);
   password_ctrl(document.form.password2);
   return form1_ctrl();
 }
 
 function ctrl_form2(first){
-//   login_ctrl2(document.form.login,first);
   password_ctrl(document.form.password);
   password_ctrl(document.form.password2);
   return form1_ctrl();
@@ -214,7 +212,7 @@ function displayAdd(form){
   while(document.getElementById("form"+form+"__"+i)){
      document.getElementById("form"+form+"__"+i++).style.display="none";
   }
-  
+
   if(document.getElementById("form"+form+"__done")){
     document.getElementById("form"+form+"__done").style.display="";
   }
@@ -242,7 +240,7 @@ function displayForm(form,id){
     * donc remplace progressivement par $(".inputField").hide();
     */
     $("#"+form+"_"+id+" .inputField").show();
-    
+
     i=0;
     while(document.getElementById(form+"_"+id+"_radio"+"_"+i)){
       document.getElementById(form+"_"+id+"_radio"+"_"+i++).style.display="";
@@ -261,9 +259,9 @@ function displayForm(form,id){
     * donc remplace progressivement par $(".inputValue").hide();
     */
     $("#"+form+"_"+id+" .inputValue").hide();
-      
+
     document.getElementById(form+"_"+id+"_done").style.display="";
-    
+
     //	Les étudiants voient mais ne changent pas les infos discipline, UFR et MoveOnLine
     if(form=="univreg" && document.getElementById("category").value=="student"){
       document.getElementById("univreg_1_13").style.display="";		//	Discipline
@@ -281,7 +279,7 @@ function displayForm(form,id){
 function displayText(form,id){
 
   if(form=="univreg2b") {
-    
+
     $('.inputField').hide();
     $('.cancel-button').hide();
     $('.submit-button').hide();
@@ -316,10 +314,10 @@ function displayText(form,id){
 }
 
 function displayTD(id){
-  document.getElementById("TD_"+id+"_5").style.display=""; 
-  document.getElementById("TD_"+id+"_6").style.display=""; 
-  document.getElementById("TD_"+id+"_Add").style.display="none"; 
-  document.getElementById("Delete_"+id).style.display="none"; 
+  document.getElementById("TD_"+id+"_5").style.display="";
+  document.getElementById("TD_"+id+"_6").style.display="";
+  document.getElementById("TD_"+id+"_Add").style.display="none";
+  document.getElementById("Delete_"+id).style.display="none";
   document.location.href="#TD1_"+id;
 }
 
@@ -341,8 +339,8 @@ function dropCourse2(id,admin){
     document.location.href=url;
   }
 }
-    
-    
+
+
 function edit(id){
   if(document.getElementById("div-edit"+id).style.display==""){
     document.getElementById("div-edit"+id).style.display="none";
@@ -374,7 +372,7 @@ function editModalites(id,edit){
     document.getElementById("modalitesUpdate"+id).style.display="none";
     document.getElementById("modalitesReset"+id).style.display="";
     document.getElementById("modalitesSubmit"+id).style.display="";
-    
+
   }
   else{
     document.getElementById("modalitesText"+id).style.display="";
@@ -399,9 +397,9 @@ function file(fichier){
     xhr_object = new ActiveXObject("Microsoft.XMLHTTP");
    else
     return(false);
-   
+
    xhr_object.open("GET", fichier, false);
-   xhr_object.send(null);	
+   xhr_object.send(null);
    if(xhr_object.readyState == 4) return(xhr_object.responseText);
    else return(false);
 }
@@ -449,35 +447,10 @@ function lockRH2(me,student){
     me.value="Publish";
 }
 
-function login_ctrl(me){
-  if(me.value==""){
-      document.getElementById("login_msg").innerHTML="Login is required.";
-      form1_ctrl();
-      return;
-    }
-    for(i=0;i<logins.length;i++)
-    if(logins[i]==me.value.toLowerCase()){
-      document.getElementById("login_msg").innerHTML="This login is allready used.";
-      form1_ctrl();
-      return;
-    }
-   document.getElementById("login_msg").innerHTML="";
-   form1_ctrl();
-}
-
-function login_ctrl2(me,first){
-  if(me.value==first){
-    document.getElementById("login_msg").innerHTML="";
-    form1_ctrl();
-  }
-  else
-   login_ctrl(me);
-}
-
 function form1_ctrl(){
-/*  if(document.getElementById("login_msg").innerHTML=="" 
+/*  if(document.getElementById("login_msg").innerHTML==""
     && document.getElementById("passwd1").innerHTML=="" */
-  if(document.getElementById("passwd1").innerHTML=="" 
+  if(document.getElementById("passwd1").innerHTML==""
     && document.getElementById("passwd2").innerHTML==""){
      document.getElementById("submit").disabled=false;
      return true;
@@ -533,7 +506,7 @@ function select_action(form){
 
 function submit_action(form,form2){		// a finir
   switch(document.forms[form].action.value){
-    case "Delete" : 
+    case "Delete" :
         if(confirm("Do you really want to delete selected items ?")) {
             document.forms[form2].action="/students/delete";
             document.forms[form2].submit();
@@ -546,7 +519,7 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();
 	}
 	break;
-	  
+
     case "Email" :
 	inputs=document.forms[form2].elements;
 	i=0;
@@ -599,7 +572,7 @@ function submit_action(form,form2){		// a finir
     case "closeHousing" :
 	  document.forms[form2].action="/admin/housing/lock";
 	  document.forms[form2].submit();	break;
-	  
+
     case "openHousing" :
 	  document.forms[form2].action="/admin/housing/unlock";
 	  document.forms[form2].submit();	break;
@@ -650,24 +623,24 @@ function tripFormValidation(){
   var myReturn=true;
   $(".required").each(function(){
     if(!$(this).val().trim()){
-     myReturn=false; 
+     myReturn=false;
     }
   });
-  
+
   $(".requiredCheckbox").each(function(){
     if(!$(this).is(":checked")){
-     myReturn=false; 
+     myReturn=false;
     }
   });
-    
+
   if($(".requiredRadio:checked").length<1){
-     myReturn=false; 
+     myReturn=false;
   }
-  
+
   if(!myReturn){
     alert("Veuillez remplir tous les champs obligatoires et accepter les condditions");
   }
-  
+
   return myReturn;
 }
 
@@ -705,11 +678,11 @@ function verifNote(form,me){
   else{
     me.style.background="white";
   }
-// Update 2020-05-19 : symbol - is now authorized. Asked by Vinay Swamy  
+// Update 2020-05-19 : symbol - is now authorized. Asked by Vinay Swamy
   if (me.value == '-') {
     me.style.background="white";
   }
-  
+
   verifNote2(form);
 }
 
@@ -728,7 +701,7 @@ function verifNote2(form){
       return;
     }
   }
-  
+
 }
 
 $(document).ready(function(){
@@ -750,7 +723,7 @@ $(document).ready(function(){
       			aoCol.push({"bSortable":true});
 			}
    		});
-  
+
 	  var sort=[[1,"asc"],[2,"asc"]];		// {{"1","asc"},{"2","asc"}}
 	  if($(this).attr("data-sort")){
 	    var sort=JSON.parse($(this).attr("data-sort"));
@@ -786,7 +759,7 @@ $(document).ready(function(){
   if(href.indexOf(".php")<1){
     href+="index.php";
   }
-  
+
   href=href.replace("users-edit.php","users.php");
   href=href.replace(/(courses.*)/,"courses.php");
   href=href.replace(/(eval.*)/,"eval_index.php");
@@ -809,12 +782,12 @@ $(document).ready(function(){
     var liWidth=$(this).width();
     var liLeft=ulLeft+ulWidth-liWidth-3;
     $(this).css("left",liLeft);
-    
+
     var liTop=$("#student-menu li").position().top;
     $(this).css("top",liTop);
   });
 
-  
+
   // Positionne l'onglet "Next" à droite
   $(".li-next").each(function(){
     $(this).css("position","absolute");
@@ -838,7 +811,7 @@ $(document).ready(function(){
     var liWidth=$(this).width();
     var liLeft=NLeft-liWidth-4;
     $(this).css("left",liLeft);
-    
+
     var liTop=$("#student-menu li").position().top;
     $(this).css("top",liTop);
   });
@@ -847,8 +820,8 @@ $(document).ready(function(){
     var width=$(this).width()-$(this).css("margin-left").replace("px","");
     $(this).css("width",width);
   });
-  
-  
+
+
 });
 
 $(function(){
@@ -895,5 +868,5 @@ $(function(){
       data: {list: JSON.stringify(tab)},
     });
   });
-  
+
 });

@@ -64,38 +64,74 @@ table.datatable{
 }
 
 
-#login_form {
-  width:930px;
-}
 
-#loginTitle {
-  font-weight:bold;
-  font-size:20pt;
-  text-align:left;
-  }
-
-#loginSlogan {
-  text-align:right;
-  font-weight:bold;
-  font-style:italic;
-  font-size:12pt;
-  color:grey;
-
-}
-
-#login1{
+#login_body {
+  color: black;
   background:#CFE396;
-  margin:-10px -10px -10px -10px;
   height:900px;
 }
 
-#login2{
+#login_div {
   background:#FFFFFF;
+  margin: 30px auto;
   width:980px;
   height:800px;
-  padding: 35px 0 0 0;
-  position:relative;
-  top: 20px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#login_div h1 {
+  margin: 20px;
+  font-size: 2.6em;
+  text-align: left;
+}
+
+#login_div h2 {
+  margin: 5px 15px;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: italic;
+  text-align: right;
+  color: grey;
+}
+
+#login_info {
+  padding: 40px 20px 10px 20px;
+  font-size:1.5em;
+}
+
+#login_div input[type=password],
+#login_div input[type=email] {
+  width: 400px;
+}
+
+#login_div .btn-primary {
+  width: 170px;
+  font-size: 1.6em;
+}
+
+#login_div .btn-link {
+  font-size: 1.2em;
+  color: #216a94;
+}
+
+#login_p {
+  padding: 40px 20px 10px 20px;
+  font-size:1.3em;
+}
+
+#login_div p a {
+  color: initial;
+}
+
+#login_links {
+  padding: 10px 20px 10px 20px;
+}
+
+#login_links a {
+  padding: 0 30px;
+  font-size:1.4em;
 }
 
 div#content {
@@ -103,7 +139,6 @@ div#content {
   top:60px;
   left:30px;
   width: 1200px;
-/*  font-size:11pt;*/
 }
 
 

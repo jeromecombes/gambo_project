@@ -43,7 +43,7 @@ function cmp_cm_code2($a,$b){
   if($a['university']==$b['university'])
     return (strtolower($a['cm_code']) > strtolower($b['cm_code']));
   return $a['university']>$b['university'];
-  
+
 }
 
 function cmp_cm_name_en($a,$b){
@@ -660,7 +660,7 @@ function decrypt_vwpp($crypted_token, $key=null)
         $decrypted_token = openssl_decrypt($crypted_token, $enc_method, $enc_key, 0, hex2bin($enc_iv));
         unset($crypted_token, $enc_method, $enc_key, $enc_iv, $regs);
     }
-    return $decrypted_token; 
+    return $decrypted_token;
 }
 
 function encrypt_vwpp($string, $key=null)
@@ -674,7 +674,7 @@ function encrypt_vwpp($string, $key=null)
     $enc_iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($enc_method));
     $crypted_string = openssl_encrypt($string, $enc_method, $enc_key, 0, $enc_iv) . "::" . bin2hex($enc_iv);
     unset($string, $enc_method, $enc_key, $enc_iv);
-    
+
     return $crypted_string;
 }
 
@@ -708,74 +708,6 @@ function input($input,$data,$td=false){
   return $inputs;
 }
 
-
-function ctrl_log_access(){	// Verify log_access (wrong authentications)
-  $db=new dbh();
-  $db->prepare("SELECT * FROM `{$GLOBALS['dbprefix']}log_access` WHERE ip=:ip AND timestamp > ( SYSDATE() - INTERVAL 30 MINUTE );");
-  $db->execute(array(":ip"=> $_SERVER['REMOTE_ADDR']));
-  if(count($db->result)>7){		// If 8 wrong auth in 30 minutes : print error message and exit
-    echo "<br/><br/><h3>Your IP address ({$_SERVER['REMOTE_ADDR']}) has temporarily denied access</h3>\n";
-    echo "<p>Because it has voilated a security policy (too many invalid login attempts).</p>\n";
-    exit;
-    }
-}
-
-//	Login control
-function login_ctrl(){
-  if(isset($_SESSION['vwpp']['last_activity']) and (time()-$_SESSION['vwpp']['last_activity']>$GLOBALS['config']['sessionTimeOut'])){
-    header("Location: /logout");
-  }
-  if(isset($_SESSION['vwpp']['last_activity']))
-    $_SESSION['vwpp']['last_activity']=time();
-
-  if(!array_key_exists("vwpp",$_SESSION) or !array_key_exists("login",$_SESSION['vwpp'])){	// if no session => login_ctrl
-    ctrl_log_access();
-
-    $login=filter_input(INPUT_POST,"login",FILTER_SANITIZE_STRING);
-    $password=filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING);
-    
-    $std=new student();			// try to log students
-    $std->setToken(trim($login));
-    $std->setPassword($password);
-    $std->email = $login;
-    $std->cleared_password = $password;
-    $std->login();
-    if(!$std->auth){			// if not, try to log admin
-      $u=new user();
-      $u->setToken($login);
-      $u->setPassword($password);
-      $u->email = $login;
-      $u->cleared_password = $password;
-      $u->login();
-    }
-
-  if(!$std->auth and !$u->auth and $login){
-    $log_access=array(":login"=>$login,":ip"=>$_SERVER['REMOTE_ADDR']);
-    $db=new dbh();
-    $db->prepare("INSERT INTO `{$GLOBALS['dbprefix']}log_access` (login,ip,timestamp) VALUES (:login,:ip,SYSDATE());");
-    $db->execute($log_access);		// Log if authentication failed
-    ctrl_log_access();
-  }
-
-  if($std->auth or $u->auth)
-    $_SESSION['vwpp']['last_activity']=time();
-  }
-
-  if(stripos($_SERVER['PHP_SELF'],"admin")
-    and (!array_key_exists("vwpp",$_SESSION)
-      or !array_key_exists("category",$_SESSION['vwpp'])
-      or $_SESSION['vwpp']['category']=="student")){
-    header("Location: ..");		// redirect student to home if try to get admin pages
-  }
-  elseif(array_key_exists("vwpp",$_SESSION)
-    and array_key_exists("category",$_SESSION['vwpp'])
-    and $_SESSION['vwpp']['category']=="admin" 
-    and !stripos($_SERVER['PHP_SELF'],"admin")){
-    header("Location: admin2");		// redirect admin to admin pages
-  }
-}
-
-
 function get_button($text,$id,$required,$align="left",$margin=null){
   if($_SESSION['vwpp']['category']=="admin" and !in_array($required,$_SESSION['vwpp']['access']))
     return false;
@@ -785,19 +717,19 @@ function get_button($text,$id,$required,$align="left",$margin=null){
 
 function get_input($type,$id,$responses=null,$response=null){
   switch($type){
-    case "checkbox" : 
+    case "checkbox" :
       $responses=explode(",",$responses);
       foreach($responses as $elem)
 	echo "<input type='checkbox' name='input[$id][]' value='$elem' />$elem\n";
       break;
-    case "radio" : 
+    case "radio" :
       $responses=explode(",",$responses);
       foreach($responses as $elem){
 	$checked=$elem==$response?"checked='checked'":null;
 	echo "<input type='radio' name='input[$id]' value='$elem' $checked />$elem\n";
       }
       break;
-    case "select" : 
+    case "select" :
       $responses=explode(",",$responses);
       echo "<select name='input[$id]'>\n";
       foreach($responses as $elem)
@@ -901,7 +833,7 @@ function import_excel()
 	$tab=$data->sheets[0]['cells'];		// $tab[ligne][colonne]
 	return $tab;
 	}
-	
+
 function import_csv()
 	{
 	echo "<h3>Importation d'un fichier CSV</h3>\n";

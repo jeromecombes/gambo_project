@@ -23,9 +23,6 @@ switch($title){
   default : $title="VWPP Database";	break;
 }
 
-//	Login control
-login_ctrl();
-
 if(!array_key_exists('vwpp',$_SESSION) and stripos($_SERVER['PHP_SELF'],"admin")){
   header("Location: ..");	// Redirect to home if try to get admin pages without session
 }
