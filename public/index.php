@@ -1,4 +1,20 @@
 <?php
+
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
+
+define('LARAVEL_START', microtime(true));
+
+require __DIR__.'/../vendor/autoload.php';
+
+$app = require_once __DIR__.'/../bootstrap/app.php';
+
+$kernel = $app->make(Kernel::class);
+
+$response = tap($kernel->handle(
+    $request = Request::capture()
+));
+
 require_once __DIR__."/header.php";
 require_once __DIR__."/menu.php";
 require_once __DIR__."/inc/class.dates.inc";
@@ -10,7 +26,7 @@ $db->select("eval_enabled","*","semester='$semester' AND semester<>''");
 $displayEval=$db->result?null:"style='display:none;'";
 
 //	Semester choice
-if(count($_SESSION['vwpp']['semesters'])==1){
+if (isset($_SESSION['vwpp']['semesters']) and count($_SESSION['vwpp']['semesters']) == 1) {
   $_SESSION['vwpp']['semester']=$_SESSION['vwpp']['semesters'][0];
   $_SESSION['vwpp']['semestre']=$_SESSION['vwpp']['semesters'][0];
 }

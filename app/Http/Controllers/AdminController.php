@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Session;
-use Illuminate\Support\Facades\Session as LaravelSession;
 
 class AdminController extends Controller
 {
@@ -15,10 +13,12 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        if (session('warning') != 'Access denied') {
-            LaravelSession::forget('semester');
-            LaravelSession::forget('student');
-        }
+        $request->session()->forget('semester');
+        $request->session()->forget('student');
+        $request->session()->forget('student_name');
+        $request->session()->forget('student_next');
+        $request->session()->forget('student_previous');
+        $request->session()->forget('students_list');
 
         $request->session()->put('login_univ', $_SESSION['vwpp']['login_univ']);
 

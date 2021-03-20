@@ -4,7 +4,7 @@ $get['semester']=filter_input(INPUT_GET,"semester",FILTER_SANITIZE_STRING);
 $request['semester']=$post['semester']?$post['semester']:$get['semester'];
 $semester_session=isset($_SESSION['vwpp']['semestre'])?$_SESSION['vwpp']['semestre']:null;
 
-if(count($_SESSION['vwpp']['semesters'])==1){
+if (isset($_SESSION['vwpp']['semesters']) and count($_SESSION['vwpp']['semesters']) == 1) {
   $semester = $_SESSION['vwpp']['semesters'][0];
 }else{
   $semester = $request['semester'] ? $request['semester'] : $semester_session;
@@ -30,7 +30,7 @@ echo <<<EOD
 <li id='li0' class='ui-state-default ui-corner-top'><a href='index.php'>Home</a></li>
 EOD;
 
-if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or count($_SESSION['vwpp']['semesters'])==1){
+if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or (isset($_SESSION['vwpp']['semesters']) and count($_SESSION['vwpp']['semesters']) == 1)){
   echo <<<EOD
   <li id='li7' class='ui-state-default ui-corner-top'><a href='/student'>General Info.</a></li>
   <li id='li2' class='ui-state-default ui-corner-top'><a href='/housing'>Housing</a></li>
