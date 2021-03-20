@@ -255,7 +255,7 @@ Route::post('/admin/housing/unlock', [HousingClosedController::class, 'unlock'])
 
 Route::get('/logout', [MyAuthController::class, 'logout'])->name('mylogout');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
