@@ -57,8 +57,7 @@ echo "<script type='text/JavaScript' src='{$config['folder']}/js/script.js?rev=2
 <?php
 //	No session	=>	Login form
 if(!array_key_exists('vwpp',$_SESSION)){
-  include "login.php";		// Prompt the login form if no session 
-  include "footer.php";
+  header("Location: /login");
   exit;
 }				// Else, show the requested page
 ?>
@@ -71,7 +70,7 @@ $error=filter_input(INPUT_GET,"error",FILTER_SANITIZE_STRING);
 
 if($msg){
   $infoType=$error?"error":"highlight";
-  
+
   if ($msg == 'session_fullstring') {
     $msg = $_SESSION['vwpp']['msg_fullstring'];
     $msg_success = $_SESSION['vwpp']['msg_success_fullstring'];
