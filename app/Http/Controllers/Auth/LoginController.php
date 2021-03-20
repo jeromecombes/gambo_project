@@ -48,7 +48,5 @@ class LoginController extends Controller
         if (session('admin')) {
             return redirect()->route('admin.index');
         }
-
-        return redirect('/');
     }
 }

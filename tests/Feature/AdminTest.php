@@ -47,30 +47,24 @@ class AdminTest extends TestCase
         $response->assertStatus(500);
     }
 
-    public function test_admin_courses_no_session()
+    public function test_courses_no_session()
     {
-        $response = $this->get('/admin/courses');
+        $response = $this->get('/courses');
 
         $response->assertStatus(302);
     }
 
-    public function test_admin_courses_student_session()
+    public function test_courses_student_session()
     {
         $user = User::whereNull('access')->first();
 
-        $response = $this->withSession([
-            'access' => [],
-            'login_name' => $user->lastname . ' ' . $user->firstname,
-            'student' => 741,
-            'semester' => 'Spring 2020',
-            'student_name' => $user->lastname . ' ' . $user->firstname,
-            ])
-            ->get('/admin/courses');
+        $response = $this->actingAs($user)
+            ->get('/courses');
 
-        $response->assertStatus(302);
+        $response->assertStatus(500);
     }
 
-    public function test_admin_courses_admin_session()
+    public function test_courses_admin_session()
     {
         $user = User::whereNotNull('access')->first();
         $response = $this->actingAs($user)
@@ -80,7 +74,7 @@ class AdminTest extends TestCase
                 'login_name' => $user->lastname . ' ' . $user->firstname,
                 'login_univ' => $user->university,
                 ])
-            ->get('/admin/courses');
+            ->get('/courses');
 
         $response->assertStatus(500);
     }

@@ -20,9 +20,24 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function student_form(Request $request)
+    public function index(Request $request)
     {
 
+        if (session('admin')) {
+            return $this->admin_index($request);
+        } else {
+            echo "// TODO";
+        }
+    }
+
+    /**
+     * Display the courses student form
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function admin_index(Request $request)
+    {
         $edit = $request->edit;
 
         // Get student info
@@ -66,14 +81,20 @@ class CourseController extends Controller
         usort($occurences['Writing'], 'cmp_count_desc');
 
         // Student assignment IDs
-        $assignment = $rhCoursesAssign->where('student', session('student'))->first();
+        $assignment = $rhCoursesAssign->where('student', session('student'))->first() ?? (object) array(
+            'writing1' => null,
+            'writing2' => null,
+            'seminar1' => null,
+            'seminar2' => null,
+            'seminar3' => null,
+            );
 
         // Student assignment Text
-        $aw1 = $rhCourses->find($assignment->writing1);
-        $aw2 = $rhCourses->find($assignment->writing2);
-        $as1 = $rhCourses->find($assignment->seminar1);
-        $as2 = $rhCourses->find($assignment->seminar2);
-        $as3 = $rhCourses->find($assignment->seminar3);
+        $aw1 = $assignment ? $rhCourses->find($assignment->writing1) :null;
+        $aw2 = $assignment ? $rhCourses->find($assignment->writing2) :null;
+        $as1 = $assignment ? $rhCourses->find($assignment->seminar1) :null;
+        $as2 = $assignment ? $rhCourses->find($assignment->seminar2) :null;
+        $as3 = $assignment ? $rhCourses->find($assignment->seminar3) :null;
 
         $assignment_text = (object) array(
             'writing1' => $aw1 ? $aw1->code . ' ' . $aw1->title . ', ' . $aw1->professor : null,
@@ -84,7 +105,17 @@ class CourseController extends Controller
         );
 
         // Student Choices
-        $choices = CourseChoice::findMe();
+        $choices = CourseChoice::findMe() ?? (object) array(
+            'a1' => null,
+            'b1' => null,
+            'c1' => null,
+            'd1' => null,
+            'a2' => null,
+            'b2' => null,
+            'c2' => null,
+            'd2' => null,
+            'e2' => null,
+            );
 
         $params = compact(
             'edit',
@@ -127,7 +158,7 @@ class CourseController extends Controller
             )
         );
 
-        return redirect("/admin/courses")->with('success', 'Mise à jour réussie');
+        return redirect("/courses")->with('success', 'Mise à jour réussie');
     }
 
 }

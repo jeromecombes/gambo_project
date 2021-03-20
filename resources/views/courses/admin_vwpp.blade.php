@@ -1,7 +1,7 @@
 <h3>VWPP Courses</h3>
 
 <fieldset style='margin-bottom:50px;'>
-  <form name='form' action='/admin/courses/reidhall/assignment' method='post'>
+  <form name='form' action='/courses/reidhall/assignment' method='post'>
     {{ csrf_field() }}
     <input type='hidden' name='univ' value='Reid hall' />
 

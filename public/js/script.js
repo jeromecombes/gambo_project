@@ -434,7 +434,7 @@ function lockCourse4(id){
 }
 
 function lockRH(me,student){
-  file("lockRH.php?student="+student+"&lock="+me.value);
+  file("admin/lockRH.php?student="+student+"&lock="+me.value);
   if(me.value=="Lock")
      me.value="Unlock";
   else
@@ -442,7 +442,7 @@ function lockRH(me,student){
 }
 
 function lockRH2(me,student){
-  file("lockRH2.php?student="+student+"&lock="+me.value);
+  file("admin/lockRH2.php?student="+student+"&lock="+me.value);
   if(me.value=="Publish")
      me.value="Hide";
   else

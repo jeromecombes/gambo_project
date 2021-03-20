@@ -26,9 +26,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes(['register' => false]);
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 // Admin home
 Route::get('/admin2', [AdminController::class, 'index'])
@@ -43,12 +44,14 @@ Route::post('/admin/semester', [AdminController::class, 'semester'])
 
 // Student General Info
 Route::get('/student', [StudentController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->name('student.student_form');
 
 Route::get('/student/{student}', [StudentController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -56,6 +59,7 @@ Route::get('/student/{student}', [StudentController::class, 'student_form'])
     ->name('student.student_form_id');
 
 Route::get('/student/{student}/{edit}', [StudentController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -64,10 +68,12 @@ Route::get('/student/{student}/{edit}', [StudentController::class, 'student_form
     ->name('student.student_form.edit');
 
 Route::post('/student', [StudentController::class, 'student_form_update'])
+    ->middleware('auth')
     ->name('student.student_form.update');
 
 // Student Housing
 Route::get('/housing', [HousingController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -75,6 +81,7 @@ Route::get('/housing', [HousingController::class, 'student_form'])
     ->name('housing.student_form');
 
 Route::get('/housing/{student}', [HousingController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -83,6 +90,7 @@ Route::get('/housing/{student}', [HousingController::class, 'student_form'])
     ->name('housing.student_form_id');
 
 Route::get('/housing/{student}/{edit}', [HousingController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -92,6 +100,7 @@ Route::get('/housing/{student}/{edit}', [HousingController::class, 'student_form
     ->name('housing.student_form.edit');
 
 Route::post('/housing', [HousingController::class, 'student_form_update'])
+    ->middleware('auth')
     ->middleware('role:7')
     ->name('housing.student_form.update');
 
@@ -102,6 +111,7 @@ Route::post('/housing_assignment', [HousingController::class, 'student_assignmen
 
 // Student Univ registration
 Route::get('/univ_reg', [UnivRegController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -109,6 +119,7 @@ Route::get('/univ_reg', [UnivRegController::class, 'student_form'])
     ->name('univ_reg.student_form');
 
 Route::get('/univ_reg/{student}', [UnivRegController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -117,6 +128,7 @@ Route::get('/univ_reg/{student}', [UnivRegController::class, 'student_form'])
     ->name('univ_reg.student_form_id');
 
 Route::get('/univ_reg/{student}/{edit}', [UnivRegController::class, 'student_form'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -126,25 +138,37 @@ Route::get('/univ_reg/{student}/{edit}', [UnivRegController::class, 'student_for
     ->name('univ_reg.student_form.edit');
 
 Route::post('/univ_reg', [UnivRegController::class, 'univ_reg_update'])
+    ->middleware('auth')
     ->middleware('role:17')
     ->name('univ_reg.univ_reg.update');
 
 Route::post('/univ_reg3', [UnivRegController::class, 'univ_reg3_update'])
+    ->middleware('auth')
     ->middleware('role:17')
     ->name('univ_reg.univ_reg3.update');
 
 // Courses
-Route::get('/admin/courses', [CourseController::class, 'student_form'])
+Route::get('/courses', [CourseController::class, 'index'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
+    ->middleware('role:23')
+    ->name('courses.student_form');
+
+Route::get('/courses/{student}', [CourseController::class, 'index'])
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->middleware('role:23')
+    ->name('courses.student_form');
+
+Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_assignment'])
     ->middleware('admin')
     ->middleware('role:23')
-    ->name('admin.courses.student_form');
-
-Route::post('/admin/courses/reidhall/assignment', [CourseController::class, 'reidhall_assignment'])
-    ->middleware('role:23')
-    ->name('admin.courses.reidhall.assignment');
+    ->name('courses.reidhall.assignment');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])
@@ -159,6 +183,7 @@ Route::post('/students/delete', [StudentController::class, 'destroy'])
 
 // Documents
 Route::get('/documents', [DocumentController::class, 'index'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
@@ -170,6 +195,7 @@ Route::get('/documents/{student}', [DocumentController::class, 'index'])
     ->name('document.index');
 
 Route::get('/documents/add', [DocumentController::class, 'add'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->name('document.add');
 
@@ -178,19 +204,23 @@ Route::get('/documents/edit', [DocumentController::class, 'edit'])
     ->name('document.edit');
 
 Route::put('/documents', [DocumentController::class, 'store'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->name('document.store');
 
 Route::post('/documents', [DocumentController::class, 'update'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->name('document.update');
 
 Route::delete('/documents', [DocumentController::class, 'destroy'])
+    ->middleware('auth')
     ->where('id', '[0-9]+')
     ->middleware('old.session')
     ->name('document.destroy');
 
 Route::get('/show/{id}', [DocumentController::class, 'show'])
+    ->middleware('auth')
     ->middleware('old.session')
     ->name('document.show');
 
@@ -254,10 +284,6 @@ Route::post('/admin/housing/unlock', [HousingClosedController::class, 'unlock'])
     ->name('housing.unlock');
 
 Route::get('/logout', [MyAuthController::class, 'logout'])->name('mylogout');
-
-Auth::routes(['register' => false]);
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // EXPORT Files : Decrypt and export files for given semester in storage/app/export/
 Route::get('/export/{semester}', [DocumentController::class, 'export_all'])
