@@ -65,7 +65,7 @@ if(is_array($data[32]))
 
 
 echo <<<EOD
-<div class='fieldset'>
+<fieldset>
 <form method='post' action='eval_update.php' name='form' onsubmit='return ctrl_form3();'>
 <input type='hidden' name='std_id' value='$std_id' />
 <input type='hidden' name='timestamp' value='$timestamp' />
@@ -79,7 +79,7 @@ Program Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 </td></tr>
 
 <tr><td colspan='4'><b>I. BENEFITS</b></td></tr>
-<tr><td colspan='4'><b>1) What do you see as the main benefits you derived from your semester 
+<tr><td colspan='4'><b>1) What do you see as the main benefits you derived from your semester
 in France ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[1]'>{$data[1]}</textarea>
@@ -94,14 +94,14 @@ in France ?</b></td></tr>
 </td></tr>
 
 <tr><td colspan='4'><b>II. UNIVERSITY COURSES</b></td></tr>
-<tr><td colspan='4'><b>3) What did you learn about the French university by taking a course in 
+<tr><td colspan='4'><b>3) What did you learn about the French university by taking a course in
 the French system ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[3]'>{$data[3]}</textarea>
 <div $displayText >{$data[3]}</div>
 </td></tr>
 
-<tr><td colspan='4'><b>4) What was the most positive aspect taking a course in the French 
+<tr><td colspan='4'><b>4) What was the most positive aspect taking a course in the French
 university for you personally ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[4]'>{$data[4]}</textarea>
@@ -109,7 +109,7 @@ university for you personally ?</b></td></tr>
 </td></tr>
 
 <tr><td colspan='4'><b>III. LANGUAGE SKILS.</b></td></tr>
-<tr><td colspan='4'><b>5) About what percentage of the time did you speak French in your 
+<tr><td colspan='4'><b>5) About what percentage of the time did you speak French in your
 interactions with people ?</b></td></tr>
 <tr $displayText><td colspan='2'>&nbsp;</td>
 <td colspan='2'>{$data[5]}</td></tr>
@@ -120,7 +120,7 @@ interactions with people ?</b></td></tr>
 <td><input type='radio' name='data[5]' {$checked[4]} value='Less than 50%' />Less than 50%<br/><br/></td>
 </tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>6) In which aspects of your French have noticed the most significant 
+<tr><td colspan='4' style='padding-top:20px;'><b>6) In which aspects of your French have noticed the most significant
 improvement ?</b></td></tr>
 <tr $displayText><td colspan='2'>&nbsp;</td>
 <td colspan='2'>{$data[6]}</td></tr>
@@ -189,7 +189,7 @@ improvement ?</b></td></tr>
 <td><input type='radio' name='data[12]' {$checked[28]} value='Never' />Never<br/><br/></td>
 </tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>8) In general, how helpful was the advice 
+<tr><td colspan='4' style='padding-top:20px;'><b>8) In general, how helpful was the advice
 given to you for</b></td></tr>
 
 <tr><td colspan='2' style='padding-left:30px;'><b>a) Practical matters ?</b></td>
@@ -248,9 +248,9 @@ given to you for</b></td></tr>
 <div $displayText >{$data[18]}</div>
 </td></tr>
 
-<tr><td colspan='4'><b>V. SOCIAL, CULTURAL ACTIVITIES AND EXCURSIONS SPONSORED BY THE 
+<tr><td colspan='4'><b>V. SOCIAL, CULTURAL ACTIVITIES AND EXCURSIONS SPONSORED BY THE
 PROGRAM</b></td></tr>
-<tr><td colspan='4'><b>9) a) Which of the following cultural activities sponsored by the 
+<tr><td colspan='4'><b>9) a) Which of the following cultural activities sponsored by the
 program did you participate in ?</b></td></tr>
 <tr><td colspan='2' style='padding-left:30px;'><b>Excursions outside of Paris</b></td>
 
@@ -259,7 +259,7 @@ program did you participate in ?</b></td></tr>
 <td $displayForm ><input type='radio' name='data[19]' {$checked[50]} value='No' />No</td>
 </tr>
 
-<tr><td colspan='4' style='padding-left:30px;'><b>Extracurricular Visits in Paris 
+<tr><td colspan='4' style='padding-left:30px;'><b>Extracurricular Visits in Paris
 (Croisière sur la seine, Louvre etc.)</b>
 <font $displayText>{$data[20]}</font></td></tr>
 
@@ -312,9 +312,9 @@ program did you participate in ?</b></td></tr>
 <div $displayText >{$data[27]}</div>
 </td></tr>
 
-<tr><td colspan='4'><b>PROGRAM SPONSORED ACTIVITIES THAT PUT YOU IN TOUCH WITH 
+<tr><td colspan='4'><b>PROGRAM SPONSORED ACTIVITIES THAT PUT YOU IN TOUCH WITH
 FRENCH PEOPLE : </b></td></tr>
-<tr><td colspan='4'><b>10) Did you participate in any CIJP Excursions and/or 
+<tr><td colspan='4'><b>10) Did you participate in any CIJP Excursions and/or
 activities ?</b>
 <font $displayText>{$data[28]}</font></td></tr>
 <tr $displayForm>
@@ -322,7 +322,7 @@ activities ?</b>
 <td><input type='radio' name='data[28]' {$checked[66]} value='No' />No</td>
 </tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>If yes, please give details and what you gained from the 
+<tr><td colspan='4' style='padding-top:20px;'><b>If yes, please give details and what you gained from the
 experience.</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[29]'>{$data[29]}</textarea>
@@ -330,7 +330,7 @@ experience.</b></td></tr>
 </td></tr>
 
 <tr><td colspan='4'><b>11) OTHER EXTRACURRICULAR ACTIVITIES :</b></td></tr>
-<tr><td colspan='4'>Did you try to meet French people informally ? If so, 
+<tr><td colspan='4'>Did you try to meet French people informally ? If so,
 what did you do to mee them ?</td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[30]'>{$data[30]}</textarea>
@@ -353,7 +353,7 @@ what did you do to mee them ?</td></tr>
 
 
 
-<tr><td colspan='4' style='padding-top:30px;'><b>Please give the following details for the benefit of future 
+<tr><td colspan='4' style='padding-top:30px;'><b>Please give the following details for the benefit of future
 students there :</b></td></tr>
 <tr><td colspan='2'><b>Name of organization 1 :</b></td>
 <td $displayForm colspan='2'><input type='text' name='data[33]' value='{$data[33]}'/></td>
@@ -410,7 +410,7 @@ students there :</b></td></tr>
 <td $displayForm colspan='2'><input type='text' name='data[48]' value='{$data[48]}'/></td>
 <td $displayText colspan='2'>{$data[48]}</td></tr>
 
-<tr><td colspan='4' style='padding-top:25px;'><b>13) INTERNSHIP/EXPERIENTIAL LEARNING : 
+<tr><td colspan='4' style='padding-top:25px;'><b>13) INTERNSHIP/EXPERIENTIAL LEARNING :
 Did you undertake a "stage" ?</b>
 <font $displayText>{$data[49]}</font></td></tr>
 
@@ -445,13 +445,13 @@ Did you undertake a "stage" ?</b>
 <div $displayText>{$data[53]}</div></td></tr>
 
 <tr><td colspan='4'><b>VII. FINAL COMMENTS</b></td></tr>
-<tr><td colspan='4'><b></b>17) What advice would you give to students to help them to 
+<tr><td colspan='4'><b></b>17) What advice would you give to students to help them to
 prepare to study abraod in Paris ?</td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[54]'>{$data[54]}</textarea>
 <div $displayText>{$data[54]}</div></td></tr>
 
-<tr><td colspan='4'><b>18) If you wish, you, please add comments on any aspects of the VWPP 
+<tr><td colspan='4'><b>18) If you wish, you, please add comments on any aspects of the VWPP
 not covered in this evaluation.</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[55]'>{$data[55]}</textarea>
@@ -473,7 +473,7 @@ not covered in this evaluation.</b></td></tr>
 <input type='hidden' name='closed' value='1' />
 <input type='submit' value='Submit' /></td></tr>
 </table></form>
-</div>	<!-- class=fieldset	-->
+</fieldset>
 EOD;
 
 ?>

@@ -177,7 +177,7 @@ switch($data[35]){
 
 
 echo <<<EOD
-<div class='fieldset'>
+<fieldset>
 <legend><b>CIPh Evalution Form</b></legend>
 <form method='post' action='eval_update.php' name='form'>
 <input type='hidden' name='std_id' value='$std_id' />
@@ -195,8 +195,8 @@ College Internationnal De Philosophie Tutorial Evaluation Form, {$_SESSION['vwpp
 </td></tr>
 
 <tr><td colspan='4' style='padding-top:30px;font-style:italic;text-align:justify;'>
-This form will not be shared with the CIPh seminar organizer. It is intended for your tutor and 
-VWPP directors to help future students make an informed decision in their choice of courses. 
+This form will not be shared with the CIPh seminar organizer. It is intended for your tutor and
+VWPP directors to help future students make an informed decision in their choice of courses.
 We could appreciate a thoughtful response.</td></tr>
 
 <tr><td colspan='2' style='padding-top:20px;'><b>Name of tutor :</td>
@@ -449,12 +449,12 @@ with your tutor (not seminar).</b></td></tr>
 <td><input type='radio' name='data[30]' {$checked['30_3']} value='Not encouraging' /> Not encouraging</td>
 <td><input type='radio' name='data[30]' {$checked['30_4']} value='Does not give any' /> Does not give any</td></tr>
 
-<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>8 Assignments. Please list the written and oral work 
+<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>8 Assignments. Please list the written and oral work
 you were assigned in this course.</b></td></tr>
 <tr $displayForm><td colspan='4'><textarea name='data[31]'>{$data[31]}</textarea></td></tr>
 <tr $displayText><td colspan='4'>{$data[31]}</td></tr>
 
-<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>9. Wherethe assignements effective 
+<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>9. Wherethe assignements effective
 for archieving the goals stated for the course stated by your tutor ?</b>
 <font $displayText>{$data[32]}</font></td></tr>
 
@@ -469,13 +469,13 @@ for archieving the goals stated for the course stated by your tutor ?</b>
 <tr $displayText><td colspan='4'>{$data[33]}</td></tr>
 
 
-<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>10. a) Format of the course: What do you 
-think of the general (original) format of the CIPH seminar/tutorial ? What was the most positive aspect of 
+<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>10. a) Format of the course: What do you
+think of the general (original) format of the CIPH seminar/tutorial ? What was the most positive aspect of
 this course for you personally ?</b>
 <tr $displayForm><td colspan='4'><textarea name='data[34]'>{$data[34]}</textarea></td></tr>
 <tr $displayText><td colspan='4'>{$data[34]}</td></tr>
 
-<tr><td colspan='4' style='padding-top:20px;padding-left:30px;text-align:justify;'><b>b) Would you 
+<tr><td colspan='4' style='padding-top:20px;padding-left:30px;text-align:justify;'><b>b) Would you
 recommend such an academic experience to others ? Why (not) ?</b>
 <font $displayText>{$data[35]}</font></td></tr>
 
@@ -487,8 +487,8 @@ recommend such an academic experience to others ? Why (not) ?</b>
 <tr $displayForm><td colspan='4'><textarea name='data[36]'>{$data[36]}</textarea></td></tr>
 <tr $displayText><td colspan='4'>{$data[36]}</td></tr>
 
-<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>11.Please share any other observations 
-or comments you would like to make, including on the content of the course and its organization</b> 
+<tr><td colspan='4' style='padding-top:20px;text-align:justify;'><b>11.Please share any other observations
+or comments you would like to make, including on the content of the course and its organization</b>
 (Amount of work, class meetings, content of, and approach to, the materials studied ...)</td></tr>
 
 <tr $displayForm><td colspan='4'><textarea name='data[37]'>{$data[37]}</textarea></td></tr>
@@ -508,7 +508,7 @@ or comments you would like to make, including on the content of the course and i
 -->
 <input type='submit' value='Submit' onclick='document.form.closed.value="1";document.form.submit();'/></td></tr>
 </table></form>
-</div>
+</fieldset>
 EOD;
 
 ?>

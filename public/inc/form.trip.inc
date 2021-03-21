@@ -10,7 +10,7 @@ echo <<<EOD
 <h3>Formulaire de voyage</h3>
 <p style='font-weight:bold;text-align:justify;'>Veuillez remplir le formulaire ci-dessous au moins 24h avant votre départ et il vous sera envoyé une confirmation de réception de la part du programme avant votre départ :</p>
 
-<div class='fieldset'>
+<fieldset>
 <form name='form_1' action='trip_submit.php' method='post' onsubmit='return tripFormValidation();'>
 <input type='hidden' name='data[9]' value='{$s->elements['lastname']}' />
 <input type='hidden' name='data[10]' value='{$s->elements['firstname']}' />
@@ -36,11 +36,11 @@ echo <<<EOD
 <tr><td style='padding-top:20px;'><b>Destination(s) :</b> (Obligatoire)</td>
 <td colspan='2' style='padding-top:20px;'><textarea name='data[2]' class='required'>{$data[2]}</textarea></td></tr>
 
-<tr><td style='text-align:justify;' colspan='3'><b>Moyen(s) de transport 
+<tr><td style='text-align:justify;' colspan='3'><b>Moyen(s) de transport
 (avion - N° de vols, horaires et compagnies aériennes ; trains - horaires et destinations des trains)</b></td></tr>
 <tr><td>&nbsp;</td><td colspan='2'><textarea name='data[3]'>{$data[3]}</textarea></td></tr>
 
-<tr><td style='text-align:justify;' colspan='3'><b>Adresse(s) sur place 
+<tr><td style='text-align:justify;' colspan='3'><b>Adresse(s) sur place
 (hôtel, auberge, amis, etc.) :</b> (obligatoire)</td></tr>
 <tr><td>&nbsp;</td><td colspan='2'><textarea name='data[4]' class='required'>{$data[4]}</textarea></td></tr>
 
@@ -77,18 +77,6 @@ Assurez-vous que vous avez le N°  de téléphone portable du directeur avec vou
 
 </table>
 </form>
-</div>	<!-- fieldset -->
-
-
-
-
-
-
-
-
-
-
-
-
+</fieldset>
 EOD;
 ?>

@@ -4,7 +4,7 @@
 }
 
 
-body, .fieldset, table {
+body, fieldset, table {
   width:170mm;
   margin: 0 0 0 0;
   font-size: 11pt;
@@ -15,23 +15,24 @@ body, .fieldset, table {
   display:none;
 }
 
-.fieldset {
+fieldset {
   padding: 0 0 0 0;
   background:#FFFFFF;
   text-align:justify;
   width:175mm;
+  border: none;
 }
 
-.fieldset a {
+fieldset a {
   display:inline;
 }
 
-.fieldset h3{
+fieldset h3{
   display:block;
 /*   page-break-before:always; */
 }
 
-.fieldset input{
+fieldset input{
   display: none;
 }
 

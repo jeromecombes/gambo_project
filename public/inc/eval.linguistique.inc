@@ -29,7 +29,7 @@ $input[]=array(4,"radio",array("Extremely helpful","Very helpful","Helpful","Not
 $input=input($input,$data,true);
 
 echo <<<EOD
-<div class='fieldset'>
+<fieldset>
 <form method='post' action='eval_update.php' name='form'>
 <input type='hidden' name='std_id' value='$std_id' />
 <input type='hidden' name='timestamp' value='$timestamp' />
@@ -45,7 +45,7 @@ Ateliers Linguistiques, {$_SESSION['vwpp']['semester']}</h2>
 
 
 
-<tr><td colspan='4' style='text-align:justify;'><i>This form is intended to assist your instructor in evaluating his or her teaching effectiveness. 
+<tr><td colspan='4' style='text-align:justify;'><i>This form is intended to assist your instructor in evaluating his or her teaching effectiveness.
 We would appreciate a thoughtful response.</i></td></tr>
 
 <tr><td colspan='2' style='padding-top:20px;'><b>Did you attend every session ?</b></td>
@@ -61,7 +61,7 @@ We would appreciate a thoughtful response.</i></td></tr>
 <textarea $displayForm name='data[2]'>{$data[2]}</textarea>
 <div $displayText>{$data[2]}</div></td></tr>
 
-<tr><td colspan='4'><b>2. Please comment on the <i>content</i> of the sessions and their 
+<tr><td colspan='4'><b>2. Please comment on the <i>content</i> of the sessions and their
 <i>usefulness</i> to <i>you</i>. To what extent did they help you to :</b></td></tr>
 <tr><td colspan='3' style='padding-left:30px;'><b>a) Develop a mastery of the French language</b></td>
 <td $displayText>{$data[3]}</td></tr>
@@ -76,7 +76,7 @@ We would appreciate a thoughtful response.</i></td></tr>
 <textarea $displayForm name='data[5]'>{$data[5]}</textarea>
 <div $displayText>{$data[5]}</div></td></tr>
 
-<tr><td colspan='4' ><b>4. Do you have any suggestions for how the "Ateliers Linguistiques" could be 
+<tr><td colspan='4' ><b>4. Do you have any suggestions for how the "Ateliers Linguistiques" could be
 modified to faciliate your experience in Paris ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[6]'>{$data[6]}</textarea>
@@ -102,7 +102,7 @@ modified to faciliate your experience in Paris ?</b></td></tr>
 <input type='hidden' name='closed' value='1' />
 <input type='submit' value='Submit' /></td></tr>
 </table></form>
-</div>
+</fieldset>
 EOD;
 
 ?>

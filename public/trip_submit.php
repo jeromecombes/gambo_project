@@ -18,7 +18,7 @@ $message= <<<EOD
 <p style='font-weight:bold;text-align:justify;width:1170px;'>Veuillez remplir le formulaire ci-dessous au moins 24h avant votre départ et il vous sera envoyé une confirmation de réception de la part du programme avant votre départ :</p>
 -->
 
-<div class='fieldset'>
+<fieldset>
 <table border='0' style='width:100%;'>
 <tr><td style='width:360px;'>&nbsp;</td><td style='width:360px;'>&nbsp;</td><td>&nbsp;</td></tr>
 <tr><td><b>Nom, prénom : </b></td>
@@ -36,11 +36,11 @@ $message= <<<EOD
 <tr><td style='padding-top:20px;'><b>Destination(s) :</b> </td>
 <td colspan='2' style='padding-top:20px;' class='response'>{$data[2]}</td></tr>
 
-<tr><td style='text-align:justify;padding-top:20px;' colspan='3'><b>Moyen(s) de transport 
+<tr><td style='text-align:justify;padding-top:20px;' colspan='3'><b>Moyen(s) de transport
 (avion - N° de vols, horaires et compagnies aériennes ; trains - horaires et destinations des trains)</b></td></tr>
 <tr><td>&nbsp;</td><td colspan='2' class='response'>{$data[3]}</td></tr>
 
-<tr><td style='text-align:justify;padding-top:20px;' colspan='3'><b>Adresse(s) sur place 
+<tr><td style='text-align:justify;padding-top:20px;' colspan='3'><b>Adresse(s) sur place
 (hôtel, auberge, amis, etc.) :</b> </td></tr>
 <tr><td>&nbsp;</td><td colspan='2' class='response'>{$data[4]}</td></tr>
 
@@ -68,7 +68,7 @@ Assurez-vous que vous avez le N°  de téléphone portable du directeur avec vou
 -->
 
 </table>
-</div>	<!-- fieldset -->
+</fieldset>
 EOD;
 
 $error=1;
@@ -90,7 +90,7 @@ if(is_array($config['emailForTripForm'])){
   $mail->send();
   if($mail->error){		// Si erreur, met from et sender par défaut et essai de nouveau
     $mail->error=null;		//	(permet l'envoi même si l'addresse de l'étudiant est erronée)
-    $mail->from=null;		
+    $mail->from=null;
     $mail->sender=null;
     $mail->fromName=null;
     $mail->send();

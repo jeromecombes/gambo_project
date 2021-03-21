@@ -88,7 +88,7 @@ $checked[$i++]=$data[29]=="Not effective"?"checked='checked'":null;
 
 
 echo <<<EOD
-<div class='fieldset'>
+<fieldset>
 <form method='post' action='eval_update.php' name='form' onsubmit='return ctrl_form3();'>
 <input type='hidden' name='std_id' value='$std_id' />
 <input type='hidden' name='timestamp' value='$timestamp' />
@@ -103,7 +103,7 @@ VWPP Course Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 </td></tr>
 
 <tr $displayForm><td colspan='4' style='padding-top:20px;text-align:justify;'><i>
-This form will be shared with your instructor. It is also intended for VWPP to evaluate the 
+This form will be shared with your instructor. It is also intended for VWPP to evaluate the
 work of the program's instructors. We would appreciate a thoughtful response.</i></td></tr>
 
 <tr><td style='padding-top:20px;'><b>Course Name :</b></td>
@@ -120,7 +120,7 @@ work of the program's instructors. We would appreciate a thoughtful response.</i
 <td><input type='radio' name='data[3]' {$checked[3]} value='Moderate' />Moderate</td>
 <td><input type='radio' name='data[3]' {$checked[4]} value='Light' />Light</td></tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>2. Do you think your French was at a level that allowed you to understand 
+<tr><td colspan='4' style='padding-top:20px;'><b>2. Do you think your French was at a level that allowed you to understand
 and take notes ?</b></td></tr>
 <tr><td colspan='2' style='padding-left:30px;'><b>a) At the begining :</b></td>
 <td $displayText colspan='2'>{$data[4]}</td></tr>
@@ -194,7 +194,7 @@ and take notes ?</b></td></tr>
 <div $displayText>{$data[13]}</div>
 </td></tr>
 
-<tr><td colspan='4' style='text-align:justify;'><b>5) Did you have a clear understanding of 
+<tr><td colspan='4' style='text-align:justify;'><b>5) Did you have a clear understanding of
 what was expected from you in this course for the following :</b></td></tr>
 <tr><td colspan='2' style='padding-left:30px;'>Readings :</td>
 <td $displayText>{$data[14]}</td></tr>
@@ -231,14 +231,14 @@ what was expected from you in this course for the following :</b></td></tr>
 <td><input type='radio' name='data[18]' {$checked[41]} value='Not clear' />Not clear</td>
 <td><input type='radio' name='data[18]' {$checked[42]} value='Not applicable' />Not applicable</td></tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>6.a) Where there visits or events outside of 
+<tr><td colspan='4' style='padding-top:20px;'><b>6.a) Where there visits or events outside of
 class that formed part of this course ?</b><font $displayText>{$data[19]}</font></td></tr>
 
 <tr $displayForm>
 <td><input type='radio' name='data[19]' {$checked[43]} value='Yes' />Yes</td>
 <td><input type='radio' name='data[19]' {$checked[44]} value='No' />No</td></tr>
 
-<tr><td colspan='2' style='padding-top:20px;padding-left:30px;'><b>b) Did you attend all of 
+<tr><td colspan='2' style='padding-top:20px;padding-left:30px;'><b>b) Did you attend all of
 them ?</b></td>
 <td $displayText style='padding-top:20px;'>{$data[20]}</td></tr>
 
@@ -309,13 +309,13 @@ f) Encouragement to learn more</b></td>
 <td><input type='radio' name='data[27]' {$checked[71]} value='Does not give any' />Does not give any</td></tr>
 
 
-<tr><td colspan='4' style='text-align:justify;padding-top:20px;'><b>8. Assignments.</b> Please list the written 
+<tr><td colspan='4' style='text-align:justify;padding-top:20px;'><b>8. Assignments.</b> Please list the written
 and oral work you were assigned in this course</td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[28]'>{$data[28]}</textarea>
 <div $displayText>{$data[28]}</div></td></tr>
 
-<tr><td colspan='4' style='text-align:justify;'><b>9. Were the assignments effective for 
+<tr><td colspan='4' style='text-align:justify;'><b>9. Were the assignments effective for
 archieving the stated goals of the course ?
 <font $displayText>{$data[29]}</font></td></tr>
 <tr $displayForm>
@@ -329,8 +329,8 @@ archieving the stated goals of the course ?
 <textarea $displayForm name='data[30]'>{$data[30]}</textarea>
 <div $displayText>{$data[30]}</div></td></tr>
 
-<tr><td colspan='4' style='text-align:justify;'><b>10. Please share any other observations 
-or comments you would like to make, including on the content of the course and its organization</b> 
+<tr><td colspan='4' style='text-align:justify;'><b>10. Please share any other observations
+or comments you would like to make, including on the content of the course and its organization</b>
 (Amount of work, class meetings, content of, and approach to, the materials studied ...)</td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[31]'>{$data[31]}</textarea>
@@ -350,7 +350,7 @@ or comments you would like to make, including on the content of the course and i
 <input type='hidden' name='closed' value='1' />
 <input type='submit' value='Submit' /></td></tr>
 </table></form>
-</div> <!--	class='fieldset'	-->
+</fieldset>
 EOD;
 
 ?>

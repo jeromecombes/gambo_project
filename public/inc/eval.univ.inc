@@ -61,7 +61,7 @@ $input=input($input,$data,true);
 
 
 echo <<<EOD
-<div class='fieldset'>
+<fieldset>
 <form method='post' action='eval_update.php' name='form' onsubmit='return ctrl_form3();'>
 <input type='hidden' name='std_id' value='$std_id' />
 <input type='hidden' name='timestamp' value='$timestamp' />
@@ -74,8 +74,8 @@ echo <<<EOD
 <h2>VASSAR-WESLEYAN PROGRAM IN PARIS<br/>
 University Course Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 <div style='font-style:italic;text-align:justify;'>
-This form will not be shared with the university instructor. It is intended for VWPP directors 
-and help future students make an informed decision in their choice of courses. We would appreciate 
+This form will not be shared with the university instructor. It is intended for VWPP directors
+and help future students make an informed decision in their choice of courses. We would appreciate
 a thoughtful response.
 </div></td></tr>
 
@@ -93,7 +93,7 @@ a thoughtful response.
 <tr><td><b>Institution :</b></td>
 <td class='response'>{$data[5]}</td></tr>
 
-<!-- 
+<!--
 <tr $displayForm>
 <td><b>Institution :</b></td>
 {$input[0]}{$input[1]}{$input[2]}</tr>
@@ -110,7 +110,7 @@ a thoughtful response.
 <td $displayText style='padding-top:20px;'>{$data[8]}</td></tr>
 <tr $displayForm style='padding-top:20px;'>{$input[9]}{$input[10]}{$input[11]}{$input[12]}</tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>2. Do you think your French was at a level that allowed you to 
+<tr><td colspan='4' style='padding-top:20px;'><b>2. Do you think your French was at a level that allowed you to
 understand and take notes ?</b></td></tr>
 <tr><td colspan='2' style='padding-left:30px;'>
 <b>a) At the beginning :</b></td><td $displayText>{$data[9]}</td></tr>
@@ -162,7 +162,7 @@ understand and take notes ?</b></td></tr>
 <textarea $displayForm name='data[]'>{$data[18]}</textarea>
 <div $displayText>{$data[18]}</div></td></tr>
 
-<tr><td colspan='4'><b>5. Did you have a clear understanding of what was expected from you in this 
+<tr><td colspan='4'><b>5. Did you have a clear understanding of what was expected from you in this
 course for the following :</b></td></tr>
 <tr><td colspan='2' style='padding-left:30px;'>Readings :</td>
 <td $displayText colspan='2'>{$data[19]}</td></tr>
@@ -227,13 +227,13 @@ course for the following :</b></td></tr>
 <td $displayText style='padding-top:20px;'>{$data[32]}</td></tr>
 <tr $displayForm>{$input[76]}{$input[77]}{$input[78]}{$input[79]}</tr>
 
-<tr><td colspan='4' style='padding-top:20px;'><b>8. Assignments.</b> Please list the written and oral work you were assigned 
+<tr><td colspan='4' style='padding-top:20px;'><b>8. Assignments.</b> Please list the written and oral work you were assigned
 in this course</td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[33]'>{$data[33]}</textarea>
 <div $displayText>{$data[33]}</div></td></tr>
 
-<tr><td colspan='4'><b>9. Were the assignments effective for archieving the stated goals of 
+<tr><td colspan='4'><b>9. Were the assignments effective for archieving the stated goals of
 the course ?</b><font $displayText>{$data[34]}</font></td></tr>
 <tr $displayForm>{$input[80]}{$input[81]}{$input[82]}{$input[83]}</tr>
 <tr><td colspan='4'><b>Comments :</b></td></tr>
@@ -241,8 +241,8 @@ the course ?</b><font $displayText>{$data[34]}</font></td></tr>
 <textarea $displayForm name='data[35]'>{$data[35]}</textarea>
 <div $displayText>{$data[35]}</div></td></tr>
 
-<tr><td colspan='4'><b>10. Please share any other observation or comments you would like to make, 
-including on the content of the course and its organization</b> (Amount of work, class meetings, 
+<tr><td colspan='4'><b>10. Please share any other observation or comments you would like to make,
+including on the content of the course and its organization</b> (Amount of work, class meetings,
 content of, and approach to, the materials studied ...)</td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[36]'>{$data[36]}</textarea>
@@ -264,7 +264,7 @@ content of, and approach to, the materials studied ...)</td></tr>
 <input type='submit' value='Submit' />
 </td></tr>
 </table></form>
-</div>
+</fieldset>
 EOD;
 
 ?>

@@ -30,7 +30,7 @@ $checked[$i++]=$data[41]=="Yes"?"checked='checked'":null;
 $checked[$i++]=$data[41]=="No"?"checked='checked'":null;
 
 echo <<<EOD
-<div class='fieldset'>
+<fieldset>
 <form method='post' action='eval_update.php' name='form'>
 <input type='hidden' name='std_id' value='$std_id' />
 <input type='hidden' name='timestamp' value='$timestamp' />
@@ -128,7 +128,7 @@ Internship Evaluation Form, {$_SESSION['vwpp']['semester']}</h2>
 <textarea $displayForm name='data[24]'>{$data[24]}</textarea>
 <div $displayText>{$data[24]}</div></td></tr>
 
-<tr><td colspan='4'><b>3.a) Please estimate the amount of time (in %) you used French 
+<tr><td colspan='4'><b>3.a) Please estimate the amount of time (in %) you used French
 in your internship</b>
 <font $displayText>{$data[25]}</font></td></tr>
 <tr $displayForm>
@@ -137,7 +137,7 @@ in your internship</b>
 <td><input type='radio' name='data[25]' {$checked[5]} value='50-70%' />50-70%</td>
 <td><input type='radio' name='data[25]' {$checked[6]} value='Less than 50%' />Less than 50%</td></tr>
 
-<tr><td colspan='4' style='padding-left:30px;'><b>b) Please estimate the amount of time (in %) 
+<tr><td colspan='4' style='padding-left:30px;'><b>b) Please estimate the amount of time (in %)
 you used English in your internship</b>
 <font $displayText>{$data[26]}</font></td></tr>
 <tr $displayForm>
@@ -146,19 +146,19 @@ you used English in your internship</b>
 <td><input type='radio' name='data[26]' {$checked[9]} value='50-70%' />50-70%</td>
 <td><input type='radio' name='data[26]' {$checked[10]} value='Less than 50%' />Less than 50%</td></tr>
 
-<tr><td colspan='4'><b>4. Describe your interaction with the local population and/or 
+<tr><td colspan='4'><b>4. Describe your interaction with the local population and/or
 colleagues</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[27]'>{$data[27]}</textarea>
 <div $displayText>{$data[27]}</div></td></tr>
 
-<tr><td colspan='4'><b>5. How was the internship pertinent to your interests and/or 
+<tr><td colspan='4'><b>5. How was the internship pertinent to your interests and/or
 background or experience ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[28]'>{$data[28]}</textarea>
 <div $displayText>{$data[28]}</div></td></tr>
 
-<tr><td colspan='4'><b>6. Did you take any relevant courses previously or concomitantly 
+<tr><td colspan='4'><b>6. Did you take any relevant courses previously or concomitantly
 that you would recommend ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[29]'>{$data[29]}</textarea>
@@ -174,13 +174,13 @@ that you would recommend ?</b></td></tr>
 <textarea $displayForm name='data[31]'>{$data[31]}</textarea>
 <div $displayText>{$data[31]}</div></td></tr>
 
-<tr><td colspan='4'><b>9. What did you learn about local institutions, business, society, 
+<tr><td colspan='4'><b>9. What did you learn about local institutions, business, society,
 and people through your experience ?</b></td></tr>
 <tr><td colspan='4'>
 <textarea $displayForm name='data[32]'>{$data[32]}</textarea>
 <div $displayText>{$data[32]}</div></td></tr>
 
-<tr><td colspan='4'><b>10. Did your "stage" experience influence your plans for your future 
+<tr><td colspan='4'><b>10. Did your "stage" experience influence your plans for your future
 (career, other) ?</b><font $displayText>{$data[33]}</font></td></tr>
 <tr $displayForm>
 <td><input type='radio' name='data[33]' {$checked[11]} value='Yes' />Yes</td>
@@ -197,18 +197,18 @@ and people through your experience ?</b></td></tr>
 <tr $displayForm>
 <td><input type='radio' name='data[35]' {$checked[13]} value='Yes' />Yes</td>
 <td><input type='radio' name='data[35]' {$checked[14]} value='No' />No</td></tr>
-<tr><td colspan='4'>If yes, please list them below (meal tickets, or meal or travel reimbursements, 
+<tr><td colspan='4'>If yes, please list them below (meal tickets, or meal or travel reimbursements,
 payments, or other) at your "stage" :</td></tr>
-<tr><td colspan='2'>1. 
+<tr><td colspan='2'>1.
 <input $displayForm type='text' name='data[36]' value='{$data[36]}' style='width:90%;'/>
 <font $displayText>{$data[36]}</font></td>
-<td colspan='2'>3. 
+<td colspan='2'>3.
 <input $displayForm type='text' name='data[38]' value='{$data[38]}' style='width:90%;'/>
 <font $displayText>{$data[38]}</font></td></tr>
-<tr><td colspan='2'>2. 
+<tr><td colspan='2'>2.
 <input $displayForm type='text' name='data[37]' value='{$data[37]}' style='width:90%;'/>
 <font $displayText>{$data[37]}</font></td>
-<td colspan='2'>4. 
+<td colspan='2'>4.
 <input $displayForm type='text' name='data[39]' value='{$data[39]}' style='width:90%;'/>
 <font $displayText>{$data[39]}</font></td></tr>
 
@@ -217,7 +217,7 @@ payments, or other) at your "stage" :</td></tr>
 <textarea $displayForm name='data[40]'>{$data[40]}</textarea>
 <div $displayText>{$data[40]}</div></td></tr>
 
-<tr><td colspan='4' style='margin-top:20px;'><b>I authorize the program to quote form my "stage" 
+<tr><td colspan='4' style='margin-top:20px;'><b>I authorize the program to quote form my "stage"
 evaluation for a college publication/site.</b><font $displayText>{$data[41]}</font></td></tr>
 <tr $displayForm>
 <td><input type='radio' name='data[41]' {$checked[15]} value='Yes'/>Yes</td>
@@ -234,7 +234,7 @@ evaluation for a college publication/site.</b><font $displayText>{$data[41]}</fo
 <input type='hidden' name='closed' value='1' />
 <input type='submit' value='Submit' />
 </table></form>
-</div>
+</fieldset>
 EOD;
 
-?>	
+?>

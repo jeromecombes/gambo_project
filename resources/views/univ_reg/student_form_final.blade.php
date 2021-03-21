@@ -1,17 +1,12 @@
 @if (!$edit)
   @if (session('admin'))
+    <h3>University Registration</h3>
     <fieldset>
 
       <form method='post' action='/univ_reg3'>
         {{ csrf_field() }}
 
         <table>
-          <tr>
-            <td colspan='2'>
-              <h3>University Registration</h3>
-            </td>
-          </tr>
-
           <tr>
             <td>University</td>
             <td>
@@ -23,9 +18,9 @@
                 <option value='Paris 12' @if ($university == 'Paris 12') selected='selected' @endif >Paris 12</option>
                 <option value='CIPh' @if ($university == 'CIPh') selected='selected' @endif >CIPh</option>
               </select>
-              <div style='text-align:right;'>
-                <input type='submit' value='Save' class='btn btn-primary' />
-              </div>
+            </td>
+            <td style='text-align:right;'>
+              <input type='submit' value='Save' class='btn btn-primary' />
             </td>
           </tr>
         </table>

@@ -32,7 +32,7 @@
     {{ csrf_field() }}
     <input type='hidden' name='student' value='{{ $student->id }}' />
 
-    <div class='fieldset'>
+    <fieldset>
 
     @if (substr(session('semester'), -4) < 2020)
       @include('housing.student_form_before_2020')
@@ -49,7 +49,7 @@
         @endif
       </p>
 
-    </div>
+    </fieldset>
   </form>
 @endif
 

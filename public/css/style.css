@@ -274,17 +274,12 @@ font.response {
 }
 
 
-fieldset{
-  background:#F8F8F8;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.fieldset {
-  padding: 10px 30px 10px 30px;
+fieldset {
   background:#EFEFEF;
-  border-radius:5px;
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  border: none;
 }
 
 legend{

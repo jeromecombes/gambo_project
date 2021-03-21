@@ -31,7 +31,7 @@ echo <<<EOD
 <h3>Email</h3>
 <a href='/admin/hosts'>Back to list</a><br/><br/>
 
-<div class='fieldset'>
+<fieldset>
 <form action='housing-email2.php' method='post'>
 <input type='hidden' name='housing' value='$housing' />
 <table style='margin-left:-30px;'>
@@ -49,7 +49,7 @@ echo <<<EOD
 <input type='submit' value='Send' style='margin-left:40px;'/>
 </table>
 </form>
-</div>
+</fieldset>
 EOD;
 
 
