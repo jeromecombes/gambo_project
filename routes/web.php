@@ -170,6 +170,27 @@ Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_
     ->middleware('role:23')
     ->name('courses.reidhall.assignment');
 
+Route::get('/course/univ/{add}', [CourseController::class, 'univ_edit'])
+    ->where('add', 'add')
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->middleware('role:23')
+    ->name('courses.univ_add');
+
+Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
+    ->where('edit', 'edit')
+    ->where('id', '[0-9]+')
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->middleware('role:23')
+    ->name('courses.univ_edit');
+
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])
     ->middleware('admin')

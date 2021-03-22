@@ -4,6 +4,6 @@
 <h3>Courses</h3>
 
 @include('courses.admin_vwpp')
-@include('courses.admin_university')
+@include('courses.student_form_university')
 
 @endsection

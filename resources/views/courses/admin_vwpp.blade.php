@@ -12,7 +12,7 @@
         </td>
       </tr>
 
-      @include('courses.vwpp_student_choices')
+      @include('courses.student_form_vwpp')
 
       <tr>
         <td colspan='4' style='font-weight:bold; padding:50px 0 10px 0;'><u>2.) Total registered</u></td>

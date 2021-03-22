@@ -8,6 +8,7 @@ use App\Models\RHCourseAssignment;
 use App\Models\RHCourseLock;
 use App\Models\RHCoursePublish;
 use App\Models\Student;
+use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 
 include_once( __DIR__ . '/../../Includes/functions.php');
@@ -42,6 +43,8 @@ class CourseController extends Controller
 
         // Get student info
         $student = Student::find(session('student'));
+
+        // VWPP Courses
 
         // Lock / Unlock - Publish / Hide buttons
         $button_lock = RHCourseLock::findMe() ? 'Unlock' : 'Lock';
@@ -117,6 +120,40 @@ class CourseController extends Controller
             'e2' => null,
             );
 
+
+        // University Courses
+
+        // Students courses
+        $courses = UnivCourse::getMe();
+
+
+        // TEST
+        $admin = true;
+        $admin2 = true;
+        $hoursStart = 8;
+        $hoursEnd = 21;
+
+        // TODO : use $courses on template to make the link
+        $coursesForLink = array();
+        foreach ($courses as $elem) {
+            if (!$elem['lien']) {
+                $coursesForLink[] = $elem;
+            }
+        }
+        // TODO See How to manage, probably in the template  this : unset($coursesForLink[$course['id']]);
+
+        $days = array(
+            '' => array(null, null),
+            0 => array(null, null),
+            1 => array(1, 'Lundi'),
+            2 => array(2, 'Mardi'),
+            3 => array(3, 'Mercredi'),
+            4 => array(4, 'Jeudi'),
+            5 => array(5, 'Vendredi'),
+            6 => array(6, 'Samedi'),
+            7 => array(7, 'Dimanche')
+        );
+
         $params = compact(
             'edit',
             'student',
@@ -127,7 +164,15 @@ class CourseController extends Controller
             'choices',
             'occurences',
             'rhCourses',
+            'courses',
+            'admin',
+            'admin2',
+            'coursesForLink',
+            'days',
+            'hoursStart',
+            'hoursEnd',
         );
+
 
         // View
         return view('courses.admin', $params);
@@ -159,6 +204,73 @@ class CourseController extends Controller
         );
 
         return redirect("/courses")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
+     * Edit a university course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_edit(Request $request)
+    {
+
+        $id = $request->id;
+        $edit = $request->edit;
+
+        // All existing students courses for making links
+        $courses = UnivCourse::getMe();
+
+        // Add a new course
+        if ($request->add) {
+            $edit = 'edit';
+            $course = new UnivCourse();
+
+        // Edit an existing course
+        } else {
+            // The selected course
+            $course = $courses->find($id);
+        }
+
+
+        $admin = true;
+        $admin2 = true;
+        $hoursStart = 8;
+        $hoursEnd = 21;
+
+        $coursesForLink = array();
+        foreach ($courses as $elem) {
+            if (!$elem['lien']) {
+                $coursesForLink[] = $elem;
+            }
+        }
+        // TODO See How to manage, probably in the template  this : unset($coursesForLink[$course['id']]);
+
+        $days = array(
+            1 => array(1, 'Lundi'),
+            2 => array(2, 'Mardi'),
+            3 => array(3, 'Mercredi'),
+            4 => array(4, 'Jeudi'),
+            5 => array(5, 'Vendredi'),
+            6 => array(6, 'Samedi'),
+            7 => array(7, 'Dimanche')
+        );
+
+        $params = compact(
+            'edit',
+            'courses',
+            'course',
+            'admin',
+            'admin2',
+            'coursesForLink',
+            'days',
+            'hoursStart',
+            'hoursEnd',
+        );
+
+
+        // View
+        return view('courses.university_form', $params);
     }
 
 }
