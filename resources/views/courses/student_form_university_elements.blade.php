@@ -258,7 +258,7 @@
               @if ($edit)
                 <textarea name='modalites1'>{{ $course->modalites1 }}</textarea>
               @else
-                {{ $course->modalites1 }}
+                {!! nl2br(e($course->modalites1)) !!}
               @endif
               </td>
           </tr>
@@ -271,7 +271,7 @@
               @if ($admin and $edit)
                 <textarea name='modalites2'>{{ $course->modalites2 }}</textarea>
               @else
-                {{ $course->modalites2 }}
+                {!! nl2br(e($course->modalites2)) !!}
               @endif
             </td>
           </tr>

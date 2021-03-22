@@ -195,7 +195,7 @@
           @if ($edit)
             <textarea name='question_plus[11]'>{{ $answer_plus[11] }}</textarea>
           @else
-            <font class='response' colspan='2'>{{ $answer_plus[12] }}</font>
+            <font class='response' colspan='2'>{!! nl2br(e($answer_plus[12])) !!}</font>
           @endif
         </td>
       </tr>

@@ -1,18 +1,18 @@
 <h2 style='text-align:center;'>Vassar-Wesleyan Program in Paris Housing Questionnaire</h2>
 
 <p style='text-align:justify;'>
-  This questionnaire will be used by the Assistant Director in Paris to match you with a suitable housing 
-  situation.  A specific housing situation will be reserved for you <u>based on your responses to this 
-  questionnaire</u>. Thank you for having read the Housing Process Residence commitment sections of 
-  the VWPP website before filling out this questionnaire. Be honest and thoughtful in your 
-  responses. The more the Assistant Director knows about you, the better the chance of a successful match 
-  between you and the housing reserved for you.  Should any criteria concerning you change between filling 
-  out this form and your arrival in Paris, please inform the VWPP Paris office as soon as possible at 
+  This questionnaire will be used by the Assistant Director in Paris to match you with a suitable housing
+  situation.  A specific housing situation will be reserved for you <u>based on your responses to this
+  questionnaire</u>. Thank you for having read the Housing Process Residence commitment sections of
+  the VWPP website before filling out this questionnaire. Be honest and thoughtful in your
+  responses. The more the Assistant Director knows about you, the better the chance of a successful match
+  between you and the housing reserved for you.  Should any criteria concerning you change between filling
+  out this form and your arrival in Paris, please inform the VWPP Paris office as soon as possible at
   <a href='mailto:housing@vwpp.org'>housing@vwpp.org</a>
 </p>
 
 <p style='text-align:justify;font-weight:bold;'>
-  Please fill this questionnaire by the deadline set by the Office of International Programs (Vassar) or 
+  Please fill this questionnaire by the deadline set by the Office of International Programs (Vassar) or
   the Office of International Studies (Wesleyan).
 </p>
 
@@ -103,8 +103,8 @@
   </tr>
   <tr>
     <td colspan='5' style='text-align:justify;font-style:italic;'>
-      Note: Please make every effort to join the group flight.  It will facilitate your travel and arrival 
-      in France. If you have to travel on your own, please forward your full travel itinerary as soon as you 
+      Note: Please make every effort to join the group flight.  It will facilitate your travel and arrival
+      in France. If you have to travel on your own, please forward your full travel itinerary as soon as you
       make your travel plans to <a href='mailto:housing@vwpp.edu'>housing@vwpp.org</a>.
     </td>
   </tr>
@@ -116,7 +116,7 @@
   </tr>
   <tr>
     <td colspan='5' style='text-align:justify;'>
-      The Vassar Wesleyan Program in Paris semester fee includes tuition, room and partial board arranged by 
+      The Vassar Wesleyan Program in Paris semester fee includes tuition, room and partial board arranged by
       the Vassar-Wesleyan Program in Paris.
     </td>
   </tr>
@@ -132,16 +132,16 @@
   </tr>
   <tr>
     <td colspan='5' style='text-align:justify;font-style:italic;'>
-      Please note: Exception may be made only in the case of a student who wishes to live with a relative 
-      living in Paris. In such cases, students must indicate this on this housing form after obtaining 
-      permission from the Director of International Studies (Wesleyan) or the Director of International 
-      Programs (Vassar). The cost of room and partial board will be deducted from the program fee in such 
+      Please note: Exception may be made only in the case of a student who wishes to live with a relative
+      living in Paris. In such cases, students must indicate this on this housing form after obtaining
+      permission from the Director of International Studies (Wesleyan) or the Director of International
+      Programs (Vassar). The cost of room and partial board will be deducted from the program fee in such
       cases.
     </td>
   </tr>
   <tr>
     <td colspan='5' style='text-align:justify;font-style:italic;'>
-      If this is the case, please explain below with whom and where you will be living. We must have the 
+      If this is the case, please explain below with whom and where you will be living. We must have the
       address and phone number.
     </td>
   </tr>
@@ -150,7 +150,7 @@
       @if ($edit)
         <textarea name='question[4]'>{{ $answer[4] }}</textarea>
       @else
-        <div class='response2'>{{ $answer[4] }}</div>
+        <div class='response2'>{!! nl2br(e($answer[4])) !!}</div>
       @endif
     </td>
   </tr>
@@ -162,7 +162,7 @@
   </tr>
   <tr>
     <td colspan='5' style='text-align:justify;'>
-      1. Have you ever traveled or lived in France or another foreign country?  If so, where and for how long? 
+      1. Have you ever traveled or lived in France or another foreign country?  If so, where and for how long?
       (maximum 220 characters including spaces)
     </td>
   </tr>
@@ -171,15 +171,15 @@
       @if ($edit)
         <textarea name='question[5]'>{{ $answer[5] }}</textarea>
       @else
-        <div class='response'>{{ $answer[5] }}</div>
+        <div class='response'>{!! nl2br(e($answer[5])) !!}</div>
       @endif
     </td>
   </tr>
 
   <tr>
     <td colspan='5' style='text-align:justify;'>
-      2. Have you ever had a home stay experience with a foreign family or hosted an international student?  
-      If so, please describe briefly your impressions and how this experience influences your current 
+      2. Have you ever had a home stay experience with a foreign family or hosted an international student?
+      If so, please describe briefly your impressions and how this experience influences your current
       preferences in housing in Paris.
     </td>
   </tr>
@@ -188,7 +188,7 @@
       @if ($edit)
         <textarea name='question[6]'>{{ $answer[6] }}</textarea>
       @else
-        <div class='response'>{{ $answer[6] }}</div>
+        <div class='response'>{!! nl2br(e($answer[6])) !!}</div>
       @endif
     </td>
   </tr>
@@ -203,7 +203,7 @@
       @if ($edit)
         <textarea name='question[7]'>{{ $answer[7] }}</textarea>
       @else
-        <div class='response'>{{ $answer[7] }}</div>
+        <div class='response'>{!! nl2br(e($answer[7])) !!}</div>
       @endif
     </td>
   </tr>
@@ -263,7 +263,7 @@
       @if ($edit)
         <textarea name='question[11]'>{{ $answer[11] }}</textarea>
       @else
-        <div class='response'>{{ $answer[11] }}</div>
+        <div class='response'>{!! nl2br(e($answer[11])) !!}</div>
       @endif
     </td>
   </tr>
@@ -276,7 +276,7 @@
       @if ($edit)
         <textarea name='question[12]'>{{ $answer[12] }}</textarea>
       @else
-        <div class='response'>{{ $answer[12] }}</div>
+        <div class='response'>{!! nl2br(e($answer[12])) !!}</div>
       @endif
     </td>
   </tr>
@@ -289,7 +289,7 @@
       @if ($edit)
         <textarea name='question[13]'>{{ $answer[13] }}</textarea>
       @else
-        <div class='response'>{{ $answer[13] }}</div>
+        <div class='response'>{!! nl2br(e($answer[13])) !!}</div>
       @endif
     </td>
   </tr>
@@ -303,7 +303,7 @@
       @if ($edit)
         <textarea name='question[14]'>{{ $answer[14] }}</textarea>
       @else
-        <div class='response'>{{ $answer[14] }}</div>
+        <div class='response'>{!! nl2br(e($answer[14])) !!}</div>
       @endif
     </td>
   </tr>
@@ -345,7 +345,7 @@
 
   <tr>
     <td colspan='5'>
-      <h3 style='text-align:justify;'>V. The VWPP housing is described in detail in the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>You must read through this description 
+      <h3 style='text-align:justify;'>V. The VWPP housing is described in detail in the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>You must read through this description
       VERY carefully and then answer the following questions</u>.</h3>
     </td>
   </tr>
@@ -360,7 +360,7 @@
       @if ($edit)
         <textarea name='question[28]'>{{ $answer[28] }}</textarea>
       @else
-        <div class='response'>{{ $answer[28] }}</div>
+        <div class='response'>{!! nl2br(e($answer[28])) !!}</div>
       @endif
     </td>
   </tr>
@@ -502,7 +502,7 @@
       @if ($edit)
         <textarea name='question[24]'>{{ $answer[24] }}</textarea>
       @else
-        <div class='response'>{{ $answer[24] }}</div>
+        <div class='response'>{!! nl2br(e($answer[24])) !!}</div>
       @endif
     </td>
   </tr>
@@ -517,14 +517,14 @@
       @if ($edit)
         <textarea name='question[25]'>{{ $answer[25] }}</textarea>
       @else
-        <div class='response'>{{ $answer[25] }}</div>
+        <div class='response'>{!! nl2br(e($answer[25])) !!}</div>
       @endif
     </td>
   </tr>
 
   <tr>
     <td colspan='5'style='text-align:justify;'>
-      5. Do you think you will adhere strictly to these dietary habits in France and do we need to abide 
+      5. Do you think you will adhere strictly to these dietary habits in France and do we need to abide
       by them when considering your housing?
     </td>
   </tr>
@@ -550,7 +550,7 @@
       @if ($edit)
         <textarea name='question[27]'>{{ $answer[27] }}</textarea>
       @else
-        <div class='response'>{{ $answer[27] }}</div>
+        <div class='response'>{!! nl2br(e($answer[27])) !!}</div>
       @endif
     </td>
   </tr>
@@ -570,7 +570,7 @@
       @if ($edit)
         <textarea name='question[32]'>{{ $answer[32] }}</textarea>
       @else
-        <div class='response'>{{ $answer[32] }}</div>
+        <div class='response'>{!! nl2br(e($answer[32])) !!}</div>
       @endif
     </td>
   </tr>

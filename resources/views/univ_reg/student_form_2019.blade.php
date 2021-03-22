@@ -124,7 +124,7 @@
           @if ($edit)
             <textarea name='question[8]'>{{ $answer[8] }}</textarea>
           @else
-            <font class='response' colspan='2'>{{ $answer[8] }}</font>
+            <font class='response'>{!! nl2br(e($answer[8])) !!}</font>
           @endif
         </td>
       </tr>
@@ -299,7 +299,7 @@
           @if ($edit)
             <textarea name='question[19]'>{{ $answer[19] }}</textarea>
           @else
-            <font class='response'>{{ $answer[19] }}</font>
+            <font class='response'>{!! nl2br(e($answer[19])) !!}</font>
           @endif
         </td>
       </tr>
@@ -315,7 +315,7 @@
             @if ($edit)
               <textarea name='question[22]'>{{ $answer[22] }}</textarea>
             @else
-              <font class='response'>{{ $answer[22] }}</font>
+              <font class='response'>{!! nl2br(e($answer[22])) !!}</font>
             @endif
           </td>
         </tr>
