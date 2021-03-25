@@ -69,9 +69,10 @@ class MyModel extends Model
 
     protected function findMe()
     {
-        $object = $this::where('student', session('student'))
-            ->where('semester', session('semester'))
-            ->first();
+        $object = $this::firstOrNew([
+            'student' => session('student'),
+            'semester' => session('semester'),
+        ]);
 
         return $object;
     }

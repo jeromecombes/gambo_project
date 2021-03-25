@@ -113,6 +113,19 @@ class UnivCourse extends MyModel
         return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
     }
 
+    public function getNoteAttribute($value)
+    {
+        if ($value == 0 or $value == 2) {
+            return 'No';
+        }
+
+        if ($value == 1) {
+            return 'Yes';
+        }
+
+        return $value;
+    }
+
     // Set
     public function setCodeAttribute($value)
     {
@@ -187,6 +200,16 @@ class UnivCourse extends MyModel
     public function setModalites2Attribute($value)
     {
         $this->attributes['modalites2'] = $this->encrypt($value);
+    }
+
+    public function links()
+    {
+        return $this->hasMany(UnivCourse::class, 'lien', 'id');
+    }
+
+    public function link()
+    {
+        return $this->belongsTo(UnivCourse::class, 'lien', 'id');
     }
 
 }

@@ -48,7 +48,6 @@
               @if ($edit)
                 <select name='nature'>
                   <option value=''>&nbsp;</option>
-                  {{-- @foreach ($config']['course_type'] as $elem) --}}
                   @foreach (explode(',', env('APP_COURSE_TYPE')) as $elem)
                     <option value='{{ $elem }}' @if ($course->nature == $elem) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
@@ -62,18 +61,16 @@
           {{-- EDIT Course link --}}
 
           @if ($edit)
-            @if (!empty($coursesForLink) and !$course->liaison)
+            @if (!empty($coursesForLinks) and !count($course->links))
               <tr>
                 <td style='padding-top:20px;'>
                   Si ce cours est rattaché à un autre cours déjà enregistré,<br/>veuillez le sélectionner dans cette liste
                 </td>
                 <td style='padding-top:20px;'>
-                  <select name='lien' onchange='checkLink(this, $admin, {{ $course->id }});'>
+                  <select name='lien' onchange='checkLink(this, {{ session("admin") }}, {{ $course->id }});'>
                     <option value=''>&nbsp;</option>
-                    @foreach ($coursesForLink as $elem)
-                      @if (!$elem['lien'])
-                        <option value='{{ $elem['id'] }}' @if ($course->lien == $elem['id']) selected='selected' @endif >{{ $elem['nom'] }} {$elem['prof'] }}</option>
-                      @endif
+                    @foreach ($coursesForLinks as $elem)
+                        <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->nature }})</option>
                     @endforeach
                   </select>
                 </td>
@@ -85,7 +82,6 @@
               <td style='padding-top:20px;'>
                 <select name='institution' id='institution{{ $course->id }}' onchange='checkInstitution(this, {{ $course->id }});' {{ $disabled }}>
                   <option value=''>&nbsp;</option>
-                  {{-- @foreach ($config['institutions'] as $elem) --}}
                   @foreach (explode(',', env('APP_INSTITUTIONS')) as $elem)
                     <option value='{{ $elem }}' @if ($course->institution == htmlentities($elem, ENT_QUOTES|ENT_IGNORE, 'utf-8')) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
@@ -106,7 +102,6 @@
               <td>
                 <select name='discipline' {{ $disabled }} id='discipline{{ $course->id }}'>
                   <option value=''>&nbsp;</option>
-                  {{-- @foreach ($config['disciplines'] as $elem) --}}
                   @foreach (explode(',', env('APP_DISCIPLINES')) as $elem)
 	                  <option value='{{ $elem }}' @if ($course->discipline == htmlentities($elem, ENT_QUOTES|ENT_IGNORE, 'UTF-8')) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
@@ -119,7 +114,6 @@
               <td>
                 <select name='niveau' {{ $disabled }} id='niveau{{ $course->id }}'>
                   <option value=''>&nbsp;</option>
-                  {{-- @foreach ($config['levels'] as $elem) --}}
                   @foreach (explode(',', env('APP_LEVELS')) as $elem)
                     <option value='{{ $elem }}' @if ($course->niveau == $elem) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
@@ -133,10 +127,10 @@
 
           {{-- SHOW Course link --}}
 
-            @if ($course->lien)
+            @if ($course->link)
               <tr>
                 <td style='padding-top:20px;'>Ce cours est rattaché au cours suivant :</td>
-                <td style='padding-top:20px;' class='response'>{{ $course->lien }}</td>
+                <td style='padding-top:20px;' class='response'>{{ $course->link->nom }}, {{ $course->link->prof }} ({{ $course->link->nature }})</td>
               </tr>
             @else
               <tr>
@@ -186,13 +180,13 @@
               @if ($edit)
                 <select name='jour' style='width:31%;'>
                   <option value=''>Jour</option>
-                  @foreach ($days as $day)
-                    <option value='{{ $day[0] }}' @if ($course->jour == $day[0]) selected='selected' @endif >{{ $day[1] }}</option>
-                  @endforeach
+                  @for ($i = 0; $i < 7; $i++)
+                    <option value='{{ $i + 1 }}' @if ($course->jour == $i + 1) selected='selected' @endif >{{ __(jddayofweek($i, 1)) }}</option>
+                  @endfor
                 </select>
                 <select name='debut' style='width:33%;'>
                   <option value=''>Début</option>
-                  @for ($i = $hoursStart; $i < $hoursEnd + 1; $i++)
+                  @for ($i = 8; $i < 22; $i++)
                     @for ($j = 0; $j < 60; $j = $j + 15)
                       @php
                         $h1 = sprintf("%02d",$i) . ':' . sprintf("%02d",$j);
@@ -205,7 +199,7 @@
 
                 <select name='fin' style='width:33%;'>
                   <option value=''>Fin</option>
-                  @for ($i = $hoursStart; $i < $hoursEnd + 1; $i++)
+                  @for ($i = 8; $i < 22; $i++)
                     @for ($j = 0; $j < 60; $j = $j + 15)
                       @php
                         $h1 = sprintf("%02d",$i) . ':' . sprintf("%02d",$j);
@@ -216,7 +210,7 @@
                   @endfor
                 </select>
               @else
-                {{ $days[$course->jour][1] }} {{ $course->debut }} {{ $course->fin }}
+                @if ($course->jour) {{ __(jddayofweek($course->jour-1, 1)) }} @endif {{ $course->debut }} {{ $course->fin }}
               @endif
               </td>
           </tr>
@@ -225,10 +219,10 @@
             <td style='padding-top:20px;'>Aurez-vous une note pour ce cours ?</td>
             <td style='padding-top:20px;' class='response'>
               @if ($edit)
-                <input type='radio' name='note' id='grade_yes' value='1' @if ($course->note == 1) checked='checked' @endif /> <label for='grade_yes' >Oui</label>
-                <input type='radio' name='note' id='grade_no' value='2' @if ($course->note == 2) checked='checked' @endif /> <label for='grade_no' >Non</label>
+                <input type='radio' name='note' id='grade_yes' value='Yes' @if ($course->note == 'Yes') checked='checked' @endif /> <label for='grade_yes' >Oui</label>
+                <input type='radio' name='note' id='grade_no' value='No' @if ($course->note == 'No') checked='checked' @endif /> <label for='grade_no' >Non</label>
               @else
-                {{ $course->note2 }}
+                {{ __($course->note) }}
               @endif
             </td>
           </tr>
@@ -241,10 +235,10 @@
             <td>&nbsp;</td>
             <td class='response'>
               @if ($edit)
-                <input type='radio' name='modalites' id='modalities_yes' value='1' @if ($course->modalites == 1) checked='checked' @endif /> <label for='modalities_yes' >Oui</label>
-                <input type='radio' name='modalites' id='modalities_no' value='2' @if ($course->modalites == 2) checked='checked' @endif /> <label for='modalities_no' >Non</label>
+                <input type='radio' name='modalites' id='modalities_yes' value='Yes' @if ($course->modalites == 'Yes') checked='checked' @endif /> <label for='modalities_yes' >Oui</label>
+                <input type='radio' name='modalites' id='modalities_no' value='No' @if ($course->modalites == 'No') checked='checked' @endif /> <label for='modalities_no' >Non</label>
               @else
-                {{ $course->modalites }}
+                {{ __($course->modalites) }}
               @endif
               </td>
           </tr>
@@ -268,7 +262,7 @@
           </tr>
           <tr>
             <td colspan='2' class='response'>
-              @if ($admin and $edit)
+              @if (session('admin') and $edit)
                 <textarea name='modalites2'>{{ $course->modalites2 }}</textarea>
               @else
                 {!! nl2br(e($course->modalites2)) !!}
@@ -284,13 +278,13 @@
               </td>
             </tr>
           @else
-            @if ($admin2 or (!$admin and !$course->lock))
+            @if ($admin2 or (!session('admin') and !$course->lock))
               <tr>
                 <td colspan='2' style='padding-top:20px; text-align:right;'>
                   <input type='button' value='Modifier' onclick='document.location.href="{{ asset('/course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
 
                   @if (!$course->liaison)
-                    <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ $admin }});' class='btn'/>
+                    <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ session("admin") }});' class='btn'/>
                   @endif
 
                   @if ($admin2)
@@ -300,7 +294,7 @@
               </tr>
             @endif
 
-            @if (!$admin and $course->lock)
+            @if (!session('admin') and $course->lock)
               <tr>
                 <td colspan='2' style='padding-top:20px; text-align:right;'>
                   <input type='button' value='Modifier' id='modalitesUpdate{{ $course->id }}' onclick='editModalites({{ $course->id }}, true);' class='btn btn-primary'/>

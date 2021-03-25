@@ -10,11 +10,18 @@ use App\Models\RHCoursePublish;
 use App\Models\Student;
 use App\Models\UnivCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 include_once( __DIR__ . '/../../Includes/functions.php');
 
 class CourseController extends Controller
 {
+
+    public function __construct()
+    {
+        App::setLocale('fr_FR');
+    }
+
     /**
      * Display the courses student form
      *
@@ -84,13 +91,15 @@ class CourseController extends Controller
         usort($occurences['Writing'], 'cmp_count_desc');
 
         // Student assignment IDs
-        $assignment = $rhCoursesAssign->where('student', session('student'))->first() ?? (object) array(
+        $default_assignment = (object) array(
             'writing1' => null,
             'writing2' => null,
             'seminar1' => null,
             'seminar2' => null,
             'seminar3' => null,
-            );
+        );
+
+        $assignment = $rhCoursesAssign->where('student', session('student'))->first() ?? $default_assignment;
 
         // Student assignment Text
         $aw1 = $assignment ? $rhCourses->find($assignment->writing1) :null;
@@ -108,17 +117,7 @@ class CourseController extends Controller
         );
 
         // Student Choices
-        $choices = CourseChoice::findMe() ?? (object) array(
-            'a1' => null,
-            'b1' => null,
-            'c1' => null,
-            'd1' => null,
-            'a2' => null,
-            'b2' => null,
-            'c2' => null,
-            'd2' => null,
-            'e2' => null,
-            );
+        $choices = CourseChoice::findMe();
 
 
         // University Courses
@@ -126,33 +125,16 @@ class CourseController extends Controller
         // Students courses
         $courses = UnivCourse::getMe();
 
+        // Admin with modification access
+        $admin2 = in_array(16, session('access'));
 
-        // TEST
-        $admin = true;
-        $admin2 = true;
-        $hoursStart = 8;
-        $hoursEnd = 21;
-
-        // TODO : use $courses on template to make the link
-        $coursesForLink = array();
+        // Courses that can be linked
+        $coursesForLinks = array();
         foreach ($courses as $elem) {
-            if (!$elem['lien']) {
-                $coursesForLink[] = $elem;
+            if (!$elem->lien) {
+                $coursesForLinks[] = $elem;
             }
         }
-        // TODO See How to manage, probably in the template  this : unset($coursesForLink[$course['id']]);
-
-        $days = array(
-            '' => array(null, null),
-            0 => array(null, null),
-            1 => array(1, 'Lundi'),
-            2 => array(2, 'Mardi'),
-            3 => array(3, 'Mercredi'),
-            4 => array(4, 'Jeudi'),
-            5 => array(5, 'Vendredi'),
-            6 => array(6, 'Samedi'),
-            7 => array(7, 'Dimanche')
-        );
 
         $params = compact(
             'edit',
@@ -165,14 +147,9 @@ class CourseController extends Controller
             'occurences',
             'rhCourses',
             'courses',
-            'admin',
             'admin2',
-            'coursesForLink',
-            'days',
-            'hoursStart',
-            'hoursEnd',
+            'coursesForLinks',
         );
-
 
         // View
         return view('courses.admin', $params);
@@ -232,42 +209,24 @@ class CourseController extends Controller
             $course = $courses->find($id);
         }
 
+        // Admin with modification access
+        $admin2 = in_array(16, session('access'));
 
-        $admin = true;
-        $admin2 = true;
-        $hoursStart = 8;
-        $hoursEnd = 21;
-
-        $coursesForLink = array();
+        // Courses that can be linked
+        $coursesForLinks = array();
         foreach ($courses as $elem) {
-            if (!$elem['lien']) {
-                $coursesForLink[] = $elem;
+            if (!$elem->lien) {
+                $coursesForLinks[] = $elem;
             }
         }
-        // TODO See How to manage, probably in the template  this : unset($coursesForLink[$course['id']]);
-
-        $days = array(
-            1 => array(1, 'Lundi'),
-            2 => array(2, 'Mardi'),
-            3 => array(3, 'Mercredi'),
-            4 => array(4, 'Jeudi'),
-            5 => array(5, 'Vendredi'),
-            6 => array(6, 'Samedi'),
-            7 => array(7, 'Dimanche')
-        );
 
         $params = compact(
             'edit',
             'courses',
             'course',
-            'admin',
             'admin2',
-            'coursesForLink',
-            'days',
-            'hoursStart',
-            'hoursEnd',
+            'coursesForLinks',
         );
-
 
         // View
         return view('courses.university_form', $params);
