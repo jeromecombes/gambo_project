@@ -1,5 +1,4 @@
 <?php		//	Lock or Unlock VWPP Courses Choices for 1 student
-session_start();
 require_once "../inc/config.php";
 
 access_ctrl(16);

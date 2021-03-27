@@ -14,6 +14,6 @@ class CourseChoice extends MyModel
     /**
      * @var array
      */
-    protected $fillable = ['student', 'semester', 'a1', 'a2', 'b1', 'b2', 'c1', 'd1', 'c2', 'd2', 'e2'];
+    protected $fillable = ['student', 'semester', 'a1', 'a2', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'e2'];
 
 }

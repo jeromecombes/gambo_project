@@ -5,7 +5,9 @@ $evn_file = '.env';
 $dotenv = Dotenv\Dotenv::createMutable(__DIR__ . '/../../', $evn_file);
 $dotenv->load();
 
-session_start();
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 global $config;
 global $dbprefix;

@@ -30,22 +30,6 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-
-        if (session('admin')) {
-            return $this->admin_index($request);
-        } else {
-            echo "// TODO";
-        }
-    }
-
-    /**
-     * Display the courses student form
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function admin_index(Request $request)
-    {
         $edit = $request->edit;
 
         // Get student info
@@ -54,8 +38,21 @@ class CourseController extends Controller
         // VWPP Courses
 
         // Lock / Unlock - Publish / Hide buttons
-        $button_lock = RHCourseLock::findMe() ? 'Unlock' : 'Lock';
-        $button_publish = RHCoursePublish::findMe() ? 'Hide' : 'Publish';
+        if (RHCourseLock::findMe()) {
+            $button_lock = 'Unlock';
+            $edit_vwpp = false;
+        } else {
+            $button_lock = 'Lock';
+            $edit_vwpp = session('admin') ? false : true;
+        }
+
+        if (RHCoursePublish::findMe()) {
+            $button_publish = 'Hide';
+            $show_final_reg = true;
+        } else {
+            $button_publish = 'Publish';
+            $show_final_reg = false;
+        }
 
         // Reid Hall Courses
         $rhCourses = RHCourse::where('semester', session('semester'))->orderBy('type')->get();
@@ -116,9 +113,13 @@ class CourseController extends Controller
             'seminar3' => $as3 ? $as3->code . ' ' . $as3->title . ', ' . $as3->professor : null,
         );
 
-        // Student Choices
-        $choices = CourseChoice::findMe();
+        // Hide final reg if no assignment (student view only)
+        if ($assignment == $default_assignment) {
+            $show_final_reg = false;
+        }
 
+        // Student Choices
+        $choices = CourseChoice::findOrCreateMe();
 
         // University Courses
 
@@ -138,6 +139,7 @@ class CourseController extends Controller
 
         $params = compact(
             'edit',
+            'edit_vwpp',
             'student',
             'assignment',
             'assignment_text',
@@ -146,13 +148,19 @@ class CourseController extends Controller
             'choices',
             'occurences',
             'rhCourses',
+            'show_final_reg',
             'courses',
             'admin2',
             'coursesForLinks',
         );
 
         // View
-        return view('courses.admin', $params);
+        if (session('admin')) {
+            return view('courses.admin', $params);
+        } else {
+            return view('courses.student', $params);
+        }
+
     }
 
     /**
@@ -163,9 +171,6 @@ class CourseController extends Controller
      */
     public function reidhall_assignment(Request $request)
     {
-
-        $student = $request->student;
-
         RHCourseAssignment::updateOrCreate(array(
                 'student' => session('student'),
                 'semester' => session('semester'),
@@ -184,6 +189,34 @@ class CourseController extends Controller
     }
 
     /**
+     * Update Reid Hall Courses Choices
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reidhall_choices(Request $request)
+    {
+        CourseChoice::updateOrCreate(array(
+                'student' => session('student'),
+                'semester' => session('semester'),
+            ),
+            array(
+                'a1' => $request->writing1,
+                'b1' => $request->writing2,
+                'c1' => $request->writing3,
+                'd1' => $request->writing4,
+                'a2' => $request->seminar1,
+                'b2' => $request->seminar2,
+                'c2' => $request->seminar3,
+                'd2' => $request->seminar4,
+                'e2' => $request->seminar5,
+            )
+        );
+
+        return redirect("/courses")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
      * Edit a university course
      *
      * @param  \Illuminate\Http\Request  $request
@@ -191,12 +224,9 @@ class CourseController extends Controller
      */
     public function univ_edit(Request $request)
     {
-
-        $id = $request->id;
-        $edit = $request->edit;
-
         // All existing students courses for making links
         $courses = UnivCourse::getMe();
+
 
         // Add a new course
         if ($request->add) {
@@ -205,8 +235,15 @@ class CourseController extends Controller
 
         // Edit an existing course
         } else {
+            $id = $request->id;
+            $edit = $request->edit;
+
             // The selected course
             $course = $courses->find($id);
+
+            if (empty($course)) {
+                return redirect("/courses")->with('warning', 'Access denied');
+            }
         }
 
         // Admin with modification access

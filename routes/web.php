@@ -170,13 +170,15 @@ Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_
     ->middleware('role:23')
     ->name('courses.reidhall.assignment');
 
+Route::post('/courses/reidhall/choices', [CourseController::class, 'reidhall_choices'])
+    ->name('courses.reidhall.choices');
+
 Route::get('/course/univ/{add}', [CourseController::class, 'univ_edit'])
     ->where('add', 'add')
     ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
-    ->middleware('this.student')
     ->middleware('role:23')
     ->name('courses.univ_add');
 
@@ -187,7 +189,6 @@ Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
-    ->middleware('this.student')
     ->middleware('role:23')
     ->name('courses.univ_edit');
 

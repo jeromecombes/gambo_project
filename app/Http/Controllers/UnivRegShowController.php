@@ -7,5 +7,5 @@ use App\Http\Controllers\LockController;
 
 class UnivRegShowController extends LockController
 {
-    public $model = "App\UnivRegShow";
+    public $model = "App\Models\UnivRegShow";
 }

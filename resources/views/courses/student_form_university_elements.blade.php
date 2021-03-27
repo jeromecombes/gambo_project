@@ -297,11 +297,14 @@
             @endif
 
             @if (!session('admin') and $course->lock)
+
+            {{-- TODO Remove this bloc and allow clicking on the above edit button if (not admin and lock) (simply remove "and !$course->lock")
+                  The edit view will accept changing modalites radio and modalites1 textarea only in this conditions.
+                  check conditions in controller and make an $edit_univ_modalities variable --}
+
               <tr>
                 <td colspan='2' style='padding-top:20px; text-align:right;'>
                   <input type='button' value='Modifier' id='modalitesUpdate{{ $course->id }}' onclick='editModalites({{ $course->id }}, true);' class='btn btn-primary'/>
-                  <input type='reset' value='Annuler' style='display:none;' id='modalitesReset{{ $course->id }}' onclick='editModalites({{ $course->id }}, false);' class='btn'/>
-                  <input type='submit' value='Valider' style='display:none;' id='modalitesSubmit{{ $course->id }}' class='btn btn-primary'/>
                 </td>
               </tr>
             @endif

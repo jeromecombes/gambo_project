@@ -7,5 +7,5 @@ use App\Http\Controllers\LockController;
 
 class HousingClosedController extends LockController
 {
-    public $model = "App\HousingClosed";
+    public $model = "App\Models\HousingClosed";
 }

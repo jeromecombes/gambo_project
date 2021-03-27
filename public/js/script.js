@@ -41,13 +41,13 @@ function change_menu(id){
     document.getElementById("div-edit"+original).style.display="none";
   if(document.getElementById("div"+id))
     document.getElementById("div"+id).style.display="";
-  file("../inc/change_menu.php?id="+id);
+  file("/inc/change_menu.php?id="+id);
   document.getElementById("div6").style.display="none";
 
 }
 
 function changeNotifications(me){
-  file("myAccountNotifications.php?notif="+me.checked);
+  file("/admin/myAccountNotifications.php?notif="+me.checked);
 }
 
 function resetNewCourse(){
@@ -106,11 +106,7 @@ function checkLink(me,admin,id){
   document.getElementById("niveau"+id).disabled=false;
 
   if(me.value){
-    if(admin)
-      url="../inc/courses_univ4Info.php?id="+me.value;
-    else
-      url="inc/courses_univ4Info.php?id="+me.value;
-    data=file(url);
+    data=file("/inc/courses_univ4Info.php?id="+me.value);
     tab=data.split("&&&");
     document.getElementById("institution"+id).value=tab[1];
     document.getElementById("institutionAutre"+id).value=tab[2];
@@ -412,17 +408,17 @@ function lock_registration(form,id,lock){
   table="courses_"+form;
   if(form=="stages" || form=="tutorat")
      table=form;
-  file("lock.php?table="+table+"&id="+id+"&lock="+lock);
+  file("/admin/lock.php?table="+table+"&id="+id+"&lock="+lock);
   document.location.reload(false);
 }
 
 function lock2(table){
-  msg=file("lock2.php?table="+table);
+  msg=file("/admin/lock2.php?table="+table);
   document.location.href="students-view2.php?error=0&msg="+msg;
 }
 
 function lockCourse4(id){
-  lock=file("courses4Lock.php?id="+id);
+  lock=file("/admin/courses4Lock.php?id="+id);
   if(lock==1){
     document.getElementById("lock"+id).value="Déverrouiller";
   }
@@ -432,7 +428,7 @@ function lockCourse4(id){
 }
 
 function lockRH(me,student){
-  file("admin/lockRH.php?student="+student+"&lock="+me.value);
+  file("/admin/lockRH.php?student="+student+"&lock="+me.value);
   if(me.value=="Lock")
      me.value="Unlock";
   else
@@ -440,7 +436,7 @@ function lockRH(me,student){
 }
 
 function lockRH2(me,student){
-  file("admin/lockRH2.php?student="+student+"&lock="+me.value);
+  file("/admin/lockRH2.php?student="+student+"&lock="+me.value);
   if(me.value=="Publish")
      me.value="Hide";
   else
