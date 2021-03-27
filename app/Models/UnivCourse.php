@@ -15,23 +15,7 @@ class UnivCourse extends MyModel
      * @var array
      */
     protected $fillable = [
-        'code',
-        'nom',
-        'nature',
         'lien',
-        'institution',
-        'institutionAutre',
-        'discipline',
-        'niveau',
-        'prof',
-        'email',
-        'jour',
-        'debut',
-        'fin',
-        'note',
-        'modalites',
-        'modalites1',
-        'modalites2',
         'semester',
         'student',
         'lock'
@@ -129,79 +113,93 @@ class UnivCourse extends MyModel
     // Set
     public function setCodeAttribute($value)
     {
-        $this->attributes['code'] = $this->encrypt($value);
+        $this->attributes['code'] = $this->encrypt($value, false);
     }
 
     public function setNomAttribute($value)
     {
-        $this->attributes['nom'] = $this->encrypt($value);
+        $this->attributes['nom'] = $this->encrypt($value, false);
     }
 
     public function setNatureAttribute($value)
     {
-        $this->attributes['nature'] = $this->encrypt($value);
+        $this->attributes['nature'] = $this->encrypt($value, false);
     }
 
     public function setInstitutionAttribute($value)
     {
-        $this->attributes['institution'] = $this->encrypt($value);
+        $this->attributes['institution'] = $this->encrypt($value, false);
     }
 
     public function setInstitutionAutreAttribute($value)
     {
-        $this->attributes['institutionAutre'] = $this->encrypt($value);
+        $this->attributes['institutionAutre'] = $this->encrypt($value, false);
     }
 
     public function setDisciplineAttribute($value)
     {
-        $this->attributes['discipline'] = $this->encrypt($value);
+        $this->attributes['discipline'] = $this->encrypt($value, false);
     }
 
     public function setNiveauAttribute($value)
     {
-        $this->attributes['niveau'] = $this->encrypt($value);
+        $this->attributes['niveau'] = $this->encrypt($value, false);
     }
 
     public function setProfAttribute($value)
     {
-        $this->attributes['prof'] = $this->encrypt($value);
+        $this->attributes['prof'] = $this->encrypt($value, false);
     }
 
     public function setEmailAttribute($value)
     {
-        $this->attributes['email'] = $this->encrypt($value);
+        $this->attributes['email'] = $this->encrypt($value, false);
     }
 
     public function setJourAttribute($value)
     {
-        $this->attributes['jour'] = $this->encrypt($value);
+        $this->attributes['jour'] = $this->encrypt($value, false);
     }
 
     public function setDebutAttribute($value)
     {
-        $this->attributes['debut'] = $this->encrypt($value);
+        $this->attributes['debut'] = $this->encrypt($value, false);
     }
 
     public function setFinAttribute($value)
     {
-        $this->attributes['fin'] = $this->encrypt($value);
+        $this->attributes['fin'] = $this->encrypt($value, false);
     }
 
     public function setModalitesAttribute($value)
     {
-        $this->attributes['modalites'] = $this->encrypt($value);
+        $this->attributes['modalites'] = $this->encrypt($value, false);
     }
 
     public function setModalites1Attribute($value)
     {
-        $this->attributes['modalites1'] = $this->encrypt($value);
+        $this->attributes['modalites1'] = $this->encrypt($value, false);
     }
 
     public function setModalites2Attribute($value)
     {
-        $this->attributes['modalites2'] = $this->encrypt($value);
+        $this->attributes['modalites2'] = $this->encrypt($value, false);
     }
 
+    public function setNoteAttribute($value)
+    {
+        if ($value == 'Yes') {
+            $value = 1;
+        } elseif ($value == 'No') {
+            $value = 2;
+        } else {
+            $value = 0;
+        }
+
+        $this->attributes['note'] = $value;
+    }
+
+    // Links
     public function links()
     {
         return $this->hasMany(UnivCourse::class, 'lien', 'id');

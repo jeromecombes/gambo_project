@@ -232,4 +232,45 @@ class CourseController extends Controller
         return view('courses.university_form', $params);
     }
 
+    /**
+     * Add or update a university course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_update(Request $request)
+    {
+        if ($request->id) {
+            $course = UnivCourse::find($request->id);
+        } else {
+            $course = new UnivCourse();
+            $course->student = session('student');
+            $course->semester = session('semester');
+        }
+
+        $course->code = $request->code;
+        $course->nom = $request->nom;
+        $course->institutionAutre = $request->institutionAutre;
+        $course->prof = $request->prof;
+        $course->email = $request->email;
+        $course->note = $request->note;
+        $course->modalites = $request->modalites;
+        $course->modalites1 = $request->modalites1;
+        if (session('admin')) {
+            $course->modalites2 = $request->modalites2;
+        }
+        $course->nature = $request->nature;
+        $course->lien = $request->lien;
+        $course->institution = $request->institution;
+        $course->discipline = $request->discipline;
+        $course->niveau = $request->niveau;
+        $course->jour = $request->jour;
+        $course->debut = $request->debut;
+        $course->fin = $request->fin;
+
+        $course->save();
+
+        return redirect()->route('courses.student_form');
+    }
+
 }

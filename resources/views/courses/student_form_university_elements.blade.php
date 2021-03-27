@@ -14,9 +14,11 @@
     @endif
 
     <fieldset style='margin-left:{{ $margin1 }}px;'>
+
       <form name='univ_course_{{ $course->id }}' method='post' action='/courses/univ/update'>
-        {{ csrf_field() }}
         <input type='hidden' name='id' value='{{ $course->id }}' />
+
+        {{ csrf_field() }}
 
         <table style='margin-left:{{ $margin2 }}px;' class='tableUnivCourse' >
 
@@ -210,7 +212,7 @@
                   @endfor
                 </select>
               @else
-                @if ($course->jour) {{ __(jddayofweek($course->jour-1, 1)) }} @endif {{ $course->debut }} {{ $course->fin }}
+                @if (is_numeric($course->jour)) {{ __(jddayofweek($course->jour-1, 1)) }} @endif {{ $course->debut }} {{ $course->fin }}
               @endif
               </td>
           </tr>

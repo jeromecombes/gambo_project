@@ -163,7 +163,7 @@ Route::get('/courses/{student}', [CourseController::class, 'index'])
     ->middleware('student.list')
     ->middleware('this.student')
     ->middleware('role:23')
-    ->name('courses.student_form');
+    ->name('courses.student_form_id');
 
 Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_assignment'])
     ->middleware('admin')
@@ -190,6 +190,10 @@ Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
     ->middleware('this.student')
     ->middleware('role:23')
     ->name('courses.univ_edit');
+
+Route::post('/courses/univ/update', [CourseController::class, 'univ_update'])
+    ->middleware('role:16')
+    ->name('courses.univ.update');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])
