@@ -129,14 +129,6 @@ class CourseController extends Controller
         // Admin with modification access
         $admin2 = in_array(16, session('access'));
 
-        // Courses that can be linked
-        $coursesForLinks = array();
-        foreach ($courses as $elem) {
-            if (!$elem->lien) {
-                $coursesForLinks[] = $elem;
-            }
-        }
-
         $params = compact(
             'edit',
             'edit_vwpp',
@@ -151,7 +143,6 @@ class CourseController extends Controller
             'show_final_reg',
             'courses',
             'admin2',
-            'coursesForLinks',
         );
 
         // View
@@ -249,20 +240,11 @@ class CourseController extends Controller
         // Admin with modification access
         $admin2 = in_array(16, session('access'));
 
-        // Courses that can be linked
-        $coursesForLinks = array();
-        foreach ($courses as $elem) {
-            if (!$elem->lien) {
-                $coursesForLinks[] = $elem;
-            }
-        }
-
         $params = compact(
             'edit',
             'courses',
             'course',
             'admin2',
-            'coursesForLinks',
         );
 
         // View

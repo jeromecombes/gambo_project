@@ -205,7 +205,7 @@ class UnivCourse extends MyModel
         return $this->hasMany(UnivCourse::class, 'lien', 'id');
     }
 
-    public function link()
+    public function linkedTo()
     {
         return $this->belongsTo(UnivCourse::class, 'lien', 'id');
     }

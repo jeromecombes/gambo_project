@@ -5,7 +5,12 @@
   {{-- SELECTED COURSES --}}
 
   @foreach ($courses as $course)
-    @include('courses.student_form_university_elements')
+    @if (!$course->linkedTo)
+      @include('courses.student_form_university_elements')
+      @foreach ($course->links as $course)
+        @include('courses.student_form_university_elements')
+      @endforeach
+    @endif
   @endforeach
 
 

@@ -1,4 +1,4 @@
-    @if ($course->lien)
+    @if ($course->linkedTo)
       <div style='position:absolute;font-size:40pt;'>&rdsh;</div>
       @php
         $disabled = "disabled='disabled'";
@@ -76,7 +76,7 @@
           {{-- EDIT Course link --}}
 
           @if ($edit)
-            @if (!empty($coursesForLinks) and !count($course->links))
+            @if (count($courses->where('lien', null)) and !count($course->links))
               <tr>
                 <td style='padding-top:20px;'>
                   Si ce cours est rattaché à un autre cours déjà enregistré,<br/>veuillez le sélectionner dans cette liste
@@ -84,7 +84,7 @@
                 <td style='padding-top:20px;'>
                   <select name='lien' onchange='checkLink(this, {{ session("admin") }}, {{ $course->id }});'>
                     <option value=''>&nbsp;</option>
-                    @foreach ($coursesForLinks as $elem)
+                    @foreach ($courses->where('lien', null) as $elem)
                         <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->nature }})</option>
                     @endforeach
                   </select>
@@ -142,10 +142,10 @@
 
           {{-- SHOW Course link --}}
 
-            @if ($course->link)
+            @if ($course->linkedTo)
               <tr>
                 <td style='padding-top:20px;'>Ce cours est rattaché au cours suivant :</td>
-                <td style='padding-top:20px;' class='response'>{{ $course->link->nom }}, {{ $course->link->prof }} ({{ $course->link->nature }})</td>
+                <td style='padding-top:20px;' class='response'>{{ $course->linkedTo->nom }}, {{ $course->linkedTo->prof }} ({{ $course->linkedTo->nature }})</td>
               </tr>
             @else
               <tr>
@@ -299,7 +299,7 @@
                   <input type='button' value='Modifier' onclick='document.location.href="{{ asset('/course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
                 @endif
 
-                @if (($admin2 or (!session('admin') and !$course->lock)) and !$course->liaison)
+                @if (($admin2 or (!session('admin') and !$course->lock)) and !count($course->links))
                   <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ session("admin") }});' class='btn'/>
                 @endif
 

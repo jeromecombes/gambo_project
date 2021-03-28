@@ -62,6 +62,7 @@ class MyModel extends Model
     {
         $object = $this::where('student', session('student'))
             ->where('semester', session('semester'))
+            ->orderBy('created_at','asc')
             ->get();
 
         return $object;
