@@ -13,6 +13,19 @@
       @endphp
     @endif
 
+
+    @php
+      // Modalities can be edited even if the course is locked.
+      $edit_modalities = $edit;
+
+      // Admin with modification access can edit even if the course is locked.
+      if ($course->lock and !$admin2) {
+          $edit = false;
+      }
+
+    @endphp
+
+
     <fieldset style='margin-left:{{ $margin1 }}px;'>
 
       <form name='univ_course_{{ $course->id }}' method='post' action='/courses/univ/update'>
@@ -236,7 +249,7 @@
           <tr id='modalites0_{{ $course->id }}'>
             <td>&nbsp;</td>
             <td class='response'>
-              @if ($edit)
+              @if ($edit_modalities)
                 <input type='radio' name='modalites' id='modalities_yes' value='Yes' @if ($course->modalites == 'Yes') checked='checked' @endif /> <label for='modalities_yes' >Oui</label>
                 <input type='radio' name='modalites' id='modalities_no' value='No' @if ($course->modalites == 'No') checked='checked' @endif /> <label for='modalities_no' >Non</label>
               @else
@@ -251,7 +264,7 @@
 
           <tr id='modalitesText{{ $course->id }}'>
             <td colspan='2' class='response'>
-              @if ($edit)
+              @if ($edit_modalities)
                 <textarea name='modalites1'>{{ $course->modalites1 }}</textarea>
               @else
                 {!! nl2br(e($course->modalites1)) !!}
@@ -264,7 +277,7 @@
           </tr>
           <tr>
             <td colspan='2' class='response'>
-              @if (session('admin') and $edit)
+              @if (session('admin') and $edit_modalities)
                 <textarea name='modalites2'>{{ $course->modalites2 }}</textarea>
               @else
                 {!! nl2br(e($course->modalites2)) !!}
@@ -272,7 +285,7 @@
             </td>
           </tr>
 
-          @if ($edit)
+          @if ($edit_modalities)
             <tr>
               <td colspan='2' style='text-align:right;'>
                 <input type='reset' value='Annuler' onclick='document.location.href="{{ asset('/courses') }}";' class='btn'/>
@@ -280,34 +293,21 @@
               </td>
             </tr>
           @else
-            @if ($admin2 or (!session('admin') and !$course->lock))
-              <tr>
-                <td colspan='2' style='padding-top:20px; text-align:right;'>
+            <tr>
+              <td colspan='2' style='padding-top:20px; text-align:right;'>
+                @if ($admin2 or !session('admin'))
                   <input type='button' value='Modifier' onclick='document.location.href="{{ asset('/course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
+                @endif
 
-                  @if (!$course->liaison)
-                    <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ session("admin") }});' class='btn'/>
-                  @endif
+                @if (($admin2 or (!session('admin') and !$course->lock)) and !$course->liaison)
+                  <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ session("admin") }});' class='btn'/>
+                @endif
 
-                  @if ($admin2)
-                    <input type='button' value='@if ($course->lock) Déverrouiller @else Verrouiller @endif' id='lock{{ $course->id }}' onclick='lockCourse4({{ $course->id }});' class='btn'/>
-                  @endif
-                </td>
-              </tr>
-            @endif
-
-            @if (!session('admin') and $course->lock)
-
-            {{-- TODO Remove this bloc and allow clicking on the above edit button if (not admin and lock) (simply remove "and !$course->lock")
-                  The edit view will accept changing modalites radio and modalites1 textarea only in this conditions.
-                  check conditions in controller and make an $edit_univ_modalities variable --}
-
-              <tr>
-                <td colspan='2' style='padding-top:20px; text-align:right;'>
-                  <input type='button' value='Modifier' id='modalitesUpdate{{ $course->id }}' onclick='editModalites({{ $course->id }}, true);' class='btn btn-primary'/>
-                </td>
-              </tr>
-            @endif
+                @if ($admin2)
+                  <input type='button' value='@if ($course->lock) Déverrouiller @else Verrouiller @endif' id='lock{{ $course->id }}' onclick='lockCourse4({{ $course->id }});' class='btn'/>
+                @endif
+              </td>
+            </tr>
           @endif
         </table>
       </form>

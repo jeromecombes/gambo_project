@@ -285,25 +285,29 @@ class CourseController extends Controller
             $course->semester = session('semester');
         }
 
-        $course->code = $request->code;
-        $course->nom = $request->nom;
-        $course->institutionAutre = $request->institutionAutre;
-        $course->prof = $request->prof;
-        $course->email = $request->email;
-        $course->note = $request->note;
+        // If the course is locked, students can only change modalities.
+        if (!$course->lock or session('admin')) {
+            $course->code = $request->code;
+            $course->nom = $request->nom;
+            $course->institutionAutre = $request->institutionAutre;
+            $course->prof = $request->prof;
+            $course->email = $request->email;
+            $course->note = $request->note;
+            $course->nature = $request->nature;
+            $course->lien = $request->lien;
+            $course->institution = $request->institution;
+            $course->discipline = $request->discipline;
+            $course->niveau = $request->niveau;
+            $course->jour = $request->jour;
+            $course->debut = $request->debut;
+            $course->fin = $request->fin;
+        }
+
         $course->modalites = $request->modalites;
         $course->modalites1 = $request->modalites1;
         if (session('admin')) {
             $course->modalites2 = $request->modalites2;
         }
-        $course->nature = $request->nature;
-        $course->lien = $request->lien;
-        $course->institution = $request->institution;
-        $course->discipline = $request->discipline;
-        $course->niveau = $request->niveau;
-        $course->jour = $request->jour;
-        $course->debut = $request->debut;
-        $course->fin = $request->fin;
 
         $course->save();
 
