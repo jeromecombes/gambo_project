@@ -288,7 +288,7 @@
           @if ($edit_modalities)
             <tr>
               <td colspan='2' style='text-align:right;'>
-                <input type='reset' value='Annuler' onclick='document.location.href="{{ asset('/courses') }}";' class='btn'/>
+                <input type='reset' value='Annuler' onclick='document.location.href="{{ asset('courses') }}";' class='btn'/>
                 <input type='submit' value='Valider' class='btn btn-primary' />
               </td>
             </tr>
@@ -296,7 +296,7 @@
             <tr>
               <td colspan='2' style='padding-top:20px; text-align:right;'>
                 @if ($admin2 or !session('admin'))
-                  <input type='button' value='Modifier' onclick='document.location.href="{{ asset('/course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
+                  <input type='button' value='Modifier' onclick='document.location.href="{{ asset('course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
                 @endif
 
                 @if (($admin2 or (!session('admin') and !$course->lock)) and !count($course->links))

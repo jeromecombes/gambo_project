@@ -8,6 +8,7 @@ use App\Models\RHCourseAssignment;
 use App\Models\RHCourseLock;
 use App\Models\RHCoursePublish;
 use App\Models\Student;
+use App\Models\Tutoring;
 use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -84,8 +85,13 @@ class CourseController extends Controller
             );
         }
 
-        usort($occurences['Seminar'], 'cmp_count_desc');
-        usort($occurences['Writing'], 'cmp_count_desc');
+        if (!empty($occurences['Seminar'])) {
+            usort($occurences['Seminar'], 'cmp_count_desc');
+        }
+
+        if (!empty($occurences['Writing'])) {
+            usort($occurences['Writing'], 'cmp_count_desc');
+        }
 
         // Student assignment IDs
         $default_assignment = (object) array(
@@ -129,6 +135,9 @@ class CourseController extends Controller
         // Admin with modification access
         $admin2 = in_array(16, session('access'));
 
+        // Tutoring
+        $tutoring = Tutoring::findOrCreateMe();
+
         $params = compact(
             'edit',
             'edit_vwpp',
@@ -143,6 +152,7 @@ class CourseController extends Controller
             'show_final_reg',
             'courses',
             'admin2',
+            'tutoring',
         );
 
         // View
@@ -205,6 +215,59 @@ class CourseController extends Controller
         );
 
         return redirect("/courses")->with('success', 'Mise à jour réussie');
+    }
+
+    /**
+     * Edit a tutoring
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function tutoring_edit(Request $request)
+    {
+        $edit = true;
+
+        // All existing students courses for making links
+        $tutoring = Tutoring::findOrCreateMe();
+
+        // Admin with modification access
+        $admin2 = in_array(16, session('access'));
+
+        $params = compact(
+            'admin2',
+            'edit',
+            'tutoring',
+        );
+
+        // View
+        return view('courses.tutoring_form', $params);
+    }
+
+    /**
+     * Add or update a tutoring
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function tutoring_update(Request $request)
+    {
+
+        if ($request->id) {
+            $tutoring = Tutoring::find($request->id);
+        } else {
+            $tutoring = new Tutoring();
+            $tutoring->student = session('student');
+            $tutoring->semester = session('semester');
+        }
+
+        $tutoring->tutor = $request->tutor;
+        $tutoring->day = $request->day;
+        $tutoring->start = $request->start;
+        $tutoring->end = $request->end;
+
+        $tutoring->save();
+
+        return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
     }
 
     /**
@@ -293,7 +356,7 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('courses.student_form');
+        return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
     }
 
 }

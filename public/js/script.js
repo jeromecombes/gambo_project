@@ -404,6 +404,31 @@ function js_autocomplete(me){			// supprimer les éléments ne contenant pas à 
 //   auto=autocomplete[me.name].join(",");	// afficher les éléments dans un <div> flotant
 //    alert(auto);				// click sur element -> me.value=element
 }
+
+function lock(me, table, id) {
+
+  var button_id = me.id;
+  var button = $('#'+button_id).val();
+
+  $.ajax({
+    url: '/admin/lock_table.php',
+    type: 'post',
+    data_type: 'json',
+    data: {table: table, button: button, id: id},
+    success: function(result) {
+      result = JSON.parse(result);
+      $('#'+button_id).val(result['button']);
+      if (result['error']) {
+        CJInfo(result['message']);
+      }
+    },
+    error: function(result) {
+      CJInfo('Error');
+    }
+  });
+}
+
+
 function lock_registration(form,id,lock){
   table="courses_"+form;
   if(form=="stages" || form=="tutorat")

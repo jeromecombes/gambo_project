@@ -5,5 +5,7 @@
 
 @include('courses.admin_vwpp')
 @include('courses.student_form_university')
+@include('courses.student_form_tutoring')
+@include('courses.student_form_internship')
 
 @endsection

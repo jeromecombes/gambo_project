@@ -154,7 +154,7 @@ Route::get('/courses', [CourseController::class, 'index'])
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('role:23')
-    ->name('courses.student_form');
+    ->name('courses.index');
 
 Route::get('/courses/{student}', [CourseController::class, 'index'])
     ->middleware('auth')
@@ -180,7 +180,7 @@ Route::get('/course/univ/{add}', [CourseController::class, 'univ_edit'])
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('role:23')
-    ->name('courses.univ_add');
+    ->name('courses.univ.add');
 
 Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')
@@ -190,11 +190,33 @@ Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('role:23')
-    ->name('courses.univ_edit');
+    ->name('courses.univ.edit');
 
 Route::post('/courses/univ/update', [CourseController::class, 'univ_update'])
     ->middleware('role:16')
     ->name('courses.univ.update');
+
+Route::get('/tutoring/{id}/{edit}', [CourseController::class, 'tutoring_edit'])
+    ->where('edit', 'edit')
+    ->where('id', '[0-9]+')
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:16')
+    ->name('courses.tutoring.edit');
+
+Route::get('/tutoring/add', [CourseController::class, 'tutoring_edit'])
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:16')
+    ->name('courses.tutoring.edit');
+
+Route::post('/tutoring/update', [CourseController::class, 'tutoring_update'])
+    ->middleware('role:16')
+    ->name('courses.tutoring.update');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])
