@@ -36,7 +36,7 @@ class HostController extends Controller
 
         // Student assignment
         $assignment = HousingAssignment::whereIn('logement', $available)
-            ->where('semester', session('semester'))
+            ->where('housing_affect.semester', session('semester'))
             ->select('logement')
             ->withStudents()
             ->get();

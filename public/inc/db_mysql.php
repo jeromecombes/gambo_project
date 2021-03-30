@@ -81,9 +81,14 @@ class db{
     $this->update($table,$set,$where);
   }
 
-  function delete($table,$where=1){
+  function delete($table, $where = 1, $not_really = false) {
     $requete="DELETE FROM `{$GLOBALS['config']['dbprefix']}$table` WHERE $where";
-    $this->query($requete);
+
+    if ($not_really) {
+        echo $requete . "\n";
+    } else {
+        $this->query($requete);
+    }
   }
 
   function delete2($table,$field,$ids){
