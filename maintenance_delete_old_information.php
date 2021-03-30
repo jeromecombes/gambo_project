@@ -109,6 +109,10 @@ $db =new db();
 $db->delete('log_access', "`timestamp` < '$keep-00-00'", $not_really);
 
 // Documents
+
+$db = new db();
+$db->delete('documents', "student is null", $not_really);
+
 $db = new db();
 $db->query("select max(id) as max from documents");
 $max = $db->result[0]['max'];
