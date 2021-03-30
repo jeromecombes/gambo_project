@@ -6,25 +6,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>VWPP Database</title>
-        
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/dataTables/jquery.dataTables_themeroller.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/print.css') }}?rev=20190529" rel="stylesheet" media='print'>
+        <link href="{{ asset('css/app.css') }}?rev=20210330" rel="stylesheet">
+        <link href="{{ asset('css/jquery-ui.min.css') }}?rev=20210330" rel="stylesheet">
+        <link href="{{ asset('css/dataTables/jquery.dataTables_themeroller.css') }}?rev=20210330" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}?rev=20210330" rel="stylesheet">
+        <link href="{{ asset('css/print.css') }}?rev=20210330" rel="stylesheet" media='print'>
 
         <link rel='shortcut icon' href="{{ asset('favicon.ico') }}" type='image/x-icon' />
 
-        <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/jquery-1.10.2.js'></script>
-        <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/ui/jquery-ui.js'></script>
-        <script type='text/JavaScript' src='/js/dataTables/jquery.dataTables.min.js'></script>
-        <script type='text/JavaScript' src='/js/dataTables/sort.js'></script>
-        <script type='text/JavaScript' src='/js/CJScript.js'></script>
-        <script type='text/JavaScript' src='/js/script.js?rev=20190529'></script>
+        <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/jquery-1.10.2.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/ui/jquery-ui.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/dataTables/jquery.dataTables.min.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/dataTables/sort.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/CJScript.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/script.js?rev=20210330'></script>
     </head>
 
     <body>
