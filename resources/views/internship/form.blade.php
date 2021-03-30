@@ -54,7 +54,7 @@
               @if (session('admin') or !$internship->lock)
                 <input type='button' onclick='document.location.href="{{ route('internship.edit') }}";' value='Modifier' class='btn btn-primary' />
               @endif
-              @if (session('admin'))
+              @if ($admin2 and $internship->id)
                 <input type='button' id='internship_lock_button' onclick='lock(this, "Internship");' value='@if ($internship->lock) Déverrouiller @else Verrouiller @endif' class='btn' />
               @endif
             @endif

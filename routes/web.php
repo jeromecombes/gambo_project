@@ -13,6 +13,7 @@ use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\LockController;
 use App\Http\Controllers\MyAuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TutoringController;
 use App\Http\Controllers\UnivRegController;
 use App\Http\Controllers\UnivRegShowController;
 use Illuminate\Support\Facades\Route;
@@ -198,25 +199,15 @@ Route::post('/courses/univ/update', [CourseController::class, 'univ_update'])
     ->middleware('role:16')
     ->name('courses.univ.update');
 
-Route::get('/tutoring/{id}/{edit}', [CourseController::class, 'tutoring_edit'])
-    ->where('edit', 'edit')
-    ->where('id', '[0-9]+')
+Route::get('/tutoring', [TutoringController::class, 'edit'])
     ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
     ->middleware('student.list')
     ->middleware('role:16')
-    ->name('courses.tutoring.edit');
+    ->name('tutoring.edit');
 
-Route::get('/tutoring/add', [CourseController::class, 'tutoring_edit'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('student.list')
-    ->middleware('role:16')
-    ->name('courses.tutoring.edit');
-
-Route::post('/tutoring/update', [CourseController::class, 'tutoring_update'])
+Route::post('/tutoring/update', [TutoringController::class, 'update'])
     ->middleware('role:16')
     ->name('courses.tutoring.update');
 

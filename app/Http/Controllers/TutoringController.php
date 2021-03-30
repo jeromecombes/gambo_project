@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Internship;
+use App\Models\Tutoring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-class InternshipController extends Controller
+class TutoringController extends Controller
 {
     public function __construct()
     {
@@ -14,7 +14,7 @@ class InternshipController extends Controller
     }
 
     /**
-     * Edit an internship
+     * Edit a tutoring
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -24,7 +24,7 @@ class InternshipController extends Controller
         $edit = true;
 
         // All existing students courses for making links
-        $internship = Internship::findOrCreateMe();
+        $tutoring = Tutoring::findOrCreateMe();
 
         // Admin with modification access
         $admin2 = in_array(16, session('access'));
@@ -32,11 +32,11 @@ class InternshipController extends Controller
         $params = compact(
             'admin2',
             'edit',
-            'internship',
+            'tutoring',
         );
 
         // View
-        return view('internship.index', $params);
+        return view('tutoring.index', $params);
     }
 
     /**
@@ -49,19 +49,19 @@ class InternshipController extends Controller
     {
 
         if ($request->id) {
-            $internship = Internship::find($request->id);
+            $tutoring = Tutoring::find($request->id);
         } else {
-            $internship = new Internship();
-            $internship->student = session('student');
-            $internship->semester = session('semester');
+            $tutoring = new Tutoring();
+            $tutoring->student = session('student');
+            $tutoring->semester = session('semester');
         }
 
-        $internship->internship = $request->internship;
-        $internship->name = $request->name;
-        $internship->notes = $request->notes;
-        $internship->save();
+        $tutoring->tutor = $request->tutor;
+        $tutoring->day = $request->day;
+        $tutoring->start = $request->start;
+        $tutoring->end = $request->end;
+        $tutoring->save();
 
         return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
     }
-
 }

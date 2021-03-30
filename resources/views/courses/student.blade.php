@@ -9,7 +9,7 @@ Choose your VWPP Courses</p>
 
 @include('courses.student_vwpp')
 @include('courses.student_form_university')
-@include('courses.student_form_tutoring')
-@include('courses.student_form_internship')
+@include('tutoring.form')
+@include('internship.form')
 
 @endsection

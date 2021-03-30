@@ -25,8 +25,8 @@ echo <<<EOD
 EOD;
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/student'>General info</a></li>\n";
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/housing'>Housing</a></li>\n";
-get_menu2("Univ. Reg.",5,17);
-get_menu2("Courses",4,23);
+echo "<li class='ui-state-default ui-corner-top $class'><a href='/univ_reg'>Univ. reg.</a></li>\n";
+echo "<li class='ui-state-default ui-corner-top $class'><a href='/courses'>Courses</a></li>\n";
 get_menu2("Grades",7,array(18,19,20));
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/documents'>Documents</a></li>\n";
 echo "<script type='text/JavaScript'>li_ids.push($id);</script>\n";

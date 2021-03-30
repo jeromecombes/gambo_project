@@ -36,7 +36,6 @@ require_once "students-menu2.php";
 
 switch($menu_id){
 	//	page name, page id, required access
-  case 4 : get_page("std-courses.php",4,23);			break;
   case 7 : get_page("std-grades.php",7,array(18,19,20));	break;
   case 3 : get_page("form.docs.inc",3,3);			break;
   case 8 : get_page("form.schedule.inc",8,1);			break;

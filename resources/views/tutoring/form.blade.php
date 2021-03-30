@@ -67,11 +67,9 @@
           @if ($edit)
             <input type='button' onclick='location.href="{{ asset('courses') }}";' value='Annuler' class='btn' />
             <input type='submit' value='Valider' class='btn btn-primary' />
-          @elseif (session('admin') or !$tutoring->lock)
-            @if ($tutoring->id)
-              <input type='button' onclick='document.location.href="{{ asset('tutoring/') }}/{{ $tutoring->id }}/edit";' value='Modifier' class='btn btn-primary' />
-            @else
-              <input type='button' onclick='document.location.href="{{ asset('tutoring/') }}/add";' value='Ajouter' class='btn btn-primary' />
+          @else
+            @if (session('admin') or !$tutoring->lock)
+              <input type='button' onclick='document.location.href="{{ route('tutoring.edit') }}";' value='Modifier' class='btn btn-primary' />
             @endif
             @if ($admin2 and $tutoring->id)
               <input type='button' id='tutoring_lock_button' onclick='lock(this, "Tutoring");' value='@if ($tutoring->lock) Déverrouiller @else Verrouiller @endif' class='btn' />

@@ -223,59 +223,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Edit a tutoring
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function tutoring_edit(Request $request)
-    {
-        $edit = true;
-
-        // All existing students courses for making links
-        $tutoring = Tutoring::findOrCreateMe();
-
-        // Admin with modification access
-        $admin2 = in_array(16, session('access'));
-
-        $params = compact(
-            'admin2',
-            'edit',
-            'tutoring',
-        );
-
-        // View
-        return view('courses.tutoring_form', $params);
-    }
-
-    /**
-     * Add or update a tutoring
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function tutoring_update(Request $request)
-    {
-
-        if ($request->id) {
-            $tutoring = Tutoring::find($request->id);
-        } else {
-            $tutoring = new Tutoring();
-            $tutoring->student = session('student');
-            $tutoring->semester = session('semester');
-        }
-
-        $tutoring->tutor = $request->tutor;
-        $tutoring->day = $request->day;
-        $tutoring->start = $request->start;
-        $tutoring->end = $request->end;
-
-        $tutoring->save();
-
-        return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
-    }
-
-    /**
      * Edit a university course
      *
      * @param  \Illuminate\Http\Request  $request
