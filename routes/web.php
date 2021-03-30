@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\HousingClosedController;
 use App\Http\Controllers\HousingController;
+use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\MyAuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UnivRegController;
@@ -217,6 +218,18 @@ Route::get('/tutoring/add', [CourseController::class, 'tutoring_edit'])
 Route::post('/tutoring/update', [CourseController::class, 'tutoring_update'])
     ->middleware('role:16')
     ->name('courses.tutoring.update');
+
+Route::get('/internship', [InternshipController::class, 'edit'])
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:16')
+    ->name('internship.edit');
+
+Route::post('/internship/update', [InternshipController::class, 'update'])
+    ->middleware('role:16')
+    ->name('internship.update');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])

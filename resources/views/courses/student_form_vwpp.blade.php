@@ -9,7 +9,7 @@
         @endif
       </tr>
       <tr>
-        <td style='min-width:200px; padding-left:30px;'>1<sup>st</sup> choice</td>
+        <td style='width:250px; padding-left:30px;'>1<sup>st</sup> choice</td>
         @if ($edit_vwpp)
           <td>
             <select name='writing1'>

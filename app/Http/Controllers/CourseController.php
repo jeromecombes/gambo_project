@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CourseChoice;
+use App\Models\Internship;
 use App\Models\RHCourse;
 use App\Models\RHCourseAssignment;
 use App\Models\RHCourseLock;
@@ -138,6 +139,9 @@ class CourseController extends Controller
         // Tutoring
         $tutoring = Tutoring::findOrCreateMe();
 
+        // Internship
+        $internship = Internship::findOrCreateMe();
+
         $params = compact(
             'edit',
             'edit_vwpp',
@@ -153,6 +157,7 @@ class CourseController extends Controller
             'courses',
             'admin2',
             'tutoring',
+            'internship',
         );
 
         // View

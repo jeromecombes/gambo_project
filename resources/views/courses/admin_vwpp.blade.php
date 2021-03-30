@@ -55,7 +55,7 @@
         @endif
       </tr>
       <tr>
-        <td style='text-align:right;'>N°1</td>
+        <td style='width:250px; text-align:right;'>N°1</td>
         <td colspan='2'>
           @if (in_array(16, session('access')))
             <select name='writing1'>
