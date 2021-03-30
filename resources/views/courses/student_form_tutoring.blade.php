@@ -74,7 +74,7 @@
               <input type='button' onclick='document.location.href="{{ asset('tutoring/') }}/add";' value='Ajouter' class='btn btn-primary' />
             @endif
             @if ($admin2 and $tutoring->id)
-              <input type='button' id='tutoring_lock_button' onclick='lock(this, "tutorat", {{ $tutoring->id }});' value='@if ($tutoring->lock) Déverrouiller @else Verrouiller @endif' class='btn' />
+              <input type='button' id='tutoring_lock_button' onclick='lock(this, "Tutoring");' value='@if ($tutoring->lock) Déverrouiller @else Verrouiller @endif' class='btn' />
             @endif
           @endif
         </td>

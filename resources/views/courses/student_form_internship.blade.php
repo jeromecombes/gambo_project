@@ -51,8 +51,12 @@
               <input type='button' onclick='location.href="{{ asset('courses') }}";' value='Annuler' class='btn' />
               <input type='submit' value='Valider' class='btn btn-primary' />
             @else
-              <input type='button' onclick='document.location.href="{{ route('internship.edit') }}";' value='Modifier' class='btn btn-primary' />
-              <input type='button' id='internship_lock_button' onclick='lock(this, "internship", 0);' value='@if ($internship->lock) Déverrouiller @else Verrouiller @endif' class='btn' />
+              @if (session('admin') or !$internship->lock)
+                <input type='button' onclick='document.location.href="{{ route('internship.edit') }}";' value='Modifier' class='btn btn-primary' />
+              @endif
+              @if (session('admin'))
+                <input type='button' id='internship_lock_button' onclick='lock(this, "Internship");' value='@if ($internship->lock) Déverrouiller @else Verrouiller @endif' class='btn' />
+              @endif
             @endif
           </td>
         </tr>

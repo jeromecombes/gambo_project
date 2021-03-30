@@ -405,16 +405,23 @@ function js_autocomplete(me){			// supprimer les éléments ne contenant pas à 
 //    alert(auto);				// click sur element -> me.value=element
 }
 
-function lock(me, table, id) {
+function lock(me, model, id) {
+
+  if (id == undefined) {
+    id = 0;
+  }
+
+  model = "App\\Models\\" + model;
 
   var button_id = me.id;
   var button = $('#'+button_id).val();
+  var token = $('input[name=_token]').val();
 
   $.ajax({
-    url: '/admin/lock_table.php',
+    url: '/lock',
     type: 'post',
     data_type: 'json',
-    data: {table: table, button: button, id: id},
+    data: {_token: token, model: model, button: button, id: id},
     success: function(result) {
       result = JSON.parse(result);
       $('#'+button_id).val(result['button']);

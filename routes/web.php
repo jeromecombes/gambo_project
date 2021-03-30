@@ -10,6 +10,7 @@ use App\Http\Controllers\HostController;
 use App\Http\Controllers\HousingClosedController;
 use App\Http\Controllers\HousingController;
 use App\Http\Controllers\InternshipController;
+use App\Http\Controllers\LockController;
 use App\Http\Controllers\MyAuthController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UnivRegController;
@@ -230,6 +231,10 @@ Route::get('/internship', [InternshipController::class, 'edit'])
 Route::post('/internship/update', [InternshipController::class, 'update'])
     ->middleware('role:16')
     ->name('internship.update');
+
+Route::post('/lock', [LockController::class, 'ajaxLocker'])
+    ->middleware('admin')
+    ->name('lock');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])
