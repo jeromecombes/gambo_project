@@ -27,7 +27,7 @@ echo "<li class='ui-state-default ui-corner-top $class'><a href='/student'>Gener
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/housing'>Housing</a></li>\n";
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/univ_reg'>Univ. reg.</a></li>\n";
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/courses'>Courses</a></li>\n";
-get_menu2("Grades",7,array(18,19,20));
+echo "<li class='ui-state-default ui-corner-top $class'><a href='/grades'>Grades</a></li>\n";
 echo "<li class='ui-state-default ui-corner-top $class'><a href='/documents'>Documents</a></li>\n";
 echo "<script type='text/JavaScript'>li_ids.push($id);</script>\n";
 get_menu2("Schedule",8,1);

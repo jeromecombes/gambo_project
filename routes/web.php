@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CoursesRHController;
 use App\Http\Controllers\CoursesRH2Controller;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\HousingClosedController;
@@ -210,6 +211,40 @@ Route::get('/tutoring', [TutoringController::class, 'edit'])
 Route::post('/tutoring/update', [TutoringController::class, 'update'])
     ->middleware('role:16')
     ->name('courses.tutoring.update');
+
+Route::get('/grades', [GradeController::class, 'edit'])
+    ->middleware('auth')
+    ->middleware('admin')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:18|19|20')
+    ->name('grades.show');
+
+Route::get('/grades/{student}', [GradeController::class, 'edit'])
+    ->where('student', '[0-9]+')
+    ->middleware('auth')
+    ->middleware('admin')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:18|19|20')
+    ->name('grades.edit');
+
+Route::get('/grades/{edit}', [GradeController::class, 'edit'])
+    ->where('edit', 'edit')
+    ->middleware('auth')
+    ->middleware('admin')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('role:18|19')
+    ->name('grades.edit');
+
+Route::post('/grades/update', [GradeController::class, 'update'])
+    ->middleware('admin')
+    ->middleware('role:18|19')
+    ->name('grades.update');
 
 Route::get('/internship', [InternshipController::class, 'edit'])
     ->middleware('auth')

@@ -15,7 +15,7 @@
     @endif
 
     @if(!empty(array_intersect(array(18,19,20), session('access'))))
-      <li id='li9' class='ui-state-default ui-corner-top'><a href='/admin/students-view2.php?menu_id=7'>Grades</a></li>
+      <li id='li9' class='ui-state-default ui-corner-top @if (Request::is("*grades*")) ui-state-active @endif'><a href='/grades'>Grades</a></li>
     @endif
 
     @if(in_array(3, session('access')))

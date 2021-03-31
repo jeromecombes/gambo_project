@@ -25,7 +25,17 @@ class CheckRole
             return $next($request);
         }
 
-        if (!in_array($role, session('access'))) {
+        $roles = explode('|', $role);
+        $redirect = true;
+
+        foreach ($roles as $role) {
+            if (in_array($role, session('access'))) {
+                $redirect = false;
+                break;
+            }
+        }
+
+        if ($redirect) {
             return redirect()->route('admin.index')->with('warning', 'Access denied');
         }
 

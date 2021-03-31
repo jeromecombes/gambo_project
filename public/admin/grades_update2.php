@@ -12,6 +12,10 @@ access_ctrl("18,19");
 $course_id=$_SESSION['vwpp']['course_id'];
 $course=$_SESSION['vwpp']['univ'];
 
+if ($course == 'VWPP') { $course = 'local'; }
+if ($course == 'UNIV') { $course = 'univ'; }
+
+
 $post=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 
 $tab=array();

@@ -313,6 +313,19 @@ select{
   margin-bottom:0px;
 }
 
+#grades-form table th {
+  width: 75px;
+}
+
+#grades-form table th:first-child {
+  width: 550px;
+}
+
+#grades-form table th:nth-child(3),
+#grades-form table th:nth-child(7) {
+  width: 150px;
+}
+
 .green{
   color:green;
 }
