@@ -61,7 +61,7 @@ class StudentController extends Controller
 
         // Dropdown menu under the student list
         $options = array();
-        $options[] = (object) array('value' => '', 'text' => '&nbsp;');
+        $options[] = (object) array('value' => '', 'text' => null);
         $options[] = (object) array('value' => 'Excel', 'text' => 'Export General Info to Excel');
         if (in_array(17,$_SESSION['vwpp']['access'])) {
             $options[] = (object) array('value' => 'Univ_reg', 'text' => 'Export Univ. Reg. to Excel');

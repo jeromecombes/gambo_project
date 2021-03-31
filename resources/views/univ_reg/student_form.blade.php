@@ -1,24 +1,25 @@
 @extends('layouts.myApp')
 @section('content')
 
-  @if (session('admin') or $published)
+  @include('univ_reg.student_form_intro')
 
-    @include('univ_reg.student_form_intro')
+  @if (substr(session('semester'), -4) < 2019)
 
-    @if (substr(session('semester'), -4) < 2019)
+    @include('univ_reg.student_form_before_2019')
+    @include('univ_reg.student_form_final')
 
-      @include('univ_reg.student_form_before_2019')
-      @include('univ_reg.student_form_final')
+    @if (session('admin') or $locked)
 
-      @if (session('admin') or $locked)
+      @include('univ_reg.student_form_before_2019_plus')
 
-        @include('univ_reg.student_form_before_2019_plus')
+    @endif
 
-      @endif
-
-    @else
+  @else
 
       @include('univ_reg.student_form_2019')
+
+    @if (session('admin') or $published)
+
       @include('univ_reg.student_form_final')
 
     @endif
