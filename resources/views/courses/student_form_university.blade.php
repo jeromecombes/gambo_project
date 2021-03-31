@@ -1,4 +1,4 @@
-<h3>University</h3>
+<h3>{{ __('University') }}</h3>
 
 <div id='course'>
 

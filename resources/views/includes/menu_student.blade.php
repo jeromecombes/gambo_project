@@ -4,7 +4,7 @@
     <li id='li7' class='ui-state-default ui-corner-top @if (Request::is("*student*")) ui-state-active @endif'><a href='/student'>General Info.</a></li>
     <li id='li2' class='ui-state-default ui-corner-top @if (Request::is("*housing*")) ui-state-active @endif'><a href='/housing'>Housing</a></li>
     <li id='li1' class='ui-state-default ui-corner-top @if (Request::is("*univ_reg*")) ui-state-active @endif'><a href='/univ_reg'>Univ. Reg.</a></li>
-    <li id='li3' class='ui-state-default ui-corner-top @if (Request::is("*courses*")) ui-state-active @endif'><a href='/courses'>Course Reg.</a></li>
+    <li id='li3' class='ui-state-default ui-corner-top @if (Request::is("*courses*")) ui-state-active @endif'><a href='/courses'>Courses</a></li>
     <li id='li4' class='ui-state-default ui-corner-top' style='display:none;' ><a href='eval_index.php'>Evaluations</a></li>
     <li id='li8' class='ui-state-default ui-corner-top @if (Request::is("*documents*")) ui-state-active @endif'><a href='/documents'>Documents</a></li>
     <li id='li9' class='ui-state-default ui-corner-top'><a href='schedule.php'>Schedule</a></li>
