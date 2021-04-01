@@ -27,6 +27,11 @@ class UnivCourse extends MyModel
         return $this->decrypt($value, false);
     }
 
+    public function getNameAttribute($value)
+    {
+        return $this->nom;
+    }
+
     public function getNomAttribute($value)
     {
         return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
@@ -35,6 +40,11 @@ class UnivCourse extends MyModel
     public function getNatureAttribute($value)
     {
         return $this->decrypt($value, false);
+    }
+
+    public function getTypeAttribute($value)
+    {
+        return $this->nature;
     }
 
     public function getInstitutionAttribute($value)
@@ -47,9 +57,24 @@ class UnivCourse extends MyModel
         return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
     }
 
+    public function getDayAttribute($value)
+    {
+        return $this->jour;
+    }
+
     public function getDisciplineAttribute($value)
     {
         return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+    }
+
+    public function getStartAttribute($value)
+    {
+        return $this->debut;
+    }
+
+    public function getEndAttribute($value)
+    {
+        return $this->fin;
     }
 
     public function getNiveauAttribute($value)
@@ -60,6 +85,11 @@ class UnivCourse extends MyModel
     public function getProfAttribute($value)
     {
         return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+    }
+
+    public function getProfessorAttribute($value)
+    {
+        return $this->prof;
     }
 
     public function getEmailAttribute($value)

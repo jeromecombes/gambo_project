@@ -17,6 +17,21 @@ class Tutoring extends MyModel
     protected $fillable = ['semester', 'student', 'lock'];
 
     // Get
+    public function getNameAttribute()
+    {
+        return 'Tutoring';
+    }
+
+    public function getTypeAttribute()
+    {
+        return 'Tutoring';
+    }
+
+    public function getProfessorAttribute($value)
+    {
+        return $this->tutor;
+    }
+
     public function getTutorAttribute($value)
     {
         return $this->decrypt($this->tuteur, false);

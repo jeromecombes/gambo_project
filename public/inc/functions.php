@@ -777,48 +777,6 @@ function get_menu($menu,$id,$required){
 
 }
 
-function get_menu2($menu,$id,$required){
-  $access=false;
-  if(is_array($required)){
-    foreach($required as $elem){
-      if(in_array($elem,$_SESSION['vwpp']['access'])){
-	$access=true;
-      }
-    }
-  }
-  elseif(in_array($required,$_SESSION['vwpp']['access'])){
-    $access=true;
-  }
-
-  if(!$access)
-    return false;
-
-  $class=$id==$GLOBALS['current_id']?"ui-tabs-active ui-state-active":null;
-  echo "<li class='ui-state-default ui-corner-top $class'><a href='students-view2.php?menu_id=$id'>$menu</a></li>\n";
-  echo "<script type='text/JavaScript'>li_ids.push($id);</script>\n";
-}
-
-function get_page($page,$id,$required){
-  $std=$GLOBALS['std'];
-  $display=$id==$GLOBALS['current_id']?"":"none";
-  $page=stripos($_SERVER['PHP_SELF'],"admin")?"../inc/$page":"inc/$page";	// If /admin : add ../
-
-  $access=false;
-  if(is_array($required)){
-    foreach($required as $elem){
-      if(in_array($elem,$_SESSION['vwpp']['access'])){
-	$access=true;
-      }
-    }
-  }
-  elseif(in_array($required,$_SESSION['vwpp']['access'])){
-    $access=true;
-  }
-
-  if($access)
-    include $page;
-}
-
 function import_excel()
 	{
 	echo "<h3>Importation d'un fichier Excel</h3>\n";

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CourseHelper;
 use App\Models\Grade;
-use App\Models\RHCourse;
-use App\Models\RHCourseAssignment;
-use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -34,7 +32,7 @@ class GradeController extends Controller
         $us_rw = in_array(19, session('access'));
 
         // Get student courses
-        $courses = $this->courses();
+        $courses = CourseHelper::get();
 
         $default_grades = (object) array(
             'note' => null,
@@ -50,11 +48,13 @@ class GradeController extends Controller
 
         $all_grades = Grade::getMe();
 
-        foreach ($courses['local'] as $elem) {
+        $grades = array();
+
+        foreach ($courses->local as $elem) {
             $grades['local'][$elem->id] = $all_grades->where('course', 'local')->where('course_id', $elem->id)->first() ?? $default_grades;
         }
 
-        foreach ($courses['univ'] as $elem) {
+        foreach ($courses->univ as $elem) {
             $grades['univ'][$elem->id] = $all_grades->where('course', 'univ')->where('course_id', $elem->id)->first() ?? $default_grades;
         }
 
@@ -108,24 +108,4 @@ class GradeController extends Controller
 
         return redirect()->route('grades.show')->with('success', 'Mise à jour réussie');
     }
-
-    private function courses()
-    {
-        // Local courses = VWPP Courses
-        $assignment = array();
-        $a = RHCourseAssignment::findOrCreateMe();
-        if ($a->writing1) { $assignment[] = $a->writing1; }
-        if ($a->writing2) { $assignment[] = $a->writing2; }
-        if ($a->seminar1) { $assignment[] = $a->seminar1; }
-        if ($a->seminar2) { $assignment[] = $a->seminar2; }
-        if ($a->seminar3) { $assignment[] = $a->seminar3; }
-
-        $courses['local'] = RHCourse::whereIn('id', $assignment)->orderBy('type')->get();
-
-        // Univ courses
-        $courses['univ'] = UnivCourse::getMe();
-
-        return $courses;
-    }
-
 }

@@ -180,14 +180,6 @@ function delete_doc(id) {
     }
 }
 
-function delete_course(univ,id,admin){
-   if(confirm("Voulez-vous vraiment supprimer ce cours ?"))
-    if(admin)
-      document.location.href="students-coursesUpdate.php?id="+id+"&univ="+univ+"&delete=";
-    else
-      document.location.href="courses-update.php?id="+id+"&univ="+univ+"&delete=";
-}
-
 function delete_line(i){
   document.getElementById("q"+i).value="";
   document.getElementById("t"+i).selectedIndex=0;
@@ -442,11 +434,6 @@ function lock_registration(form,id,lock){
      table=form;
   file("/admin/lock.php?table="+table+"&id="+id+"&lock="+lock);
   document.location.reload(false);
-}
-
-function lock2(table){
-  msg=file("/admin/lock2.php?table="+table);
-  document.location.href="students-view2.php?error=0&msg="+msg;
 }
 
 function lockCourse4(id){

@@ -13,6 +13,7 @@ use App\Http\Controllers\HousingController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\LockController;
 use App\Http\Controllers\MyAuthController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TutoringController;
 use App\Http\Controllers\UnivRegController;
@@ -257,6 +258,23 @@ Route::get('/internship', [InternshipController::class, 'edit'])
 Route::post('/internship/update', [InternshipController::class, 'update'])
     ->middleware('role:16')
     ->name('internship.update');
+
+// Schedule
+Route::get('/schedule', [ScheduleController::class, 'index'])
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->name('schedule.index');
+
+Route::get('/schedule/{student}', [ScheduleController::class, 'index'])
+    ->middleware('auth')
+    ->middleware('old.session')
+    ->middleware('old.student')
+    ->middleware('student.list')
+    ->middleware('this.student')
+    ->name('schedule.index.student');
+
 
 Route::post('/lock', [LockController::class, 'ajaxLocker'])
     ->middleware('admin')

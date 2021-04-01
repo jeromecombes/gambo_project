@@ -14,8 +14,6 @@ use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-include_once( __DIR__ . '/../../Includes/functions.php');
-
 class CourseController extends Controller
 {
 
@@ -87,11 +85,11 @@ class CourseController extends Controller
         }
 
         if (!empty($occurences['Seminar'])) {
-            usort($occurences['Seminar'], 'cmp_count_desc');
+            usort($occurences['Seminar'], [$this, 'cmp_count_desc']);
         }
 
         if (!empty($occurences['Writing'])) {
-            usort($occurences['Writing'], 'cmp_count_desc');
+            usort($occurences['Writing'], [$this, 'cmp_count_desc']);
         }
 
         // Student assignment IDs

@@ -1,6 +1,42 @@
 NOTES
 
-2021-03-18
+2021-04-01
+// TODO : Standardize models and DB tables with day attribute int between 0 and 6
+// TODO : Change models, with dayText : return jddayofweek($this->day); DONE in MyModels : OK
+// Day attribute can be use to sort results and as value in select options
+// DayText can be use to show days
+
+// TODO : remove HTML Entities from courses_univ4 et RH courses (DB)
+// TODO : Standardize type (courses_univ4 = nature)
+
+
+// ACL
+1		Voir les infos générales + Agenda
+2		Voir les Housings
+3		Voir les documents
+4		Ajouter des étudiants
+5		Supprimer les étudiants
+6		Modifier les infos générales
+7		Modifier les Housings
+8		Modifier les documents
+9		Voir les utilisateurs
+10		Modifier les utilisateurs
+11		Ajouter des utilisateurs
+12		Supprimer les utilisateurs
+13		Modifier les formulaires
+22		Voir qui a rempli les évaluations
+15		Voir les évaluations
+23		Voir les cours
+16		Modifier les cours
+17		Voir Univ. Reg.
+18		Voir et modifier les Notes FR
+20		Voir les Notes FR et US
+19		Voir et modifier les Notes US
+21		Bloc-notes des cours
+24		Modifier les dates (1<sup>ère</sup> page)
+
+
+2021-03-18 : DONE
 Upgrading prod env
 - mysqldump
 - git pull

@@ -87,6 +87,15 @@ class MyModel extends Model
         return $object;
     }
 
+    public function getDayTextAttribute()
+    {
+        if (!empty($this->day)) {
+            return jddayofweek($this->day, 1);
+        }
+
+        return null;
+    }
+
     public function getResponseAttribute($value)
     {
         return $this->hasAttribute('response') ? $this->decrypt($value, $this->student) : null;

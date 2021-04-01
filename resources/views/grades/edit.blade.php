@@ -20,7 +20,7 @@
         @endif
       </tr>
 
-      @foreach ($courses['local'] as $course)
+      @foreach ($courses->local as $course)
         <tr>
           <td>{{ $course->title }}, {{ $course->professor }}</td>
           <td>
@@ -106,7 +106,7 @@
         @endif
       </tr>
 
-      @foreach ($courses['univ'] as $course)
+      @foreach ($courses->univ as $course)
         <tr>
           <td>{{ $course->nom }}, {{ $course->prof }} ({{ $course->nature }})</td>
           <td>
