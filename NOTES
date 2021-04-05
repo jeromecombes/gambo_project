@@ -9,6 +9,11 @@ NOTES
 // TODO : remove HTML Entities from courses_univ4 et RH courses (DB)
 // TODO : Standardize type (courses_univ4 = nature)
 
+// TODO use custom laravel request for submitting trip form with old() helper and laravel forms with required fields
+
+// TODO Permettre la d<E9>sactivation des notifications dans MyAccount
+
+
 
 // ACL
 1		Voir les infos générales + Agenda

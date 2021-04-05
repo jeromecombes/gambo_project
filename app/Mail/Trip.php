@@ -7,20 +7,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Cellphone_changed extends Mailable
+class Trip extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $trip;
+    public $edit = false;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($trip)
     {
-        $this->data = $data;
+        $this->trip = $trip;
     }
 
     /**
@@ -30,8 +31,11 @@ class Cellphone_changed extends Mailable
      */
     public function build()
     {
-        return $this->subject('VWPP Database, Numéro de téléphone modifié')
-            ->view('emails.cellphone_changed')
-            ->text('emails.cellphone_changed_plain');
+        $subject = "Formulaire de voyage ";
+        $subject.= $this->trip->lastname . ' ' . $this->trip->firstname;
+
+        return $this->subject($subject)
+            ->markdown('emails.trip')
+            ->text('emails.trip_plain');
     }
 }

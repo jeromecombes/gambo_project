@@ -15,6 +15,7 @@ use App\Http\Controllers\LockController;
 use App\Http\Controllers\MyAuthController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\TutoringController;
 use App\Http\Controllers\UnivRegController;
 use App\Http\Controllers\UnivRegShowController;
@@ -275,6 +276,13 @@ Route::get('/schedule/{student}', [ScheduleController::class, 'index'])
     ->middleware('this.student')
     ->name('schedule.index.student');
 
+Route::get('/trip', [TripController::class, 'edit'])
+    ->middleware('auth')
+    ->name('trip.edit');
+
+Route::post('/trip', [TripController::class, 'update'])
+    ->middleware('auth')
+    ->name('trip.update');
 
 Route::post('/lock', [LockController::class, 'ajaxLocker'])
     ->middleware('admin')

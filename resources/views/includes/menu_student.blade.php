@@ -8,7 +8,7 @@
     <li id='li4' class='ui-state-default ui-corner-top' style='display:none;' ><a href='eval_index.php'>Evaluations</a></li>
     <li id='li8' class='ui-state-default ui-corner-top @if (Request::is("*documents*")) ui-state-active @endif'><a href='/documents'>Documents</a></li>
     <li id='li9' class='ui-state-default ui-corner-top @if (Request::is("*schedule*")) ui-state-active @endif'><a href='/schedule'>Schedule</a></li>
-    <li id='li10' class='ui-state-default ui-corner-top'><a href='trip_index.php'>Trip</a></li>
+    <li id='li10' class='ui-state-default ui-corner-top @if (Request::is("*trip*")) ui-state-active @endif'><a href='/trip'>Trip</a></li>
     <li id='li6' class='ui-state-default ui-corner-top'><a href='myAccount.php'>My Account</a></li>
   </ul>
 </nav>

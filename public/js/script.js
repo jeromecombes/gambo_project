@@ -653,7 +653,7 @@ function tripFormValidation(){
   }
 
   if(!myReturn){
-    alert("Veuillez remplir tous les champs obligatoires et accepter les condditions");
+    alert("Veuillez remplir tous les champs obligatoires et accepter les conditions");
   }
 
   return myReturn;
