@@ -1,8 +1,6 @@
 <?php
-// Laste update : 2016-03-12
 
 require_once("../inc/config.php");
-require_once("../inc/class.ciph.inc");
 require_once("../inc/class.reidhall.inc");
 require_once("../inc/class.univ4.inc");
 require_once("../inc/class.student.inc");
@@ -24,13 +22,6 @@ $univ=$u->elements;
 $univ=array_map("entity_decode",$univ);
 $univ=array_map("utf8_decode2",$univ);
 // usort($univ,"cmp_code");
-
-//	CIPh. Courses
-$c=new ciph();
-$c->fetchAll($_SESSION['vwpp']['login_univ']);
-$ciph=$c->elemExcel;
-$ciph=array_map("utf8_decode2",$ciph);
-usort($ciph,"cmp_institution");
 
 //	File Name
 $Fnm = '../data/grades_' . str_replace(' ', '_', $_SESSION['vwpp']['semester']);
@@ -81,19 +72,6 @@ foreach($univ as $course){
       if(in_array(19, $_SESSION['vwpp']['access']) or in_array(20, $_SESSION['vwpp']['access'])){
 	$cells=array_merge($cells,array($grade['grade1'],$grade['grade2'],$grade['grade'],$grade['date2']));
       }
-      $lines[]=join($cells,$separate);
-    }
-  }
-}
-
-//	CIPh Lines
-foreach($ciph as $course){
-  if(!empty($course)){
-    $g=new grades();
-    $g->fetchCourse("ciph",$course['id']);
-    $grades=array_map("utf8_decode2",$g->grades);
-    foreach($grades as $grade){
-      $cells=array("CIPh (or other)","",$course["domaine"],$course["titre"],$course["titre"],$course["instructeur"],"",$grade["lastExcel"],$grade["firstExcel"],$grade['university'],$grade['note'],$grade['date1'],$grade['grade'],$grade['date2']);
       $lines[]=join($cells,$separate);
     }
   }

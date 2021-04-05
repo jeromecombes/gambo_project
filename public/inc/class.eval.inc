@@ -40,7 +40,6 @@ class evaluation{
 
 
   function fetchAll($form,$closed=null,$university=null){
-    require_once "class.ciph.inc";
     require_once "class.reidhall.inc";
     require_once "class.student.inc";
     require_once "class.univ4.inc";
@@ -82,17 +81,6 @@ class evaluation{
 
 	$data=array();
 	switch($form){
-	  case "CIPH" :
-	    $c=new ciph();
-	    $c->fetch($elem['courseId']);
-	    $data=array($c->element['instructeur'],$c->element['titre']);
-	    for($i=0;$i<count($data);$i++){
-	      $tab["{$elem['timestamp']}_{$elem['student']}"][$i+1]=$data[$i];
-	      $data[$i]=str_replace(array("\n","\r","\t")," ",$data[$i]);
-	      $data[$i]=html_entity_decode($data[$i],ENT_QUOTES|ENT_IGNORE,"utf-8");
-	      $tabExcel["{$elem['timestamp']}_{$elem['student']}"][$i+1]=$data[$i];
-	    }
-	    break;
 
 	  case "ReidHall" :
 	    $r=new reidhall();
@@ -134,7 +122,6 @@ class evaluation{
       $this->students[$elem['id']]["program"]=0;
       $this->students[$elem['id']]["ReidHall"]=0;
       $this->students[$elem['id']]["univ"]=0;
-      $this->students[$elem['id']]["CIPH"]=0;
       $this->students[$elem['id']]["intership"]=0;
       $this->students[$elem['id']]["tutorats"]=0;
       $this->students[$elem['id']]["linguistique"]=0;

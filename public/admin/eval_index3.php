@@ -1,6 +1,5 @@
 <?php
 require_once "../header.php";
-require_once "../inc/class.ciph.inc";
 require_once "../inc/class.eval.inc";
 require_once "../inc/class.reidhall.inc";
 require_once "../inc/class.univ4.inc";
@@ -23,17 +22,13 @@ echo "<h3>Evaluations for {$_SESSION['vwpp']['semester']}</h3>\n";
 echo "<table class='datatable' data-sort='[[0,\"asc\"],[1,\"asc\"]]' style='text-align:center;'>\n";
 echo "<thead>\n";
 echo "<tr><th>Lastname</th><th>Firstname</th><th>Program</th><th>VWPP Courses</th>
-  <th>Univ. Courses</th><th>CIPh</th><th>Tutorats</th><th>Ateliers Linguistiques</th><th>Ateliers M&eacute;thodologiques</th><th>Internship</th></tr>\n";
+  <th>Univ. Courses</th><th>Tutorats</th><th>Ateliers Linguistiques</th><th>Ateliers M&eacute;thodologiques</th><th>Internship</th></tr>\n";
 echo "</thead>\n";
 echo "<tbody>\n";
 foreach($students as $s){
   $r=new reidhall();
   $r->count2($s['id']);
   $nbVWPP=$r->nb;
-
-  $c=new ciph();
-  $c->count2($s['id']);
-  $nbCiph=$c->nb;
 
   $u=new univ4();
   $u->student=$s['id'];
@@ -43,7 +38,6 @@ foreach($students as $s){
   $classProgram=$e[$s['id']]['program']>0?"green bold":"red bold";
   $classVWPP=$e[$s['id']]['ReidHall']==$nbVWPP?"green bold":null;
   $classUniv=$e[$s['id']]['univ']==$nbUniv?"green bold":null;
-  $classCiph=$e[$s['id']]['CIPH']==$nbCiph?"green bold":null;
   $classTutorats=$e[$s['id']]['tutorats']>0?"green bold":"red bold";
   $classAteliers=$e[$s['id']]['linguistique']>0?"green bold":"red bold";
   $classAteliers=$e[$s['id']]['method']>0?"green bold":"red bold";
@@ -53,7 +47,6 @@ foreach($students as $s){
     <td class='$classProgram'>{$e[$s['id']]['program']}</td>
     <td class='$classVWPP'>{$e[$s['id']]['ReidHall']} / $nbVWPP</td>
     <td class='$classUniv'>{$e[$s['id']]['univ']} / $nbUniv</td>
-    <td class='$classCiph'>{$e[$s['id']]['CIPH']} / $nbCiph</td>
     <td class='$classTutorats'>{$e[$s['id']]['tutorats']}</td>
     <td class='$classAteliers'>{$e[$s['id']]['linguistique']}</td>
     <td class='$classAteliers'>{$e[$s['id']]['method']}</td>

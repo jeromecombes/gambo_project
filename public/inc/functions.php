@@ -197,14 +197,6 @@ function cmp_gender($a,$b){
   return ($a['gender'] > $b['gender']);
 }
 
-function cmp_institution_desc($a,$b){
-  return ($a['institution'] < $b['institution']);
-}
-
-function cmp_institution($a,$b){
-  return ($a['institution'] > $b['institution']);
-}
-
 function cmp_institution2($a,$b){
   if(strtolower($a['institution']) == strtolower($b['institution'])){
     if(strtolower($a['institutionAutre']) == strtolower($b['institutionAutre'])){

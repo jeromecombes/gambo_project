@@ -1,11 +1,9 @@
 <?php
-// Last update : 2016-03-12
 
 ini_set('display_errors',0);
 ini_set('error_reporting',E_ERROR | E_WARNING | E_PARSE);
 
 require_once("../inc/config.php");
-require_once("../inc/class.ciph.inc");
 require_once("../inc/class.reidhall.inc");
 require_once("../inc/class.univ4.inc");
 require_once("../header.php");

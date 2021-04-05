@@ -4,7 +4,6 @@ ini_set('error_reporting',E_ERROR | E_WARNING | E_PARSE);
 // ini_set('error_reporting',E_ALL);
 
 require_once("../inc/config.php");
-require_once("../inc/class.ciph.inc");
 require_once("../inc/class.reidhall.inc");
 require_once("../inc/class.univ4.inc");
 require_once("../inc/class.student.inc");
@@ -24,12 +23,6 @@ $u->fetchAllStudents(true);
 $univ=$u->elements;
 $univ=array_map("entity_decode",$univ);
 $univ=array_map("utf8_decode2",$univ);
-
-$c=new ciph();
-$c->fetchAll($_SESSION['vwpp']['login_univ']);
-$ciph=$c->elemExcel;
-$ciph=array_map("utf8_decode2",$ciph);
-usort($ciph,"cmp_institution");
 
 $Fnm = "../data/grades_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
@@ -68,17 +61,6 @@ foreach($univ as $course){
   }
 }
 
-/*foreach($ciph as $course){
-  if(!empty($course)){
-    $g=new grades();
-    $g->fetchCourse("ciph",$course['id']);
-    foreach($g->grades as $grade){
-      $cells=array("CIPh (or other)",$course["domaine"],$course["titre"],$course["titre2"],$course["instructeur"],$grade["lastExcel"],$grade["firstExcel"],$grade['university'],$grade['note'],$grade['date1'],$grade['grade'],$grade['date2']);
-      $lines[]=join($cells,$separate);
-    }
-  }
-}
-*/
 $inF = fopen($Fnm,"w");
 foreach($lines as $elem){
   fputs($inF,$elem."\n");

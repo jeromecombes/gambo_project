@@ -1,6 +1,5 @@
 <?php
 require_once("../inc/config.php");
-require_once("../inc/class.ciph.inc");
 require_once("../inc/class.courses.inc");
 require_once("../inc/class.univ.inc");
 require_once("../inc/class.grades.inc");
@@ -39,13 +38,6 @@ switch($univ){
     $students=$u->students;
     break;
 
-
-  case "ciph" :
-    $c=new ciph();
-    $c->fetch($course_id);
-    $course=array("code"=>"&nbsp;","title"=>$c->element['titre'],"professor"=>$c->element['instructeur']);
-    $students[]=array("id"=>$c->element['student'],"lastname"=>$c->element['studentLastname'],"firstname"=>$c->element['studentFirstname']);
-    break;
 }
 
 $g=new grades();
