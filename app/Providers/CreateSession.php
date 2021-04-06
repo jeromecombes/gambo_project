@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Session as Session;
 
-class CreateLegacySession
+class CreateSession
 {
     /**
      * Create the event listener.
@@ -64,6 +64,9 @@ class CreateLegacySession
                     Session::put('access', array());
                     Session::put('login_name', $student->firstname . ' ' . $student->lastname);
                     Session::put('student', $student->id);
+
+                    // TODO Redirect students that have more than 1 semester
+                    Session::put('semester', $student->semesters[0]);
 
                     break;
                 }

@@ -37,8 +37,8 @@ if(array_key_exists("data",$_POST)){
 
   $db=new db();
   $db->delete("evaluations",$filter);
-  
-  $sql="INSERT INTO {$dbprefix}evaluations (student,timestamp,form,courseId,question,response,closed,semester) VALUES 
+
+  $sql="INSERT INTO {$dbprefix}evaluations (student,timestamp,form,courseId,question,response,closed,semester) VALUES
     (:student, :timestamp, :form, :courseId, :question, :response, :closed, :semester);";
   $db=new dbh();
   $db->prepare($sql);
@@ -46,6 +46,6 @@ if(array_key_exists("data",$_POST)){
     $db->execute($elem);
 }
 
-header("Location: eval_index.php");
+header("Location: /evaluations");
 
 ?>

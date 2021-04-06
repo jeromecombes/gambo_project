@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CoursesRHController;
 use App\Http\Controllers\CoursesRH2Controller;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HostController;
@@ -283,6 +284,11 @@ Route::get('/trip', [TripController::class, 'edit'])
 Route::post('/trip', [TripController::class, 'update'])
     ->middleware('auth')
     ->name('trip.update');
+
+Route::get('/evaluations', [EvaluationController::class, 'index'])
+    ->middleware('auth')
+    ->middleware('not.admin')
+    ->name('evaluations.index');
 
 Route::post('/lock', [LockController::class, 'ajaxLocker'])
     ->middleware('admin')

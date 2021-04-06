@@ -13,7 +13,7 @@ $displayEvaluation = count($evaluations);
     <li id='li1' class='ui-state-default ui-corner-top @if (Request::is("*univ_reg*")) ui-state-active @endif'><a href='/univ_reg'>Univ. Reg.</a></li>
     <li id='li3' class='ui-state-default ui-corner-top @if (Request::is("*courses*")) ui-state-active @endif'><a href='/courses'>Courses</a></li>
     @if ($displayEvaluation)
-      <li id='li4' class='ui-state-default ui-corner-top @if (Request::is("*eval*")) ui-state-active @endif'><a href='eval_index.php'>Evaluations</a></li>
+      <li id='li4' class='ui-state-default ui-corner-top @if (Request::is("*eval*")) ui-state-active @endif'><a href='/evaluations'>Evaluations</a></li>
     @endif
     <li id='li8' class='ui-state-default ui-corner-top @if (Request::is("*documents*")) ui-state-active @endif'><a href='/documents'>Documents</a></li>
     <li id='li9' class='ui-state-default ui-corner-top @if (Request::is("*schedule*")) ui-state-active @endif'><a href='/schedule'>Schedule</a></li>

@@ -36,7 +36,7 @@ if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or (isset
   <li id='li2' class='ui-state-default ui-corner-top'><a href='/housing'>Housing</a></li>
   <li id='li1' class='ui-state-default ui-corner-top'><a href='/univ_reg'>Univ. Reg.</a></li>
   <li id='li3' class='ui-state-default ui-corner-top'><a href='/courses'>Courses</a></li>
-  <li id='li4' class='ui-state-default ui-corner-top' $displayEval ><a href='eval_index.php'>Evaluations</a></li>
+  <li id='li4' class='ui-state-default ui-corner-top' $displayEval ><a href='/evaluations'>Evaluations</a></li>
   <li id='li8' class='ui-state-default ui-corner-top'><a href='documents'>Documents</a></li>
   <li id='li9' class='ui-state-default ui-corner-top'><a href='/schedule'>Schedule</a></li>
   <li id='li10' class='ui-state-default ui-corner-top'><a href='/trip'>Trip</a></li>

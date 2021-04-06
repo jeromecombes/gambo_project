@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         Login::class => [
-            CreateLegacySession::class,
+            CreateSession::class,
         ],
     ];
 
