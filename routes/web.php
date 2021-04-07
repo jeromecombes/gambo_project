@@ -21,6 +21,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\TutoringController;
 use App\Http\Controllers\UnivRegController;
 use App\Http\Controllers\UnivRegShowController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -322,6 +323,19 @@ Route::post('/semester', [SemesterController::class, 'update'])
 Route::post('/lock', [LockController::class, 'ajaxLocker'])
     ->middleware('admin')
     ->name('lock');
+
+Route::get('/account', [UserController::class, 'account'])
+    ->middleware('auth')
+    ->name('account.index');
+
+Route::post('/password', [UserController::class, 'password'])
+    ->middleware('auth')
+    ->name('password.update');
+
+Route::post('/notifications', [UserController::class, 'notifications'])
+    ->middleware('auth')
+    ->middleware('admin')
+    ->name('notifications.update');
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])

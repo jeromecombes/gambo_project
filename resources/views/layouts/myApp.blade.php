@@ -48,7 +48,7 @@
                     </span>
                     <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
                     <div id='myMenu'>
-                        <a href="{{ asset('myAccount.php') }}">My Account</a><br/>
+                        <a href="{{ route('account.index') }}">My Account</a><br/>
                         <a href="{{ route('mylogout') }}">Logout</a>
                     </div>
                 </div>

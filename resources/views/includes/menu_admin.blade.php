@@ -33,6 +33,6 @@
             <li id='li2' class="ui-state-default ui-corner-top {{ (request()->is('admin/users')) ? 'ui-state-active' : '' }}"><a href='/admin/users.php'>Users</a></li>
         @endif
 
-        <li id='li6' class="ui-state-default ui-corner-top {{ (request()->is('admin/myAccount')) ? 'ui-state-active' : '' }}"><a href='/admin/myAccount.php'>My Account</a></li>
+        <li id='li6' class="ui-state-default ui-corner-top {{ (request()->is('account')) ? 'ui-state-active' : '' }}"><a href='/account'>My Account</a></li>
     </ul>
 </nav>

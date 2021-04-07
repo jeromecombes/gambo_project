@@ -67,10 +67,6 @@ class user{
         }
     }
 
-  function setPassword($clearPassword){
-    $this->password=md5($clearPassword);
-  }
-
   function setToken($email){
     $this->token=md5($email);
   }
@@ -99,7 +95,7 @@ class user{
   }
 
   function add($data){
-    
+
 
   }
 */

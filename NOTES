@@ -1,6 +1,7 @@
 NOTES
 
 2021-04-07
+// TODO use custom request for changing password and fields contrôle with length, etc. template user/account
 // TODO Remettre le contrôle onsubmit = ctrl_form_univreg() sur les templates
 -- student_form_2019.blade.php
 -- student_form_before_2019.blade.php

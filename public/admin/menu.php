@@ -11,7 +11,7 @@ echo <<<EOD
 <div id='loginName'><span>{$_SESSION['vwpp']['login_name']}</span>
   <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
   <div id='myMenu'>
-    <a href='myAccount.php'>My Account</a><br/>
+    <a href='/account'>My Account</a><br/>
     <a href='/logout'>Logout</a>
   </div>
 </div>
@@ -34,7 +34,7 @@ if($semester){
 
   if(in_array(23,$_SESSION['vwpp']['access']))
     echo "<li id='li1' class='ui-state-default ui-corner-top'><a href='courses4.php'>Courses</a></li>\n";
-  
+
   if(in_array(18,$_SESSION['vwpp']['access']) or in_array(19,$_SESSION['vwpp']['access']) or in_array(20,$_SESSION['vwpp']['access']))
     echo "<li id='li9' class='ui-state-default ui-corner-top'><a href='grades3-1.php'>Grades</a></li>\n";
 
@@ -47,7 +47,7 @@ if($semester){
 if(in_array(9,$_SESSION['vwpp']['access']))
   echo "<li id='li2' class='ui-state-default ui-corner-top'><a href='users.php'>Users</a></li>\n";
 
-echo "<li id='li6' class='ui-state-default ui-corner-top'><a href='myAccount.php'>My Account</a></li>\n";
+echo "<li id='li6' class='ui-state-default ui-corner-top'><a href='/account'>My Account</a></li>\n";
 
 ?>
 </ul>

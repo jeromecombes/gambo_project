@@ -271,10 +271,6 @@ class student{
         }
     }
 
-  public function setPassword($clearPassword){
-    $this->password=md5($clearPassword);
-  }
-
   public function setToken($email){
     $this->token=md5($email);
   }

@@ -24,10 +24,6 @@ function alertDelete(msg,id){
     location.href="courses-update.php?id="+id+"&delete=";
 }
 
-function changeNotifications(me){
-  file("/admin/myAccountNotifications.php?notif="+me.checked);
-}
-
 function change_password(me){
     if(me.checked){
       document.getElementById("tr_password1").style.display="";

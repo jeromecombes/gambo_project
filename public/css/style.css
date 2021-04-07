@@ -134,6 +134,19 @@ table.datatable{
   font-size:1.4em;
 }
 
+#account td:first-child {
+  width: 400px;
+}
+
+.td-button {
+  text-align: right;
+  padding: 30px 30px 10px;
+}
+
+.same-line {
+  padding: 0 30px 10px;
+}
+
 div#content {
   position:absolute;
   top:60px;
@@ -149,7 +162,7 @@ div#content {
   border-bottom: solid 1px black ;
 }
 
-#myTab td,#myTab2 td, #content td{
+#myTab td,#myTab2 td, #content td:not(.td-button) {
   padding:0 10px 0 10px;
 }
 

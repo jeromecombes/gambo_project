@@ -19,8 +19,8 @@ echo <<<EOD
 <div id='loginName'><span>{$_SESSION['vwpp']['login_name']}</span>
   <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
   <div id='myMenu'>
-    <a href='myAccount.php'>My Account</a><br/>
-    <a href='logout'>Logout</a>
+    <a href='/account'>My Account</a><br/>
+    <a href='/logout'>Logout</a>
   </div>
 </div>
 
@@ -40,7 +40,7 @@ if(array_key_exists("semester",$_SESSION['vwpp']) or $post['semester'] or (isset
   <li id='li8' class='ui-state-default ui-corner-top'><a href='documents'>Documents</a></li>
   <li id='li9' class='ui-state-default ui-corner-top'><a href='/schedule'>Schedule</a></li>
   <li id='li10' class='ui-state-default ui-corner-top'><a href='/trip'>Trip</a></li>
-  <li id='li6' class='ui-state-default ui-corner-top'><a href='myAccount.php'>My Account</a></li>
+  <li id='li6' class='ui-state-default ui-corner-top'><a href='/account'>My Account</a></li>
 </ul>
 EOD;
 }
