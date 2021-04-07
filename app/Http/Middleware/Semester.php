@@ -17,7 +17,11 @@ class Semester
     {
 
         if (empty(session('semester'))) {
-            return redirect()->route('admin.index')->with('warning', 'Please, select a semester');
+            if (session('admin')) {
+                return redirect()->route('admin.index')->with('warning', 'Please, select a semester');
+            } else {
+                return redirect()->route('semester.index');
+            }
         }
 
         return $next($request);

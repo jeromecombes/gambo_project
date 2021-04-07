@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Helpers\CourseHelper;
 use App\Models\Evaluation;
 use App\Models\Internship;
-use App\Models\Student;
 use App\Models\Tutoring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -18,7 +17,7 @@ class EvaluationController extends Controller
     }
 
     /**
-     * Show student index
+     * Show student's evaluations index
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

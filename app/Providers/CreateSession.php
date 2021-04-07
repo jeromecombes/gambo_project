@@ -63,10 +63,14 @@ class CreateSession
 
                     Session::put('access', array());
                     Session::put('login_name', $student->firstname . ' ' . $student->lastname);
+                    Session::put('semesters', $student->semesters);
                     Session::put('student', $student->id);
 
-                    // TODO Redirect students that have more than 1 semester
-                    Session::put('semester', $student->semesters[0]);
+                    if (count($student->semesters) == 1) {
+                        $_SESSION['vwpp']['semester'] = $student->semesters[0];
+                        $_SESSION['vwpp']['semestre'] = $student->semesters[0];
+                        Session::put('semester', $student->semesters[0]);
+                    }
 
                     break;
                 }

@@ -36,21 +36,7 @@ elseif(!array_key_exists("semester",$_SESSION['vwpp'])){
     $_SESSION['vwpp']['semestre']=$_POST['semester'];
   }
   else{
-    echo <<<EOD
-    <form method='post' action='index.php'>
-    <h3>Select your semester</h3>
-    <table><tr><td style='width:200px;'>
-    <select name='semester'>
-    <option value=''>&nbsp;</option>
-    <option value='{$_SESSION['vwpp']['semesters'][0]}'>{$_SESSION['vwpp']['semesters'][0]}</option>
-    <option value='{$_SESSION['vwpp']['semesters'][1]}'>{$_SESSION['vwpp']['semesters'][1]}</option>
-    </select>
-    </td><td>
-    <input type='submit' value='OK' />
-    </td></tr></table>
-    </form>
-EOD;
-    require_once "footer.php";
+    Header('Location: /semester');
     exit;
   }
 }
