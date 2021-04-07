@@ -19,45 +19,13 @@ function add_fields(i){
    document.getElementById("tr_"+i).style.display="";
 }
 
-function addUnivCourse(me){
-  me.style.display="none";
-  document.getElementById("newUnivCourse").style.display="block";
-}
-
 function alertDelete(msg,id){
   if(confirm(msg))
     location.href="courses-update.php?id="+id+"&delete=";
 }
 
-function change_menu(id){
-  for(i=0;i<li_ids.length;i++)
-    if(!document.getElementById("li"+li_ids[i]))
-    original=li_ids[i];						// find original id
-  document.getElementById("current").id="li"+original;		// change menu
-  document.getElementById("li"+id).id="current";
-  if(document.getElementById("div"+original))			// change content
-    document.getElementById("div"+original).style.display="none";
-  if(document.getElementById("div-edit"+original))
-    document.getElementById("div-edit"+original).style.display="none";
-  if(document.getElementById("div"+id))
-    document.getElementById("div"+id).style.display="";
-  file("/inc/change_menu.php?id="+id);
-  document.getElementById("div6").style.display="none";
-
-}
-
 function changeNotifications(me){
   file("/admin/myAccountNotifications.php?notif="+me.checked);
-}
-
-function resetNewCourse(){
-  document.getElementById("newUnivCourse").style.display="none";
-  document.getElementById("AddCourseButton").style.display="";
-}
-
-function showHousingForm(){
-  document.getElementById("div6").style.display="";
-  document.getElementById("div2").style.display="none";
 }
 
 function change_password(me){
@@ -122,12 +90,6 @@ function checkLink(me,admin,id){
   }
 }
 
-function ctrlAddTD(me){
-    if(me.nom.value)
-      return true;
-    return false;
-}
-
 function ctrl_form1(){
   password_ctrl(document.form.password);
   password_ctrl(document.form.password2);
@@ -178,32 +140,6 @@ function delete_doc(id) {
             }
         });
     }
-}
-
-function delete_line(i){
-  document.getElementById("q"+i).value="";
-  document.getElementById("t"+i).selectedIndex=0;
-  document.getElementById("r"+i).value="";
-}
-
-function displayAdd(form){
-  document.getElementById("fieldSet"+form).style.display="";
-  if(document.forms["form"+form+"_"]){
-    inputs=document.forms["form"+form+"_"].elements;
-    i=0;
-    while(inputs[i]){
-      inputs[i++].style.display="";
-    }
-  }
-
-  i=0;
-  while(document.getElementById("form"+form+"__"+i)){
-     document.getElementById("form"+form+"__"+i++).style.display="none";
-  }
-
-  if(document.getElementById("form"+form+"__done")){
-    document.getElementById("form"+form+"__done").style.display="";
-  }
 }
 
 function displayForm(form,id){
@@ -264,51 +200,6 @@ function displayForm(form,id){
   }
 }
 
-function displayText(form,id){
-
-  if(form=="univreg2b") {
-
-    $('.inputField').hide();
-    $('.cancel-button').hide();
-    $('.submit-button').hide();
-    $('.inputValue').show();
-    $('.edit-button').show();
-
-  } else {
-
-    inputs=document.forms[form+"_"+id].elements;
-    i=0;
-    while(inputs[i]){
-      inputs[i++].style.display="none";
-    }
-    /*
-    * While ne fonctionne pas correctement s'il y a des interruptions,
-    * donc remplace progressivement par $(".inputField").hide();
-    */
-    $("#"+form+"_"+id+" .inputField").hide();
-
-    i=0;
-    while(document.getElementById(form+"_"+id+"_"+i)){
-      document.getElementById(form+"_"+id+"_"+i++).style.display="";
-    }
-    /*
-    * While ne fonctionne pas correctement s'il y a des interruptions,
-    * donc remplace progressivement par $(".inputValue").show();
-    */
-    $("#"+form+"_"+id+" .inputValue").show();
-
-    document.getElementById(form+"_"+id+"_done").style.display="none";
-  }
-}
-
-function displayTD(id){
-  document.getElementById("TD_"+id+"_5").style.display="";
-  document.getElementById("TD_"+id+"_6").style.display="";
-  document.getElementById("TD_"+id+"_Add").style.display="none";
-  document.getElementById("Delete_"+id).style.display="none";
-  document.location.href="#TD1_"+id;
-}
-
 function dropCourse(id,admin){
   if(confirm("Etes vous sûr(e) de vouloir supprimer ce cours ?")){
     if(admin){
@@ -325,18 +216,6 @@ function dropCourse2(id,admin){
   if(confirm("Etes vous sûr(e) de vouloir supprimer ce cours ?")){
     url="courses4-univ-update.php?delete=true&id="+id;
     document.location.href=url;
-  }
-}
-
-
-function edit(id){
-  if(document.getElementById("div-edit"+id).style.display==""){
-    document.getElementById("div-edit"+id).style.display="none";
-    document.getElementById("div"+id).style.display="";
-  }
-  else{
-    document.getElementById("div-edit"+id).style.display="";
-    document.getElementById("div"+id).style.display="none";
   }
 }
 
@@ -392,11 +271,6 @@ function file(fichier){
    else return(false);
 }
 
-function js_autocomplete(me){			// supprimer les éléments ne contenant pas à me.value
-//   auto=autocomplete[me.name].join(",");	// afficher les éléments dans un <div> flotant
-//    alert(auto);				// click sur element -> me.value=element
-}
-
 function lock(me, model, id) {
 
   if (id == undefined) {
@@ -428,14 +302,6 @@ function lock(me, model, id) {
 }
 
 
-function lock_registration(form,id,lock){
-  table="courses_"+form;
-  if(form=="stages" || form=="tutorat")
-     table=form;
-  file("/admin/lock.php?table="+table+"&id="+id+"&lock="+lock);
-  document.location.reload(false);
-}
-
 function lockCourse4(id){
   lock=file("/admin/courses4Lock.php?id="+id);
   if(lock==1){
@@ -463,8 +329,6 @@ function lockRH2(me,student){
 }
 
 function form1_ctrl(){
-/*  if(document.getElementById("login_msg").innerHTML==""
-    && document.getElementById("passwd1").innerHTML=="" */
   if(document.getElementById("passwd1").innerHTML==""
     && document.getElementById("passwd2").innerHTML==""){
      document.getElementById("submit").disabled=false;
@@ -664,16 +528,6 @@ function user_delete(id){
  if(confirm("Do you really want to delete this user ?"))
    document.location.href="users-delete.php?id="+id;
 }
-
-
-
-function verifLoginForm(){
- if(document.form.login.value && document.form.password.value)
-   document.form.submit2.disabled=false;
- else
-   document.form.submit2.disabled=true;
-}
-
 
 function isNumeric(input){
     return (input-0)==input && input.length>0;

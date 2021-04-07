@@ -21,7 +21,6 @@ $u->fetchAllStudents(true);
 $univ=$u->elements;
 $univ=array_map("entity_decode",$univ);
 $univ=array_map("utf8_decode2",$univ);
-// usort($univ,"cmp_code");
 
 //	File Name
 $Fnm = '../data/grades_' . str_replace(' ', '_', $_SESSION['vwpp']['semester']);

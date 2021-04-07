@@ -17,7 +17,7 @@ class tutorat{
   public function fetch(){
     $student=$this->student;
     $semester=$this->semester;
-  
+
     $db=new db();
     $db->select("tutorat","*","student='$student' AND semester='$semester'");
     $data=$db->result[0];
@@ -50,26 +50,6 @@ class tutorat{
   }
 
 
-  public function update($tutorat){
-    $student=$this->student;
-    $semester=$this->semester;
-
-    $tutorat=array_map("entities",$tutorat);
-    $tutorat=array_map("encrypt_vwpp",$tutorat);
-
-    $data=array(":semester"=>$semester,":student"=>$student,":tuteur"=>$tutorat['tuteur'],
-      ":day"=>$tutorat['day'],":start"=>$tutorat['start'],":end"=>$tutorat['end']);
-
-    $db=new db();
-    $db->delete("tutorat","semester='$semester' AND student='$student'");
-
-    $db=new dbh();
-    $db->prepare("INSERT INTO {$GLOBALS['dbprefix']}tutorat (semester,student,tuteur,day,start,end)
-      VALUES (:semester,:student,:tuteur,:day,:start,:end);");
-
-    $db->execute($data);
-
-  }
 }
 
 ?>

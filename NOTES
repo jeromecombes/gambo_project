@@ -1,5 +1,11 @@
 NOTES
 
+2021-04-07
+// TODO Remettre le contrôle onsubmit = ctrl_form_univreg() sur les templates
+-- student_form_2019.blade.php
+-- student_form_before_2019.blade.php
+ET adapter les IDs
+
 2021-04-01
 // TODO : Standardize models and DB tables with day attribute int between 0 and 6
 // TODO : Change models, with dayText : return jddayofweek($this->day); DONE in MyModels : OK
