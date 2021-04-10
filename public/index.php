@@ -1,19 +1,6 @@
 <?php
 
-use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Http\Request;
-
-define('LARAVEL_START', microtime(true));
-
-require __DIR__.'/../vendor/autoload.php';
-
-$app = require_once __DIR__.'/../bootstrap/app.php';
-
-$kernel = $app->make(Kernel::class);
-
-$response = tap($kernel->handle(
-    $request = Request::capture()
-));
+include __DIR__ . '/init_laravel_for_legacy.php';
 
 require_once __DIR__."/header.php";
 require_once __DIR__."/menu.php";

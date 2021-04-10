@@ -49,7 +49,10 @@
                     <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
                     <div id='myMenu'>
                         <a href="{{ route('account.index') }}">My Account</a><br/>
-                        <a href="{{ route('mylogout') }}">Logout</a>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </div>
                 </div>
 

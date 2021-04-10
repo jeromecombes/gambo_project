@@ -1,4 +1,7 @@
 <?php
+
+include __DIR__ . '/../init_laravel_for_legacy.php';
+
 $semestre = filter_input(INPUT_GET, 'semestre', FILTER_SANITIZE_STRING);
 $semester = filter_input(INPUT_POST, 'semester', FILTER_SANITIZE_STRING);
 
@@ -12,7 +15,12 @@ echo <<<EOD
   <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
   <div id='myMenu'>
     <a href='/account'>My Account</a><br/>
-    <a href='/logout'>Logout</a>
+    <a href='/logout' onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
+    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+EOD;
+    echo csrf_field() . "\n";
+echo <<<EOD
+    </form>
   </div>
 </div>
 

@@ -1,5 +1,6 @@
 <?php
-// Last change : 2013-04-25, Jérôme Combes
+
+include __DIR__ . '/init_laravel_for_legacy.php';
 
 require_once "header.php";
 require_once "menu.php";

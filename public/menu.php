@@ -20,7 +20,12 @@ echo <<<EOD
   <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
   <div id='myMenu'>
     <a href='/account'>My Account</a><br/>
-    <a href='/logout'>Logout</a>
+    <a href='/logout' onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
+    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+EOD;
+    echo csrf_field() . "\n";
+echo <<<EOD
+    </form>
   </div>
 </div>
 

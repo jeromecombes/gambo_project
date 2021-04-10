@@ -13,7 +13,6 @@ use App\Http\Controllers\HousingClosedController;
 use App\Http\Controllers\HousingController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\LockController;
-use App\Http\Controllers\MyAuthController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
@@ -449,8 +448,6 @@ Route::post('/admin/housing/lock', [HousingClosedController::class, 'lock'])
 Route::post('/admin/housing/unlock', [HousingClosedController::class, 'unlock'])
     ->middleware('admin')
     ->name('housing.unlock');
-
-Route::get('/logout', [MyAuthController::class, 'logout'])->name('mylogout');
 
 // EXPORT Files : Decrypt and export files for given semester in storage/app/export/
 Route::get('/export/{semester}', [DocumentController::class, 'export_all'])
