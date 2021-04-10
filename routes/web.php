@@ -322,6 +322,12 @@ Route::get('/evaluation/program/{id}', [EvaluationController::class, 'program_fo
     ->middleware('semester')
     ->name('evaluation.program.show');
 
+Route::get('/evaluation/course/{id}', [EvaluationController::class, 'course_form'])
+    ->where('id', '[0-9]+')
+    ->middleware('auth')
+    ->middleware('semester')
+    ->name('evaluation.course.form');
+
 Route::post('/evaluations', [EvaluationController::class, 'update'])
     ->middleware('auth')
     ->middleware('not.admin')

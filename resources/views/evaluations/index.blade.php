@@ -43,7 +43,7 @@
       @foreach ($courses->local as $course)
         <li>
           @if (!$closed->local[$course->id])
-            <a href='/eval_index2.php?form=ReidHall&courseId={{ $course->id }}' style='font-weight:bold;'>
+            <a href='{{ route('evaluation.course.form', $course->id) }}' style='font-weight:bold;'>
               Evaluation for {{ $course->name }}, {{ $course->professor }} @if ($closed->local[$course->id]) (done) @endif
             </a>
           @else

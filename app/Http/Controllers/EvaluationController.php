@@ -6,6 +6,7 @@ use App\Helpers\CourseHelper;
 use App\Models\Evaluation;
 use App\Models\Internship;
 use App\Models\Tutoring;
+use App\Models\RHCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -59,6 +60,58 @@ class EvaluationController extends Controller
 
 
     /**
+     * Show local courses evaluation form
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function course_form(Request $request)
+    {
+        $edit = false;
+
+        // Initialisation of $data
+        $data = array();
+        for ($i = 0; $i < 33; $i++) {
+            $data[$i] = null;
+        }
+
+        // Admin with ID
+        if (session('admin')) {
+            $evaluation = Evaluation::find($request->id);
+            $course_id = $evaluation->courseId;
+
+            foreach ($evaluation->links as $elem) {
+                $data[$elem->question] = $elem->response;
+            }
+
+        // Student
+        } else {
+            $course_id = $request->id;
+
+            $evaluation = Evaluation::where('form', 'ReidHall')
+                ->where('semester', session('semester'))
+                ->where('student', session('student'))
+                ->where('courseId', $course_id)
+                ->get();
+
+            if (count($evaluation)) {
+                foreach ($evaluation as $elem) {
+                    $data[$elem->question] = $elem->response;
+                }
+            } else {
+                $edit = true;
+            }
+        }
+
+        $view = (object) ['course_id' => $course_id, 'form' => 'ReidHall', 'title' => 'VWPP Course Evaluation'];
+
+        $course = RHCourse::find($course_id);
+
+        // View
+        return view('evaluations.course', compact('course', 'data', 'edit', 'view'));
+    }
+
+    /**
      * Show program evaluation form
      *
      * @param  \Illuminate\Http\Request  $request
@@ -68,6 +121,7 @@ class EvaluationController extends Controller
     {
 
         $edit = false;
+        $view = (object) ['course_id' => 0, 'form' => 'program', 'title' => 'Program Evaluation'];
 
         // Initialisation of $data
         $data = array();
@@ -114,7 +168,7 @@ class EvaluationController extends Controller
         }
 
         // View
-        return view('evaluations.program', compact('edit', 'data'));
+        return view('evaluations.program', compact('data', 'edit', 'view'));
     }
 
 
