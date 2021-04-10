@@ -10,6 +10,22 @@ class Evaluation extends MyModel
     /**
      * @var array
      */
-    protected $fillable = ['semester', 'student'];
+    protected $fillable = ['closed', 'courseId', 'form', 'question', 'semester', 'student', 'timestamp'];
+
+
+    // Set
+    public function setResponseAttribute($value)
+    {
+        if (is_array($value)) {
+            $value = json_encode($value);
+        }
+
+        $this->attributes['response'] = $this->encrypt($value, session('student'));
+    }
+
+    public function links()
+    {
+        return $this->hasMany(Evaluation::class, 'timestamp', 'timestamp');
+    }
 
 }

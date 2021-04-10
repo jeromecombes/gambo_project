@@ -57,4 +57,92 @@ class EvaluationController extends Controller
         return view('evaluations.index', compact('closed', 'courses', 'internship', 'tutoring'));
     }
 
+
+    /**
+     * Show program evaluation form
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function program_form(Request $request)
+    {
+
+        $edit = false;
+
+        // Initialisation of $data
+        $data = array();
+        for ($i = 0; $i < 57; $i++) {
+            $data[$i] = null;
+        }
+
+        // Admin with ID
+        if (session('admin') and $request->id) {
+            $evaluation = Evaluation::find($request->id);
+
+            foreach ($evaluation->links as $elem) {
+                $data[$elem->question] = $elem->response;
+            }
+
+        // Student
+        } else {
+            $evaluation = Evaluation::where('form', 'program')
+                ->where('semester', session('semester'))
+                ->where('student', session('student'))
+                ->get();
+
+            if (count($evaluation)) {
+                foreach ($evaluation as $elem) {
+                    $data[$elem->question] = $elem->response;
+                }
+            } else {
+                $edit = true;
+            }
+        }
+
+        if (!empty($data[32])) {
+
+            // TODO : When evaluations of Spring 2020 and before will be removed : Keep only $data[32] = json_decode($data[32]);
+
+            $tmp = json_decode($data[32]);
+            if (json_last_error() == JSON_ERROR_NONE) {
+                $data[32] = $tmp;
+            } else {
+                $data[32] = unserialize($data[32]);
+            }
+
+            $data[32] = is_array($data[32]) ? join(' ; ', $data[32]) : null;
+        }
+
+        // View
+        return view('evaluations.program', compact('edit', 'data'));
+    }
+
+
+    /**
+     * Update an evaluation form
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+
+        $timestamp = time();
+
+        foreach ($request->data as $question => $answer) {
+            $evaluation = new Evaluation();
+            $evaluation->student = session('student');
+            $evaluation->form = $request->form;
+            $evaluation->courseId = $request->course_id;
+            $evaluation->timestamp = $timestamp;
+            $evaluation->question = $question;
+            $evaluation->response = $answer;
+            $evaluation->closed = '1';
+            $evaluation->semester = session('semester');
+            $evaluation->save();
+        }
+
+        return redirect()->route('evaluations.index')->with('success', 'Your evaluation has been saved. Thanks !');
+    }
+
 }

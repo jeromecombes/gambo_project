@@ -309,6 +309,25 @@ Route::get('/evaluations', [EvaluationController::class, 'index'])
     ->middleware('semester')
     ->name('evaluations.index');
 
+Route::get('/evaluation/program', [EvaluationController::class, 'program_form'])
+    ->middleware('auth')
+    ->middleware('not.admin')
+    ->middleware('semester')
+    ->name('evaluation.program.form');
+
+Route::get('/evaluation/program/{id}', [EvaluationController::class, 'program_form'])
+    ->where('id', '[0-9]+')
+    ->middleware('auth')
+    ->middleware('admin')
+    ->middleware('semester')
+    ->name('evaluation.program.show');
+
+Route::post('/evaluations', [EvaluationController::class, 'update'])
+    ->middleware('auth')
+    ->middleware('not.admin')
+    ->middleware('semester')
+    ->name('evaluations.update');
+
 Route::get('/semester', [SemesterController::class, 'index'])
     ->middleware('auth')
     ->middleware('not.admin')

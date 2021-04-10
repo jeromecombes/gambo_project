@@ -18,7 +18,7 @@
   <ul>
     <li>
       @if (!$closed->program)
-        <a href='/eval_index2.php?form=program' style='font-weight:bold;'>
+        <a href='{{ route('evaluation.program.form') }}' style='font-weight:bold;'>
           Program Evaluation @if ($closed->program) (done) @endif
         </a>
       @else

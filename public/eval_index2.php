@@ -31,7 +31,7 @@ foreach($db->result as $elem){
 
 $isForm=$db->result[0]['closed']?false:true;	// display form with inputs or texts only
 
-echo "<a href='eval_index.php'>Back to list</a><br/><br/>\n";
+echo "<a href='/evaluations'>Back to list</a><br/><br/>\n";
 
 require_once "inc/eval.$form.inc";
 

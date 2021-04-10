@@ -46,9 +46,15 @@ foreach($result as $elem){
   echo "<tr>\n";
   for($i=1;$i<count($questions)+1;$i++){
     if($form=="program" and $i==32){
-      $elem[$i]=unserialize($elem[$i]);
+
+      $tmp = json_decode($elem[$i]);
+      if (json_last_error() == JSON_ERROR_NONE) {
+          $elem[$i] = $tmp;
+      } else {
+          $elem[$i] = unserialize($elem[$i]);
+      }
       if(is_array($elem[$i])){
-	$elem[$i]=join($elem[$i]," ; ");
+        $elem[$i]=join($elem[$i]," ; ");
       }
     }
     echo "<td><div style='height:50px;overflow:hidden;' title='{$elem[$i]}'>{$elem[$i]}</div></td>\n";

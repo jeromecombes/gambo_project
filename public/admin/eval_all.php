@@ -103,7 +103,7 @@ echo "<a href='eval_index.php' style='margin-left:30px;'>All evaluations</a>\n";
 if($form=="program"){
   echo "<h3 style='margin-bottom:0px;'>Program Evaluations</h3><ul style='margin-left:20px;'>";
   foreach($result as $elem){
-    echo "<li><a href='eval_view.php?id={$elem['id']}'>Program Evaluation ({$elem['id']})</a></li>\n";
+    echo "<li><a href='/evaluation/program/{$elem['id']}'>Program Evaluation ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }
