@@ -114,7 +114,7 @@
 
       <li>
         @if (!$closed->method)
-          <a href='/eval_index2.php?form=method' style='font-weight:bold;'>
+          <a href='{{ route('evaluation.form', 'method') }}' style='font-weight:bold;'>
             Ateliers Methodologiques @if ($closed->method) (done) @endif
           </a>
         @else

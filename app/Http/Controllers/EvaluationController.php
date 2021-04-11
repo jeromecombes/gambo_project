@@ -109,8 +109,14 @@ class EvaluationController extends Controller
 
         switch ($form) {
             case 'linguistic' :
-                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Ateliers Linguistiques Evaluation'];
-                return view('evaluations.linguistic', compact('data', 'edit', 'view'));
+                $view = (object) array(
+                    'course_id' => 0,
+                    'form' => $form,
+                    'title' => 'Ateliers Linguistiques',
+                    'subtitle' => "La grammaire et syntaxe, la phonétique, l'interculturel",
+                );
+
+                return view('evaluations.workshop', compact('data', 'edit', 'view'));
 
                 break;
 
@@ -129,6 +135,18 @@ class EvaluationController extends Controller
             case 'internship' :
                 $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Internship Evaluation'];
                 return view('evaluations.internship', compact('data', 'edit', 'view'));
+
+                break;
+
+            case 'method' :
+                $view = (object) array(
+                    'course_id' => 0,
+                    'form' => $form,
+                    'title' => 'Ateliers Méthodologiques',
+                    'subtitle' => "La dissertation, le commentaire composé, l'exposé oral",
+                );
+
+                return view('evaluations.workshop', compact('data', 'edit', 'view'));
 
                 break;
 

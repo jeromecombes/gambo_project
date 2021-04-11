@@ -1,7 +1,7 @@
 @extends('evaluations.layout')
 
 @push('subtitle')
-  <h3>La grammaire et syntaxe, la phonétique, l'interculturel</h3>
+  {{ $view->subtitle }}
 @endpush
 
 @section('evaluation_form')
@@ -40,9 +40,7 @@
 </tr>
 
 <tr>
-  <td colspan='4'>
-    <b>2. Please comment on the <i>content</i> of the sessions and their <i>usefulness</i> to <i>you</i>. To what extent did they help you to :</b>
-  </td>
+  <td colspan='4'><b>2. Please comment on the <i>content</i> of the sessions and their <i>usefulness</i> to <i>you</i>. To what extent did they help you to :</b></td>
 </tr>
 
 <tr>
@@ -78,7 +76,7 @@
 @endif
 
 <tr>
-  <td colspan='4' style='padding-top:20px;' ><b>3. What aspect of the "Ateliers Linguistiques" did you find most helpful ?</b></td>
+  <td colspan='4' style='padding-top:20px;' ><b>3. What aspect of the "{{ $view->title }}" did you find most helpful ?</b></td>
 </tr>
 
 <tr>
@@ -92,7 +90,7 @@
 </tr>
 
 <tr>
-  <td colspan='4' ><b>4. Do you have any suggestions for how the "Ateliers Linguistiques" could be modified to faciliate your experience in Paris ?</b></td>
+  <td colspan='4' ><b>4. Do you have any suggestions for how the "{{ $view->title }}" could be modified to faciliate your experience in Paris ?</b></td>
 </tr>
 
 <tr>

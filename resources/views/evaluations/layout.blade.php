@@ -11,9 +11,9 @@
   @endif
 </div>
 
-<div style='text-align:center; margin-bottom: 50px;'>
-  <h3 style='text-align:center;'>VASSAR-WESLEYAN PROGRAM IN PARIS<br/>{{ $view->title }} Form, {{ session('semester') }}</h3>
-
+<div style='text-align:center; margin-bottom: 50px; font-weight: bold; font-size:1.5em;'>
+  VASSAR-WESLEYAN PROGRAM IN PARIS<br/>
+  {{ $view->title }}, {{ session('semester') }}<br/>
   @stack('subtitle')
 </div>
 
