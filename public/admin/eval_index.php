@@ -35,7 +35,7 @@ $db=new db();
 $db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses.title AS title,
   {$dbprefix}evaluations.id AS id FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses
   ON {$dbprefix}courses.id={$dbprefix}evaluations.courseId
-  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ReidHall'
+  WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='local'
   AND {$dbprefix}evaluations.semester='$semester'
   GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
 $reidHall=array();
@@ -50,7 +50,7 @@ $db=new db();
 $db->select("evaluations","*","closed='1' AND semester='$semester' AND form='intership'","GROUP BY timestamp,student");
 $intership=$db->result;
 $db=new db();
-$db->select("evaluations","*","closed='1' AND semester='$semester' AND form='tutorats'","GROUP BY timestamp,student");
+$db->select("evaluations","*","closed='1' AND semester='$semester' AND form='tutoring'","GROUP BY timestamp,student");
 $tutorats=$db->result;
 
 //	University
@@ -90,8 +90,8 @@ echo "<a href='eval_all.php?form=program'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 echo "<h4 style='margin-bottom:0px;'>VWPP Course Evaluations</h4><p style='margin:0 0 0 30px;'>";
-echo "<a href='eval_tab.php?form=ReidHall'>Table</a>,&nbsp;\n";
-echo "<a href='eval_all.php?form=ReidHall'>Individual evaluations</a>\n";
+echo "<a href='eval_tab.php?form=local'>Table</a>,&nbsp;\n";
+echo "<a href='eval_all.php?form=local'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 echo "<h4 style='margin-bottom:0px;'>University Course Evaluation</h4><p style='margin:0 0 0 30px;'>";
@@ -100,13 +100,13 @@ echo "<a href='eval_all.php?form=univ'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 echo "<h4 style='margin-bottom:0px;'>Tutorial Evaluations</h4><p style='margin:0 0 0 30px;'>";
-echo "<a href='eval_tab.php?form=tutorats'>Table</a>,&nbsp;\n";
-echo "<a href='eval_all.php?form=tutorats'>Individual evaluations</a>\n";
+echo "<a href='eval_tab.php?form=tutoring'>Table</a>,&nbsp;\n";
+echo "<a href='eval_all.php?form=tutoring'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 echo "<h4 style='margin-bottom:0px;'>Ateliers Linguistiques</h4><p style='margin:0 0 0 30px;'>";
-echo "<a href='eval_tab.php?form=linguistique'>Table</a>,&nbsp;\n";
-echo "<a href='eval_all.php?form=linguistique'>Individual evaluations</a>\n";
+echo "<a href='eval_tab.php?form=linguistic'>Table</a>,&nbsp;\n";
+echo "<a href='eval_all.php?form=linguistic'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 echo "<h4 style='margin-bottom:0px;'>Ateliers M&eacute;thodologiques</h4><p style='margin:0 0 0 30px;'>";

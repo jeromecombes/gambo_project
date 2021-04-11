@@ -60,39 +60,39 @@ $quest["program"][]="Student name";
 
 
 //	Reid Hall questions
-$quest["ReidHall"]=array();
-$quest["ReidHall"][]="Course Name";
-$quest["ReidHall"][]="Instructor";
-$quest["ReidHall"][]="1. Efforts";
-$quest["ReidHall"][]="2a. French level, begining";
-$quest["ReidHall"][]="2b. French level, half-term";
-$quest["ReidHall"][]="3. Did you attend every ...";
-$quest["ReidHall"][]="Why not";
-$quest["ReidHall"][]="4a. Assigned reading";
-$quest["ReidHall"][]="Why not";
-$quest["ReidHall"][]="4b. in class discussion";
-$quest["ReidHall"][]="Why not";
-$quest["ReidHall"][]="4c. Raise questions";
-$quest["ReidHall"][]="Why not";
-$quest["ReidHall"][]="5. Readings";
-$quest["ReidHall"][]="5. Written work";
-$quest["ReidHall"][]="5. Oral presnetation";
-$quest["ReidHall"][]="5. Other (specify)";
-$quest["ReidHall"][]="5. Other";
-$quest["ReidHall"][]="6a. Visits or events outside";
-$quest["ReidHall"][]="6b. Did you attend all of them";
-$quest["ReidHall"][]="Why not";
-$quest["ReidHall"][]="7a. Explain difficult material";
-$quest["ReidHall"][]="7b. Organization";
-$quest["ReidHall"][]="7c. Openness";
-$quest["ReidHall"][]="7d. Fairness";
-$quest["ReidHall"][]="7e. Comments and suggestions";
-$quest["ReidHall"][]="7f.Encouragement";
-$quest["ReidHall"][]="8. Assignments";
-$quest["ReidHall"][]="9. Assignments effective";
-$quest["ReidHall"][]="9. Comments";
-$quest["ReidHall"][]="10. Observations and comments";
-$quest["ReidHall"][]="Student name";
+$quest["local"]=array();
+$quest["local"][]="Course Name";
+$quest["local"][]="Instructor";
+$quest["local"][]="1. Efforts";
+$quest["local"][]="2a. French level, begining";
+$quest["local"][]="2b. French level, half-term";
+$quest["local"][]="3. Did you attend every ...";
+$quest["local"][]="Why not";
+$quest["local"][]="4a. Assigned reading";
+$quest["local"][]="Why not";
+$quest["local"][]="4b. in class discussion";
+$quest["local"][]="Why not";
+$quest["local"][]="4c. Raise questions";
+$quest["local"][]="Why not";
+$quest["local"][]="5. Readings";
+$quest["local"][]="5. Written work";
+$quest["local"][]="5. Oral presnetation";
+$quest["local"][]="5. Other (specify)";
+$quest["local"][]="5. Other";
+$quest["local"][]="6a. Visits or events outside";
+$quest["local"][]="6b. Did you attend all of them";
+$quest["local"][]="Why not";
+$quest["local"][]="7a. Explain difficult material";
+$quest["local"][]="7b. Organization";
+$quest["local"][]="7c. Openness";
+$quest["local"][]="7d. Fairness";
+$quest["local"][]="7e. Comments and suggestions";
+$quest["local"][]="7f.Encouragement";
+$quest["local"][]="8. Assignments";
+$quest["local"][]="9. Assignments effective";
+$quest["local"][]="9. Comments";
+$quest["local"][]="10. Observations and comments";
+$quest["local"][]="Student name";
 
 //	University
 $quest["univ"]=array();
@@ -131,27 +131,27 @@ $quest["univ"][]="10. Other comments";
 $quest["univ"][]="Student name";
 
 //	Tutorial
-$quest["tutorats"]=array();
-$quest["tutorats"][]="Instructor";
-$quest["tutorats"][]="1a. Did you attend every session";
-$quest["tutorats"][]="1b. Why not";
-$quest["tutorats"][]="2a. Mastery of French language";
-$quest["tutorats"][]="2b. Understand French culture";
-$quest["tutorats"][]="3. Aspect of tutorats most helpful";
-$quest["tutorats"][]="4. Suggestions";
-$quest["tutorats"][]="Name";
-  
+$quest["tutoring"]=array();
+$quest["tutoring"][]="Instructor";
+$quest["tutoring"][]="1a. Did you attend every session";
+$quest["tutoring"][]="1b. Why not";
+$quest["tutoring"][]="2a. Mastery of French language";
+$quest["tutoring"][]="2b. Understand French culture";
+$quest["tutoring"][]="3. Aspect of tutorats most helpful";
+$quest["tutoring"][]="4. Suggestions";
+$quest["tutoring"][]="Name";
+
 //	Ateliers Linguistiques
-$quest["linguistique"]=array();
-$quest["linguistique"][]="1a. Did you attend every session";
-$quest["linguistique"][]="1b. Why not";
-$quest["linguistique"][]="2a. Mastery of French language";
-$quest["linguistique"][]="2b. Understand French culture";
-$quest["linguistique"][]="3. Aspect of linguistique most helpful";
-$quest["linguistique"][]="4. Suggestions";
-$quest["linguistique"][]="5. Comments";
-$quest["linguistique"][]="Name";
-  
+$quest["linguistic"]=array();
+$quest["linguistic"][]="1a. Did you attend every session";
+$quest["linguistic"][]="1b. Why not";
+$quest["linguistic"][]="2a. Mastery of French language";
+$quest["linguistic"][]="2b. Understand French culture";
+$quest["linguistic"][]="3. Aspect of linguistique most helpful";
+$quest["linguistic"][]="4. Suggestions";
+$quest["linguistic"][]="5. Comments";
+$quest["linguistic"][]="Name";
+
 //	Ateliers Methodologiques
 $quest["method"]=array();
 $quest["method"][]="1a. Did you attend every session";
@@ -162,7 +162,7 @@ $quest["method"][]="3. Aspect of method most helpful";
 $quest["method"][]="4. Suggestions";
 $quest["method"][]="5. Comments";
 $quest["method"][]="Name";
-  
+
 
 //	Internship
 $quest["intership"]=array();
@@ -208,45 +208,5 @@ $quest["intership"][]="Perks 4";
 $quest["intership"][]="12. Observations";
 $quest["intership"][]="I authorize program fo quote ...";
 
-//	CIPH
-$quest['CIPH']=array();
-$quest['CIPH'][]="Name of tutor";
-$quest['CIPH'][]="Seminars attended";
-$quest['CIPH'][]="Seminars Organizer";
-$quest['CIPH'][]="1. Efforts";
-$quest['CIPH'][]="2a. French level at the beginning";
-$quest['CIPH'][]="2b. French level after half-term";
-$quest['CIPH'][]="3a. Did you attend every seminar session at the CIPh";
-$quest['CIPH'][]="3a. Why not";
-$quest['CIPH'][]="3b. Did you attend every tutorial session";
-$quest['CIPH'][]="3b. Why not";
-$quest['CIPH'][]="4a. Evaluate your own work (reading)";
-$quest['CIPH'][]="4a. Why not";
-$quest['CIPH'][]="4b. Evaluate your own work (discussion)";
-$quest['CIPH'][]="4b. Why not";
-$quest['CIPH'][]="4c. Evaluate your own work (Raise questions)";
-$quest['CIPH'][]="4c. Why not";
-$quest['CIPH'][]="5a. Understanding Readings";
-$quest['CIPH'][]="5b. Understanding Written work";
-$quest['CIPH'][]="5c. Understanding Oral presentation";
-$quest['CIPH'][]="5d. Other";
-$quest['CIPH'][]="5d. Understanding Other";
-$quest['CIPH'][]="6a. visits or events outside";
-$quest['CIPH'][]="6b. Did you attend all of them";
-$quest['CIPH'][]="6b. Why not";
-$quest['CIPH'][]="7a. Interaction Ability to explain difficult material";
-$quest['CIPH'][]="7b. Organization";
-$quest['CIPH'][]="7c. Openness to student's remarks";
-$quest['CIPH'][]="7d. Fairness";
-$quest['CIPH'][]="7e. Comments and suggestions";
-$quest['CIPH'][]="7f. Encouragement";
-$quest['CIPH'][]="8. Assignments";
-$quest['CIPH'][]="9. Assignments effective";
-$quest['CIPH'][]="9. Comments";
-$quest['CIPH'][]="10a. Format of the course";
-$quest['CIPH'][]="10b. Would you recommend";
-$quest['CIPH'][]="10b. Why not";
-$quest['CIPH'][]="11. Observations";
-$quest['CIPH'][]="Name";
 
 ?>

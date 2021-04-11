@@ -15,12 +15,11 @@ $eval->fetchAll($form,1,$_SESSION['vwpp']['login_univ']);
 $result=$eval->elements;
 
 switch($form){
-  case "CIPH" : $title="CIPH and other institutions evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "intership" : $title="Internship evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "program" : $title="Program evaluations for {$_SESSION['vwpp']['semester']}"; break;
-  case "ReidHall" : $title="VWPP Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;
-  case "tutorats" : $title="Tutorial evaluations for {$_SESSION['vwpp']['semester']}"; break;
-  case "linguistique" : $title="Ateliers Linguistiques evaluations for {$_SESSION['vwpp']['semester']}"; break;
+  case "local" : $title="VWPP Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;
+  case "tutoring" : $title="Tutorial evaluations for {$_SESSION['vwpp']['semester']}"; break;
+  case "linguistic" : $title="Ateliers Linguistiques evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "method" : $title="Ateliers M&eacute;thodologiques evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "univ" : $title="University Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;
   default : $title="Evaluations for {$_SESSION['vwpp']['semester']}"; break;

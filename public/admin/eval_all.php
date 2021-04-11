@@ -16,32 +16,13 @@ $s=new student();
 $s->getByUniv($_SESSION["vwpp"]["login_univ"]);
 $students=$s->byUnivList;
 
-//	CIPh
-if($form=="CIPH"){
-  $db=new db();
-  $db->query("SELECT {$dbprefix}courses_ciph.instructeur AS instructeur, {$dbprefix}courses_ciph.titre AS titre,
-    {$dbprefix}evaluations.id AS id, {$dbprefix}evaluations.student AS student
-    FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses_ciph
-    ON {$dbprefix}courses_ciph.id={$dbprefix}evaluations.courseId
-    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ciph'
-    AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student IN ($students)
-    GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
-  if($db->result){
-    foreach($db->result as $elem){
-      $result[]=array("id"=>$elem['id'],"titre"=>decrypt_vwpp($elem['titre'],$elem['student']),"instructeur"=>decrypt_vwpp($elem['instructeur'],$elem['student']));
-    }
-  }
-  usort($result,"cmp_title");
-}
-
-
 //	Reid Hall
-elseif($form=="ReidHall"){
+if($form=="local"){
   $db=new db();
   $db->query("SELECT {$dbprefix}courses.professor AS professor, {$dbprefix}courses.title AS title,
     {$dbprefix}evaluations.id AS id FROM {$dbprefix}evaluations INNER JOIN {$dbprefix}courses
     ON {$dbprefix}courses.id={$dbprefix}evaluations.courseId
-    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='ReidHall'
+    WHERE {$dbprefix}evaluations.closed='1' AND {$dbprefix}evaluations.form='local'
     AND {$dbprefix}evaluations.semester='$semester' AND {$dbprefix}evaluations.student in ($students)
     GROUP BY {$dbprefix}evaluations.timestamp,{$dbprefix}evaluations.student;");
   if($db->result){
@@ -58,7 +39,7 @@ elseif($form=="intership"){
   $result=$db->result;
 }
 
-elseif($form=="tutorats" or $form=="linguistique" or $form=="method"){
+elseif($form=="tutoring" or $form=="linguistic" or $form=="method"){
   $db=new db();
   $db->select("evaluations","*","closed='1' AND semester='$semester' AND form='$form' AND student in ($students)","GROUP BY timestamp,student");
   $result=$db->result;
@@ -107,7 +88,7 @@ if($form=="program"){
   }
   echo "</ul>\n";
 }
-elseif($form=="ReidHall"){
+elseif($form=="local"){
   echo "<h3 style='margin-bottom:0px;'>VWPP Courses Evaluations</h3><ul>";
   foreach($result as $elem){
     echo "<li style='margin-left:20px;'><a href='/evaluation/local/{$elem['id']}'>{$elem['title']}, {$elem['professor']} ({$elem['id']})</a></li>\n";
@@ -121,14 +102,14 @@ elseif($form=="univ"){
   }
   echo "</ul>\n";
 }
-elseif($form=="tutorats"){
+elseif($form=="tutoring"){
   echo "<h3 style='margin-bottom:0px;'>Tutorats Evaluations</h3><ul style='margin-left:20px;'>";
   foreach($result as $elem){
     echo "<li style='margin-left:20px;'><a href='/evaluation/tutoring/{$elem['id']}'>Tutorats Evaluation ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }
-elseif($form=="linguistique"){
+elseif($form=="linguistic"){
   echo "<h3 style='margin-bottom:0px;'>Ateliers Linguistiques</h3><ul style='margin-left:20px;'>";
   foreach($result as $elem){
     echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>Ateliers Linguistiques ({$elem['id']})</a></li>\n";
@@ -139,13 +120,6 @@ elseif($form=="method"){
   echo "<h3 style='margin-bottom:0px;'>Ateliers M&eacute;thodologiques</h3><ul style='margin-left:20px;'>";
   foreach($result as $elem){
     echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>Ateliers M&eacute;thodologiques ({$elem['id']})</a></li>\n";
-  }
-  echo "</ul>\n";
-}
-elseif($form=="CIPH"){
-  echo "<h3 style='margin-bottom:0px;'>CIPh Evaluations</h3><ul>";
-  foreach($result as $elem){
-    echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>{$elem['titre']}, {$elem['instructeur']} ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }

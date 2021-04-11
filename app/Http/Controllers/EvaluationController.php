@@ -37,17 +37,17 @@ class EvaluationController extends Controller
 
         $closed = (object) array(
             'intership' => count($evaluations->where('form', 'intership')->where('closed', 1)),
-            'linguistic' => count($evaluations->where('form', 'linguistique')->where('closed', 1)),
+            'linguistic' => count($evaluations->where('form', 'linguistic')->where('closed', 1)),
             'method' => count($evaluations->where('form', 'method')->where('closed', 1)),
             'program' => count($evaluations->where('form', 'program')->where('closed', 1)),
-            'tutoring' => count($evaluations->where('form', 'tutorats')->where('closed', 1)),
+            'tutoring' => count($evaluations->where('form', 'tutoring')->where('closed', 1)),
             'local' => array(),
             'univ' => array(),
         );
 
         // Get closed evaluations for local courses
         foreach ($courses->local as $course) {
-            $closed->local[$course->id] = count($evaluations->where('form', 'ReidHall')->where('courseId', $course->id)->where('closed', 1));
+            $closed->local[$course->id] = count($evaluations->where('form', 'local')->where('courseId', $course->id)->where('closed', 1));
         }
 
         // Get closed evaluations for university courses
@@ -70,12 +70,7 @@ class EvaluationController extends Controller
     {
         $edit = false;
 
-        // TODO : Replace ReidHall with local in DB evaluation, then remove this lines
-        switch ($request->form) {
-            case 'local' : $form = 'ReidHall'; break;
-            case 'tutoring' : $form = 'tutorats'; break;
-            default : $form = $request->form; break;
-        }
+        $form = $request->form;
 
         // Initialisation of $data
         $data = array();
@@ -128,12 +123,12 @@ class EvaluationController extends Controller
                     $data[32] = is_array($data[32]) ? join(' ; ', $data[32]) : null;
                 }
 
-                $view = (object) ['course_id' => 0, 'form' => 'program', 'title' => 'Program Evaluation'];
+                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Program Evaluation'];
                 return view('evaluations.program', compact('data', 'edit', 'view'));
 
                 break;
 
-            case 'ReidHall' :
+            case 'local' :
                 if ($edit) {
                     $course = RHCourse::find($course_id);
                     $data[1] = $course->name;
@@ -145,7 +140,7 @@ class EvaluationController extends Controller
 
                 break;
 
-            case 'tutorats' :
+            case 'tutoring' :
                 if ($edit) {
                     $tutoring = Tutoring::findMe();
                     $data[1] = $tutoring->professor;
