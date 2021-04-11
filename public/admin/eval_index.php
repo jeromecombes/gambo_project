@@ -47,8 +47,8 @@ if($db->result){
 usort($reidHall,"cmp_title");
 
 $db=new db();
-$db->select("evaluations","*","closed='1' AND semester='$semester' AND form='intership'","GROUP BY timestamp,student");
-$intership=$db->result;
+$db->select("evaluations","*","closed='1' AND semester='$semester' AND form='internship'","GROUP BY timestamp,student");
+$internship=$db->result;
 $db=new db();
 $db->select("evaluations","*","closed='1' AND semester='$semester' AND form='tutoring'","GROUP BY timestamp,student");
 $tutorats=$db->result;
@@ -120,8 +120,8 @@ echo "<a href='eval_all.php?form=CIPH'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 echo "<h4 style='margin-bottom:0px;'>Internship Evaluations</h4><p style='margin:0 0 0 30px;'>";
-echo "<a href='eval_tab.php?form=intership'>Table</a>,&nbsp;\n";
-echo "<a href='eval_all.php?form=intership'>Individual evaluations</a>\n";
+echo "<a href='eval_tab.php?form=internship'>Table</a>,&nbsp;\n";
+echo "<a href='eval_all.php?form=internship'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 

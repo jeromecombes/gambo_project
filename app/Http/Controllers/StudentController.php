@@ -67,7 +67,7 @@ class StudentController extends Controller
             $options[] = (object) array('value' => 'Univ_reg', 'text' => 'Export Univ. Reg. to Excel');
         }
         if (in_array(23,$_SESSION['vwpp']['access'])) {
-            $options[] = (object) array('value' => 'intership', 'text' => 'Export Internship to Excel');
+            $options[] = (object) array('value' => 'internship', 'text' => 'Export Internship to Excel');
             $options[] = (object) array('value' => 'tutorial', 'text' => 'Export Tutorial to Excel');
         }
         $options[] = (object) array('value' => 'Email', 'text' => 'Send email (with Email Program)');

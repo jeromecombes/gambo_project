@@ -36,7 +36,7 @@ class EvaluationController extends Controller
         $evaluations = Evaluation::getMe();
 
         $closed = (object) array(
-            'intership' => count($evaluations->where('form', 'intership')->where('closed', 1)),
+            'internship' => count($evaluations->where('form', 'internship')->where('closed', 1)),
             'linguistic' => count($evaluations->where('form', 'linguistic')->where('closed', 1)),
             'method' => count($evaluations->where('form', 'method')->where('closed', 1)),
             'program' => count($evaluations->where('form', 'program')->where('closed', 1)),
@@ -137,6 +137,12 @@ class EvaluationController extends Controller
 
                 $view = (object) ['course_id' => $course_id, 'form' => $form, 'title' => 'VWPP Course Evaluation'];
                 return view('evaluations.local', compact('data', 'edit', 'view'));
+
+                break;
+
+            case 'internship' :
+                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Internship Evaluation'];
+                return view('evaluations.internship', compact('data', 'edit', 'view'));
 
                 break;
 

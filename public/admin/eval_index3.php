@@ -41,7 +41,7 @@ foreach($students as $s){
   $classTutorats=$e[$s['id']]['tutorats']>0?"green bold":"red bold";
   $classAteliers=$e[$s['id']]['linguistique']>0?"green bold":"red bold";
   $classAteliers=$e[$s['id']]['method']>0?"green bold":"red bold";
-  $classIntership=$e[$s['id']]['intership']>0?"green bold":null;
+  $classInternship=$e[$s['id']]['internship']>0?"green bold":null;
 
   echo "<tr><td>{$s['lastname']}</td><td>{$s['firstname']}</td>
     <td class='$classProgram'>{$e[$s['id']]['program']}</td>
@@ -50,7 +50,7 @@ foreach($students as $s){
     <td class='$classTutorats'>{$e[$s['id']]['tutorats']}</td>
     <td class='$classAteliers'>{$e[$s['id']]['linguistique']}</td>
     <td class='$classAteliers'>{$e[$s['id']]['method']}</td>
-    <td class='$classIntership'>{$e[$s['id']]['intership']}</td></tr>\n";
+    <td class='$classInternship'>{$e[$s['id']]['internship']}</td></tr>\n";
 }
 
 echo "</tbody>\n";

@@ -54,9 +54,9 @@ elseif($form=="ReidHall"){
   }
 }
 
-elseif($form=="intership"){
+elseif($form=="internship"){
   $db=new db();
-  $db->select("evaluations","*","closed='1' AND semester='{$_SESSION['vwpp']['semestre']}' AND form='intership'","ORDER BY courseId,student,timestamp");
+  $db->select("evaluations","*","closed='1' AND semester='{$_SESSION['vwpp']['semestre']}' AND form='internship'","ORDER BY courseId,student,timestamp");
   $result=$db->result;
 }
 

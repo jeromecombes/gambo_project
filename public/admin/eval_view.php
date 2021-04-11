@@ -21,7 +21,7 @@ switch($form){
   case "univ"		: $back="University Courses Evaluations";	break;
   case "tutorats"	: $back="Tutorats Evaluations";			break;
   case "CIPH"		: $back="CIPh Evaluations";			break;
-  case "intership"	: $back="Intership Evaluations";		break;
+  case "internship"	: $back="Internship Evaluations";		break;
   default 		: $back="Back";					break;
 }
 

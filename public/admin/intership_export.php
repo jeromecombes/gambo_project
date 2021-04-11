@@ -19,7 +19,7 @@ $tab=array_map("entity_decode",$tab);
 $tab=array_map("delete_rnt",$tab);
 
 
-$Fnm = "../data/intership_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
+$Fnm = "../data/internship_" . str_replace(' ', '_', $_SESSION['vwpp']['semestre']);
 
 if($_GET['type']=="csv"){
   $separate="';'";
@@ -32,7 +32,7 @@ else{
 
 $lines=Array();
 
-$title=array("Lastname","Firstname","Intership");
+$title=array("Lastname","Firstname","Internship");
 $lines[]=join($title,$separate);
 
 foreach($tab as $elem){

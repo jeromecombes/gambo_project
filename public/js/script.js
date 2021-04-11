@@ -480,8 +480,8 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].action="univ_reg_export2.php";
 	  document.forms[form2].submit();	break;
 
-    case "intership" :
-	  document.forms[form2].action="intership_export.php";
+    case "internship" :
+	  document.forms[form2].action="internship_export.php";
 	  document.forms[form2].submit();	break;
 
     case "tutorial" :

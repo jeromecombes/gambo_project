@@ -122,7 +122,7 @@ class evaluation{
       $this->students[$elem['id']]["program"]=0;
       $this->students[$elem['id']]["ReidHall"]=0;
       $this->students[$elem['id']]["univ"]=0;
-      $this->students[$elem['id']]["intership"]=0;
+      $this->students[$elem['id']]["internship"]=0;
       $this->students[$elem['id']]["tutorats"]=0;
       $this->students[$elem['id']]["linguistique"]=0;
       $this->students[$elem['id']]["method"]=0;

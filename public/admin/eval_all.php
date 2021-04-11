@@ -33,9 +33,9 @@ if($form=="local"){
   usort($result,"cmp_title");
 }
 
-elseif($form=="intership"){
+elseif($form=="internship"){
   $db=new db();
-  $db->select("evaluations","*","closed='1' AND semester='$semester' AND form='intership' AND student in ($students)","GROUP BY timestamp,student");
+  $db->select("evaluations","*","closed='1' AND semester='$semester' AND form='internship' AND student in ($students)","GROUP BY timestamp,student");
   $result=$db->result;
 }
 
@@ -123,10 +123,10 @@ elseif($form=="method"){
   }
   echo "</ul>\n";
 }
-elseif($form=="intership"){
+elseif($form=="internship"){
   echo "<h3 style='margin-bottom:0px;'>Internship Evaluations</h3><ul>";
   foreach($result as $elem){
-    echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>Internship Evaluation ({$elem['id']})</a></li>\n";
+    echo "<li style='margin-left:20px;'><a href='/evaluation/internship/{$elem['id']}'>Internship Evaluation ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }

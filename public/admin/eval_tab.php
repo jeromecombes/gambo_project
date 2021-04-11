@@ -15,7 +15,7 @@ $eval->fetchAll($form,1,$_SESSION['vwpp']['login_univ']);
 $result=$eval->elements;
 
 switch($form){
-  case "intership" : $title="Internship evaluations for {$_SESSION['vwpp']['semester']}"; break;
+  case "internship" : $title="Internship evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "program" : $title="Program evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "local" : $title="VWPP Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "tutoring" : $title="Tutorial evaluations for {$_SESSION['vwpp']['semester']}"; break;

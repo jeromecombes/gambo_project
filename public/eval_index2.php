@@ -5,7 +5,7 @@ include __DIR__ . '/init_laravel_for_legacy.php';
 require_once "header.php";
 require_once "menu.php";
 
-// $multiple_evals=array("CIPH","ReidHall","stages","univ","intership");
+// $multiple_evals=array("CIPH","ReidHall","stages","univ","internship");
 $multiple_evals=array("CIPH","ReidHall","univ");
 $std_id=$_SESSION['vwpp']['student'];
 $timestamp=isset($_GET['timestamp'])?$_GET['timestamp']:mktime();

@@ -134,12 +134,12 @@
   <fieldset>
     <ul>
       <li>
-        @if (!$closed->intership)
-          <a href='/eval_index2.php?form=intership' style='font-weight:bold;'>
-            Internship Evaluation {{ $internship->name }} @if ($closed->intership) (done) @endif
+        @if (!$closed->internship)
+          <a href='{{ route('evaluation.form', 'internship') }}' style='font-weight:bold;'>
+            Internship Evaluation {{ $internship->name }} @if ($closed->internship) (done) @endif
           </a>
         @else
-          Internship Evaluation {{ $internship->name }} @if ($closed->intership) (done) @endif
+          Internship Evaluation {{ $internship->name }} @if ($closed->internship) (done) @endif
         @endif
         </li>
     </ul>
