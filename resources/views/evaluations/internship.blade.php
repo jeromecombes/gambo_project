@@ -4,7 +4,7 @@
 <tr>
   <td colspan='2'><b>Your name :</b></td>
   @if ($edit)
-    <td colspan='2'><input type='text' name='data[1]' value='{{ $data[1] }}' /></td>
+    <td colspan='2'><input type='text' autocomplete='off' name='data[1]' value='{{ $data[1] }}' /></td>
   @else
     <td class='response' colspan='2'>{{ $data[1] }}</td>
   @endif
@@ -13,7 +13,7 @@
 <tr>
   <td colspan='2'><b>Your University :</b></td>
   @if ($edit)
-    <td colspan='2'><input type='text' name='data[2]' value='{{ $data[2] }}' /></td>
+    <td colspan='2'><input type='text' autocomplete='off' name='data[2]' value='{{ $data[2] }}' /></td>
   @else
     <td class='response' colspan='2'>{{ $data[2] }}</td>
   @endif
@@ -40,14 +40,14 @@
 <tr>
   <td><b>Beginning date</b></td>
   @if ($edit)
-    <td><input type='text' name='data[4]' value='{{ $data[4] }}' /></td>
+    <td><input type='text' autocomplete='off' name='data[4]' value='{{ $data[4] }}' /></td>
   @else
     <td class='response'>{{ $data[4] }}</td>
   @endif
 
   <td><b>End date</b></td>
   @if ($edit)
-    <td><input type='text' name='data[5]' value='{{ $data[5] }}' /></td>
+    <td><input type='text' autocomplete='off' name='data[5]' value='{{ $data[5] }}' /></td>
   @else
     <td class='response'>{{ $data[5] }}</td>
   @endif
@@ -56,7 +56,7 @@
 <tr>
   <td><b>N° of hours per week</b></td>
   @if ($edit)
-    <td><input type='text' name='data[6]' value='{{ $data[6] }}' /></td>
+    <td><input type='text' autocomplete='off' name='data[6]' value='{{ $data[6] }}' /></td>
   @else
     <td class='response'>{{ $data[6] }}</td>
   @endif
@@ -83,43 +83,43 @@
       <tr>
         <td><b>From</b></td>
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[7]' value='{{ $data[7] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[7]' value='{{ $data[7] }}' /></td>
         @else
           <td class='response'>{{ $data[7] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[8]' value='{{ $data[8] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[8]' value='{{ $data[8] }}' /></td>
         @else
           <td class='response'>{{ $data[8] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[9]' value='{{ $data[9] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[9]' value='{{ $data[9] }}' /></td>
         @else
           <td class='response'>{{ $data[9] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[10]' value='{{ $data[10] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[10]' value='{{ $data[10] }}' /></td>
         @else
           <td class='response'>{{ $data[10] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[11]' value='{{ $data[11] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[11]' value='{{ $data[11] }}' /></td>
         @else
           <td class='response'>{{ $data[11] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[12]' value='{{ $data[12] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[12]' value='{{ $data[12] }}' /></td>
         @else
           <td class='response'>{{ $data[12] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[13]' value='{{ $data[13] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[13]' value='{{ $data[13] }}' /></td>
         @else
           <td class='response'>{{ $data[13] }}</td>
         @endif
@@ -128,43 +128,43 @@
       <tr>
         <td><b>To</b></td>
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[14]' value='{{ $data[14] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[14]' value='{{ $data[14] }}' /></td>
         @else
           <td class='response'>{{ $data[14] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[15]' value='{{ $data[15] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[15]' value='{{ $data[15] }}' /></td>
         @else
           <td class='response'>{{ $data[15] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[16]' value='{{ $data[16] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[16]' value='{{ $data[16] }}' /></td>
         @else
           <td class='response'>{{ $data[16] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[17]' value='{{ $data[17] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[17]' value='{{ $data[17] }}' /></td>
         @else
           <td class='response'>{{ $data[17] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[18]' value='{{ $data[18] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[18]' value='{{ $data[18] }}' /></td>
         @else
           <td class='response'>{{ $data[18] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[19]' value='{{ $data[19] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[19]' value='{{ $data[19] }}' /></td>
         @else
           <td class='response'>{{ $data[19] }}</td>
         @endif
 
         @if ($edit)
-          <td style='padding: 2px 5px 0 2px;'><input type='text' name='data[20]' value='{{ $data[20] }}' /></td>
+          <td style='padding: 2px 5px 0 2px;'><input type='text' autocomplete='off' name='data[20]' value='{{ $data[20] }}' /></td>
         @else
           <td class='response'>{{ $data[20] }}</td>
         @endif
@@ -389,14 +389,14 @@
 <tr>
   <td colspan='2'>1.
     @if ($edit)
-      <input type='text' name='data[36]' value='{{ $data[36] }}' style='width:90%;'/>
+      <input type='text' autocomplete='off' name='data[36]' value='{{ $data[36] }}' style='width:90%;'/>
     @else
       <span class='response'>{{ $data[36] }}</span>
     @endif
   </td>
   <td colspan='2'>3.
     @if ($edit)
-      <input type='text' name='data[38]' value='{{ $data[38] }}' style='width:90%;'/>
+      <input type='text' autocomplete='off' name='data[38]' value='{{ $data[38] }}' style='width:90%;'/>
     @else
       <span class='reponse'>{{ $data[38] }}</span>
     @endif
@@ -406,14 +406,14 @@
 <tr>
   <td colspan='2'>2.
     @if ($edit)
-      <input type='text' name='data[37]' value='{{ $data[37] }}' style='width:90%;'/>
+      <input type='text' autocomplete='off' name='data[37]' value='{{ $data[37] }}' style='width:90%;'/>
     @else
       <span class='response'>{{ $data[37] }}</span>
     @endif
   </td>
   <td colspan='2'>4.
     @if ($edit)
-      <input type='text' name='data[39]' value='{{ $data[39] }}' style='width:90%;'/>
+      <input type='text' autocomplete='off' name='data[39]' value='{{ $data[39] }}' style='width:90%;'/>
     @else
       <span class='response'>{{ $data[39] }}</span>
     @endif

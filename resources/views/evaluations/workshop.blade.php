@@ -125,7 +125,7 @@
   <td colspan='2'><b>Your name (optional) :</b></td>
   <td>
     @if ($edit)
-      <input type='text' name='data[8]' value='{{ $data[8] }}' />
+      <input type='text' autocomplete='off' name='data[8]' value='{{ $data[8] }}' />
     @else
       <span class='response'>{{ $data[8] }}</span>
     @endif
