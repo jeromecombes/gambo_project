@@ -34,6 +34,9 @@
           @if ($edit)
             <input type='submit' value='Submit' class='btn btn-primary' />
           @endif
+          @if (session('admin'))
+            <input type='button' value='Back' class='btn btn-primary' onclick='location.href="/admin/eval_all.php";' />
+          @endif
         </td>
       </tr>
 

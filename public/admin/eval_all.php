@@ -110,14 +110,14 @@ if($form=="program"){
 elseif($form=="ReidHall"){
   echo "<h3 style='margin-bottom:0px;'>VWPP Courses Evaluations</h3><ul>";
   foreach($result as $elem){
-    echo "<li style='margin-left:20px;'><a href='/evaluation/course/{$elem['id']}'>{$elem['title']}, {$elem['professor']} ({$elem['id']})</a></li>\n";
+    echo "<li style='margin-left:20px;'><a href='/evaluation/local/{$elem['id']}'>{$elem['title']}, {$elem['professor']} ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }
 elseif($form=="univ"){
   echo "<h3 style='margin-bottom:0px;'>University Courses Evaluations</h3><ul style='margin-left:20px;'>";
   foreach($result as $elem){
-    echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>{$elem['cm_name']}, {$elem['cm_prof']} ({$elem['id']})</a></li>\n";
+    echo "<li style='margin-left:20px;'><a href='/evaluation/univ/{$elem['id']}'>{$elem['cm_name']}, {$elem['cm_prof']} ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }

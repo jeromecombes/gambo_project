@@ -529,7 +529,7 @@
   <td colspan='2'><b>Name of organization 1 :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[33]' value='{{ $data[33] }}' />
+      <input type='text' autocomplete='off' name='data[33]' value='{{ $data[33] }}' />
     @else
       <span class='response' >{{ $data[33] }}</span>
     @endif
@@ -540,7 +540,7 @@
   <td colspan='2'><b>Address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[34]' value='{{ $data[34] }}'/>
+      <input type='text' autocomplete='off' name='data[34]' value='{{ $data[34] }}'/>
     @else
       <span class='response' >{{ $data[34] }}</span>
     @endif
@@ -551,7 +551,7 @@
   <td colspan='2'><b>tel. n°/e-mail address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[35]' value='{{ $data[35] }}'/>
+      <input type='text' autocomplete='off' name='data[35]' value='{{ $data[35] }}'/>
     @else
       <span class='response' >{{ $data[35] }}</span>
     @endif
@@ -562,7 +562,7 @@
   <td colspan='2'><b>Name of Person to contact :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[36]' value='{{ $data[36] }}'/>
+      <input type='text' autocomplete='off' name='data[36]' value='{{ $data[36] }}'/>
     @else
       <span class='response' >{{ $data[36] }}</span>
     @endif
@@ -573,7 +573,7 @@
   <td colspan='2' style='padding-top:25px;'><b>Name of organization 2 :</b></td>
   <td colspan='2' style='padding-top:25px;'>
     @if ($edit)
-      <input type='text' name='data[37]' value='{{ $data[37] }}'/>
+      <input type='text' autocomplete='off' name='data[37]' value='{{ $data[37] }}'/>
     @else
       <span class='response' >{{ $data[37] }}</span>
     @endif
@@ -584,7 +584,7 @@
   <td colspan='2'><b>Address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[38]' value='{{ $data[38] }}'/>
+      <input type='text' autocomplete='off' name='data[38]' value='{{ $data[38] }}'/>
     @else
       <span class='response' >{{ $data[38] }}</span>
     @endif
@@ -595,7 +595,7 @@
   <td colspan='2'><b>tel. n°/e-mail address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[39]' value='{{ $data[39] }}'/>
+      <input type='text' autocomplete='off' name='data[39]' value='{{ $data[39] }}'/>
     @else
       <span class='response' >{{ $data[39] }}</span>
     @endif
@@ -606,7 +606,7 @@
   <td colspan='2'><b>Name of Person to contact :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[40]' value='{{ $data[40] }}'/>
+      <input type='text' autocomplete='off' name='data[40]' value='{{ $data[40] }}'/>
     @else
       <span class='response' >{{ $data[40] }}</span>
     @endif
@@ -617,7 +617,7 @@
   <td colspan='2' style='padding-top:25px;'><b>Name of organization 3 :</b></td>
   <td colspan='2' style='padding-top:25px;'>
     @if ($edit)
-      <input type='text' name='data[41]' value='{{ $data[41] }}'/>
+      <input type='text' autocomplete='off' name='data[41]' value='{{ $data[41] }}'/>
     @else
       <span class='response' >{{ $data[41] }}</span>
     @endif
@@ -628,7 +628,7 @@
   <td colspan='2'><b>Address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[42]' value='{{ $data[42] }}'/>
+      <input type='text' autocomplete='off' name='data[42]' value='{{ $data[42] }}'/>
     @else
       <span class='response' >{{ $data[42] }}</span>
     @endif
@@ -639,7 +639,7 @@
   <td colspan='2'><b>tel. n°/e-mail address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[43]' value='{{ $data[43] }}'/>
+      <input type='text' autocomplete='off' name='data[43]' value='{{ $data[43] }}'/>
     @else
       <span class='response' >{{ $data[43] }}</span>
     @endif
@@ -650,7 +650,7 @@
   <td colspan='2'><b>Name of Person to contact :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[44]' value='{{ $data[44] }}'/>
+      <input type='text' autocomplete='off' name='data[44]' value='{{ $data[44] }}'/>
     @else
       <span class='response' >{{ $data[44] }}</span>
     @endif
@@ -661,7 +661,7 @@
   <td colspan='2' style='padding-top:25px;'><b>Name of organization 4 :</b></td>
   <td colspan='2' style='padding-top:25px;'>
     @if ($edit)
-      <input type='text' name='data[45]' value='{{ $data[45] }}'/>
+      <input type='text' autocomplete='off' name='data[45]' value='{{ $data[45] }}'/>
     @else
       <span class='response' >{{ $data[45] }}</span>
     @endif
@@ -672,7 +672,7 @@
   <td colspan='2'><b>Address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[46]' value='{{ $data[46] }}'/>
+      <input type='text' autocomplete='off' name='data[46]' value='{{ $data[46] }}'/>
     @else
       <span class='response' >{{ $data[46] }}</span>
     @endif
@@ -683,7 +683,7 @@
   <td colspan='2'><b>tel. n°/e-mail address :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[47]' value='{{ $data[47] }}'/>
+      <input type='text' autocomplete='off' name='data[47]' value='{{ $data[47] }}'/>
     @else
       <span class='response' >{{ $data[47] }}</span>
     @endif
@@ -694,7 +694,7 @@
   <td colspan='2'><b>Name of Person to contact :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[48]' value='{{ $data[48] }}'/>
+      <input type='text' autocomplete='off' name='data[48]' value='{{ $data[48] }}'/>
     @else
       <span class='response' >{{ $data[48] }}</span>
     @endif
@@ -813,7 +813,7 @@
   <td colspan='2'><b>Your Name (optional) :</b></td>
   <td>
     @if ($edit)
-      <input type='text' name='data[56]' value='{{ $data[56] }}' />
+      <input type='text' autocomplete='off' name='data[56]' value='{{ $data[56] }}' />
     @else
       <span class='response' >{{ $data[56] }}</span>
     @endif

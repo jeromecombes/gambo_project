@@ -18,7 +18,7 @@
   <ul>
     <li>
       @if (!$closed->program)
-        <a href='{{ route('evaluation.program.form') }}' style='font-weight:bold;'>
+        <a href='{{ route('evaluation.form', 'program') }}' style='font-weight:bold;'>
           Program Evaluation @if ($closed->program) (done) @endif
         </a>
       @else
@@ -43,7 +43,7 @@
       @foreach ($courses->local as $course)
         <li>
           @if (!$closed->local[$course->id])
-            <a href='{{ route('evaluation.course.form', $course->id) }}' style='font-weight:bold;'>
+            <a href='{{ route('evaluation.form', ['local', $course->id]) }}' style='font-weight:bold;'>
               Evaluation for {{ $course->name }}, {{ $course->professor }} @if ($closed->local[$course->id]) (done) @endif
             </a>
           @else
@@ -67,7 +67,7 @@
       @foreach ($courses->univ as $course)
         <li>
           @if (!$closed->univ[$course->id])
-            <a href='/eval_index2.php?form=univ&courseId={{ $course->id }}' style='font-weight:bold;'>
+            <a href='{{ route('evaluation.form', ['univ', $course->id]) }}' style='font-weight:bold;'>
               University Course Evaluation : {{ $course->name }}, {{ $course->professor }} @if ($closed->univ[$course->id]) (done) @endif
             </a>
           @else

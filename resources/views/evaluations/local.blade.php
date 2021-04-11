@@ -249,7 +249,7 @@
   <td colspan='2' style='padding-left:30px;padding-top:20px;'>Other (Please specify)</td>
   <td style='padding-top:20px;'>
     @if ($edit)
-      <input type='text' name='data[17]' value='{{ $data[17] }}'/>
+      <input type='text' autocomplete='off' name='data[17]' value='{{ $data[17] }}'/>
     @else
       <span class='response'>{{ $data[17] }}</span>
     @endif
@@ -483,7 +483,7 @@
   <td colspan='2'><b>Your name (optional) :</b></td>
   <td colspan='2'>
     @if ($edit)
-      <input type='text' name='data[32]' value='{{ $data[32] }}'/>
+      <input type='text' autocomplete='off' name='data[32]' value='{{ $data[32] }}'/>
     @else
       <span class='response'>{{ $data[32] }}</span>
     @endif

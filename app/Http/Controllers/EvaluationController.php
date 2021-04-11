@@ -7,6 +7,7 @@ use App\Models\Evaluation;
 use App\Models\Internship;
 use App\Models\Tutoring;
 use App\Models\RHCourse;
+use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -60,18 +61,24 @@ class EvaluationController extends Controller
 
 
     /**
-     * Show local courses evaluation form
+     * Show evaluation form
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function course_form(Request $request)
+    public function form(Request $request)
     {
         $edit = false;
 
+        // TODO : Replace ReidHall with local in DB evaluation, then remove this lines
+        switch ($request->form) {
+            case 'local' : $form = 'ReidHall'; break;
+            default : $form = $request->form; break;
+        }
+
         // Initialisation of $data
         $data = array();
-        for ($i = 0; $i < 33; $i++) {
+        for ($i = 0; $i < 60; $i++) {
             $data[$i] = null;
         }
 
@@ -86,9 +93,9 @@ class EvaluationController extends Controller
 
         // Student
         } else {
-            $course_id = $request->id;
+            $course_id = $request->id ?? 0;
 
-            $evaluation = Evaluation::where('form', 'ReidHall')
+            $evaluation = Evaluation::where('form', $form)
                 ->where('semester', session('semester'))
                 ->where('student', session('student'))
                 ->where('courseId', $course_id)
@@ -103,72 +110,44 @@ class EvaluationController extends Controller
             }
         }
 
-        $view = (object) ['course_id' => $course_id, 'form' => 'ReidHall', 'title' => 'VWPP Course Evaluation'];
 
-        $course = RHCourse::find($course_id);
+        switch ($form) {
+            case 'program' :
+                if (!empty($data[32])) {
 
-        // View
-        return view('evaluations.course', compact('course', 'data', 'edit', 'view'));
-    }
+                    // TODO : When evaluations of Spring 2020 and before will be removed : Keep only $data[32] = json_decode($data[32]);
 
-    /**
-     * Show program evaluation form
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function program_form(Request $request)
-    {
+                    $tmp = json_decode($data[32]);
+                    if (json_last_error() == JSON_ERROR_NONE) {
+                        $data[32] = $tmp;
+                    } else {
+                        $data[32] = unserialize($data[32]);
+                    }
 
-        $edit = false;
-        $view = (object) ['course_id' => 0, 'form' => 'program', 'title' => 'Program Evaluation'];
-
-        // Initialisation of $data
-        $data = array();
-        for ($i = 0; $i < 57; $i++) {
-            $data[$i] = null;
-        }
-
-        // Admin with ID
-        if (session('admin') and $request->id) {
-            $evaluation = Evaluation::find($request->id);
-
-            foreach ($evaluation->links as $elem) {
-                $data[$elem->question] = $elem->response;
-            }
-
-        // Student
-        } else {
-            $evaluation = Evaluation::where('form', 'program')
-                ->where('semester', session('semester'))
-                ->where('student', session('student'))
-                ->get();
-
-            if (count($evaluation)) {
-                foreach ($evaluation as $elem) {
-                    $data[$elem->question] = $elem->response;
+                    $data[32] = is_array($data[32]) ? join(' ; ', $data[32]) : null;
                 }
-            } else {
-                $edit = true;
-            }
+
+                $view = (object) ['course_id' => 0, 'form' => 'program', 'title' => 'Program Evaluation'];
+                return view('evaluations.program', compact('data', 'edit', 'view'));
+
+                break;
+
+            case 'ReidHall' :
+                $course = RHCourse::find($course_id);
+
+                $view = (object) ['course_id' => $course_id, 'form' => 'ReidHall', 'title' => 'VWPP Course Evaluation'];
+                return view('evaluations.local', compact('course', 'data', 'edit', 'view'));
+
+                break;
+
+            case 'univ' :
+                $course = UnivCourse::find($course_id);
+
+                $view = (object) ['course_id' => $course_id, 'form' => 'ReidHall', 'title' => 'University Course Evaluation'];
+                return view('evaluations.univ', compact('course', 'data', 'edit', 'view'));
+
+                break;
         }
-
-        if (!empty($data[32])) {
-
-            // TODO : When evaluations of Spring 2020 and before will be removed : Keep only $data[32] = json_decode($data[32]);
-
-            $tmp = json_decode($data[32]);
-            if (json_last_error() == JSON_ERROR_NONE) {
-                $data[32] = $tmp;
-            } else {
-                $data[32] = unserialize($data[32]);
-            }
-
-            $data[32] = is_array($data[32]) ? join(' ; ', $data[32]) : null;
-        }
-
-        // View
-        return view('evaluations.program', compact('data', 'edit', 'view'));
     }
 
 

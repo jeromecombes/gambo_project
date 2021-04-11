@@ -98,7 +98,7 @@
                 <select name='institution' id='institution{{ $course->id }}' onchange='checkInstitution(this, {{ $course->id }});' {{ $disabled }}>
                   <option value=''>&nbsp;</option>
                   @foreach (explode(',', env('APP_INSTITUTIONS')) as $elem)
-                    <option value='{{ $elem }}' @if ($course->institution == htmlentities($elem, ENT_QUOTES|ENT_IGNORE, 'utf-8')) selected='selected' @endif >{{ $elem }}</option>
+                    <option value='{{ $elem }}' @if ($course->institution == $elem) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
                   <option value='Autre' @if ($course->institution == 'Autre') selected='selected' @endif >Autre (Précisez)</option>
                 </select>
@@ -118,7 +118,7 @@
                 <select name='discipline' {{ $disabled }} id='discipline{{ $course->id }}'>
                   <option value=''>&nbsp;</option>
                   @foreach (explode(',', env('APP_DISCIPLINES')) as $elem)
-	                  <option value='{{ $elem }}' @if ($course->discipline == htmlentities($elem, ENT_QUOTES|ENT_IGNORE, 'UTF-8')) selected='selected' @endif >{{ $elem }}</option>
+	                  <option value='{{ $elem }}' @if ($course->discipline == $elem) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
                 </select>
               </td>
