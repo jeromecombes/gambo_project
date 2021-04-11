@@ -73,6 +73,7 @@ class EvaluationController extends Controller
         // TODO : Replace ReidHall with local in DB evaluation, then remove this lines
         switch ($request->form) {
             case 'local' : $form = 'ReidHall'; break;
+            case 'tutoring' : $form = 'tutorats'; break;
             default : $form = $request->form; break;
         }
 
@@ -133,18 +134,39 @@ class EvaluationController extends Controller
                 break;
 
             case 'ReidHall' :
-                $course = RHCourse::find($course_id);
+                if ($edit) {
+                    $course = RHCourse::find($course_id);
+                    $data[1] = $course->name;
+                    $data[2] = $course->professor;
+                }
 
-                $view = (object) ['course_id' => $course_id, 'form' => 'ReidHall', 'title' => 'VWPP Course Evaluation'];
-                return view('evaluations.local', compact('course', 'data', 'edit', 'view'));
+                $view = (object) ['course_id' => $course_id, 'form' => $form, 'title' => 'VWPP Course Evaluation'];
+                return view('evaluations.local', compact('data', 'edit', 'view'));
+
+                break;
+
+            case 'tutorats' :
+                if ($edit) {
+                    $tutoring = Tutoring::findMe();
+                    $data[1] = $tutoring->professor;
+                }
+
+                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Tutoring Evaluation'];
+                return view('evaluations.tutoring', compact('data', 'edit', 'view'));
 
                 break;
 
             case 'univ' :
-                $course = UnivCourse::find($course_id);
+                if ($edit) {
+                    $course = UnivCourse::find($course_id);
+                    $data[1] = $course->name;
+                    $data[2] = $course->professor;
+                    $data[3] = $course->institution;
+                    $data[4] = $course->code;
+                }
 
-                $view = (object) ['course_id' => $course_id, 'form' => 'ReidHall', 'title' => 'University Course Evaluation'];
-                return view('evaluations.univ', compact('course', 'data', 'edit', 'view'));
+                $view = (object) ['course_id' => $course_id, 'form' => $form, 'title' => 'University Course Evaluation'];
+                return view('evaluations.univ', compact('data', 'edit', 'view'));
 
                 break;
         }

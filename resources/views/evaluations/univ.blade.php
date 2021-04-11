@@ -9,16 +9,28 @@
 
 <tr>
   <td style='padding-top:20px;'><b>Name of course :</b></td>
-  <td style='padding-top:20px;' class='response' >{{ $course->name }}</td>
+  <td style='padding-top:20px;' class='response' >
+    <input type='hidden' name='data[1]' value='{{ $data[1] }}' />
+    {{ $data[1] }}
+  </td>
   <td style='padding-top:20px;'><b>Professor :</b></td>
-  <td style='padding-top:20px;' class='response' >{{ $course->professor }}</td>
+  <td style='padding-top:20px;' class='response' >
+    <input type='hidden' name='data[2]' value='{{ $data[2] }}' />
+    {{ $data[2] }}
+  </td>
 </tr>
 
 <tr>
   <td><b>Institution :</b></td>
-  <td class='response'>{{ $course->institution }}</td>
+  <td class='response'>
+    <input type='hidden' name='data[3]' value='{{ $data[3] }}' />
+    {{ $data[3] }}
+  </td>
   <td><b>Course code :</b></td>
-  <td class='response'>{{ $course->code }}</td>
+  <td class='response'>
+    <input type='hidden' name='data[4]' value='{{ $data[4] }}' />
+    {{ $data[4] }}
+  </td>
 </tr>
 
 <tr>

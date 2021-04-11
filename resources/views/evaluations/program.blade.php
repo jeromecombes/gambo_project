@@ -711,8 +711,8 @@
 
 <tr>
   @if ($edit)
-    <td><input type='radio' name='data[49]' id='radio69' value='Yes' @if ($data[49] == 'Yes') cheched='checked' @endif >Yes</td>
-    <td><input type='radio' name='data[49]' id='radio70' value='No' @if ($data[49] == 'No') cheched='checked' @endif >No</td>
+    <td><input type='radio' name='data[49]' id='radio69' value='Yes' @if ($data[49] == 'Yes') cheched='checked' @endif ><label for='radio69'>Yes</label></td>
+    <td><input type='radio' name='data[49]' id='radio70' value='No' @if ($data[49] == 'No') cheched='checked' @endif ><label for='radio70'>No</label></td>
   @endif
   <td colspan='2'><b>If Yes, please fill out the stage evaluation as well.</td>
 </tr>

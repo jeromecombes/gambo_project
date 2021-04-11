@@ -86,7 +86,7 @@
     <ul>
       <li>
         @if (!$closed->tutoring)
-          <a href='/eval_index2.php?form=tutorats' style='font-weight:bold;'>
+          <a href='{{ route('evaluation.form', 'tutoring') }}' style='font-weight:bold;'>
             Tutorial Evaluations : {{ $tutoring->professor }} @if ($closed->tutoring) (done) @endif
           </a>
         @else

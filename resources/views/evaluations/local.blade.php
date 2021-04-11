@@ -11,12 +11,18 @@
 
 <tr>
   <td style='padding-top:20px;'><b>Course Name :</b></td>
-  <td colspan='3' style='padding-top:20px;color:blue; font-weight:bold;'>{{ $course->name }}</td>
+  <td colspan='3' style='padding-top:20px;color:blue; font-weight:bold;'>
+    <input type='hidden' name='data[1]' value='{{ $data[1] }}' />
+    {{ $data[1] }}
+  </td>
 </tr>
 
 <tr>
   <td style='padding-top:20px;'><b>Insctructor :</b></td>
-  <td colspan='3' style='padding-top:20px;color:blue; font-weight:bold;'>{{ $course->professor }}</td>
+  <td colspan='3' style='padding-top:20px;color:blue; font-weight:bold;'>
+    <input type='hidden' name='data[2]' value='{{ $data[2] }}' />
+    {{ $data[2] }}
+  </td>
 </tr>
 
 <tr>
