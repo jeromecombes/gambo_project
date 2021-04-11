@@ -112,7 +112,7 @@ elseif($form=="tutoring"){
 elseif($form=="linguistic"){
   echo "<h3 style='margin-bottom:0px;'>Ateliers Linguistiques</h3><ul style='margin-left:20px;'>";
   foreach($result as $elem){
-    echo "<li style='margin-left:20px;'><a href='eval_view.php?id={$elem['id']}'>Ateliers Linguistiques ({$elem['id']})</a></li>\n";
+    echo "<li style='margin-left:20px;'><a href='/evaluation/linguistic/{$elem['id']}'>Ateliers Linguistiques ({$elem['id']})</a></li>\n";
   }
   echo "</ul>\n";
 }

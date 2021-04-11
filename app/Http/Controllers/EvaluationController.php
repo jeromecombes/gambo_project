@@ -108,23 +108,9 @@ class EvaluationController extends Controller
 
 
         switch ($form) {
-            case 'program' :
-                if (!empty($data[32])) {
-
-                    // TODO : When evaluations of Spring 2020 and before will be removed : Keep only $data[32] = json_decode($data[32]);
-
-                    $tmp = json_decode($data[32]);
-                    if (json_last_error() == JSON_ERROR_NONE) {
-                        $data[32] = $tmp;
-                    } else {
-                        $data[32] = unserialize($data[32]);
-                    }
-
-                    $data[32] = is_array($data[32]) ? join(' ; ', $data[32]) : null;
-                }
-
-                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Program Evaluation'];
-                return view('evaluations.program', compact('data', 'edit', 'view'));
+            case 'linguistic' :
+                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Ateliers Linguistiques Evaluation'];
+                return view('evaluations.linguistic', compact('data', 'edit', 'view'));
 
                 break;
 
@@ -143,6 +129,26 @@ class EvaluationController extends Controller
             case 'internship' :
                 $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Internship Evaluation'];
                 return view('evaluations.internship', compact('data', 'edit', 'view'));
+
+                break;
+
+            case 'program' :
+                if (!empty($data[32])) {
+
+                    // TODO : When evaluations of Spring 2020 and before will be removed : Keep only $data[32] = json_decode($data[32]);
+
+                    $tmp = json_decode($data[32]);
+                    if (json_last_error() == JSON_ERROR_NONE) {
+                        $data[32] = $tmp;
+                    } else {
+                        $data[32] = unserialize($data[32]);
+                    }
+
+                    $data[32] = is_array($data[32]) ? join(' ; ', $data[32]) : null;
+                }
+
+                $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Program Evaluation'];
+                return view('evaluations.program', compact('data', 'edit', 'view'));
 
                 break;
 

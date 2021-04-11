@@ -104,7 +104,7 @@
     <ul>
       <li>
         @if (!$closed->linguistic)
-          <a href='/eval_index2.php?form=linguistique' style='font-weight:bold;'>
+          <a href='{{ route('evaluation.form', 'linguistic') }}' style='font-weight:bold;'>
             Ateliers Linguistiques @if ($closed->linguistic) (done) @endif
           </a>
         @else

@@ -5,12 +5,16 @@
   <a href='/admin/eval_index.php' style='margin-left:30px;'>All evaluations</a> > <a href='/admin/eval_all.php'>{{ $view->title }}</a>
 @endif
 
-<div style='text-align:right; margin:30px 0 50px;'>
+<div style='text-align:right; margin-top:30px;'>
   @if (!session('admin'))
     <input type='button' value='Back to list' onclick='location.href="{{ route('evaluations.index') }}";' class='btn' />
   @endif
+</div>
 
+<div style='text-align:center; margin-bottom: 50px;'>
   <h3 style='text-align:center;'>VASSAR-WESLEYAN PROGRAM IN PARIS<br/>{{ $view->title }} Form, {{ session('semester') }}</h3>
+
+  @stack('subtitle')
 </div>
 
 <fieldset class='evaluations'>
