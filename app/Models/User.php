@@ -52,5 +52,10 @@ class User extends Authenticatable
         return $access;
     }
 
+    public function getDisplayNameAttribute($value)
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
 
 }

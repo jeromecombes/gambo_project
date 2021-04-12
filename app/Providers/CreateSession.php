@@ -38,10 +38,10 @@ class CreateSession
         // Admin only
         if ($event->user->access) {
             $_SESSION['vwpp']['access'] = $event->user->access;
-            $_SESSION['vwpp']['login_name'] = $event->user->firstname . ' ' . $event->user->lastname;
+            $_SESSION['vwpp']['login_name'] = $event->user->displayName;
             $_SESSION['vwpp']['login_univ'] = $event->user->university;
 
-            Session::put('login_name', $event->user->firstname . ' ' . $event->user->lastname);
+            Session::put('login_name', $event->user->displayName);
 
         // Students only
         } else {
