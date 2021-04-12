@@ -3,12 +3,12 @@
 
 <h3>Housing</h3>
 
-@if (session('admin') and !$edit)
+@if (Auth::user()->admin and !$edit)
   @include('housing.student_form_admin')
 @endif
 
 
-@if (!session('admin'))
+@if (!Auth::user()->admin)
   <p>
     Welcome to the VWPP Housing questionnaire pages.<br/>
     Please take a few minutes to read through the Housing Process Residence commitment sections of the VWPP website by clicking on the link below, before proceeding to fill out the questionnaire.
@@ -22,7 +22,7 @@
 @endif
 
 
-@if (session('admin') and !$terms_accepted)
+@if (Auth::user()->admin and !$terms_accepted)
   <p>The terms and conditions are not accepted yet.</p>
 @endif
 
@@ -44,7 +44,7 @@
         @if ($edit)
           <input type='button' value='Cancel' class='btn' onclick='document.location.href="/housing";' />
           <input type='submit' value='Submit' class='btn btn-primary'/>
-        @elseif (!session('admin') or in_array(7, session('access')))
+        @elseif (!Auth::user()->admin or in_array(7, Auth::user()->access))
           <a href='{{ asset("housing/{$student->id}/edit") }}' class='btn btn-primary'>Edit</a>
         @endif
       </p>

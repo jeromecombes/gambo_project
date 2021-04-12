@@ -342,7 +342,7 @@
       <tr>
         <td>MoveOnLine Username</td>
         <td>
-          @if ($edit and session('admin'))
+          @if ($edit and Auth::user()->admin)
             <input type='text' name='question[20]' value='{{ $answer[20] }}' />
           @else
             <input type='hidden' name='question[20]' value='{{ $answer[20] }}' />
@@ -354,7 +354,7 @@
       <tr>
         <td>MoveOnLine Password</td>
         <td>
-          @if ($edit and session('admin'))
+          @if ($edit and Auth::user()->admin)
             <input type='text' name='question[21]' value='{{ $answer[21] }}' />
           @else
             <input type='hidden' name='question[21]' value='{{ $answer[21] }}' />
@@ -371,7 +371,7 @@
             <input type='button' value='Cancel' class='btn' onclick='location.href="/univ_reg/";' />
             <input type='submit' value='Submit' class='btn btn-primary' />
           @else
-            @if (session('admin') or !$university)
+            @if (Auth::user()->admin or !$university)
               <input type='button' value='Edit' class='btn btn-primary' onclick='location.href="/univ_reg/{{ $student->id }}/edit";' />
             @endif
           @endif

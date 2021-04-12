@@ -17,6 +17,7 @@ class HostController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
 
         // Selected semester
         $semester = substr(session('semester'), -4);
@@ -49,7 +50,7 @@ class HostController extends Controller
         });
 
         // Edit access
-        $edit_access = in_array(7, session('access'));
+        $edit_access = in_array(7, $user->access);
 
         return view('admin.hosts', compact('hosts', 'edit_access'));
     }

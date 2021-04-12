@@ -16,7 +16,7 @@
 
   {{-- ADD A COURSE BUTTON --}}
 
-  @if (!session('admin') or $admin2)
+  @if (!Auth::user()->admin or $admin2)
     <div style='text-align:right; margin:20px;'>
       <input type='button' value="Ajouter un cours à l'université" onclick='document.location.href="{{ asset('/course/univ/add') }}";' id='AddCourseButton' class='btn btn-primary'/>
     </div>

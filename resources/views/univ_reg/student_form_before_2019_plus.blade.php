@@ -1,6 +1,6 @@
 <fieldset>
   <form method='post' action='/univ_reg_plus' onsubmit='return ctrl_form_univreg();'>
-  <input type='hidden' id='category' value='@if (session('admin')) admin @else student @endif' />
+  <input type='hidden' id='category' value='@if (Auth::user()->admin) admin @else student @endif' />
 
     <table>
       <tr>
@@ -255,7 +255,7 @@
           @if ($edit)
             <input type='submit' value='Valider' class='btn btn-primary' />
           @else
-            @if (session('admin') or !$locked)
+            @if (Auth::user()->admin or !$locked)
               <input type='button' value='Edit' onclick='location.href="/univ_reg_plus/{{ $student->id }}/edit";' class='btn btn-primary' />
             @endif
           @endif

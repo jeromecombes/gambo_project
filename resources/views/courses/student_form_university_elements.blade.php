@@ -82,7 +82,7 @@
                   Si ce cours est rattaché à un autre cours déjà enregistré,<br/>veuillez le sélectionner dans cette liste
                 </td>
                 <td style='padding-top:20px;'>
-                  <select name='lien' onchange='checkLink(this, {{ session("admin") }}, {{ $course->id }});'>
+                  <select name='lien' onchange='checkLink(this, {{ Auth::user()->admin }}, {{ $course->id }});'>
                     <option value=''>&nbsp;</option>
                     @foreach ($courses->where('lien', null) as $elem)
                         <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->nature }})</option>
@@ -277,7 +277,7 @@
           </tr>
           <tr>
             <td colspan='2' class='response'>
-              @if (session('admin') and $edit_modalities)
+              @if (Auth::user()->admin and $edit_modalities)
                 <textarea name='modalites2'>{{ $course->modalites2 }}</textarea>
               @else
                 {!! nl2br(e($course->modalites2)) !!}
@@ -295,12 +295,12 @@
           @else
             <tr>
               <td colspan='2' style='padding-top:20px; text-align:right;'>
-                @if ($admin2 or !session('admin'))
+                @if ($admin2 or !Auth::user()->admin)
                   <input type='button' value='Modifier' onclick='document.location.href="{{ asset('course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
                 @endif
 
-                @if (($admin2 or (!session('admin') and !$course->lock)) and !count($course->links))
-                  <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ session("admin") }});' class='btn'/>
+                @if (($admin2 or (!Auth::user()->admin and !$course->lock)) and !count($course->links))
+                  <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ Auth::user()->admin }});' class='btn'/>
                 @endif
 
                 @if ($admin2)

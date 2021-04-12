@@ -37,7 +37,7 @@ class AdminTest extends TestCase
         $user = User::whereNotNull('access')->first();
         $response = $this->actingAs($user)
             ->withSession([
-                'access' => unserialize($user->access),
+                'access' => $user->access,
                 'admin' => true,
                 'login_name' => $user->lastname . ' ' . $user->firstname,
                 'login_univ' => $user->university,
@@ -69,7 +69,7 @@ class AdminTest extends TestCase
         $user = User::whereNotNull('access')->first();
         $response = $this->actingAs($user)
             ->withSession([
-                'access' => unserialize($user->access),
+                'access' => $user->access,
                 'admin' => true,
                 'login_name' => $user->lastname . ' ' . $user->firstname,
                 'login_univ' => $user->university,

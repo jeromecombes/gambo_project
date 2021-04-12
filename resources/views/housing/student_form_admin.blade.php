@@ -1,5 +1,5 @@
 <div style='margin-bottom:50px;'>
-  @if (in_array(7, session('access')))
+  @if (in_array(7, Auth::user()->access))
     <p>Affectation d'un logement pour {{ $student->firstname }} {{ $student->lastname }} pour {{ session('semester') }}.</p>
 
     <form name='housing_assignment' method='post' action='/housing_assignment' >

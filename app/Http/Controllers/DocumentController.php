@@ -356,10 +356,12 @@ class DocumentController extends Controller
      */
     private function get()
     {
+        $user = auth()->user();
+
         $student = session('student');
 
         // Retrieving documents
-        if (session('admin')) {
+        if ($user->admin) {
             if ($student) {
                 $documents = Document::where('student',$student)->get();
             } else {

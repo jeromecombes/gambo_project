@@ -32,7 +32,7 @@
         <div id='body'>
             <div class="content">
                 <div id='title'>
-                    @if(!session('admin'))
+                    @if(!Auth::user()->admin)
                         VWPP Database
                     @elseif(!session('student'))
                         VWPP Database - Admin
@@ -58,7 +58,7 @@
 
                 <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
 
-                    @if(session('admin'))
+                    @if(Auth::user()->admin)
                         @if(session('student'))
                             @include('includes.menu_admin_student')
                         @else

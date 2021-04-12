@@ -22,14 +22,16 @@ class GradeController extends Controller
      */
     public function edit(Request $request)
     {
+        $user = auth()->user();
+
         $edit = $request->edit;
 
         // Admin Read only
-        $us_ro = (in_array(19, session('access')) or in_array(20, session('access')));
+        $us_ro = (in_array(19, $user->access) or in_array(20, $user->access));
         // Admin update FR grades
-        $fr_rw = in_array(18, session('access'));
+        $fr_rw = in_array(18, $user->access);
         // Admin update US grades
-        $us_rw = in_array(19, session('access'));
+        $us_rw = in_array(19, $user->access);
 
         // Get student courses
         $courses = CourseHelper::get();
@@ -80,6 +82,8 @@ class GradeController extends Controller
      */
     public function update(Request $request)
     {
+        $user = auth()->user();
+
         // Get student courses
         $courses = $this->courses();
 
@@ -92,11 +96,11 @@ class GradeController extends Controller
                         'course_id' => $course->id,
                     ));
 
-                if (in_array(18, session('access'))) {
+                if (in_array(18, $user->access)) {
                     $grade->note = $request->{$key.'_fr_'.$course->id};
                     $grade->date1 = $request->{$key.'_fr_date_'.$course->id};
                 }
-                if (in_array(19, session('access'))) {
+                if (in_array(19, $user->access)) {
                     $grade->date2 = $request->{$key.'_us_date_'.$course->id};
                     $grade->grade = $request->{$key.'_us_'.$course->id};
                     $grade->grade1 = $request->{$key.'_us1_'.$course->id};

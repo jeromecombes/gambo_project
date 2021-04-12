@@ -15,8 +15,9 @@ class NotAdmin
      */
     public function handle($request, Closure $next)
     {
+        $user = $request->user();
 
-        if (session('admin')) {
+        if ($user->admin) {
             return redirect()->back()->with('warning', 'Access denied');
         }
 

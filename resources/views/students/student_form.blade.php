@@ -331,7 +331,7 @@
               <tr>
                 <td>Semesters with VWPP</td>
                 <td>
-                  @if (session('admin') and $edit)
+                  @if (Auth::user()->admin and $edit)
                     <ul style='margin-top:0px;'>
                       <li>{{ $student->semesters[0] }}</li>
                       <li>{{ $student->newSemester }} ? <input type='checkbox' name='semesters[]' value='{{ $student->newSemester }}' @if ($student->newSemesterChecked) checked='checked' @endif /></li>
@@ -359,7 +359,7 @@
             <tr>
               <td>Résultat TCF</td>
               <td>
-                @if (session('admin') and $edit)
+                @if (Auth::user()->admin and $edit)
                   <input type='text' name='resultatTCF' value='{{ $student->resultatTCF }}' />
                 @else
                   {{ $student->resultatTCF }}

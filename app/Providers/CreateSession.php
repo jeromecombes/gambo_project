@@ -37,12 +37,10 @@ class CreateSession
 
         // Admin only
         if ($event->user->access) {
-            $_SESSION['vwpp']['access'] = unserialize($event->user->access);
+            $_SESSION['vwpp']['access'] = $event->user->access;
             $_SESSION['vwpp']['login_name'] = $event->user->firstname . ' ' . $event->user->lastname;
             $_SESSION['vwpp']['login_univ'] = $event->user->university;
 
-            Session::put('access', unserialize($event->user->access));
-            Session::put('admin', true);
             Session::put('login_name', $event->user->firstname . ' ' . $event->user->lastname);
 
         // Students only
@@ -50,7 +48,6 @@ class CreateSession
 
             foreach (Student::all() as $student) {
                 if ($student->email == $event->user->email) {
-                    Session::put('access', array());
                     Session::put('login_name', $student->firstname . ' ' . $student->lastname);
                     Session::put('semesters', $student->semesters);
                     Session::put('student', $student->id);

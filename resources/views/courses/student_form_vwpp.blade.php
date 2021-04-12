@@ -1,6 +1,6 @@
       <tr>
         <td colspan='3'><b>Writing-Intensive Course</b></td>
-        @if (session('admin') and in_array(16, session('access')))
+        @if (in_array(16, Auth::user()->access))
           <td rowspan='11'>
             <div style='text-align:right;'>
               <input type='button' value='{{ $button_lock }}' onclick='lockRH(this, {{ $student->id }});' class='btn btn-primary' />

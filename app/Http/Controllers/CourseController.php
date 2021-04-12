@@ -30,6 +30,8 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
+
         $edit = $request->edit;
 
         // Get student info
@@ -43,7 +45,7 @@ class CourseController extends Controller
             $edit_vwpp = false;
         } else {
             $button_lock = 'Lock';
-            $edit_vwpp = session('admin') ? false : true;
+            $edit_vwpp = !$user->admin;
         }
 
         if (RHCoursePublish::findMe()) {
@@ -132,7 +134,7 @@ class CourseController extends Controller
         $courses = UnivCourse::getMe();
 
         // Admin with modification access
-        $admin2 = in_array(16, session('access'));
+        $admin2 = in_array(16, $user->access);
 
         // Tutoring
         $tutoring = Tutoring::findOrCreateMe();
@@ -159,7 +161,7 @@ class CourseController extends Controller
         );
 
         // View
-        if (session('admin')) {
+        if ($user->admin) {
             return view('courses.admin', $params);
         } else {
             return view('courses.student', $params);
@@ -228,6 +230,8 @@ class CourseController extends Controller
      */
     public function univ_edit(Request $request)
     {
+        $user = auth()->user();
+
         // All existing students courses for making links
         $courses = UnivCourse::getMe();
 
@@ -251,7 +255,7 @@ class CourseController extends Controller
         }
 
         // Admin with modification access
-        $admin2 = in_array(16, session('access'));
+        $admin2 = in_array(16, $user->access);
 
         $params = compact(
             'edit',
@@ -272,6 +276,8 @@ class CourseController extends Controller
      */
     public function univ_update(Request $request)
     {
+        $user = auth()->user();
+
         if ($request->id) {
             $course = UnivCourse::find($request->id);
         } else {
@@ -281,7 +287,7 @@ class CourseController extends Controller
         }
 
         // If the course is locked, students can only change modalities.
-        if (!$course->lock or session('admin')) {
+        if (!$course->lock or $user->admin) {
             $course->code = $request->code;
             $course->nom = $request->nom;
             $course->institutionAutre = $request->institutionAutre;
@@ -300,7 +306,7 @@ class CourseController extends Controller
 
         $course->modalites = $request->modalites;
         $course->modalites1 = $request->modalites1;
-        if (session('admin')) {
+        if ($user->admin) {
             $course->modalites2 = $request->modalites2;
         }
 

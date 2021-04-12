@@ -20,7 +20,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                 <tr>
                     <th>File</th>
                     <th>Type of document</th>
-                    @if(session('admin'))
+                    @if(Auth::user()->admin)
                         <th>Admin Only</th>
                     @endif
                 </tr>
@@ -39,7 +39,7 @@ Note that only pdf, jpg and word documents (with extensions .pdf, jpg our .jpeg 
                         @endforeach
                         </select>
                     </td>
-                    @if(session('admin'))
+                    @if(Auth::user()->admin)
                         <td><input type='checkbox' name='admin{{$i}}' value='1' /></td>
                     @endif
                 </tr>

@@ -16,8 +16,10 @@ class OldStudent
      */
     public function handle($request, Closure $next)
     {
+        $user = $request->user();
+
         $student = null;
-        if (session('admin') and $request->student) {
+        if ($user->admin and $request->student) {
             $student = $request->student;
         } elseif (session('student')) {
             $student = session('student');

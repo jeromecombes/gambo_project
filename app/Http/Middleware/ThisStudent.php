@@ -15,8 +15,9 @@ class ThisStudent
      */
     public function handle($request, Closure $next)
     {
+        $user = $request->user();
 
-        if (session('admin')) {
+        if ($user->admin) {
             return $next($request);
         }
 

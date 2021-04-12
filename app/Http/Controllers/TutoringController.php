@@ -27,7 +27,8 @@ class TutoringController extends Controller
         $tutoring = Tutoring::findOrCreateMe();
 
         // Admin with modification access
-        $admin2 = in_array(16, session('access'));
+        $user = auth()->user();
+        $admin2 = in_array(16, $user->access);
 
         $params = compact(
             'admin2',

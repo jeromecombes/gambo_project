@@ -20,8 +20,10 @@ class CheckRole
 //             // Redirect...
 //         }
 
+        $user = $request->user();
+
         // Don't check for students
-        if (!session('admin')) {
+        if (!$user->admin) {
             return $next($request);
         }
 
@@ -29,7 +31,7 @@ class CheckRole
         $redirect = true;
 
         foreach ($roles as $role) {
-            if (in_array($role, session('access'))) {
+            if (in_array($role, $user->access)) {
                 $redirect = false;
                 break;
             }

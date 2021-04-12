@@ -15,9 +15,10 @@ class Semester
      */
     public function handle($request, Closure $next)
     {
+        $user = $request->user();
 
         if (empty(session('semester'))) {
-            if (session('admin')) {
+            if ($user->admin) {
                 return redirect()->route('admin.index')->with('warning', 'Please, select a semester');
             } else {
                 return redirect()->route('semester.index');

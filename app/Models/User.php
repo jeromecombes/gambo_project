@@ -40,4 +40,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAccessAttribute($value)
+    {
+        $access = unserialize($value);
+
+        if (!is_array($access)) {
+            $access = array();
+        }
+
+        return $access;
+    }
+
+
 }

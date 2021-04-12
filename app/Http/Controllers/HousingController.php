@@ -30,10 +30,9 @@ class HousingController extends Controller
      */
     public function requests(Request $request)
     {
-
-        // Students information, students filter
         $user = auth()->user();
 
+        // Students information, students filter
         if ($user->university == 'VWPP') {
             // All students if loged in admin is from VWPP
             $students = Student::where('semester', session('semester'))->get();
@@ -75,7 +74,7 @@ class HousingController extends Controller
         }
 
         // Edit access
-        $edit_access = in_array(7, session('access'));
+        $edit_access = in_array(7, $user->access);
 
         return view('admin.housing_requests', compact('questions', 'questions_ids', 'answers', 'edit_access'));
     }

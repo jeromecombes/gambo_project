@@ -68,6 +68,8 @@ class EvaluationController extends Controller
      */
     public function form(Request $request)
     {
+        $user = auth()->user();
+
         $edit = false;
 
         $form = $request->form;
@@ -78,8 +80,8 @@ class EvaluationController extends Controller
             $data[$i] = null;
         }
 
-        // Admin with ID
-        if (session('admin')) {
+        // Admin
+        if ($user->admin) {
             $evaluation = Evaluation::find($request->id);
             $course_id = $evaluation->courseId;
 

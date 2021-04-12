@@ -31,7 +31,7 @@
         </td>
       </tr>
 
-      @if (session('admin'))
+      @if (Auth::user()->admin)
         <tr>
           <td><label for='notes'>Notes</label></td>
           <td>
@@ -44,14 +44,14 @@
         </tr>
       @endif
 
-      @if (! session('admin') or $admin2)
+      @if (!Auth::user()->admin or $admin2)
         <tr>
           <td colspan='2' style='padding-top:20px; text-align:right;'>
             @if ($edit)
               <input type='button' onclick='location.href="{{ asset('courses') }}";' value='Annuler' class='btn' />
               <input type='submit' value='Valider' class='btn btn-primary' />
             @else
-              @if (session('admin') or !$internship->lock)
+              @if (Auth::user()->admin or !$internship->lock)
                 <input type='button' onclick='document.location.href="{{ route('internship.edit') }}";' value='Modifier' class='btn btn-primary' />
               @endif
               @if ($admin2 and $internship->id)

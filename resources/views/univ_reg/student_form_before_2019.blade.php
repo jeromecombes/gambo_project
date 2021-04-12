@@ -202,7 +202,7 @@
             <input type='button' value='Cancel' class='btn' onclick='location.href="/univ_reg/";' />
             <input type='submit' value='Submit' class='btn btn-primary' />
           @else
-            @if (session('admin') or !$university)
+            @if (Auth::user()->admin or !$university)
               <input type='button' value='Edit' class='btn btn-primary' onclick='location.href="/univ_reg/{{ $student->id }}/edit";' />
             @endif
           @endif

@@ -1,5 +1,5 @@
 @if (!$edit)
-  @if (session('admin'))
+  @if (Auth::user()->admin)
     <h3>University Registration</h3>
     <fieldset>
 

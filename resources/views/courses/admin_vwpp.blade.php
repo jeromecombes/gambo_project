@@ -47,7 +47,7 @@
       </tr>
       <tr>
         <td style='padding-left:15px;font-weight:bold;' colspan='3'>Writing-Intensive Courses</td>
-        @if (in_array(16, session('access')))
+        @if (in_array(16, Auth::user()->access))
           <td rowspan='8' style='text-align:right; padding-right:0px;'>
             <input type='submit' value='Submit' class='btn btn-primary'/> <br/>
             <input type='button' value='{{ $button_publish }}' onclick='lockRH2(this, {{ $student->id }});' class='btn btn-primary' />
@@ -57,7 +57,7 @@
       <tr>
         <td style='width:250px; text-align:right;'>N°1</td>
         <td colspan='2'>
-          @if (in_array(16, session('access')))
+          @if (in_array(16, Auth::user()->access))
             <select name='writing1'>
               <option value=''>&nbsp;</option>
               @foreach ($rhCourses->where('type', 'Writing') as $elem)
@@ -73,7 +73,7 @@
       <tr>
         <td style='text-align:right;'>N°2</td>
         <td colspan='2'>
-          @if (in_array(16, session('access')))
+          @if (in_array(16, Auth::user()->access))
             <select name='writing2'>
               <option value=''>&nbsp;</option>
               @foreach ($rhCourses->where('type', 'Writing') as $elem)
@@ -91,7 +91,7 @@
       <tr>
         <td style='text-align:right;'>N°1</td>
         <td colspan='2'>
-          @if (in_array(16, session('access')))
+          @if (in_array(16, Auth::user()->access))
             <select name='seminar1'>
               <option value=''>&nbsp;</option>
               @foreach ($rhCourses->where('type', 'Seminar') as $elem)
@@ -106,7 +106,7 @@
       <tr>
         <td style='text-align:right;'>N°2</td>
         <td colspan='2'>
-          @if (in_array(16, session('access')))
+          @if (in_array(16, Auth::user()->access))
             <select name='seminar2'>
               <option value=''>&nbsp;</option>
               @foreach ($rhCourses->where('type', 'Seminar') as $elem)
@@ -121,7 +121,7 @@
       <tr>
         <td style='text-align:right;'>N°3</td>
         <td colspan='2'>
-          @if (in_array(16, session('access')))
+          @if (in_array(16, Auth::user()->access))
             <select name='seminar3'>
               <option value=''>&nbsp;</option>
               @foreach ($rhCourses->where('type', 'Seminar') as $elem)

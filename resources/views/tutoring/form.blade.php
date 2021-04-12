@@ -61,14 +61,14 @@
         </td>
       </tr>
 
-      @if (!session('admin') or $admin2)
+      @if (!Auth::user()->admin or $admin2)
         <tr>
           <td colspan='2' style='padding-top:20px; text-align:right;'>
           @if ($edit)
             <input type='button' onclick='location.href="{{ asset('courses') }}";' value='Annuler' class='btn' />
             <input type='submit' value='Valider' class='btn btn-primary' />
           @else
-            @if (session('admin') or !$tutoring->lock)
+            @if (Auth::user()->admin or !$tutoring->lock)
               <input type='button' onclick='document.location.href="{{ route('tutoring.edit') }}";' value='Modifier' class='btn btn-primary' />
             @endif
             @if ($admin2 and $tutoring->id)

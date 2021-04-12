@@ -43,7 +43,7 @@
     </form>
   </fieldset>
 
-  @if (session('admin'))
+  @if (Auth::user()->admin)
     <h3>Notifications</h3>
 
     <fieldset>

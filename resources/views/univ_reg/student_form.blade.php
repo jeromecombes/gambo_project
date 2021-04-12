@@ -8,7 +8,7 @@
     @include('univ_reg.student_form_before_2019')
     @include('univ_reg.student_form_final')
 
-    @if (session('admin') or $locked)
+    @if (Auth::user()->admin or $locked)
 
       @include('univ_reg.student_form_before_2019_plus')
 
@@ -18,7 +18,7 @@
 
       @include('univ_reg.student_form_2019')
 
-    @if (session('admin') or $published)
+    @if (Auth::user()->admin or $published)
 
       @include('univ_reg.student_form_final')
 
