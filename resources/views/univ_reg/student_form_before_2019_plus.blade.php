@@ -1,6 +1,6 @@
 <fieldset>
   <form method='post' action='/univ_reg_plus' onsubmit='return ctrl_form_univreg();'>
-  <input type='hidden' id='category' value='{{ $_SESSION['vwpp']['category'] }}' />
+  <input type='hidden' id='category' value='@if (session('admin')) admin @else student @endif' />
 
     <table>
       <tr>

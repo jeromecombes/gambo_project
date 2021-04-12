@@ -30,6 +30,8 @@ class StudentController extends Controller
         // Clear old session
         $_SESSION['vwpp']['student'] = null;
 
+        $user = auth()->user();
+
         // Semester
         $request->session()->put('semester', $_SESSION['vwpp']['semester']);
         $semester = session('semester');
@@ -52,10 +54,9 @@ class StudentController extends Controller
         $other = $students->where('guest', 1)->count();
 
         // Filter on home institution (Vassar or Wesleyan)
-        $login_univ = $_SESSION['vwpp']['login_univ'];
-        if ($login_univ != 'VWPP') {
+        if ($user->university != 'VWPP') {
             foreach ($students as $key => $value) {
-                if ($value->university != $login_univ) {
+                if ($value->university != $user->university) {
                     $students->forget($key);
                 }
             }
@@ -65,32 +66,32 @@ class StudentController extends Controller
         $options = array();
         $options[] = (object) array('value' => '', 'text' => null);
         $options[] = (object) array('value' => 'Excel', 'text' => 'Export General Info to Excel');
-        if (in_array(17,$_SESSION['vwpp']['access'])) {
+        if (in_array(17, session('access'))) {
             $options[] = (object) array('value' => 'Univ_reg', 'text' => 'Export Univ. Reg. to Excel');
         }
-        if (in_array(23,$_SESSION['vwpp']['access'])) {
+        if (in_array(23, session('access'))) {
             $options[] = (object) array('value' => 'internship', 'text' => 'Export Internship to Excel');
             $options[] = (object) array('value' => 'tutorial', 'text' => 'Export Tutorial to Excel');
         }
         $options[] = (object) array('value' => 'Email', 'text' => 'Send email (with Email Program)');
         $options[] = (object) array('value' => 'Email2', 'text' => 'Send email (with Web Browser)');
-        if (in_array(4,$_SESSION['vwpp']['access'])) {
+        if (in_array(4, session('access'))) {
             $options[] = (object) array('value' => 'CreatePassword', 'text' => 'Send emails with passwords');
         }
-        if (in_array(5,$_SESSION['vwpp']['access'])) {
+        if (in_array(5, session('access'))) {
         $options[] = (object) array('value' => 'Delete', 'text' => 'Delete');
         }
-        if (in_array(7,$_SESSION['vwpp']['access'])) {
+        if (in_array(7, session('access'))) {
             $options[] = (object) array('value' => 'closeHousing', 'text' => 'Close housing');
             $options[] = (object) array('value' => 'openHousing', 'text' => 'Open housing');
         }
-        if (in_array(16,$_SESSION['vwpp']['access'])) {
+        if (in_array(16, session('access'))) {
             $options[] = (object) array('value' => 'lockVWPP', 'text' => 'Lock VWPP Courses reg.');
             $options[] = (object) array('value' => 'unlockVWPP', 'text' => 'Unlock VWPP Courses reg.');
             $options[] = (object) array('value' => 'publishVWPP', 'text' => 'Publish VWPP Courses Final reg.');
             $options[] = (object) array('value' => 'hideVWPP', 'text' => 'Hide VWPP Courses Finale reg.');
         }
-        if (in_array(17,$_SESSION['vwpp']['access'])) {
+        if (in_array(17, session('access'))) {
             $options[] = (object) array('value' => 'publishUnivReg', 'text' => 'Publish Univ. reg.');
             $options[] = (object) array('value' => 'hideUnivReg', 'text' => 'Hide Univ. reg.');
         }

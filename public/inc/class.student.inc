@@ -219,58 +219,6 @@ class student{
     }
   }
 
-    public function login()
-    {
-        $auth = false;
-
-        $db=new db();
-        $db->select("students","*","token='{$this->token}'");
-
-        $id = $db->result[0]['id'];
-        $password_db = $db->result[0]['password'];
-
-        // If password is hashed with md5, convert it with password_hash/bcrypt to enhance security and to make it compatible with Laravel
-        if (strlen($password_db) == 32) {
-            if ($password_db == $this->password) {
-                $new_password = password_hash($this->cleared_password,PASSWORD_BCRYPT);
-
-                $db2 = new db();
-                $db2->update('students', "`password` = '$new_password'", "`id` = '$id'");
-
-                $db2 = new db();
-                $db2->insert2('users',
-                    array(
-                        'login' => '',
-                        'lastname' => '',
-                        'firstname' => '',
-                        'name' => $this->email,
-                        'admin' => '0',
-                        'email' => $this->email,
-                        'password' => $new_password)
-                    );
-
-                $auth = true;
-            }
-        } else {
-            if (password_verify($this->cleared_password, $password_db)) {
-                $auth = true;
-            }
-        }
-
-        if($auth){
-            $this->id=$db->result[0]['id'];
-            $this->fetch();
-            $_SESSION['vwpp']['login']=$this->elements['email'];
-            $_SESSION['vwpp']['access']=array();
-            $_SESSION['vwpp']['category']="student";
-            $_SESSION['vwpp']['login_univ']=$this->elements['university'];
-            $_SESSION['vwpp']['student']=$this->elements['id'];
-            $_SESSION['vwpp']['semesters']=$this->elements['semesters'];
-            $_SESSION['vwpp']['login_name']=$this->elements['login_name'];
-            $this->auth=true;
-        }
-    }
-
   public function setToken($email){
     $this->token=md5($email);
   }

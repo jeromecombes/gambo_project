@@ -7,7 +7,7 @@ require_once "../inc/class.univ4.inc";
 
 access_ctrl(23);
 
-$admin=$_SESSION['vwpp']['category']=="admin"?1:0;	// Droit en lecture
+$admin = 1;	// Droit en lecture
 $admin2=in_array(16,$_SESSION['vwpp']['access']);	// Droits lecture et modification
 $action="courses4-univ-update.php";
 $displayLock=$admin?null:"style='display:none;'";
@@ -51,7 +51,7 @@ echo "<div id='course4'>\n";
 //			COURSES SHOW
   $margin1=$course['lien']?50:0;
   $margin2=$course['lien']?0:50;
-  
+
   echo <<<EOD
     <fieldset id='UnivCourse{$course['id']}' style='margin-left:{$margin1}px;'>
     <form name='UnivCourseFormModalites{$course['id']}' method='post' action='$action'>

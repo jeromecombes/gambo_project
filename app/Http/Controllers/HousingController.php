@@ -32,13 +32,14 @@ class HousingController extends Controller
     {
 
         // Students information, students filter
-        $university = session('login_univ');
-        if ($university == 'VWPP') {
+        $user = auth()->user();
+
+        if ($user->university == 'VWPP') {
             // All students if loged in admin is from VWPP
             $students = Student::where('semester', session('semester'))->get();
         } else {
             // Filter students if loged in admin is from Vassar or Wesleyan
-            $students = Student::where(array('semester' => session('semester'), 'university' => $university))->get();
+            $students = Student::where(array('semester' => session('semester'), 'university' => $user->university))->get();
         }
 
         // Questions

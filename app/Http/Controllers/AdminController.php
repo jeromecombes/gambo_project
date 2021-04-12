@@ -20,8 +20,6 @@ class AdminController extends Controller
         $request->session()->forget('student_previous');
         $request->session()->forget('students_list');
 
-        $request->session()->put('login_univ', $_SESSION['vwpp']['login_univ']);
-
         $oldestYear = date('Y') - 5;
         $semesters = array('' => '');
         for ($i = date('Y')+1; $i >= $oldestYear; $i--){
