@@ -1,7 +1,7 @@
 <?php
 // Last update : 2015-03-23
 
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 access_ctrl(4);
 ?>
@@ -31,5 +31,5 @@ for($i=0;$i<60;$i++)
 
 
 <?php
-require_once "../footer.php";
+require_once "footer.php";
 ?>

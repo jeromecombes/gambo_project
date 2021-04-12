@@ -1,7 +1,7 @@
 <?php
 // Last update : 2016-04-12
 
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 require_once "../inc/class.dates.inc";
 
@@ -87,5 +87,5 @@ echo <<<EOD
 </form>
 EOD;
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

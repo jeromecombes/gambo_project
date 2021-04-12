@@ -2,13 +2,13 @@
 // Update : 2015-10-14
 require_once "../inc/config.php";
 require_once "../inc/class.housing.inc";
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 
 if(!$_POST['housing']){
   echo "<p style=color:red;font-weight:bold;'>Nobody selected</p>\n";
   echo "<a href='/admin/hosts'>Back to list</a>\n";
-  require_once "../footer.php";
+  require_once "footer.php";
   exit;
 }
 
@@ -53,5 +53,5 @@ echo <<<EOD
 EOD;
 
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

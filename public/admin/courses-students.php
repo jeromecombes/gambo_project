@@ -1,7 +1,7 @@
 <?php
 // Last update : 2015-03-23
 
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.courses.inc";
 require_once "menu.php";
 

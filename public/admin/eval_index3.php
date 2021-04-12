@@ -1,5 +1,5 @@
 <?php
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.eval.inc";
 require_once "../inc/class.reidhall.inc";
 require_once "../inc/class.univ4.inc";
@@ -56,5 +56,5 @@ foreach($students as $s){
 echo "</tbody>\n";
 echo "</table>\n";
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

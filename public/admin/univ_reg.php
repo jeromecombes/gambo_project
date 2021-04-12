@@ -1,7 +1,7 @@
 <?php
 // Last update : 2018-10-16
 
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.univ_reg.inc";
 require_once "menu.php";
 
@@ -201,5 +201,5 @@ echo "</tbody>\n";
 echo "</table>\n";
 
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

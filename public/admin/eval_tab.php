@@ -1,5 +1,5 @@
 <?php
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 require_once "../inc/eval.questions.inc";
 require_once "../inc/class.eval.inc";
@@ -63,5 +63,5 @@ foreach($result as $elem){
 echo "</tbody>\n";
 echo "</table>\n";
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

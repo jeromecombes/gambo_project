@@ -1,7 +1,7 @@
 <?php
 // Last update : 2015-09-15, Jérôme Combes
 
-require_once  "../header.php";
+require_once  "header.php";
 require_once  "menu.php";
 access_ctrl(9);
 
@@ -38,5 +38,5 @@ echo "</table>\n";
 	  //		Button Add
 echo "<br/><a class='myUI-button' href='users-edit.php'/>Add</a>\n";
 
-require_once  "../footer.php";
+require_once  "footer.php";
 ?>

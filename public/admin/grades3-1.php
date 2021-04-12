@@ -6,7 +6,7 @@ ini_set('error_reporting',E_ERROR | E_WARNING | E_PARSE);
 require_once("../inc/config.php");
 require_once("../inc/class.reidhall.inc");
 require_once("../inc/class.univ4.inc");
-require_once("../header.php");
+require_once("header.php");
 require_once("menu.php");
 
 access_ctrl("18,19,20");
@@ -96,5 +96,5 @@ echo <<<EOD
 </table>
 EOD;
 
-require_once("../footer.php");
+require_once("footer.php");
 ?>

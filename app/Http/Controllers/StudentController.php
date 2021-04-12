@@ -7,6 +7,8 @@ use App\Models\HousingAssignment;
 use App\Models\Student;
 use App\Models\UnivReg3;
 use App\Models\User;
+use App\Helpers\CountryHelper;
+use App\Helpers\StateHelper;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
 use Illuminate\Http\Request;
@@ -105,8 +107,6 @@ class StudentController extends Controller
      */
     public function student_form(Request $request)
     {
-        include_once( __DIR__ . '/../../../public/inc/states.inc');
-
         $edit = $request->edit;
 
         $id = session('student');
@@ -137,6 +137,9 @@ class StudentController extends Controller
         );
 
         $years = array(date("Y") - 15, date("Y") - 30);
+
+        $states = StateHelper::get();
+        $countries = CountryHelper::get();
 
         // View
         return view('students.student_form', compact('student', 'photo', 'host', 'french_univ', 'countries', 'states', 'months', 'years', 'edit'));

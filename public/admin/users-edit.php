@@ -28,7 +28,7 @@ if(isset($_POST['id'])){
 }
 
 		//	User form
-require_once  "../header.php";
+require_once  "header.php";
 require_once  "menu.php";
 access_ctrl(10);
 
@@ -167,5 +167,5 @@ echo "<input type='submit' value='$button' id='submit' class='myUI-button'/>\n";
 foreach($access as $elem)
   echo "<script type='text/JavaScript'>document.getElementById('access{$elem}').click();</script>\n";
 
-require_once  "../footer.php";
+require_once  "footer.php";
 ?>

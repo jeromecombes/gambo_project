@@ -1,5 +1,5 @@
 <?php
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.student.inc";
 require_once "../inc/class.univ4.inc";
 require_once "menu.php";
@@ -131,5 +131,5 @@ elseif($form=="internship"){
   echo "</ul>\n";
 }
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

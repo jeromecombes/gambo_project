@@ -5,8 +5,8 @@ ini_set('display_errors',0);
 ini_set('error_reporting',E_ERROR | E_WARNING | E_PARSE);
 //ini_set('error_reporting',E_ALL);
 
-require_once __DIR__."/inc/config.php";
-require_once __DIR__."/inc/lang.main.inc";
+require_once __DIR__."/../inc/config.php";
+require_once __DIR__."/../inc/lang.main.inc";
 
 $title=isset($title)?$title:"VWPP Database";
 

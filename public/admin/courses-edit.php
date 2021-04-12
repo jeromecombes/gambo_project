@@ -1,7 +1,7 @@
 <?php
 // Last update : 2015-10-21
 
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.reidhall.inc";
 require_once "../inc/class.student.inc";
 require_once "menu.php";
@@ -144,5 +144,5 @@ echo <<<EOD
 </fieldset>
 EOD;
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

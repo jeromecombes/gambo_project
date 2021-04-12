@@ -1,5 +1,5 @@
 <?php
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.reidhall.inc";
 require_once "../inc/class.univ4.inc";
 require_once "menu.php";
@@ -116,5 +116,5 @@ echo "<div style='margin-top:20px; text-align:right;' >\n";
 echo "<input type='button' onclick='location.href=\"courses4_excel.php\"'; value='Export to excel' class='myUI-button-right'/>\n";
 echo "</div>\n";
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

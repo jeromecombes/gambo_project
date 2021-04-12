@@ -15,8 +15,7 @@ function access_ctrl($ids){
 
   if(!$access){
     echo "<b style='color:red;'>Access denied</b><br/><br/><a href='javascript:history.back()'>Back</a>";
-    $folder=preg_match('/admin/',$_SERVER['SCRIPT_NAME'])?"../":null;
-    require_once "{$folder}footer.php";
+    require_once __DIR__ .'/../admin/footer.php';
     exit;
    }
 }

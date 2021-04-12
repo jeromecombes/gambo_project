@@ -2,13 +2,13 @@
 // Update : 2015-10-14
 require_once "../inc/config.php";
 require_once "../inc/class.student.inc";
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 
 if(!$_POST['students']){
   echo "<p style=color:red;font-weight:bold;'>No student selected</p>\n";
   echo "<a href='/students'>Back to list</a>\n";
-  require_once "../footer.php";
+  require_once "footer.php";
   exit;
 }
 
@@ -50,5 +50,5 @@ echo <<<EOD
 EOD;
 
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

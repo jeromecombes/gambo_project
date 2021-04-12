@@ -1,5 +1,5 @@
 <?php
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 access_ctrl(15);
 
@@ -23,5 +23,5 @@ $isForm=$db->result[0]['closed']?false:true;	// display form with inputs or text
 
 require_once "../inc/eval_$form.php";
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

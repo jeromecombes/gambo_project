@@ -7,7 +7,7 @@ $displayEvaluation = count($evaluations);
 
 <nav>
   <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
-    <li id='li0' class='ui-state-default ui-corner-top @if (Request::is("*semester*")) ui-state-active @endif''><a href='index.php'>Home</a></li>
+    <li id='li0' class='ui-state-default ui-corner-top @if (Request::is("*semester*") or Request::is("/")) ui-state-active @endif''><a href='/'>Home</a></li>
     <li id='li7' class='ui-state-default ui-corner-top @if (Request::is("*student*")) ui-state-active @endif'><a href='/student'>General Info.</a></li>
     <li id='li2' class='ui-state-default ui-corner-top @if (Request::is("*housing*")) ui-state-active @endif'><a href='/housing'>Housing</a></li>
     <li id='li1' class='ui-state-default ui-corner-top @if (Request::is("*univ_reg*")) ui-state-active @endif'><a href='/univ_reg'>Univ. Reg.</a></li>

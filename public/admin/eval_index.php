@@ -6,7 +6,7 @@ if(in_array(22,$_SESSION['vwpp']['access'])){		// voir qui a rempli les évaluat
   exit;
 }
 
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 access_ctrl(15);
 
@@ -125,5 +125,5 @@ echo "<a href='eval_all.php?form=internship'>Individual evaluations</a>\n";
 echo "</p>\n";
 
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

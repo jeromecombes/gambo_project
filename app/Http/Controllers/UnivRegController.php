@@ -9,6 +9,8 @@ use App\Models\UnivReg2;
 use App\Models\UnivReg3;
 use App\Models\UnivRegLock;
 use App\Models\UnivRegShow;
+use App\Helpers\CountryHelper;
+use App\Helpers\StateHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
 
@@ -23,8 +25,6 @@ class UnivRegController extends Controller
      */
     public function student_form(Request $request)
     {
-
-        include_once( __DIR__ . '/../../../public/inc/states.inc');
 
         $edit = $request->edit;
 
@@ -65,6 +65,9 @@ class UnivRegController extends Controller
 
         // Get deadlines
         $dates = Dates::where('semester', session('semester'))->first();
+
+        $states = StateHelper::get();
+        $countries = CountryHelper::get();
 
         // View
         return view('univ_reg.student_form', compact('edit', 'student', 'published', 'locked', 'dates', 'university', 'answer', 'answer_plus', 'countries', 'states'));

@@ -1,7 +1,7 @@
 <?php
 // Last update : 2015-10-14
 
-require_once "../header.php";
+require_once "header.php";
 require_once "../inc/class.housing.inc";
 require_once "menu.php";
 access_ctrl(2);
@@ -72,5 +72,5 @@ if(in_array(7,$_SESSION['vwpp']['access'])){
 if(!$logement['id'] and !$_GET['msg'])
   echo "<script type='text/JavaScript'>displayForm('form',1);</script>\n";
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>

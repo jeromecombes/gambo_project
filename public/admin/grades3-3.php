@@ -1,7 +1,7 @@
 <?php
 require_once("../inc/config.php");
 require_once("../inc/class.courses.inc");
-require_once("../header.php");
+require_once("header.php");
 require_once("menu.php");
 
 access_ctrl("18,19,20");
@@ -23,5 +23,5 @@ echo <<<EOD
 </p>
 EOD;
 
-require_once("../footer.php");
+require_once("footer.php");
 ?>

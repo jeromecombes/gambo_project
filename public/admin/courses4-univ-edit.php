@@ -1,7 +1,7 @@
 <?php
 // Last update : 2015-10-21
 
-require_once "../header.php";
+require_once "header.php";
 require_once "menu.php";
 require_once "../inc/class.univ4.inc";
 
@@ -322,5 +322,5 @@ EOD;
 
 echo "</div>\n";
 
-require_once "../footer.php";
+require_once "footer.php";
 ?>
