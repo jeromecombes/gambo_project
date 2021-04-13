@@ -336,16 +336,12 @@ Route::post('/lock', [LockController::class, 'ajaxLocker'])
     ->name('lock');
 
 Route::get('/account', [UserController::class, 'account'])
-    ->middleware('auth')
     ->name('account.index');
 
 Route::post('/password', [UserController::class, 'password'])
-    ->middleware('auth')
     ->name('password.update');
 
 Route::post('/notifications', [UserController::class, 'notifications'])
-    ->middleware('auth')
-    ->middleware('admin')
     ->name('notifications.update');
 
 // Admin Student list
@@ -420,6 +416,9 @@ Route::get('/admin/hosts', [HostController::class, 'index'])
     ->middleware('semester')
     ->middleware('role:2')
     ->name('hosts.index');
+
+Route::get('/users', [UserController::class, 'index'])
+    ->name('users.index');
 
 // Lock RH Courses forms
 Route::post('/admin/RHCourses/lock', [CoursesRHController::class, 'lock'])

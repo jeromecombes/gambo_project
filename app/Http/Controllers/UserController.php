@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class UserController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin')->except(['account', 'password']);
+    }
 
     /**
      * Show My Account form
@@ -22,6 +34,20 @@ class UserController extends Controller
 
         // View
         return view('user.account', compact('notifications'));
+    }
+
+    /**
+     * Show the user's list
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $users = User::where('admin', 1)->get();
+
+        // View
+        return view('user.index', compact('users'));
     }
 
     /**

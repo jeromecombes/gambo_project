@@ -23,8 +23,8 @@ if(isset($_POST['id'])){
 		$_POST['login'] = '';
 		$_POST['name'] = $_POST['email'];
 		$db->insert2("users",$_POST);
-	}  
-  header("Location:users.php?msg=update_success");
+	}
+  header("Location:/users");
 }
 
 		//	User form
@@ -153,7 +153,7 @@ EOD;
 if(in_array(12,$_SESSION['vwpp']['access']) and isset($_GET['id'])){
   echo "<input type='button' value='Delete' onclick='user_delete(\"{$user['id']}\")' class='myUI-button'/>\n";
 }
-echo "<input type='button' value='Cancel' onclick='location.href=\"users.php\";' class='myUI-button'/>\n";
+echo "<input type='button' value='Cancel' onclick='location.href=\"/users\";' class='myUI-button'/>\n";
 $button=isset($_GET['id'])?"Update":"Add";
 echo "<input type='submit' value='$button' id='submit' class='myUI-button'/>\n";
 ?>

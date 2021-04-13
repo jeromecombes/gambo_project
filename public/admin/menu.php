@@ -71,8 +71,9 @@ if($semester){
     echo "<li id='li8' class='ui-state-default ui-corner-top'><a href='/documents'>Documents</a></li>\n";
 }
 
-if(in_array(9,$user->access))
-  echo "<li id='li2' class='ui-state-default ui-corner-top'><a href='users.php'>Users</a></li>\n";
+if(in_array(9,$user->access)) {
+  echo "<li id='li2' class='ui-state-default ui-corner-top'><a href='/users'>Users</a></li>\n";
+}
 
 echo "<li id='li6' class='ui-state-default ui-corner-top'><a href='/account'>My Account</a></li>\n";
 
