@@ -39,6 +39,19 @@ class UserController extends Controller
     }
 
     /**
+     * Delete an user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request)
+    {
+        User::find($request->id)->delete();
+
+        return redirect()->route('users.index')->with('success', 'The user has been deleted');
+    }
+
+    /**
      * Show an user form
      *
      * @param  \Illuminate\Http\Request  $request

@@ -4,9 +4,8 @@
   <h3>{{ $user->firstname }} {{ $user->lastname }}</h3>
 
   <fieldset>
-    <form name='form' action='{{ route("user.update") }}' method='post' onsubmit='return ctrl_form2("{{ $user->email }}");'>
-      <input type='hidden' name='id' id='id' value='{{ $user->id }}' />
-      @csrf
+    {!! Form::open(['route' => 'user.update', 'name' => 'form', 'onsubmit' => 'return ctrl_form2("{{ $user->email }}");']) !!}
+      {!! Form::hidden('id', $user->id) !!}
 
       <div>
         <strong><u>General information</u></strong>
@@ -125,14 +124,21 @@
         {!! Form::button('Cancel', ['onclick' => 'location.href="' . route('users.index') . '";', 'class' => 'btn']) !!}
 
         @if (in_array(12, Auth::user()->access) and $user->id)
-          {!! Form::button('Delete', ['onclick' => "user_delete($user->id)", 'class' => 'btn']) !!}
+          {!! Form::button('Delete', ['onclick' => "delete_user()", 'class' => 'btn']) !!}
         @endif
 
         {!! Form::submit($user->id ? 'Update' : 'Add', ['class' => 'btn btn-primary']) !!}
 
       </div>
 
-    </form>
+    {!! Form::close() !!}
   </fieldset>
+
+@if (in_array(12, Auth::user()->access) and $user->id)
+  {!! Form::open(['route' => 'user.delete', 'id' => 'delete-form']) !!}
+  {!! Form::hidden('_method', 'DELETE') !!}
+  {!! Form::hidden('id', $user->id) !!}
+  {!! Form::close() !!}
+@endif
 
 @endsection

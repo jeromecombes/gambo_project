@@ -138,6 +138,12 @@ function delete_doc(id) {
     }
 }
 
+function delete_user() {
+  if (confirm('Do you really want to delete this user ?')) {
+    $('#delete-form').submit();
+  }
+}
+
 function displayForm(form,id){
 
   if(form == "univreg2b") {
@@ -517,12 +523,6 @@ function tripFormValidation(){
   }
 
   return myReturn;
-}
-
-
-function user_delete(id){
- if(confirm("Do you really want to delete this user ?"))
-   document.location.href="users-delete.php?id="+id;
 }
 
 function isNumeric(input){

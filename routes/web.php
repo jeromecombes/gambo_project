@@ -424,6 +424,9 @@ Route::get('/user/{id?}', [UserController::class, 'edit'])
 Route::post('/user', [UserController::class, 'update'])
     ->name('user.update');
 
+Route::delete('/user', [UserController::class, 'delete'])
+    ->name('user.delete');
+
 // Lock RH Courses forms
 Route::post('/admin/RHCourses/lock', [CoursesRHController::class, 'lock'])
     ->middleware('admin')
