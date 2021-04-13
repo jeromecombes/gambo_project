@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable
 {
@@ -43,13 +45,11 @@ class User extends Authenticatable
 
     public function getAccessAttribute($value)
     {
-        $access = unserialize($value);
-
-        if (!is_array($access)) {
-            $access = array();
+        if (empty($value)) {
+            return array();
         }
 
-        return $access;
+        return json_decode($value);
     }
 
     public function getDisplayNameAttribute($value)
@@ -57,5 +57,14 @@ class User extends Authenticatable
         return $this->firstname . ' ' . $this->lastname;
     }
 
+    public function setAccessdAttribute($value)
+    {
+        $this->attributes['access'] = json_encode($value);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
 
 }

@@ -26,19 +26,19 @@ function alertDelete(msg,id){
 
 function change_password(me){
     if(me.checked){
-      document.getElementById("tr_password1").style.display="";
-      document.getElementById("tr_password2").style.display="";
+      document.getElementById("tr_password").style.display="";
+      document.getElementById("tr_password_confirmation").style.display="";
       document.form.password.disabled=false;
-      document.form.password2.disabled=false;
+      document.form.password_confirmation.disabled=false;
       document.form.password.value="";
-      document.form.password2.value="";
+      document.form.password_confirmation.value="";
       password_ctrl(document.form.password);
     }
     else{
-      document.getElementById("tr_password1").style.display="none";
-      document.getElementById("tr_password2").style.display="none";
+      document.getElementById("tr_password").style.display="none";
+      document.getElementById("tr_password_confirmation").style.display="none";
       document.form.password.disabled=true;
-      document.form.password2.disabled=true;
+      document.form.password_confirmation.disabled=true;
     }
 }
 
@@ -88,13 +88,13 @@ function checkLink(me,admin,id){
 
 function ctrl_form1(){
   password_ctrl(document.form.password);
-  password_ctrl(document.form.password2);
+  password_ctrl(document.form.password_confirmation);
   return form1_ctrl();
 }
 
 function ctrl_form2(first){
   password_ctrl(document.form.password);
-  password_ctrl(document.form.password2);
+  password_ctrl(document.form.password_confirmation);
   return form1_ctrl();
 }
 
@@ -349,7 +349,7 @@ function password_ctrl(me){
       form1_ctrl();
      return;
   }
-   if(me.name=="password2"){
+   if(me.name=="password_confirmation"){
      if(me.value!=document.getElementById("password").value){
        document.getElementById("passwd2").innerHTML="Passwords don't match";
       form1_ctrl();

@@ -19,7 +19,7 @@
       <tr>
         <td>
           @if (in_array(10, Auth::user()->access))
-            <a href='/admin/users-edit.php?id={{ $user->id }}'>
+            <a href='{{ route('user.edit', $user->id) }}'>
               <img src='/img/edit.png' alt='Edit' />
             </a>
           @endif
@@ -34,7 +34,7 @@
   </table>
 
   <div style='margin-top:30px; text-align:right;'>
-    <input type='button' value='Add' class='btn btn-primary' onclick='location.href="/admin/users-edit.php";' />
+    <input type='button' value='Add' class='btn btn-primary' onclick='location.href="{{ route('user.edit') }}";' />
   </div>
 
 @endsection

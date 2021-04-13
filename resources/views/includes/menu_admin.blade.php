@@ -33,8 +33,8 @@
             @endif
         @endif
 
-        @if(in_array(9, Auth::user()->access))
-            <li class="ui-state-default ui-corner-top {{ (request()->is('users')) ? 'ui-state-active' : '' }}"><a href='/users'>Users</a></li>
+        @if(!empty(array_intersect(array(9, 10, 11, 12), Auth::user()->access)))
+            <li class="ui-state-default ui-corner-top {{ (request()->is('*user*')) ? 'ui-state-active' : '' }}"><a href='/users'>Users</a></li>
         @endif
 
         <li class="ui-state-default ui-corner-top {{ (request()->is('account')) ? 'ui-state-active' : '' }}"><a href='/account'>My Account</a></li>

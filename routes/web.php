@@ -228,7 +228,6 @@ Route::post('/tutoring/update', [TutoringController::class, 'update'])
     ->name('courses.tutoring.update');
 
 Route::get('/grades', [GradeController::class, 'edit'])
-    ->middleware('auth')
     ->middleware('admin')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -239,7 +238,6 @@ Route::get('/grades', [GradeController::class, 'edit'])
 
 Route::get('/grades/{student}', [GradeController::class, 'edit'])
     ->where('student', '[0-9]+')
-    ->middleware('auth')
     ->middleware('admin')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -250,7 +248,6 @@ Route::get('/grades/{student}', [GradeController::class, 'edit'])
 
 Route::get('/grades/{edit}', [GradeController::class, 'edit'])
     ->where('edit', 'edit')
-    ->middleware('auth')
     ->middleware('admin')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -419,6 +416,13 @@ Route::get('/admin/hosts', [HostController::class, 'index'])
 
 Route::get('/users', [UserController::class, 'index'])
     ->name('users.index');
+
+Route::get('/user/{id?}', [UserController::class, 'edit'])
+    ->where('id', '[0-9]+')
+    ->name('user.edit');
+
+Route::post('/user', [UserController::class, 'update'])
+    ->name('user.update');
 
 // Lock RH Courses forms
 Route::post('/admin/RHCourses/lock', [CoursesRHController::class, 'lock'])

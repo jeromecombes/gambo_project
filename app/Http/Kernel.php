@@ -45,6 +45,7 @@ class Kernel extends HttpKernel
         ],
 
         'admin' => [
+            'auth',
             'is.admin',
             'old.semester',
             'old.session',
