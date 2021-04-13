@@ -12,17 +12,21 @@
                 <li id='li7' class="ui-state-default ui-corner-top {{ (request()->is('admin/housing')) ? 'ui-state-active' : '' }}"><a href="{{ asset('admin/housing') }}">Housing</a></li>
             @endif
 
-            <li id='li10' class="ui-state-default ui-corner-top {{ (request()->is('admin/univ_reg')) ? 'ui-state-active' : '' }}"><a href='/admin/univ_reg.php'>Univ. reg.</a></li>
+            @if(in_array(17, Auth::user()->access))
+                <li id='li10' class="ui-state-default ui-corner-top {{ (request()->is('admin/univ_reg')) ? 'ui-state-active' : '' }}"><a href='/admin/univ_reg.php'>Univ. reg.</a></li>
+            @endif
 
             @if(in_array(23, Auth::user()->access))
                 <li id='li1' class="ui-state-default ui-corner-top {{ (request()->is('admin/courses')) ? 'ui-state-active' : '' }}"><a href='/admin/courses4.php'>Courses</a></li>
             @endif
 
-            @if(!empty(array_intersect(array(18,19,20), Auth::user()->access)))
+            @if(!empty(array_intersect(array(18, 19, 20), Auth::user()->access)))
                 <li id='li9' class="ui-state-default ui-corner-top {{ (request()->is('admin/grades')) ? 'ui-state-active' : '' }}"><a href='/admin/grades3-1.php'>Grades</a></li>
             @endif
 
-            <li id='li4' class="ui-state-default ui-corner-top {{ (request()->is('admin/evaluations')) ? 'ui-state-active' : '' }}"><a href='/admin/eval_index.php'>Evaluations</a></li>
+            @if(!empty(array_intersect(array(15, 22), Auth::user()->access)))
+                <li id='li4' class="ui-state-default ui-corner-top {{ (request()->is('admin/evaluations')) ? 'ui-state-active' : '' }}"><a href='/admin/eval_index.php'>Evaluations</a></li>
+            @endif
 
             @if(in_array(3, Auth::user()->access))
                 <li id='li8' class="ui-state-default ui-corner-top {{ (request()->is('documents')) ? 'ui-state-active' : '' }}"><a href="{{ asset('documents') }}">Documents</a></li>

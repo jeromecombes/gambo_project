@@ -24,6 +24,8 @@ if (!$semester) {
     $semester = (!empty($_SESSION['vwpp']['semestre']) or $semestre) ? true : false;
 }
 
+$user = Auth::user();
+
 echo <<<EOD
 <div id='title'>VWPP Database - Admin</div>
 <div id='loginName'><span>{$_SESSION['vwpp']['login_name']}</span>
@@ -45,29 +47,31 @@ echo <<<EOD
 <li id='li0' class='ui-state-default ui-corner-top'><a href='/admin2'>Home</a></li>
 EOD;
 if($semester){
-  if(in_array(24,$_SESSION['vwpp']['access']))
+  if(in_array(24,$user->access))
     echo "<li id='li11' class='ui-state-default ui-corner-top'><a href='dates.php'>Dates</a></li>\n";
 
   echo "<li id='li5' class='ui-state-default ui-corner-top'><a href='/students'>Students</a></li>\n";
 
-  if(in_array(2,$_SESSION['vwpp']['access']))
+  if(in_array(2,$user->access))
     echo "<li id='li7' class='ui-state-default ui-corner-top'><a href='/admin/housing'>Housing</a></li>\n";
 
-  echo "<li id='li10' class='ui-state-default ui-corner-top'><a href='univ_reg.php'>Univ. reg.</a></li>\n";
+  if(in_array(17,$user->access))
+    echo "<li id='li10' class='ui-state-default ui-corner-top'><a href='univ_reg.php'>Univ. reg.</a></li>\n";
 
-  if(in_array(23,$_SESSION['vwpp']['access']))
+  if(in_array(23,$user->access))
     echo "<li id='li1' class='ui-state-default ui-corner-top'><a href='courses4.php'>Courses</a></li>\n";
 
-  if(in_array(18,$_SESSION['vwpp']['access']) or in_array(19,$_SESSION['vwpp']['access']) or in_array(20,$_SESSION['vwpp']['access']))
+  if(in_array(18,$user->access) or in_array(19,$user->access) or in_array(20,$user->access))
     echo "<li id='li9' class='ui-state-default ui-corner-top'><a href='grades3-1.php'>Grades</a></li>\n";
 
-  echo "<li id='li4' class='ui-state-default ui-corner-top'><a href='eval_index.php'>Evaluations</a></li>\n";
+  if(in_array(15,$user->access) or in_array(22,$user->access))
+    echo "<li id='li4' class='ui-state-default ui-corner-top'><a href='eval_index.php'>Evaluations</a></li>\n";
 
-  if(in_array(3,$_SESSION['vwpp']['access']))
+  if(in_array(3,$user->access))
     echo "<li id='li8' class='ui-state-default ui-corner-top'><a href='/documents'>Documents</a></li>\n";
 }
 
-if(in_array(9,$_SESSION['vwpp']['access']))
+if(in_array(9,$user->access))
   echo "<li id='li2' class='ui-state-default ui-corner-top'><a href='users.php'>Users</a></li>\n";
 
 echo "<li id='li6' class='ui-state-default ui-corner-top'><a href='/account'>My Account</a></li>\n";
