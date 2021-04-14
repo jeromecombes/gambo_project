@@ -579,40 +579,6 @@ function verifNote2(form){
 
 $(document).ready(function(){
 
-	$(".datatable").each(function(){
-	  // columns sort
-  		var aoCol=[];
-  		$(this).find("thead th").each(function(){
-    		if($(this).attr("class")==undefined){
-      			aoCol.push({"bSortable":true});
-    		}
-    		else if($(this).hasClass("dataTableDate")){
-      			aoCol.push({"sType": "date"});
-   			}
-    		else if($(this).hasClass("dataTableNoSort")){
-      			aoCol.push({"bSortable":false});
-   			}
-		else{
-      			aoCol.push({"bSortable":true});
-			}
-   		});
-
-	  var sort=[[1,"asc"],[2,"asc"]];		// {{"1","asc"},{"2","asc"}}
-	  if($(this).attr("data-sort")){
-	    var sort=JSON.parse($(this).attr("data-sort"));
-	  }
-  		$(this).dataTable({
-      		"bJQueryUI": true,
-      		"sPaginationType": "full_numbers",
-                "bStateSave": true,
-      		"aLengthMenu" : [[25,50,75,100,-1],[25,50,75,100,"All"]],
-                "iDisplayLength" : 25,
-      		"aaSorting" : sort,
-      		"aoColumns" : aoCol,
-  		});
-  	});
-
-
   $(".myUI-button").button();
   $(".myUI-button-right").button();
   $(".myUI-datepicker-string").datepicker({dateFormat: "MM d, yy"});

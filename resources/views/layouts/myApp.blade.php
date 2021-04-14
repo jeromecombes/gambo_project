@@ -13,7 +13,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}?rev=20210330" rel="stylesheet">
         <link href="{{ asset('css/jquery-ui.min.css') }}?rev=20210330" rel="stylesheet">
-        <link href="{{ asset('css/dataTables/jquery.dataTables_themeroller.css') }}?rev=20210330" rel="stylesheet">
+        <link href="{{ asset('js/DataTables/datatables.min.css') }}?rev=20210414" rel="StyleSheet" type="text/css" media="all"/>
         <link href="{{ asset('css/style.css') }}?rev=20210330" rel="stylesheet">
         <link href="{{ asset('css/print.css') }}?rev=20210330" rel="stylesheet" media='print'>
 
@@ -21,10 +21,10 @@
 
         <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/jquery-1.10.2.js?rev=20210330'></script>
         <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/ui/jquery-ui.js?rev=20210330'></script>
-        <script type='text/JavaScript' src='/js/dataTables/jquery.dataTables.min.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/DataTables/datatables.min.js?rev=20210414'></script>
         <script type='text/JavaScript' src='/js/dataTables/sort.js?rev=20210330'></script>
-        <script type='text/JavaScript' src='/js/CJScript.js?rev=20210330'></script>
-        <script type='text/JavaScript' src='/js/script.js?rev=20210330'></script>
+        <script type='text/JavaScript' src='/js/CJScript.js?rev=20210414'></script>
+        <script type='text/JavaScript' src='/js/script.js?rev=20210414'></script>
     </head>
 
     <body>

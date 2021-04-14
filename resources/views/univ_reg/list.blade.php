@@ -3,7 +3,7 @@
 
   <h3>University Registration, {{ session('semester') }}</h3>
 
-  <input type='button' onclick='location.href="/admin/univ_reg_export.php";' value='Export to excel' class='btn btn-primary' />
+  <input type='button' onclick='$(".buttons-excel").click();' value='Export to excel' class='btn btn-primary' />
 
   <br/>
   <br/>

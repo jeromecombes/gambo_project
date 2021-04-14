@@ -36,13 +36,14 @@ if(!array_key_exists('vwpp',$_SESSION) and stripos($_SERVER['PHP_SELF'],"admin")
 <?php
 echo "<link rel='shortcut icon' href='{$config['folder']}/favicon.ico' type='image/x-icon' />\n";
 echo "<link rel='StyleSheet' href='{$config['folder']}/css/jquery-ui.min.css?rev=20210330' type='text/css' media='all'/>\n";
-echo "<link rel='StyleSheet' href='{$config['folder']}/css/dataTables/jquery.dataTables_themeroller.css?rev=20210330' type='text/css' media='all'/>\n";
+echo "<link href='/js/DataTables/datatables.min.css?rev=20210414' rel='StyleSheet' type='text/css' media='all'/>\n";
+
 echo "<link rel='StyleSheet' href='{$config['folder']}/css/style.css?rev=20210330' type='text/css' media='screen'/>\n";
 echo "<link rel='StyleSheet' href='{$config['folder']}/css/print.css?rev=20210330' type='text/css' media='print'/>\n";
 
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/jquery-ui-1.10.4/jquery-1.10.2.js?rev=20210330'></script>\n";
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/jquery-ui-1.10.4/ui/jquery-ui.js?rev=20210330'></script>\n";
-echo "<script type='text/JavaScript' src='{$config['folder']}/js/dataTables/jquery.dataTables.min.js?rev=20210330'></script>\n";
+echo "<script type='text/JavaScript' src='/js/DataTables/datatables.min.js?rev=20210414'></script>\n";
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/dataTables/sort.js?rev=20210330'></script>\n";
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/CJScript.js?rev=20210330'></script>\n";
 echo "<script type='text/JavaScript' src='{$config['folder']}/js/script.js?rev=20210330'></script>\n";

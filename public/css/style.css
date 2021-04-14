@@ -461,6 +461,10 @@ a.btn {
   margin-left: 10px;
 }
 
+div.dt-buttons {
+  float: right;
+}
+
 @media screen and (min-width:1200px) {
 	#body{
 	  width: 1200px;
