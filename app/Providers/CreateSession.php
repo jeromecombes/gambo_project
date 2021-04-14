@@ -36,7 +36,7 @@ class CreateSession
         $_SESSION['vwpp']['login'] = $event->user->email;
 
         // Admin only
-        if ($event->user->access) {
+        if ($event->user->admin) {
             $_SESSION['vwpp']['access'] = $event->user->access;
             $_SESSION['vwpp']['login_name'] = $event->user->displayName;
             $_SESSION['vwpp']['login_univ'] = $event->user->university;

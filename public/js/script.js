@@ -404,7 +404,7 @@ function submit_action(form,form2){		// a finir
 
     case "CreatePassword" :
 	if(confirm("The password of selected students will be changed.\nContinue ?")){
-	  document.forms[form2].action="students-password.php";
+	  document.forms[form2].action="/admin/students-password.php";
 	  document.forms[form2].submit();
 	}
 	break;
@@ -424,12 +424,12 @@ function submit_action(form,form2){		// a finir
 	break;
 
     case "Email2" :
-	  document.forms[form2].action="students-email.php";
+	  document.forms[form2].action="/admin/students-email.php";
 	  document.forms[form2].submit();	break;
 
 
     case "Excel" :
-	  document.forms[form2].action="students-excel.php";
+	  document.forms[form2].action="/admin/students-excel.php";
 	  document.forms[form2].submit();	break;
 
     case "Email_Housing" :

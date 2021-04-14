@@ -168,6 +168,7 @@ class StudentController extends Controller
         $student->semesters = $request->semesters;
 
         // Date of birth
+        $dob = null;
         if ($request->yob and $request->mob and $request->dob) {
             $dob = new \DateTime($request->yob . '-' . $request->mob . '-' . $request->dob);
         }

@@ -22,14 +22,14 @@ foreach($_POST['students'] as $elem){
     $visiting=$elem[3]==1?", Visiting":null;
     $studentsList[]="<li>{$elem[0]} {$elem[1]}, {$elem[2]}{$visiting}</li>";
     for($i=0;$i<3;$i++){		// Encrypt lastname, firstname and email
-      $elem[$i]=encrypt_vwpp(htmlentities(trim($elem[$i]),ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+      $elem[$i]=encrypt_vwpp(trim($elem[$i]));
     }
     $std[]=array(":lastname"=>$elem[0],":firstname"=>$elem[1],":email"=>$elem[2],
     ":token"=> $token, ":password"=>$password, ":university"=>$_SESSION['vwpp']['login_univ'],
     ":guest"=>$elem[3],":semester"=>$semester,":semesters"=>$semesters);
 
     // Create student in tabke users for Laravel authentication
-    $std2[]=array(":email"=>$email, ":name"=>$email, ":password"=>$password);
+    $std2[]=array(":email"=>$email, ":password"=>$password);
   }
 }
 
@@ -44,7 +44,7 @@ foreach($std as $elem){
 }
 
 // Create student in tabke users for Laravel authentication
-$sql="INSERT INTO {$dbprefix}users (login, lastname, firstname, name, admin, email, password) VALUES ('', '', '', :name, '0', :email, :password);";
+$sql="INSERT INTO {$dbprefix}users (admin, email, password) VALUES ('0', :email, :password);";
 $db = new dbh();
 $db->prepare($sql);
 
