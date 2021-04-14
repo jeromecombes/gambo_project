@@ -17,7 +17,10 @@
     <a href='http://en.vwpp.org/wp-content/uploads/2019/04/Charte-hebergement-chez-habitant-F2019.pdf' target='_blank' alt='Housing Process Residence commitment'>Housing Process Residence commitment</a>
   </p>
   <p>
-    <input type='checkbox' onclick='accept_housing_charte(this);' @if ($terms_accepted) checked='checked' @endif/> I accept the terms and conditions mentioned in the above link
+    {{ Form::open(['url' => '/housing/accept_terms']) }}
+      {{ Form::checkbox('accept_terms', 1, $terms_accepted, ['id' => 'accept_terms', 'onclick' => 'accept_housing_charte(this);']) }}
+      {{ Form::label('accept_terms', 'I accept the terms and conditions mentioned in the above link') }}
+    {{ Form::close() }}
   </p>
 @endif
 

@@ -80,6 +80,22 @@ class HousingController extends Controller
     }
 
     /**
+     * Accept terms and conditions
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function accept_terms(Request $request)
+    {
+        HousingTerm::updateOrCreate(array(
+            'semester' => session('semester'),
+            'student' => session('student'),
+        ));
+
+        return response()->json(['ok' => 'ok']);
+    }
+
+    /**
      * Display the housing student form
      *
      * @param  \Illuminate\Http\Request  $request

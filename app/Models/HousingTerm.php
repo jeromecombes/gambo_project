@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use app\Models\MyModel;
+use App\Models\MyModel;
 
 class HousingTerm extends MyModel
 {

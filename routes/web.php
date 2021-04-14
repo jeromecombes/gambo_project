@@ -120,6 +120,11 @@ Route::post('/housing_assignment', [HousingController::class, 'student_assignmen
     ->middleware('role:7')
     ->name('housing.student_assignment');
 
+Route::post('/housing/accept_terms', [HousingController::class, 'accept_terms'])
+    ->middleware('auth')
+    ->middleware('not.admin')
+    ->name('housing.accept_terms');
+
 // Student Univ registration
 Route::get('/univ_reg', [UnivRegController::class, 'student_form'])
     ->middleware('auth')

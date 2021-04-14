@@ -5,12 +5,20 @@ var logins=new Array();
 //     file("activEval.php?semester="+semester);
 // }
 function accept_housing_charte(me) {
-  file("/housing-accept.php");
-  if(me.checked){
-     document.location.reload();
+  if(me.checked) {
+    $.ajax({
+      url: '/housing/accept_terms',
+      data: {_token: $('input[name=_token]').val()},
+      type: 'post',
+      datatype: 'json',
+      success: function() {
+        document.location.href = '/housing';
+      }
+    });
   }
-  else
+  else {
     me.checked=true;
+  }
 }
 
 function add_fields(i){
@@ -700,7 +708,7 @@ $(function(){
 
   $("#enableEvaluation").click(function(){
     $.ajax({
-      url: "enableEval.php",
+      url: "/admin/enableEval.php",
       dataType: "json",
       type: "post",
       data: {semester : $(this).attr("data-semester")},
