@@ -1,5 +1,8 @@
 NOTES
 
+2021-04-14
+// TODO : move views/includes/* to views/layout/
+
 2021-04-12
 // TODO crypt lastname and firstname into user table (Models\User), like Students
 // Add Student_Id to Users Table

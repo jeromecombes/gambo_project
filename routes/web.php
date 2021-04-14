@@ -105,6 +105,7 @@ Route::get('/univ_reg', [UnivRegController::class, 'student_form'])
     ->name('univ_reg.student_form');
 
 Route::get('/univ_reg/{student}', [UnivRegController::class, 'student_form'])
+    ->where('student', '\d+')
     ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -115,6 +116,7 @@ Route::get('/univ_reg/{student}', [UnivRegController::class, 'student_form'])
     ->name('univ_reg.student_form_id');
 
 Route::get('/univ_reg/{student}/{edit}', [UnivRegController::class, 'student_form'])
+    ->where('student', '\d+')
     ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -381,6 +383,9 @@ Route::get('/admin/hosts', [HostController::class, 'index'])
     ->middleware('semester')
     ->middleware('role:2|7')
     ->name('hosts.index');
+
+Route::get('/univ_reg/list', [UnivRegController::class, 'list'])
+    ->name('univ_reg.list');
 
 Route::get('/users', [UserController::class, 'index'])
     ->name('users.index');

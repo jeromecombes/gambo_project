@@ -13,7 +13,7 @@
             @endif
 
             @if(in_array(17, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('admin/univ_reg')) ? 'ui-state-active' : '' }}"><a href='/admin/univ_reg.php'>Univ. reg.</a></li>
+                <li class="ui-state-default ui-corner-top {{ (request()->is('univ_reg/list')) ? 'ui-state-active' : '' }}"><a href='{{ asset('univ_reg/list') }}'>Univ. reg.</a></li>
             @endif
 
             @if(in_array(23, Auth::user()->access))

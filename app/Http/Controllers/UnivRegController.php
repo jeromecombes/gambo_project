@@ -18,6 +18,74 @@ class UnivRegController extends Controller
 {
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('semester');
+
+        $this->middleware('admin')->only('list');
+        $this->middleware('role:17')->only('list');
+        $this->middleware('semester')->only('list');
+    }
+
+    /**
+     * Display the univ registration list
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function list(Request $request)
+    {
+        $user = auth()->user();
+
+        $year = substr(session('semester'), -4);
+
+        if ($user->university == 'VWPP') {
+            $students = Student::where('semesters', 'like', '%"' . session('semester') .'"%')
+            ->get();
+        } else {
+            $students = Student::where('semesters', 'like', '%"' . session('semester') .'"%')
+                ->where('university', $user->university)
+                ->get();
+        }
+
+        foreach ($students as $student) {
+            $tab[$student->id]['student'] = $student->id;
+            $tab[$student->id]['lastname'] = $student->lastname;
+            $tab[$student->id]['firstname'] = $student->firstname;
+
+            $tab[$student->id][0] = array(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            $tab[$student->id][1] = array(null, null, null, null, null, null, null, null, null, null, null, null);
+            $tab[$student->id][2] = null;
+          }
+
+        foreach (UnivReg::where('semester', session('semester'))->get() as $elem) {
+            if ($students->find($elem->student)) {
+                $tab[$elem->student][0][$elem->question] = $elem->response;
+            }
+        }
+
+        foreach (UnivReg2::where('semester', session('semester'))->get() as $elem) {
+            if ($students->find($elem->student)) {
+                $tab[$elem->student][1][$elem->question] = $elem->response;
+            }
+        }
+
+        foreach (UnivReg3::where('semester', session('semester'))->get() as $elem) {
+            if ($students->find($elem->student)) {
+                $tab[$elem->student][2] = $elem->university;
+            }
+        }
+
+        // View
+        return view('univ_reg.list', compact('tab', 'year'));
+    }
+
+    /**
      * Display the univ registration form
      *
      * @param  \Illuminate\Http\Request  $request
