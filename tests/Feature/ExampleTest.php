@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class ExampleTest extends MyTestCase
 {
     /**
      * A basic test example.
@@ -16,17 +16,17 @@ class ExampleTest extends TestCase
     public function test_home_no_session()
     {
         $response = $this->get('/');
-
         $response->assertStatus(302);
     }
 
     public function test_home_student_session()
     {
-        $user = User::whereNull('access')->first();
+        $user = User::where('admin', 0)->first();
+        $student = $this->get_student($user);
 
         $response = $this->actingAs($user)
+            ->withSession(['semester' => $student->semester])
             ->get('/');
-
         $response->assertStatus(200);
     }
 }

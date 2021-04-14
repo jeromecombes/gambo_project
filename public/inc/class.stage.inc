@@ -1,33 +1,10 @@
 <?php
 
 class stage{
-  public $semester;
-  public $student=null;
+
   public $elements=array();
-  
-  function __construct(){
-    $this->semester=$_SESSION['vwpp']['semester'];
-    $student=isset($_SESSION['vwpp']['student'])?$_SESSION['vwpp']['student']:null;
-    $std_id=isset($_SESSION['vwpp']['std-id'])?$_SESSION['vwpp']['std-id']:null;
-    $this->student=$std_id?$std_id:$student;
-  }
 
-  public function fetch(){
-    $db=new db();
-    $db->select("stages","*","student='{$this->student}' AND semester='{$this->semester}'");
-    if($db->result){
-      $stage=decrypt_vwpp($db->result[0]['stage'],$this->student);
-      $notes=$db->result[0]['notes']?decrypt_vwpp($db->result[0]['notes'],$this->student):null;
-      $notes2=str_replace("\n","<br/>",$notes);
-      $this->elements=array("Oui",$stage,"id"=>$db->result[0]['id'],"lock"=>$db->result[0]['lock'],
-      "notes"=>$notes,"notes2"=>$notes2);
-    }
-    else{
-      $this->elements=array("Non",null, "id"=>null, "lock"=>null, "notes"=>null, "notes2"=>null);
-    }
-  }
-
-  public function fetchAll($univ=null){
+  public function fetchAll($univ=null, $semester=null) {
     $s=new student();
     $s->fetchAll($univ);
     $students=$s->elements;
@@ -39,7 +16,7 @@ class stage{
 
     $tab=array();
     $db=new db();
-    $db->select("stages","*","semester='{$this->semester}'");
+    $db->select("stages","*","semester='$semester'");
     if($db->result){
       foreach($db->result as $elem){
 	if(in_array($elem['student'],$studentsTab)){
@@ -56,28 +33,5 @@ class stage{
     $this->elements=$tab;
   }
 
-  public function update($data){
-    $stage=encrypt_vwpp(htmlentities($data[1],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student);
-    $notes=encrypt_vwpp(htmlentities($data["notes"],ENT_QUOTES|ENT_IGNORE,"utf-8"),$this->student);
-    $this->fetch();
-    if($this->elements[0]=="Oui" and $data[0]=="Non"){
-      $db=new db();
-      $db->delete("stages","student='{$this->student}' AND semester='{$this->semester}'");
-      return;
-    }
-    elseif($this->elements[0]=="Oui" and $data[0]=="Oui"){
-      $sql="UPDATE {$GLOBALS['config']['dbprefix']}stages SET stage=:stage,notes=:notes WHERE id=:id;";
-      $data=array(":stage"=>$stage,":id"=>$this->elements['id'],":notes"=>$notes);
-    }
-    elseif($this->elements[0]=="Non" and $data[0]=="Oui"){
-      $sql="INSERT INTO {$GLOBALS['config']['dbprefix']}stages (student,semester,stage,notes) 
-	VALUES ('{$this->student}','{$this->semester}',:stage,:notes);";
-      $data=array(":stage"=>$stage,":notes"=>$notes);
-    }
-    
-    $db=new dbh();
-    $db->prepare($sql);
-    $db->execute($data);
-  }
 }
 ?>

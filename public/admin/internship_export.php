@@ -5,8 +5,11 @@ require_once "../inc/class.stage.inc";
 
 access_ctrl(23);
 
+$semester = filter_input(INPUT_POST, 'semester', FILTER_SANITIZE_STRING);
+$university = filter_input(INPUT_POST, 'university', FILTER_SANITIZE_STRING);
+
 $s=new stage();
-$s->fetchAll($_SESSION['vwpp']['login_univ']);
+$s->fetchAll($university, $semester);
 $s=$s->elements;
 
 foreach($_POST['students'] as $elem){

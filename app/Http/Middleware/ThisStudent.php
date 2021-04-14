@@ -17,7 +17,7 @@ class ThisStudent
     {
         $user = $request->user();
 
-        if ($user->admin) {
+        if ($user->admin or !$request->student) {
             return $next($request);
         }
 

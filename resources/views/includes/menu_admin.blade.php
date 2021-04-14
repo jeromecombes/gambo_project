@@ -8,7 +8,7 @@
 
             <li class="ui-state-default ui-corner-top {{ (request()->is('students')) ? 'ui-state-active' : '' }}"><a href="{{ asset('students') }}">Students</a></li>
 
-            @if(in_array(2, Auth::user()->access))
+            @if(!empty(array_intersect(array(2, 7), Auth::user()->access)))
                 <li class="ui-state-default ui-corner-top {{ (request()->is('admin/housing')) ? 'ui-state-active' : '' }}"><a href="{{ asset('admin/housing') }}">Housing</a></li>
             @endif
 

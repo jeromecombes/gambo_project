@@ -450,12 +450,12 @@ function submit_action(form,form2){		// a finir
 	break;
 
     case "Email2_Housing" :
-	  document.forms[form2].action="housing-email.php";
+	  document.forms[form2].action="/admin/housing-email.php";
 	  document.forms[form2].submit();	break;
 
 
     case "Excel_Housing" :
-	  document.forms[form2].action="housing-excel.php";
+	  document.forms[form2].action="/admin/housing-excel.php";
 	  document.forms[form2].submit();	break;
 
     case "closeHousing" :
@@ -491,15 +491,15 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();	break;
 
     case "Univ_reg" :
-	  document.forms[form2].action="univ_reg_export2.php";
+	  document.forms[form2].action="/admin/univ_reg_export2.php";
 	  document.forms[form2].submit();	break;
 
     case "internship" :
-	  document.forms[form2].action="internship_export.php";
+	  document.forms[form2].action="/admin/internship_export.php";
 	  document.forms[form2].submit();	break;
 
     case "tutorial" :
-	  document.forms[form2].action="tutorial_export.php";
+	  document.forms[form2].action="/admin/tutorial_export.php";
 	  document.forms[form2].submit();	break;
 
 

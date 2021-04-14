@@ -15,6 +15,11 @@ class OldSession
      */
     public function handle($request, Closure $next)
     {
+
+        if (php_sapi_name() === 'cli') {
+            return $next($request);
+        }
+
         // Check if session exists (old system)
         session_start();
 

@@ -11,6 +11,39 @@ use Illuminate\Http\Request;
 
 class HousingController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('semester');
+
+        // Student form
+        $this->middleware('old.session')->only('student_form');
+        $this->middleware('old.student')->only('student_form');
+        $this->middleware('student.list')->only('student_form');
+        $this->middleware('this.student')->only('student_form');
+        $this->middleware('role:2|7')->only('student_form');
+
+        // Accept terms : students only
+        $this->middleware('not.admin')->only('accept_terms');
+
+        // Update form : student or admin with role 7
+        $this->middleware('role:7')->only('student_form_update');
+
+        // Admin index and requests : admin with role 2 or 7
+        $this->middleware('admin')->only(['index', 'requests']);
+        $this->middleware('role:2|7')->only(['index', 'requests']);
+
+        // Assignment : admin with role 7
+        $this->middleware('admin')->only('student_assignment');
+        $this->middleware('role:7')->only('student_assignment');
+    }
+
     /**
      * Display Housing index
      *
@@ -103,8 +136,13 @@ class HousingController extends Controller
      */
     public function student_form(Request $request)
     {
+        $user = auth()->user();
 
         $edit = $request->edit;
+
+        if ($user->admin and !in_array(7, $user->access)) {
+            $edit = false;
+        }
 
         // Get student info
         $student = Student::find(session('student'));
@@ -147,15 +185,13 @@ class HousingController extends Controller
     public function student_form_update(Request $request)
     {
 
-        $student = $request->student;
-
-        $housing = Housing::where('student', $student)
+        $housing = Housing::where('student', session('student'))
             ->where('semester', session('semester'))
             ->delete();
 
         foreach ($request->question as $question => $answer) {
             $housing = new Housing();
-            $housing->student = $student;
+            $housing->student = session('student');
             $housing->semester = session('semester');
             $housing->question = $question;
             $housing->response = $answer;

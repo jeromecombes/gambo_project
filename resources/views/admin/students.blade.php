@@ -17,6 +17,9 @@
 
 @if($students->count())
     {{ Form::open(array('name' => 'form1', 'url' => '/students')) }}
+    {{ Form::hidden('semester', session('semester')) }}
+    {{ Form::hidden('university', Auth::user()->university) }}
+
     <table class='datatable' data-sort='[["1","asc"],["2","asc"]]'>
         <thead>
             <tr>
@@ -31,7 +34,7 @@
                 <th>Home Institution</th>
             </tr>
         </thead>
-        
+
         @foreach($students as $student)
             <tr>
                 <td>

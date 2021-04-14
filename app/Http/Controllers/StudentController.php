@@ -33,7 +33,6 @@ class StudentController extends Controller
         $user = auth()->user();
 
         // Semester
-        $request->session()->put('semester', $_SESSION['vwpp']['semester']);
         $semester = session('semester');
 
         $students = Student::where('semesters', 'like', "%$semester%")

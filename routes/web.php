@@ -80,49 +80,18 @@ Route::post('/student', [StudentController::class, 'student_form_update'])
     ->name('student.student_form.update');
 
 // Student Housing
-Route::get('/housing', [HousingController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:2')
+Route::get('/housing/{student?}/{edit?}', [HousingController::class, 'student_form'])
+    ->where('student', '\d+')
+    ->where('edit', 'edit')
     ->name('housing.student_form');
 
-Route::get('/housing/{student}', [HousingController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->middleware('role:2')
-    ->name('housing.student_form_id');
-
-Route::get('/housing/{student}/{edit}', [HousingController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->middleware('role:7')
-    ->where('edit', 'edit')
-    ->name('housing.student_form.edit');
-
 Route::post('/housing', [HousingController::class, 'student_form_update'])
-    ->middleware('auth')
-    ->middleware('role:7')
     ->name('housing.student_form.update');
 
 Route::post('/housing_assignment', [HousingController::class, 'student_assignment'])
-    ->middleware('admin')
-    ->middleware('role:7')
     ->name('housing.student_assignment');
 
 Route::post('/housing/accept_terms', [HousingController::class, 'accept_terms'])
-    ->middleware('auth')
-    ->middleware('not.admin')
     ->name('housing.accept_terms');
 
 // Student Univ registration
@@ -206,7 +175,7 @@ Route::get('/course/univ/{add}', [CourseController::class, 'univ_edit'])
 
 Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')
-    ->where('id', '[0-9]+')
+    ->where('id', '\d+')
     ->middleware('auth')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -242,7 +211,7 @@ Route::get('/grades', [GradeController::class, 'edit'])
     ->name('grades.show');
 
 Route::get('/grades/{student}', [GradeController::class, 'edit'])
-    ->where('student', '[0-9]+')
+    ->where('student', '\d+')
     ->middleware('admin')
     ->middleware('old.session')
     ->middleware('old.student')
@@ -312,7 +281,7 @@ Route::get('/evaluations', [EvaluationController::class, 'index'])
     ->name('evaluations.index');
 
 Route::get('/evaluation/{form}/{id?}', [EvaluationController::class, 'form'])
-    ->where('id', '[0-9]+')
+    ->where('id', '\d+')
     ->middleware('auth')
     ->middleware('semester')
     ->name('evaluation.form');
@@ -367,7 +336,7 @@ Route::get('/documents', [DocumentController::class, 'index'])
 
 Route::get('/documents/{student}', [DocumentController::class, 'index'])
     ->middleware('admin')
-    ->where('student', '[0-9]+')
+    ->where('student', '\d+')
     ->name('document.index');
 
 Route::get('/documents/add', [DocumentController::class, 'add'])
@@ -391,7 +360,7 @@ Route::post('/documents', [DocumentController::class, 'update'])
 
 Route::delete('/documents', [DocumentController::class, 'destroy'])
     ->middleware('auth')
-    ->where('id', '[0-9]+')
+    ->where('id', '\d+')
     ->middleware('old.session')
     ->name('document.destroy');
 
@@ -402,28 +371,22 @@ Route::get('/show/{id}', [DocumentController::class, 'show'])
 
 // Housing
 Route::get('/admin/housing', [HousingController::class, 'index'])
-    ->middleware('admin')
-    ->middleware('semester')
-    ->middleware('role:2')
     ->name('housing.index');
 
 Route::get('/admin/housing/requests', [HousingController::class, 'requests'])
-    ->middleware('admin')
-    ->middleware('semester')
-    ->middleware('role:2')
     ->name('housing.requests');
 
 Route::get('/admin/hosts', [HostController::class, 'index'])
     ->middleware('admin')
     ->middleware('semester')
-    ->middleware('role:2')
+    ->middleware('role:2|7')
     ->name('hosts.index');
 
 Route::get('/users', [UserController::class, 'index'])
     ->name('users.index');
 
 Route::get('/user/{id?}', [UserController::class, 'edit'])
-    ->where('id', '[0-9]+')
+    ->where('id', '\d+')
     ->name('user.edit');
 
 Route::post('/user', [UserController::class, 'update'])

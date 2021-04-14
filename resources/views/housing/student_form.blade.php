@@ -33,7 +33,6 @@
 @if ($terms_accepted)
   <form name='form' action='/housing' method='post'>
     {{ csrf_field() }}
-    <input type='hidden' name='student' value='{{ $student->id }}' />
 
     <fieldset>
 
