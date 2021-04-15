@@ -6,6 +6,17 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display admin index page (semester's selection)
      *
@@ -18,7 +29,7 @@ class AdminController extends Controller
         $request->session()->forget('student_name');
         $request->session()->forget('student_next');
         $request->session()->forget('student_previous');
-        $request->session()->forget('students_list');
+        $request->session()->forget('students');
 
         $oldestYear = date('Y') - 5;
         $semesters = array('' => '');
@@ -47,5 +58,20 @@ class AdminController extends Controller
         $_SESSION['vwpp']['semestre'] = $request->semester;
 
         return redirect('/students');
+    }
+
+    /**
+     * Set the student list (Ajax)
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function students(Request $request)
+    {
+        $list = $request->list;
+        $list = $list ? json_decode($list) : null;
+
+        $request->session()->put('students', $list);
+
+        return json_encode('ok');
     }
 }

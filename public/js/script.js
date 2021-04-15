@@ -694,17 +694,20 @@ $(function(){
 
   // Création de la liste des étudiants pour la navigation précédent suivant
   // Lors du click sur une icône "Edit" du tableau
-  $(".studentsEdit").click(function(){
-    var tab=new Array();
-    $(".studentsCheckbox").each(function(){
+  $(".studentsEdit").click(function() {
+    var token = $('input[name=_token]').val();
+    var tab = [];
+
+    $(".studentsCheckbox").each(function() {
       tab.push($(this).val());
     });
+
     $.ajax({
-      url: "/admin/ajax.studentsList.php",
+      url: "/admin/students",
       dataType: "json",
       type: "post",
       async:false,
-      data: {list: JSON.stringify(tab)},
+      data: {_token: token, list: JSON.stringify(tab)},
     });
   });
 

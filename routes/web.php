@@ -42,14 +42,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Admin home
 Route::get('/admin2', [AdminController::class, 'index'])
-    ->middleware('admin')
     ->name('admin.index');
 // TODO Rename to admin when migration completed
 
 // Set the semester
 Route::post('/admin/semester', [AdminController::class, 'semester'])
-    ->middleware('admin')
     ->name('admin.semester');
+
+// Set the student list
+Route::post('/admin/students', [AdminController::class, 'students'])
+    ->name('admin.students');
 
 // Student General Info
 Route::get('/student', [StudentController::class, 'student_form'])
