@@ -465,6 +465,28 @@ div.dt-buttons {
   float: right;
 }
 
+#dates_fieldset th {
+  padding:15px;
+  text-align:center;
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+#dates_fieldset th:first-child {
+  width: 50%;
+  padding:15px;
+  text-align:right;
+}
+
+#dates_fieldset td:first-child {
+  text-align:right;
+}
+
+#dates_fieldset div {
+  text-align:right;
+  margin:20px;
+}
+
 @media screen and (min-width:1200px) {
 	#body{
 	  width: 1200px;

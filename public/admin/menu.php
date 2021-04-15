@@ -48,7 +48,7 @@ echo <<<EOD
 EOD;
 if($semester){
   if(in_array(24,$user->access))
-    echo "<li id='li11' class='ui-state-default ui-corner-top'><a href='dates.php'>Dates</a></li>\n";
+    echo "<li id='li11' class='ui-state-default ui-corner-top'><a href='/dates'>Dates</a></li>\n";
 
   echo "<li id='li5' class='ui-state-default ui-corner-top'><a href='/students'>Students</a></li>\n";
 

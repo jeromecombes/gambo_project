@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CoursesRHController;
 use App\Http\Controllers\CoursesRH2Controller;
+use App\Http\Controllers\DateController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GradeController;
@@ -383,6 +384,12 @@ Route::get('/admin/hosts', [HostController::class, 'index'])
     ->middleware('semester')
     ->middleware('role:2|7')
     ->name('hosts.index');
+
+Route::get('/dates', [DateController::class, 'edit'])
+    ->name('dates.edit');
+
+Route::post('/dates', [DateController::class, 'update'])
+    ->name('dates.update');
 
 Route::get('/univ_reg/list', [UnivRegController::class, 'list'])
     ->name('univ_reg.list');

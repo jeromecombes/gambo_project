@@ -3,7 +3,7 @@
         <li class='ui-state-default ui-corner-top'><a href='/admin2'>Home</a></li>
         @if(session('semester'))
             @if(in_array(24, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('admin/dates')) ? 'ui-state-active' : '' }}"><a href='/admin/dates.php'>Dates</a></li>
+                <li class="ui-state-default ui-corner-top {{ (request()->is('dates')) ? 'ui-state-active' : '' }}"><a href='{{ asset('dates') }}'>Dates</a></li>
             @endif
 
             <li class="ui-state-default ui-corner-top {{ (request()->is('students')) ? 'ui-state-active' : '' }}"><a href="{{ asset('students') }}">Students</a></li>
