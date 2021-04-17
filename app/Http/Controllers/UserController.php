@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -61,7 +62,7 @@ class UserController extends Controller
     {
         $user = User::firstOrNew(['id' => $request->id]);
 
-        $password_attributes = ['onkeyup' => 'password_ctrl(this);', 'onblur' => 'password_ctrl(this);'];
+        $password_attributes = ['onkeyup' => 'password_ctrl(this);', 'onblur' => 'password_ctrl(this);', 'required'];
 
         if ($request->id) {
             $password_attributes['disabled'] = 'disabled';
@@ -166,9 +167,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
-
         $user = User::findOrNew($request->id);
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;

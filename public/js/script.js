@@ -32,8 +32,9 @@ function alertDelete(msg,id){
     location.href="courses-update.php?id="+id+"&delete=";
 }
 
-function change_password(me){
-    if(me.checked){
+function change_password(){
+    $('#password_checkbox')
+    if($('#password_checkbox').prop('checked')) {
       document.getElementById("tr_password").style.display="";
       document.getElementById("tr_password_confirmation").style.display="";
       document.form.password.disabled=false;
@@ -338,40 +339,46 @@ function lockRH2(me,student){
     me.value="Publish";
 }
 
-function form1_ctrl(){
-  if(document.getElementById("passwd1").innerHTML==""
-    && document.getElementById("passwd2").innerHTML==""){
-     document.getElementById("submit").disabled=false;
+function form1_ctrl() {
+  if (!$('#password_checkbox').prop('checked')) {
+    return;
+  }
+
+  if($('#passwd1').text() =='') {
+    $('.btn-primary').prop('disabled', false);
      return true;
   }
    else{
-     document.getElementById("submit").disabled=true;
+    $('.btn-primary').prop('disabled', true);
      return false;
    }
 }
 
-function password_ctrl(me){
-  if(me.disabled)
+function password_ctrl(me) {
+  if (me.disabled)
     return;
-  if(me.name=="password"){
-    if(me.value.length<8){
-      document.getElementById("passwd1").innerHTML="Must be 8 characters";
+  if (me.name=="password") {
+    if(me.value.length<8) {
+      $('#passwd1').text('The password must be at least 8 characters.');
       form1_ctrl();
       return;
     }
-     document.getElementById("passwd1").innerHTML="";
-      form1_ctrl();
-     return;
+
+    $('#passwd1').text('');
+    form1_ctrl();
+    return;
   }
-   if(me.name=="password_confirmation"){
-     if(me.value!=document.getElementById("password").value){
-       document.getElementById("passwd2").innerHTML="Passwords don't match";
+
+  if (me.name=="password_confirmation") {
+    if (me.value != $('input[name=password]').val()) {
+      $('#passwd1').text('Passwords do not match !');
       form1_ctrl();
-     return;
-     }
-     document.getElementById("passwd2").innerHTML="";
-      form1_ctrl();
-     return;
+      return;
+    }
+
+    $('#passwd1').text('');
+    form1_ctrl();
+    return;
   }
 }
 
@@ -660,7 +667,9 @@ $(document).ready(function(){
     $(this).css("width",width);
   });
 
-
+  if ($('#password_checkbox').prop('checked')) {
+    change_password();
+  }
 });
 
 $(function(){

@@ -17,9 +17,13 @@
               <label for='lastname'>Last name</label>
             </td>
             <td style='width:40%;'>
-              {!! Form::text('lastname', $user->lastname, ['id' => 'lastname']) !!}
+              {!! Form::text('lastname', old('lastname', $user->lastname), ['id' => 'lastname', 'required']) !!}
             </td>
-            <td></td>
+            <td class='bold red'>
+              @if ($errors->has('lastname'))
+                {{ $errors->first('lastname') }}
+              @endif
+            </td>
           </tr>
 
           <tr>
@@ -27,7 +31,12 @@
               <label for='firstname'>First name</label>
             </td>
             <td>
-              {!! Form::text('firstname', $user->firstname, ['id' => 'firstname']) !!}
+              {!! Form::text('firstname', old('firstname', $user->firstname), ['id' => 'firstname', 'required']) !!}
+            </td>
+            <td class='bold red'>
+              @if ($errors->has('firstname'))
+                {{ $errors->first('firstname') }}
+              @endif
             </td>
           </tr>
 
@@ -36,7 +45,12 @@
               <label for='email'>Email</label>
             </td>
             <td>
-              {!! Form::email('email', $user->email, ['id' => 'email']) !!}
+              {!! Form::email('email', old('email', $user->email), ['id' => 'email', 'required']) !!}
+            </td>
+            <td class='bold red'>
+              @if ($errors->has('email'))
+                {{ $errors->first('email') }}
+              @endif
             </td>
           </tr>
 
@@ -45,7 +59,12 @@
               <label for='university'>University</label>
             </td>
             <td>
-              {!! Form::select('university', array('' => '', 'Vassar' => 'Vassar', 'Wesleyan' => 'Wesleyan', 'VWPP' => 'VWPP'), $user->university) !!}
+              {!! Form::select('university', array('' => '', 'Vassar' => 'Vassar', 'Wesleyan' => 'Wesleyan', 'VWPP' => 'VWPP'), old('university', $user->university), ['required']) !!}
+            </td>
+            <td class='bold red'>
+              @if ($errors->has('university'))
+                {{ $errors->first('university') }}
+              @endif
             </td>
           </tr>
 
@@ -55,7 +74,7 @@
                 <label for='password_checkbox'>Change password</label>
               </td>
               <td>
-                {!! Form::checkbox('password_checkbox', 'on', false, ['id' => 'password_checkbox', 'onclick' => 'change_password(this);']) !!}
+                {!! Form::checkbox('password_checkbox', 'on', false, ['id' => 'password_checkbox', 'onclick' => 'change_password();']) !!}
               </td>
             </tr>
           @endif
@@ -67,7 +86,11 @@
             <td>
               {!! Form::password('password', $password_attributes) !!}
             </td>
-            <td style='color:red;' id='passwd1'></td>
+            <td id='passwd1' class='bold red'>
+              @if ($errors->has('password'))
+                {{ $errors->first('password') }}
+              @endif
+            </td>
           </tr>
           <tr id='tr_password_confirmation' @if ($user->id) style='display:none;' @endif>
             <td>
@@ -77,7 +100,7 @@
             <td>
               {!! Form::password('password_confirmation', $password_attributes) !!}
             </td>
-            <td style='color:red;' id='passwd2'></td>
+            <td></td>
           </tr>
 
           <tr>
