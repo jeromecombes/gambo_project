@@ -19,6 +19,27 @@ class StudentController extends Controller
 {
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('semester');
+
+        // Student form
+        $this->middleware('old.session')->only('student_form');
+        $this->middleware('old.student')->only('student_form');
+        $this->middleware('student.list')->only('student_form');
+        $this->middleware('role:1|4|5')->only('student_form');
+
+        // Admin
+        $this->middleware('admin')->only(['admin_index', 'destroy']);
+        $this->middleware('role:5')->only('destroy');
+    }
+
+    /**
      * Display a listing of students for admins
      *
      * @param  \Illuminate\Http\Request  $request

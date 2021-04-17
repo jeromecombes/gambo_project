@@ -54,32 +54,12 @@ Route::post('/admin/students', [AdminController::class, 'students'])
     ->name('admin.students');
 
 // Student General Info
-Route::get('/student', [StudentController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('student.list')
+Route::get('/student/{student?}/{edit?}', [StudentController::class, 'student_form'])
+    ->where('student', '\d+')
+    ->where('edit', 'edit')
     ->name('student.student_form');
 
-Route::get('/student/{student}', [StudentController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->name('student.student_form_id');
-
-Route::get('/student/{student}/{edit}', [StudentController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->where('edit', 'edit')
-    ->name('student.student_form.edit');
-
 Route::post('/student', [StudentController::class, 'student_form_update'])
-    ->middleware('auth')
     ->name('student.student_form.update');
 
 // Student Housing
@@ -322,13 +302,10 @@ Route::post('/notifications', [UserController::class, 'notifications'])
 
 // Admin Student list
 Route::get('/students', [StudentController::class, 'admin_index'])
-    ->middleware('admin')
-    ->middleware('semester')
     ->name('student.index');
 
 // Admin Student Delete
 Route::post('/students/delete', [StudentController::class, 'destroy'])
-    ->middleware('admin')
     ->name('student.destroy');
 
 // Documents
