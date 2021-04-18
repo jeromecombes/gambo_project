@@ -306,6 +306,11 @@ class Student extends MyModel
         $this->attributes['street'] = $this->encrypt($value);
     }
 
+    public function setTokenAttribute($value)
+    {
+        $this->attributes['token'] = md5($value);
+    }
+
     public function setUniversity2Attribute($value)
     {
         $this->attributes['university2'] = $this->encrypt($value);

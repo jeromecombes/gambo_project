@@ -487,6 +487,14 @@ div.dt-buttons {
   margin:20px;
 }
 
+#students_add_fieldset th{
+  padding:8px 18px 8px 14px;
+}
+
+#students_add_fieldset td {
+  padding:8px 18px 0 0;
+}
+
 @media screen and (min-width:1200px) {
 	#body{
 	  width: 1200px;

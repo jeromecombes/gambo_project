@@ -11,9 +11,11 @@ use App\Helpers\CountryHelper;
 use App\Helpers\StateHelper;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
+use App\Mail\Student_create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -35,7 +37,8 @@ class StudentController extends Controller
         $this->middleware('role:1|4|5')->only('student_form');
 
         // Admin
-        $this->middleware('admin')->only(['admin_index', 'destroy']);
+        $this->middleware('admin')->only(['admin_index', 'create', 'destroy', 'store']);
+        $this->middleware('role:4')->only(['create', 'store']);
         $this->middleware('role:5')->only('destroy');
     }
 
@@ -261,7 +264,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students.create');
     }
 
     /**
@@ -272,7 +275,55 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+        $university = $user->university;
+        $email_data = array();
+
+        foreach ($request->students as $elem) {
+            if (empty($elem[2])) {
+                continue;
+            }
+
+            $password = Str::random(8);
+
+            // Save student's information
+            $student = new Student();
+            $student->lastname = $elem[0];
+            $student->firstname = $elem[1];
+            $student->email = $elem[2];
+            $student->token = $elem[2];
+            $student->university = $university;
+            $student->guest = $elem[3] ?? null;
+            $student->semester = session('semester');
+            $student->semesters = array(session('semester'));
+            $student->save();
+
+            // Create an account
+            $user = new User();
+            $user->admin = 0;
+            $user->email = $elem[2];
+            $user->password = $password;
+            $user->save();
+
+            // Email data
+            $email_data[] = (object) array(
+                'lastname' => $elem[0],
+                'firstname' => $elem[1],
+                'email' => $elem[2],
+                'visiting' => !empty($elem[3]) ? 'Visiting' : null,
+            );
+        }
+
+        // Send an email to administrator
+        $users = User::where('alerts', 1)->get();
+
+        if (count($users) and !empty($email_data)) {
+            foreach($users as $user) {
+                Mail::to($user->email)->send(new Student_create($email_data));
+            }
+        }
+
+        return redirect()->route('student.index')->withSuccess('Students were added successfuly !');
     }
 
     /**

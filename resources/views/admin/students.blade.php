@@ -11,7 +11,11 @@
         <td>Vassar : {{ $vassar }}</td>
         <td>Wesleyan : {{ $wesleyan }}</td>
         <td>Other : {{ $other }}</td>
-        <td><a href='{{ asset("admin/students-add.php") }}' class ='btn btn-primary'>Add students</a></td>
+        <td>
+          @if (in_array(4, Auth::user()->access))
+            <a href='{{ route("student.create") }}' class ='btn btn-primary'>Add students</a>
+          @endif
+        </td>
     </tr>
 </table>
 
@@ -49,7 +53,7 @@
                 <td>{{ $student->gender }}</td>
                 <td>{{ $student->univreg }}</td>
                 <td>{{ $student->email }}</td>
-                <td>{{ $student->university}}</td>
+                <td>{{ $student->university}} @if ($student->guest) (guest) @endif</td>
             </tr>
         @endforeach
 

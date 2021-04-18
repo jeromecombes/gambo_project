@@ -62,6 +62,13 @@ Route::get('/student/{student?}/{edit?}', [StudentController::class, 'student_fo
 Route::post('/student', [StudentController::class, 'student_form_update'])
     ->name('student.student_form.update');
 
+// Student add
+Route::get('/student/create', [StudentController::class, 'create'])
+    ->name('student.create');
+
+Route::put('/student', [StudentController::class, 'store'])
+    ->name('student.store');
+
 // Student Housing
 Route::get('/housing/{student?}/{edit?}', [HousingController::class, 'student_form'])
     ->where('student', '\d+')
