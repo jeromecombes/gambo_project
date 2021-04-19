@@ -359,10 +359,10 @@ Route::get('/show/{id}', [DocumentController::class, 'show'])
     ->name('document.show');
 
 // Housing
-Route::get('/admin/housing', [HousingController::class, 'index'])
-    ->name('housing.index');
+Route::get('/housing/home', [HousingController::class, 'home'])
+    ->name('housing.home');
 
-Route::get('/admin/housing/requests', [HousingController::class, 'requests'])
+Route::get('/housing/requests', [HousingController::class, 'requests'])
     ->name('housing.requests');
 
 Route::get('/hosts', [HostController::class, 'index'])
@@ -436,12 +436,12 @@ Route::post('/admin/UnivReg/hide', [UnivRegShowController::class, 'unlock'])
     ->name('UnivReg.hide');
 
 // Lock housing forms
-Route::post('/admin/housing/lock', [HousingClosedController::class, 'lock'])
+Route::post('/housing/lock', [HousingClosedController::class, 'lock'])
     ->middleware('admin')
     ->name('housing.lock');
 
 // Unlock housing forms
-Route::post('/admin/housing/unlock', [HousingClosedController::class, 'unlock'])
+Route::post('/housing/unlock', [HousingClosedController::class, 'unlock'])
     ->middleware('admin')
     ->name('housing.unlock');
 

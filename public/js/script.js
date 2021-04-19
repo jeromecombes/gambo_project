@@ -472,11 +472,11 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();	break;
 
     case "closeHousing" :
-	  document.forms[form2].action="/admin/housing/lock";
+	  document.forms[form2].action="/housing/lock";
 	  document.forms[form2].submit();	break;
 
     case "openHousing" :
-	  document.forms[form2].action="/admin/housing/unlock";
+	  document.forms[form2].action="/housing/unlock";
 	  document.forms[form2].submit();	break;
 
     case "lockVWPP" :

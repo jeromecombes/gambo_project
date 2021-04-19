@@ -7,7 +7,7 @@
     <a href="{{ route('hosts.index') }}">Liste des logements</a>
 </p>
 <p>
-    <a href="{{ asset('admin/housing/requests') }}">Demande des étudiants</a>
+    <a href="{{ asset('housing/requests') }}">Demande des étudiants</a>
 </p>
 
 @endsection

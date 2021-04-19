@@ -3,7 +3,7 @@
 
   <h3>Housing - {{ session('semester') }}</h3>
 
-  <a href='/admin/housing'>Housing Home</a> > <a href='/hosts'>Host list</a>
+  <a href='/housing/home'>Housing Home</a> > <a href='/hosts'>Host list</a>
 
   <br/>
   <br/>

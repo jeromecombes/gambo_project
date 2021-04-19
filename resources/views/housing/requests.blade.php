@@ -3,11 +3,12 @@
 
 <h3>Housing - Students requests - {{ session('semester') }}</h3>
 
+<a href="{{ route('housing.home') }}">Housing Home</a>
 
-<ul>
-    <li><a href="{{ route('housing.index') }}">Housing Home</a></li>
-    <li><a href="{{ asset('admin/housing_excel.php') }}">Excel</a></li>
-</ul>
+<div style='text-align:right; margin: 0 0 20px 0;'>
+  <input type='button' onclick='$(".buttons-excel").click();' value='Export to excel' class='btn btn-primary' />
+</div>
+
 
 
 <table class='datatable'>
@@ -23,7 +24,7 @@
     </thead>
 
     <tbody>
-    @foreach($answers as $answer)   
+    @foreach($answers as $answer)
         <tr>
             <td>
             @if($edit_access)

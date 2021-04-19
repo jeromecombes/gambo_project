@@ -35,9 +35,9 @@ class HousingController extends Controller
         // Update form : student or admin with role 7
         $this->middleware('role:7')->only('student_form_update');
 
-        // Admin index and requests : admin with role 2 or 7
-        $this->middleware('admin')->only(['index', 'requests']);
-        $this->middleware('role:2|7')->only(['index', 'requests']);
+        // Admin home and requests : admin with role 2 or 7
+        $this->middleware('admin')->only(['home', 'requests']);
+        $this->middleware('role:2|7')->only(['home', 'requests']);
 
         // Assignment : admin with role 7
         $this->middleware('admin')->only('student_assignment');
@@ -45,14 +45,14 @@ class HousingController extends Controller
     }
 
     /**
-     * Display Housing index
+     * Display Housing home
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function home(Request $request)
     {
-        return view('admin.housing');
+        return view('housing.home');
     }
 
     /**
@@ -85,7 +85,7 @@ class HousingController extends Controller
         foreach ($housing as $elem) {
             $answers[$elem['student']][$elem['question']] = $elem['response'];
 
-            // Add blank indexex, avoid undefined index errors
+            // Add blank indexes, avoid undefined index errors
             foreach ($questions_ids as $id) {
                 if (!array_key_exists($id, $answers[$elem['student']])) {
                     $answers[$elem['student']][$id] = null;
@@ -109,7 +109,7 @@ class HousingController extends Controller
         // Edit access
         $edit_access = in_array(7, $user->access);
 
-        return view('admin.housing_requests', compact('questions', 'questions_ids', 'answers', 'edit_access'));
+        return view('housing.requests', compact('questions', 'questions_ids', 'answers', 'edit_access'));
     }
 
     /**

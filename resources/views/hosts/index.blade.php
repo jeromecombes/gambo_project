@@ -3,7 +3,7 @@
 
     <h3>Housing - Liste des logements - {{ session('semester') }}</h3>
 
-    <a href="{{ asset('admin/housing') }}">Housing Home</a>
+    <a href="{{ asset('housing/home') }}">Housing Home</a>
 
     <div style='text-align:right; margin: 0 0 20px 0;'>
       @if (in_array(7, Auth::user()->access))

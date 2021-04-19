@@ -205,7 +205,7 @@ class HousingTest extends MyTestCase
 
     public function test_housing_admin_index_no_session()
     {
-        $response = $this->get('/admin/housing');
+        $response = $this->get('/housing/home');
         $response->assertStatus(302);
         $response->assertRedirect('/login');
     }
@@ -219,7 +219,7 @@ class HousingTest extends MyTestCase
             ->withSession([
                 'semester' => $student->semester,
                 'student' => $student->id,
-            ])->get('/admin/housing');
+            ])->get('/housing/home');
 
         $response->assertStatus(302);
         $response->assertRedirect('/');
@@ -233,7 +233,7 @@ class HousingTest extends MyTestCase
         $response = $this->actingAs($user)
             ->withSession([
                 'semester' => 'Spring 2020',
-            ])->get('/admin/housing');
+            ])->get('/housing/home');
 
         $response->assertStatus(200);
     }
@@ -246,7 +246,7 @@ class HousingTest extends MyTestCase
         $response = $this->actingAs($user)
             ->withSession([
                 'semester' => 'Spring 2020',
-            ])->get('/admin/housing');
+            ])->get('/housing/home');
 
         $response->assertStatus(200);
     }
@@ -262,7 +262,7 @@ class HousingTest extends MyTestCase
         $response = $this->actingAs($user)
             ->withSession([
                 'semester' => 'Spring 2020',
-            ])->get('/admin/housing');
+            ])->get('/housing/home');
 
         $response->assertStatus(302);
         $response->assertRedirect('/admin2');
@@ -270,7 +270,7 @@ class HousingTest extends MyTestCase
 
     public function test_housing_requests_no_session()
     {
-        $response = $this->get('/admin/housing/requests');
+        $response = $this->get('/housing/requests');
         $response->assertStatus(302);
         $response->assertRedirect('/login');
     }
@@ -284,7 +284,7 @@ class HousingTest extends MyTestCase
             ->withSession([
                 'semester' => $student->semester,
                 'student' => $student->id,
-            ])->get('/admin/housing/requests');
+            ])->get('/housing/requests');
 
         $response->assertStatus(302);
         $response->assertRedirect('/');
@@ -298,7 +298,7 @@ class HousingTest extends MyTestCase
         $response = $this->actingAs($user)
             ->withSession([
                 'semester' => 'Spring 2020',
-            ])->get('/admin/housing/requests');
+            ])->get('/housing/requests');
 
         $response->assertStatus(200);
     }
@@ -311,7 +311,7 @@ class HousingTest extends MyTestCase
         $response = $this->actingAs($user)
             ->withSession([
                 'semester' => 'Spring 2020',
-            ])->get('/admin/housing/requests');
+            ])->get('/housing/requests');
 
         $response->assertStatus(200);
     }
@@ -327,7 +327,7 @@ class HousingTest extends MyTestCase
         $response = $this->actingAs($user)
             ->withSession([
                 'semester' => 'Spring 2020',
-            ])->get('/admin/housing/requests');
+            ])->get('/housing/requests');
 
         $response->assertStatus(302);
         $response->assertRedirect('/admin2');
