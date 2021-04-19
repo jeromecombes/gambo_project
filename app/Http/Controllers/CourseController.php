@@ -19,6 +19,17 @@ class CourseController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('semester');
+        $this->middleware('role:23');
+        $this->middleware('old.session');
+        $this->middleware('old.student')->except(['reidhall_assignment', 'univ_update']);
+        $this->middleware('student.list')->except(['reidhall_assignment', 'univ_update']);
+        $this->middleware('this.student')->only('index');
+
+        $this->middleware('admin')->only('reidhall_assignment');
+        $this->middleware('role:16')->only(['univ_destroy', 'univ_update']);
+
         App::setLocale('fr_FR');
     }
 
@@ -237,7 +248,7 @@ class CourseController extends Controller
 
 
         // Add a new course
-        if ($request->add) {
+        if (!$request->id) {
             $edit = 'edit';
             $course = new UnivCourse();
 
@@ -313,6 +324,18 @@ class CourseController extends Controller
         $course->save();
 
         return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
+    }
+
+    /**
+     * Destroy a university course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_destroy(Request $request)
+    {
+        UnivCourse::find($request->id)->delete();
+        return redirect()->route('courses.index')->with('success', 'Le cours a été supprimé');
     }
 
 }

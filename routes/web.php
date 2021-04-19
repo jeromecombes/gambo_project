@@ -128,57 +128,25 @@ Route::post('/univ_reg3', [UnivRegController::class, 'univ_reg3_update'])
     ->name('univ_reg.univ_reg3.update');
 
 // Courses
-Route::get('/courses', [CourseController::class, 'index'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:23')
+Route::get('/courses/{student?}', [CourseController::class, 'index'])
     ->name('courses.index');
 
-Route::get('/courses/{student}', [CourseController::class, 'index'])
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->middleware('role:23')
-    ->name('courses.student_form_id');
-
 Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_assignment'])
-    ->middleware('admin')
-    ->middleware('role:23')
     ->name('courses.reidhall.assignment');
 
 Route::post('/courses/reidhall/choices', [CourseController::class, 'reidhall_choices'])
     ->name('courses.reidhall.choices');
 
-Route::get('/course/univ/{add}', [CourseController::class, 'univ_edit'])
-    ->where('add', 'add')
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:23')
-    ->name('courses.univ.add');
-
-Route::get('/course/univ/{id}/{edit}', [CourseController::class, 'univ_edit'])
+Route::get('/course/univ/{id?}/{edit?}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')
     ->where('id', '\d+')
-    ->middleware('auth')
-    ->middleware('old.session')
-    ->middleware('old.student')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:23')
     ->name('courses.univ.edit');
 
-Route::post('/courses/univ/update', [CourseController::class, 'univ_update'])
-    ->middleware('role:16')
+Route::post('/courses/univ', [CourseController::class, 'univ_update'])
     ->name('courses.univ.update');
+
+Route::delete('/courses/univ', [CourseController::class, 'univ_destroy'])
+    ->name('courses.univ.delete');
 
 Route::get('/tutoring', [TutoringController::class, 'edit'])
     ->middleware('auth')

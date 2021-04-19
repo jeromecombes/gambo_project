@@ -153,6 +153,13 @@ function delete_host() {
   }
 }
 
+function delete_univ_course(id) {
+  if(confirm("Etes vous sûr(e) de vouloir supprimer ce cours ?")) {
+    $('#delete-univ-id').val(id);
+    $('#delete-univ').submit();
+  }
+}
+
 function delete_user() {
   if (confirm('Do you really want to delete this user ?')) {
     $('#delete-form').submit();
@@ -214,18 +221,6 @@ function displayForm(form,id){
       document.getElementById("univreg_1_19").style.display="none";	//	MoveOnLine Username (Form)
       document.getElementById("univreg_1_20").style.display="none";	//	MoveOnLine Password (Form)
     }
-  }
-}
-
-function dropCourse(id,admin){
-  if(confirm("Etes vous sûr(e) de vouloir supprimer ce cours ?")){
-    if(admin){
-      url="../inc/courses_univ4Update.php?delete=true&id="+id;
-    }
-    else{
-      url="inc/courses_univ4Update.php?delete=true&id="+id;
-    }
-    document.location.href=url;
   }
 }
 

@@ -28,7 +28,7 @@
 
     <fieldset style='margin-left:{{ $margin1 }}px;'>
 
-      <form name='univ_course_{{ $course->id }}' method='post' action='/courses/univ/update'>
+      <form name='univ_course_{{ $course->id }}' method='post' action='/courses/univ'>
         <input type='hidden' name='id' value='{{ $course->id }}' />
 
         {{ csrf_field() }}
@@ -300,7 +300,7 @@
                 @endif
 
                 @if (($admin2 or (!Auth::user()->admin and !$course->lock)) and !count($course->links))
-                  <input type='button' value='Supprimer' onclick='dropCourse({{ $course->id }}, {{ Auth::user()->admin }});' class='btn'/>
+                  <input type='button' value='Supprimer' onclick='delete_univ_course({{ $course->id }});' class='btn'/>
                 @endif
 
                 @if ($admin2)

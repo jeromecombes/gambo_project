@@ -16,6 +16,10 @@ class OldStudent
      */
     public function handle($request, Closure $next)
     {
+        if (php_sapi_name() === 'cli') {
+            return $next($request);
+        }
+
         $user = $request->user();
 
         $student = null;
