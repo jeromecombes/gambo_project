@@ -257,7 +257,7 @@ textarea {
 
 .response {
   margin: 5px 0 20px 0;
-  color:blue;
+  color: #005c9c;
   font-weight:bold;
   text-align:justify;
 }
@@ -277,7 +277,7 @@ font.response {
 
 .response2 {
   margin: 0 0 5px 0;
-  color:blue;
+  color: #005c9c;
   font-weight:bold;
   text-align:justify;
 }
@@ -297,7 +297,7 @@ font.response {
 
 
 fieldset {
-  background:#EFEFEF;
+  background:#f3f3f3;
   padding: 20px;
   margin-bottom: 40px;
   border-radius: 10px;
@@ -485,6 +485,11 @@ div.dt-buttons {
 #dates_fieldset div {
   text-align:right;
   margin:20px;
+}
+
+#host_fieldset td:nth-child(2),
+#host_fieldset td:nth-child(4) {
+  width: 300px;
 }
 
 #students_add_fieldset th{

@@ -33,4 +33,9 @@ class HousingAssignment extends MyModel
         return $this->lastname.' '.$this->firstname;
     }
 
+    public function std()
+    {
+        return $this->hasOne(Student::class, 'id', 'student');
+    }
+
 }

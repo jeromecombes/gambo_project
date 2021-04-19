@@ -22,6 +22,7 @@ class HostController extends Controller
         $this->middleware('admin');
         $this->middleware('semester');
         $this->middleware('role:2|7');
+        $this->middleware('role:7')->only(['destroy', 'update']);
     }
 
     /**
@@ -43,7 +44,7 @@ class HostController extends Controller
                 $query->where('end', '>=', $semester)
                 ->orWhere('end', 0);
             })
-            ->get(array('id'))
+            ->get(array('logement_id'))
             ->toArray();
 
         // Hosts information
@@ -76,62 +77,84 @@ class HostController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $edit = true;
+        $host = new Host();
+        $student = (object) ['lastname' => null, 'firstname' => null];
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Host  $host
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Host $host)
-    {
-        //
+        return view('hosts.edit', compact('edit', 'host', 'student'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Host  $host
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Host $host)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $edit = $request->edit;
+
+        $host = Host::find($id);
+
+        $assignment = HousingAssignment::where('logement', $id)
+            ->where('semester', session('semester'))
+            ->first();
+
+        $student = $assignment->std ?? (object) ['lastname' => null, 'firstname' => null];
+
+        return view('hosts.edit', compact('edit', 'host', 'student'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Host  $host
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Host $host)
+    public function update(Request $request)
     {
-        //
+        $new = !$request->id;
+
+        $host = Host::findOrNew($request->id);
+        $host->lastname = $request->lastname;
+        $host->firstname = $request->firstname;
+        $host->email = $request->email;
+        $host->cellphone = $request->cellphone;
+        $host->lastname2 = $request->lastname2;
+        $host->firstname2 = $request->firstname2;
+        $host->email2 = $request->email2;
+        $host->cellphone2 = $request->cellphone2;
+        $host->address = $request->address;
+        $host->zipcode = $request->zipcode;
+        $host->city = $request->city;
+        $host->phonenumber = $request->phonenumber;
+        $host->save();
+
+        if ($new) {
+            $available = new HostAvailable();
+            $available->host = $host->id;
+            $available->start = session('semester');
+            $available->save();
+        }
+
+        $message = $new ? "New host successfully added !" : "The host has been changed !";
+
+        return redirect()->route('hosts.index')->with('success', $message);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Host  $host
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Host $host)
+    public function destroy(Request $request)
     {
-        //
+        $available = HostAvailable::where('logement_id', $request->id)->first();
+        $available->end = session('semester');
+        $available->save();
+
+        return redirect()->route('hosts.index')->withSuccess('Host was deleted successfully');
     }
 }

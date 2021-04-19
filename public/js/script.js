@@ -147,6 +147,12 @@ function delete_doc(id) {
     }
 }
 
+function delete_host() {
+  if (confirm("Etes-vous sûr(e) de vouloir supprimer ce logement ?")) {
+    $('#delete-form').submit();
+  }
+}
+
 function delete_user() {
   if (confirm('Do you really want to delete this user ?')) {
     $('#delete-form').submit();

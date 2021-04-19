@@ -1,8 +1,7 @@
 @extends('emails.layouts.html')
 
 @section('content')
-<html>
-  <body style='color:black;'>
+  <div style='color:black;'>
     <p>
       Les étudiants suivants ont été enregistrés dans la base de données VWPP :
       <br/>
@@ -16,6 +15,5 @@
       Université : {{ Auth::user()->university }}
       <br/>
     </p>
-  </body>
-</html>
+  </div>
 @endsection

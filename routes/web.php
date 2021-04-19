@@ -368,7 +368,22 @@ Route::get('/admin/housing/requests', [HousingController::class, 'requests'])
 Route::get('/hosts', [HostController::class, 'index'])
     ->name('hosts.index');
 
+Route::get('/host/{id}/{edit?}', [HostController::class, 'edit'])
+    ->where('id', '\d+')
+    ->where('edit', 'edit')
+    ->name('host.edit');
+
+Route::get('/host', [HostController::class, 'create'])
+    ->name('host.create');
+
+Route::post('/host', [HostController::class, 'update'])
+    ->name('host.update');
+
+Route::delete('/host', [HostController::class, 'destroy'])
+    ->name('host.delete');
+
 Route::get('/dates', [DateController::class, 'edit'])
+    ->where('edit', 'edit')
     ->name('dates.edit');
 
 Route::post('/dates', [DateController::class, 'update'])

@@ -5,7 +5,11 @@
 
     <a href="{{ asset('admin/housing') }}">Housing Home</a>
 
-    <br/><br/>
+    <div style='text-align:right; margin: 0 0 20px 0;'>
+      @if (in_array(7, Auth::user()->access))
+        {{ Form::button('Add', ['onclick' => 'location.href="/host"', 'class' => 'btn btn-primary']) }}
+      @endif
+    </div>
 
     {{ Form::open(array('name' => 'form', 'url' => '/admin/housing-email.php')) }}
 
@@ -32,7 +36,7 @@
                 <tr>
                     <td style='white-space: nowrap;'>
                         <input type='checkbox' name='housing[]' value='{{ $host->id }}' onclick='setTimeout("select_action(\"form\")",5);'/>
-                        <a href='/admin/housing-edit.php?id={{ $host->id }}'>
+                        <a href='/host/{{ $host->id }}'>
                             <img src='img/edit.png' alt='Edit' />
                         </a>
                         <input type='hidden' id='mail_{{ $host->id }}' value='{{ $host->email }}' />
@@ -70,11 +74,5 @@
         </p>
 
     {{ Form::close() }}
-
-    @if($edit_access)
-        <p style='margin:20px 0 30px 0;'>
-            <a href='/admin/housing-edit.php'>Ajouter un nouveau logement</a>
-        </p>
-    @endif
 
 @endsection
