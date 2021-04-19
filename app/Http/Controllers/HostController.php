@@ -10,6 +10,20 @@ use Illuminate\Http\Request;
 
 class HostController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+        $this->middleware('semester');
+        $this->middleware('role:2|7');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +66,7 @@ class HostController extends Controller
         // Edit access
         $edit_access = in_array(7, $user->access);
 
-        return view('admin.hosts', compact('hosts', 'edit_access'));
+        return view('hosts.index', compact('hosts', 'edit_access'));
     }
 
     /**

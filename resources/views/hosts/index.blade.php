@@ -32,8 +32,8 @@
                 <tr>
                     <td style='white-space: nowrap;'>
                         <input type='checkbox' name='housing[]' value='{{ $host->id }}' onclick='setTimeout("select_action(\"form\")",5);'/>
-                        <a href='housing-edit.php?id={{ $host->id }}'>
-                            <img src='../img/edit.png' alt='Edit' />
+                        <a href='/admin/housing-edit.php?id={{ $host->id }}'>
+                            <img src='img/edit.png' alt='Edit' />
                         </a>
                         <input type='hidden' id='mail_{{ $host->id }}' value='{{ $host->email }}' />
                         <input type='hidden' id='mail2_{{ $host->id }}' value='{{ $host->email2 }}' />
@@ -58,7 +58,7 @@
     {{ Form::open(array('name' => 'form2', 'url' => '#')) }}
 
         <p>
-            Pour la sélection : 
+            Pour la sélection :
             <select id='action' onchange='select_action(\"form\");' style='width:250px;' class='ui-widget-content ui-corner-all'>
                 <option value=''>&nbsp;</option>
                 <option value='Email_Housing'>Envoyer un email (Logiciel)</option>

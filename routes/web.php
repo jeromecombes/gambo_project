@@ -365,10 +365,7 @@ Route::get('/admin/housing', [HousingController::class, 'index'])
 Route::get('/admin/housing/requests', [HousingController::class, 'requests'])
     ->name('housing.requests');
 
-Route::get('/admin/hosts', [HostController::class, 'index'])
-    ->middleware('admin')
-    ->middleware('semester')
-    ->middleware('role:2|7')
+Route::get('/hosts', [HostController::class, 'index'])
     ->name('hosts.index');
 
 Route::get('/dates', [DateController::class, 'edit'])
