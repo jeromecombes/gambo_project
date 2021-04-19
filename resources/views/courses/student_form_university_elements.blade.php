@@ -288,23 +288,31 @@
           @if ($edit_modalities)
             <tr>
               <td colspan='2' style='text-align:right;'>
-                <input type='reset' value='Annuler' onclick='document.location.href="{{ asset('courses') }}";' class='btn'/>
+                @if (session('student'))
+                  <input type='button' value='Annuler' onclick='document.location.href="{{ asset('courses') }}";' class='btn'/>
+                @else
+                  <input type='button' value='Annuler' onclick='document.location.href="/admin/courses4.php";' class='btn'/>
+                @endif
                 <input type='submit' value='Valider' class='btn btn-primary' />
               </td>
             </tr>
           @else
             <tr>
               <td colspan='2' style='padding-top:20px; text-align:right;'>
-                @if ($admin2 or !Auth::user()->admin)
-                  <input type='button' value='Modifier' onclick='document.location.href="{{ asset('course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
+                @if (!session('student'))
+                  <input type='button' value='Annuler' onclick='document.location.href="/admin/courses4.php";' class='btn'/>
                 @endif
 
                 @if (($admin2 or (!Auth::user()->admin and !$course->lock)) and !count($course->links))
                   <input type='button' value='Supprimer' onclick='delete_univ_course({{ $course->id }});' class='btn'/>
                 @endif
 
+                @if ($admin2 or !Auth::user()->admin)
+                  <input type='button' value='Modifier' onclick='document.location.href="{{ asset('course/univ/') }}/{{ $course->id }}/edit";' class='btn btn-primary' />
+                @endif
+
                 @if ($admin2)
-                  <input type='button' value='@if ($course->lock) Déverrouiller @else Verrouiller @endif' id='lock{{ $course->id }}' onclick='lockCourse4({{ $course->id }});' class='btn'/>
+                  <input type='button' value='@if ($course->lock) Déverrouiller @else Verrouiller @endif' id='lock{{ $course->id }}' onclick='lockCourse4({{ $course->id }});' class='btn btn-primary'/>
                 @endif
               </td>
             </tr>

@@ -97,7 +97,7 @@ EOD;
 
 $i=1;
 foreach($univ as $elem){
-  echo "<tr><td><a href='courses4-univ-edit.php?id={$elem['id']}'>\n";
+  echo "<tr><td><a href='/course/univ/{$elem['id']}'>\n";
   echo "<img src='../img/edit.png' alt='Edit' /></a>\n";
   echo "</td>\n";
   echo "<td>";

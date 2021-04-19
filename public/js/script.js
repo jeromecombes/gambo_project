@@ -224,46 +224,6 @@ function displayForm(form,id){
   }
 }
 
-function dropCourse2(id,admin){
-  if(confirm("Etes vous sûr(e) de vouloir supprimer ce cours ?")){
-    url="courses4-univ-update.php?delete=true&id="+id;
-    document.location.href=url;
-  }
-}
-
-function editCourse(id,edit){
-  if(edit){
-    document.getElementById("UnivCourse"+id).style.display="none";
-    document.getElementById("UnivCourseEdit"+id).style.display="";
-  }
-  else{
-    document.getElementById("UnivCourse"+id).style.display="";
-    document.getElementById("UnivCourseEdit"+id).style.display="none";
-  }
-}
-
-function editModalites(id,edit){
-  if(edit){
-    document.getElementById("modalitesText"+id).style.display="none";
-    document.getElementById("modalitesTextarea"+id).style.display="";
-    document.getElementById("modalites0_"+id).style.display="none";
-    document.getElementById("modalitesRadio"+id).style.display="";
-    document.getElementById("modalitesUpdate"+id).style.display="none";
-    document.getElementById("modalitesReset"+id).style.display="";
-    document.getElementById("modalitesSubmit"+id).style.display="";
-
-  }
-  else{
-    document.getElementById("modalitesText"+id).style.display="";
-    document.getElementById("modalitesTextarea"+id).style.display="none";
-    document.getElementById("modalites0_"+id).style.display="";
-    document.getElementById("modalitesRadio"+id).style.display="none";
-    document.getElementById("modalitesUpdate"+id).style.display="";
-    document.getElementById("modalitesReset"+id).style.display="none";
-    document.getElementById("modalitesSubmit"+id).style.display="none";
-  }
-}
-
 function file(fichier){
   if(fichier.indexOf("php?")>0)
     fichier=fichier+"&ms="+new Date().getTime();

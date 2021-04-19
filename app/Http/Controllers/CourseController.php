@@ -243,9 +243,17 @@ class CourseController extends Controller
     {
         $user = auth()->user();
 
-        // All existing students courses for making links
-        $courses = UnivCourse::getMe();
+        // Admin can access the course without session('student')
+        if ($user->admin and $request->id) {
+            $course = UnivCourse::find($request->id);
 
+            // All existing student courses for making links
+            $courses = UnivCourse::where('semester', session('semester'))
+                ->where('student', $course->student)
+                ->get();
+        } else {
+            $courses = UnivCourse::getMe();
+        }
 
         // Add a new course
         if (!$request->id) {
@@ -323,7 +331,11 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
+        if (!session('student')) {
+            return redirect('/admin/courses4.php');
+        } else {
+            return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
+        }
     }
 
     /**
