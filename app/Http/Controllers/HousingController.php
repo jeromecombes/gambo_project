@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Host;
 use App\Models\Housing;
 use App\Models\HousingAssignment;
+use App\Models\HousingClosed;
 use App\Models\HousingTerm;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -140,6 +141,12 @@ class HousingController extends Controller
 
         $edit = $request->edit;
 
+        $closed = HousingClosed::findMe();
+
+        if ($closed) {
+            $edit = false;
+        }
+
         if ($user->admin and !in_array(7, $user->access)) {
             $edit = false;
         }
@@ -173,7 +180,7 @@ class HousingController extends Controller
         $terms_accepted = !empty($terms) ? true : false;
 
         // View
-        return view('housing.student_form', compact('edit', 'student', 'hosts', 'selected_host', 'answer', 'terms_accepted'));
+        return view('housing.student_form', compact('closed', 'edit', 'student', 'hosts', 'selected_host', 'answer', 'terms_accepted'));
     }
 
     /**

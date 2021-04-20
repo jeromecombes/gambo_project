@@ -46,7 +46,7 @@
         @if ($edit)
           <input type='button' value='Cancel' class='btn' onclick='document.location.href="/housing";' />
           <input type='submit' value='Submit' class='btn btn-primary'/>
-        @elseif (!Auth::user()->admin or in_array(7, Auth::user()->access))
+        @elseif (!$closed and (!Auth::user()->admin or in_array(7, Auth::user()->access)))
           <a href='{{ asset("housing/{$student->id}/edit") }}' class='btn btn-primary'>Edit</a>
         @endif
       </p>
