@@ -14,7 +14,7 @@ access_ctrl(16);
 if(isset($_GET['delete'])){
   $rh=new reidhall();
   $rh->delete($_GET['id']);
-  header("Location: courses4.php?error=0&msg=delete_success");
+  header("Location: /courses/home?error=0&msg=delete_success");
   exit;
 }
 
@@ -65,22 +65,22 @@ if($_POST['univ']=="univ"){
   $credits=encrypt_vwpp(htmlentities($_POST['credits'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
   $nom=encrypt_vwpp(htmlentities($_POST['nom'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
   $title=encrypt_vwpp(htmlentities($_POST['title'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-  $prof_group=encrypt_vwpp(htmlentities($_POST['prof_group'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
-  $prof_lecture=encrypt_vwpp(htmlentities($_POST['prof_lecture'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
-  $email=encrypt_vwpp(htmlentities($_POST['email'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
-  $telephone=encrypt_vwpp(htmlentities($_POST['telephone'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));  
+  $prof_group=encrypt_vwpp(htmlentities($_POST['prof_group'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $prof_lecture=encrypt_vwpp(htmlentities($_POST['prof_lecture'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $email=encrypt_vwpp(htmlentities($_POST['email'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
+  $telephone=encrypt_vwpp(htmlentities($_POST['telephone'],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
 }
-  
+
 		//	Update Univ
 if($id and $_POST['univ']=="univ"){
-  $sql="UPDATE {$dbprefix}courses SET university=:university, ufr=:ufr, ufr_name=:ufr_name, 
-    parcours=:parcours, stream=:stream, course_year=:course_year, course_code=:course_code, 
-    cm_td=:cm_td, groupe=:groupe, credits=:credits, nom=:nom, title=:title, 
-    prof_group=:prof_group, prof_lecture=:prof_lecture, email=:email, telephone=:telephone 
+  $sql="UPDATE {$dbprefix}courses SET university=:university, ufr=:ufr, ufr_name=:ufr_name,
+    parcours=:parcours, stream=:stream, course_year=:course_year, course_code=:course_code,
+    cm_td=:cm_td, groupe=:groupe, credits=:credits, nom=:nom, title=:title,
+    prof_group=:prof_group, prof_lecture=:prof_lecture, email=:email, telephone=:telephone
     WHERE id=:id;";
-  $data=array(":university"=>$university, ":ufr"=>$ufr, ":ufr_name"=>$ufr_name, ":parcours"=>$parcours, 
-  ":stream"=>$stream, ":course_year"=>$course_year, ":course_code"=>$course_code, ":cm_td"=>$cm_td, 
-  ":groupe"=>$groupe, ":credits"=>$credits, ":nom"=>$nom, ":title"=>$title, ":prof_group"=>$prof_group, 
+  $data=array(":university"=>$university, ":ufr"=>$ufr, ":ufr_name"=>$ufr_name, ":parcours"=>$parcours,
+  ":stream"=>$stream, ":course_year"=>$course_year, ":course_code"=>$course_code, ":cm_td"=>$cm_td,
+  ":groupe"=>$groupe, ":credits"=>$credits, ":nom"=>$nom, ":title"=>$title, ":prof_group"=>$prof_group,
   ":prof_lecture"=>$prof_lecture, ":email"=>$email, ":telephone"=>$telephone, ":id"=>$id);
   $db=new dbh();
   $db->prepare($sql);
@@ -89,13 +89,13 @@ if($id and $_POST['univ']=="univ"){
 		//	Add Univ
 elseif(!$id and $_POST['univ']=="univ"){		// a faire
   $sql="INSERT INTO {$dbprefix}courses (univ,semester,university,ufr,ufr_name,parcours,stream,
-    course_year,course_code,cm_td,groupe,credits,nom,title,prof_group,prof_lecture,email,telephone) 
+    course_year,course_code,cm_td,groupe,credits,nom,title,prof_group,prof_lecture,email,telephone)
     VALUES (:univ,:semester,:university,:ufr,:ufr_name,:parcours,:stream,:course_year,:course_code,
     :cm_td,:groupe,:credits,:nom,:title,:prof_group,:prof_lecture,:email,:telephone);";
-  $data=array(":univ"=>"univ",":semester"=>$semester,":university"=>$university, ":ufr"=>$ufr, 
-  ":ufr_name"=>$ufr_name, ":parcours"=>$parcours, ":stream"=>$stream, ":course_year"=>$course_year, 
-  ":course_code"=>$course_code, ":cm_td"=>$cm_td, ":groupe"=>$groupe, ":credits"=>$credits, 
-  ":nom"=>$nom, ":title"=>$title, ":prof_group"=>$prof_group, ":prof_lecture"=>$prof_lecture, 
+  $data=array(":univ"=>"univ",":semester"=>$semester,":university"=>$university, ":ufr"=>$ufr,
+  ":ufr_name"=>$ufr_name, ":parcours"=>$parcours, ":stream"=>$stream, ":course_year"=>$course_year,
+  ":course_code"=>$course_code, ":cm_td"=>$cm_td, ":groupe"=>$groupe, ":credits"=>$credits,
+  ":nom"=>$nom, ":title"=>$title, ":prof_group"=>$prof_group, ":prof_lecture"=>$prof_lecture,
   ":email"=>$email, ":telephone"=>$telephone);
   $db=new dbh();
   $db->prepare($sql);
@@ -104,5 +104,5 @@ elseif(!$id and $_POST['univ']=="univ"){		// a faire
 
 $msg="update_success";
 $error=0;
-header("Location: courses4.php?error=$error&msg=$msg");
+header("Location: /courses/home?error=$error&msg=$msg");
 ?>

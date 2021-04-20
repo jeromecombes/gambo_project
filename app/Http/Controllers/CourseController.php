@@ -21,16 +21,33 @@ class CourseController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('semester');
-        $this->middleware('role:23');
+        $this->middleware('role:16|23');
         $this->middleware('old.session');
-        $this->middleware('old.student')->except(['reidhall_assignment', 'univ_update']);
-        $this->middleware('student.list')->except(['reidhall_assignment', 'univ_update']);
+        $this->middleware('old.student')->except(['home', 'reidhall_assignment', 'univ_update']);
+        $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
-        $this->middleware('admin')->only('reidhall_assignment');
+        $this->middleware('admin')->only(['home', 'reidhall_assignment']);
         $this->middleware('role:16')->only(['univ_destroy', 'univ_update']);
 
         App::setLocale('fr_FR');
+    }
+
+    /**
+     * Display the admin home page
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function home(Request $request)
+    {
+        $courses = (object) array(
+            'local' => RHCourse::where('semester', session('semester'))->get(),
+            'univ' => UnivCourse::where('semester', session('semester'))->get(),
+        );
+
+        // View
+        return view('courses.home', compact('courses'));
     }
 
     /**
@@ -332,7 +349,7 @@ class CourseController extends Controller
         $course->save();
 
         if (!session('student')) {
-            return redirect('/admin/courses4.php');
+            return redirect()->route('courses.home')->with('success', 'Mise à jour réussie');
         } else {
             return redirect()->route('courses.index')->with('success', 'Mise à jour réussie');
         }
@@ -347,7 +364,12 @@ class CourseController extends Controller
     public function univ_destroy(Request $request)
     {
         UnivCourse::find($request->id)->delete();
-        return redirect()->route('courses.index')->with('success', 'Le cours a été supprimé');
+
+        if (!session('student')) {
+            return redirect()->route('courses.home')->with('success', 'Le cours a été supprimé');
+        } else {
+            return redirect()->route('courses.index')->with('success', 'Le cours a été supprimé');
+        }
     }
 
 }

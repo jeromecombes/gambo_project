@@ -53,5 +53,5 @@ foreach($std_attrib as $elem){
 </div>
 
 <div style='text-align:right;margin-top:30px;'>
-<a href='courses4.php' class='myUI-button-right'>Back</a>
+<a href='/courses/home' class='myUI-button-right'>Back</a>
 </div>

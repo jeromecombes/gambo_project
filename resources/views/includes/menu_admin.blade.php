@@ -17,7 +17,7 @@
             @endif
 
             @if(in_array(23, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('admin/courses')) ? 'ui-state-active' : '' }}"><a href='/admin/courses4.php'>Courses</a></li>
+                <li class="ui-state-default ui-corner-top {{ (request()->is('courses/home')) ? 'ui-state-active' : '' }}"><a href='/courses/home'>Courses</a></li>
             @endif
 
             @if(!empty(array_intersect(array(18, 19, 20), Auth::user()->access)))

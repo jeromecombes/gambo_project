@@ -291,7 +291,7 @@
                 @if (session('student'))
                   <input type='button' value='Annuler' onclick='document.location.href="{{ asset('courses') }}";' class='btn'/>
                 @else
-                  <input type='button' value='Annuler' onclick='document.location.href="/admin/courses4.php";' class='btn'/>
+                  <input type='button' value='Annuler' onclick='document.location.href="{{ route('courses.home') }}";' class='btn'/>
                 @endif
                 <input type='submit' value='Valider' class='btn btn-primary' />
               </td>
@@ -300,7 +300,7 @@
             <tr>
               <td colspan='2' style='padding-top:20px; text-align:right;'>
                 @if (!session('student'))
-                  <input type='button' value='Annuler' onclick='document.location.href="/admin/courses4.php";' class='btn'/>
+                  <input type='button' value='Annuler' onclick='document.location.href="{{ route('courses.home') }}";' class='btn'/>
                 @endif
 
                 @if (($admin2 or (!Auth::user()->admin and !$course->lock)) and !count($course->links))
@@ -320,3 +320,10 @@
         </table>
       </form>
     </fieldset>
+
+    @if (!session('student') and $admin2 and !count($course->links))
+      {!! Form::open(['route' => 'courses.univ.delete', 'id' => 'delete-univ']) !!}
+      {!! Form::hidden('_method', 'DELETE') !!}
+      {!! Form::hidden('id', '', ['id' => 'delete-univ-id']) !!}
+      {!! Form::close() !!}
+    @endif

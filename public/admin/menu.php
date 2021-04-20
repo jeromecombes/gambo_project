@@ -59,7 +59,7 @@ if($semester){
     echo "<li id='li10' class='ui-state-default ui-corner-top'><a href='/univ_reg/list'>Univ. reg.</a></li>\n";
 
   if(in_array(23,$user->access))
-    echo "<li id='li1' class='ui-state-default ui-corner-top'><a href='courses4.php'>Courses</a></li>\n";
+    echo "<li id='li1' class='ui-state-default ui-corner-top'><a href='/courses/home'>Courses</a></li>\n";
 
   if(in_array(18,$user->access) or in_array(19,$user->access) or in_array(20,$user->access))
     echo "<li id='li9' class='ui-state-default ui-corner-top'><a href='grades3-1.php'>Grades</a></li>\n";

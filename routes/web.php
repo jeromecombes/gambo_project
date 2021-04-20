@@ -129,6 +129,7 @@ Route::post('/univ_reg3', [UnivRegController::class, 'univ_reg3_update'])
 
 // Courses
 Route::get('/courses/{student?}', [CourseController::class, 'index'])
+    ->where('student', '\d+')
     ->name('courses.index');
 
 Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_assignment'])
@@ -147,6 +148,9 @@ Route::post('/courses/univ', [CourseController::class, 'univ_update'])
 
 Route::delete('/courses/univ', [CourseController::class, 'univ_destroy'])
     ->name('courses.univ.delete');
+
+Route::get('/courses/home', [CourseController::class, 'home'])
+    ->name('courses.home');
 
 Route::get('/tutoring', [TutoringController::class, 'edit'])
     ->middleware('auth')
