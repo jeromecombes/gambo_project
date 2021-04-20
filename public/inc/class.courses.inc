@@ -1,15 +1,9 @@
 <?php
 
 require_once "class.student.inc";
-require_once "class.tutorat.inc";
 require_once "class.univ4.inc";
 
 class courses{
-  public $semester=null;
-  public $vwpp_courses=array();
-  public $univ_courses=array();
-  public $ciph_courses=array();
-  public $tutorat=array();
   public $students_attrib=array();
   public $students_choices=array();
   public $course=array();

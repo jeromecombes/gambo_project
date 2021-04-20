@@ -9,26 +9,6 @@ class grades{
     $this->semester=$_SESSION['vwpp']['semester'];
   }
 
-  public function fetch($student){
-    $db=new db();
-    $db->select("grades","*","semester='{$this->semester}' AND student='$student'");
-    if(!$db->result)
-      return false;
-
-    foreach($db->result as $elem){
-      $this->grades[$elem['course']][$elem['course_id']]['course_id']=$elem['course_id'];
-      $this->grades[$elem['course']][$elem['course_id']]['note']=$elem['note']?decrypt_vwpp($elem['note'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['grade']=$elem['grade']?decrypt_vwpp($elem['grade'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['grade1']=$elem['grade1']?decrypt_vwpp($elem['grade1'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['grade2']=$elem['grade2']?decrypt_vwpp($elem['grade2'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['date1']=$elem['date1']?decrypt_vwpp($elem['date1'],$student):null;
-      $this->grades[$elem['course']][$elem['course_id']]['date2']=$elem['date2']?decrypt_vwpp($elem['date2'],$student):null;
-      //	Example : 	$this->grades["VWPP"][1]=array(1,18,"A");
-      //			$this->grades["VWPP"][2]=array(2,16,"A-");
-      //			$this->grades["UNIV"][1]=array(1,18,"A");
-    }
-  }
-
   public function fetchCourse($course,$course_id){
     if ($course == 'VWPP') { $course = 'local'; }
     if ($course == 'UNIV') { $course = 'univ'; }

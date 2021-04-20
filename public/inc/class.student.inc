@@ -219,65 +219,6 @@ class student{
     }
   }
 
-  public function setToken($email){
-    $this->token=md5($email);
-  }
-
-/*  public function updatePassword($clearPassword){
-    $db=new db();
-    $db->update("students","password=MD5('$clearPassword')","id='{$this->id}'");
-  }
-*/
-  public function update($data){
-    if(!is_numeric($data['id'])){
-      echo "Error, ID must be numeric (class student, function update)";
-      $this->error=true;
-      return;
-    }
-    else{
-      $values=array();
-      $set=array();
-      $student=$data['id'];
-      $values[":id"]=$data['id'];
-      $keys=array_keys($data);
-      foreach($keys as $key){
-	if(in_array($key,$this->cryptedFieldsNoID)){
-	  $set[]="$key=:$key";
-	  $values[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"));
-	}
-	elseif(in_array($key,$this->cryptedFields)){
-	  $set[]="$key=:$key";
-	  $values[":$key"]=encrypt_vwpp(htmlentities($data[$key],ENT_QUOTES | ENT_IGNORE,"UTF-8"),$student);
-	}
-	elseif($key=="semesters"){
-	  sort($data[$key]);
-	  $set[]="$key=:$key";
-	  $values[":$key"]=serialize($data[$key]);
-	}
-      }
-
-      if(in_array("email",$keys)){
-	$set[]="token=:token";
-	$values[":token"]=md5(trim($data['email']));
-      }
-
-      $set=join(", ",$set);
-      $sql="UPDATE {$GLOBALS['config']['dbprefix']}students SET $set WHERE id=:id;";
-
-      $db=new dbh();
-      $db->prepare($sql);
-      $db->execute($values);
-
-      if($db->error){
-	$this->error=1;
-	$this->msg="update_error";
-      }
-      else{
-	$this->msg="update_success";
-      }
-    }
-  }
-
   public function delete($id){		// $id = int
     $tables=array("courses_attrib_rh","courses_choices","courses_ciph","courses_univ","housing","housing_accept","stages","univ_reg");
     foreach($tables as $table){
