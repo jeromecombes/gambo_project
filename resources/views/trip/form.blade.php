@@ -111,8 +111,8 @@
           <b>Acceptez-vous que l'on communique ces informations à vos parents ?</b> @if ($edit) (Obligatoire) @endif
           @if ($edit)
             <span style='position: absolute; left:720px;'>
-              <input type='radio' name='parents_notification' value='Yes' class='requiredRadio' @if ($trip->parents_notification == 'Yes') checked='checked' @endif /> Oui
-              <input type='radio' name='parents_notification' value='No' style='margin-left:20px;' class='requiredRadio' @if ($trip->parents_notification == 'No') checked='checked' @endif /> Non
+              <input type='radio' name='parents_notification' id='parents_notification_yes' value='Yes' class='requiredRadio' @if ($trip->parents_notification == 'Yes') checked='checked' @endif /> <label for='parents_notification_yes'>Oui</label>
+              <input type='radio' name='parents_notification' id='parents_notification_no' value='No' style='margin-left:20px;' class='requiredRadio' @if ($trip->parents_notification == 'No') checked='checked' @endif /> <label for='parents_notification_no'>Non</label>
             </span>
           @else
             <span class='response'>{{ __($trip->parents_notification) }}</span>
@@ -126,20 +126,20 @@
 
           <ul>
             <li>
-              <b>J’accepte que l'on communique ces informations à mon université</b> @if ($edit) (Obligatoire) @endif
+              <label for='university_notification'>J’accepte que l'on communique ces informations à mon université</label> @if ($edit) (Obligatoire) @endif
               @if ($edit)
                 <span style='position: absolute; left:720px;'>
-                  <input type='checkbox' name='university_notification' value='Yes' class='requiredCheckbox' @if ($trip->university_notification == 'Yes') checked='checked' @endif />
+                  <input type='checkbox' name='university_notification' id='university_notification' value='Yes' class='requiredCheckbox' @if ($trip->university_notification == 'Yes') checked='checked' @endif />
                 </span>
               @else
                 <span class='response'> : @if ($trip->university_notification == 'Yes') Oui @else Non @endif</span>
               @endif
             </li>
             <li>
-              <b>J'ai lu les consignes de sécurité avant les congés</b> @if ($edit) (Obligatoire) @endif
+              <label for='terms'>J'ai lu les consignes de sécurité avant les congés</label> @if ($edit) (Obligatoire) @endif
               @if ($edit)
                 <span style='position: absolute; left:720px;'>
-                  <input type='checkbox' name='terms' value='Yes' class='requiredCheckbox' @if ($trip->terms == 'Yes') checked='checked' @endif />
+                  <input type='checkbox' name='terms' id='terms' value='Yes' class='requiredCheckbox' @if ($trip->terms == 'Yes') checked='checked' @endif />
                 </span>
               @else
                 <span class='response'> : @if ($trip->terms == 'Yes') Oui @else Non @endif</span>

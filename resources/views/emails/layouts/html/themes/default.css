@@ -1,0 +1,14 @@
+fieldset {
+  border: none;
+}
+
+label {
+  font-weight: bold;
+}
+
+.response {
+  margin: 5px 0 20px 0;
+  color: #005c9c;
+  font-weight:bold;
+  text-align:justify;
+}

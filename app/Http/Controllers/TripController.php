@@ -61,7 +61,11 @@ class TripController extends Controller
         $to = explode(',', env('MAIL_TRIP_FORM'));
 
         foreach ($to as $elem) {
-            Mail::to(trim($elem))->send(new Trip($request));
+            try {
+                Mail::to(trim($elem))->send(new Trip($request));
+            } catch(\Exception $e) {
+                report($e);
+            }
         }
 
         return view('trip.sent');

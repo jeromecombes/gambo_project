@@ -12,6 +12,7 @@ use App\Helpers\StateHelper;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
 use App\Mail\Student_create;
+use App\Mail\Student_delete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Mail;
@@ -239,7 +240,11 @@ class StudentController extends Controller
                 );
 
                 foreach($users as $user) {
-                    Mail::to($user->email)->send(new Cellphone_changed($data));
+                    try {
+                        Mail::to($user->email)->send(new Cellphone_changed($data));
+                    } catch(\Exception $e) {
+                        report($e);
+                    }
                 }
             }
         }
@@ -314,12 +319,16 @@ class StudentController extends Controller
             );
         }
 
-        // Send an email to administrator
+        // Send an email to administrators
         $users = User::where('alerts', 1)->get();
 
         if (count($users) and !empty($email_data)) {
             foreach($users as $user) {
-                Mail::to($user->email)->send(new Student_create($email_data));
+                try {
+                    Mail::to($user->email)->send(new Student_create($email_data));
+                } catch(\Exception $e) {
+                    report($e);
+                }
             }
         }
 
@@ -368,8 +377,25 @@ class StudentController extends Controller
      */
     public function destroy(Request $request)
     {
+        // Get selected students
         $students = Student::findOrFail($request->students);
+
+        // Send an email to administrators
+        $users = User::where('alerts', 1)->get();
+
+        if (count($users) and count($students)) {
+            foreach($users as $user) {
+                try {
+                    Mail::to($user->email)->send(new Student_delete($students));
+                } catch(\Exception $e) {
+                    report($e);
+                }
+            }
+        }
+
+        // Delete students
         foreach ($students as $student) {
+            User::where('email', $student->email)->delete();
             $student->delete();
         }
 
