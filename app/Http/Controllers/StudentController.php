@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourseChoice;
+use App\Models\Grade;
 use App\Models\Host;
+use App\Models\Housing;
+use App\Models\HousingClosed;
+use App\Models\HousingTerm;
 use App\Models\HousingAssignment;
+use App\Models\Internship;
+use App\Models\RHCourseAssignment;
+use App\Models\RHCourseLock;
+use App\Models\RHCoursePublish;
 use App\Models\Student;
+use App\Models\Tutoring;
+use App\Models\UnivCourse;
+use App\Models\UnivReg;
+use App\Models\UnivReg2;
 use App\Models\UnivReg3;
+use App\Models\UnivRegLock;
+use App\Models\UnivRegShow;
 use App\Models\User;
 use App\Helpers\CountryHelper;
 use App\Helpers\StateHelper;
@@ -393,10 +408,35 @@ class StudentController extends Controller
             }
         }
 
+        // Delete students related information
+        CourseChoice::whereIn('student', $request->students)->delete();
+        Grade::whereIn('student', $request->students)->delete();
+        Housing::whereIn('student', $request->students)->delete();
+        HousingClosed::whereIn('student', $request->students)->delete();
+        HousingAssignment::whereIn('student', $request->students)->delete();
+        HousingTerm::whereIn('student', $request->students)->delete();
+        Internship::whereIn('student', $request->students)->delete();
+        RHCourseAssignment::whereIn('student', $request->students)->delete();
+        RHCourseLock::whereIn('student', $request->students)->delete();
+        RHCoursePublish::whereIn('student', $request->students)->delete();
+        Tutoring::whereIn('student', $request->students)->delete();
+        UnivCourse::whereIn('student', $request->students)->delete();
+        UnivReg::whereIn('student', $request->students)->delete();
+        UnivReg2::whereIn('student', $request->students)->delete();
+        UnivReg3::whereIn('student', $request->students)->delete();
+        UnivRegLock::whereIn('student', $request->students)->delete();
+        UnivRegShow::whereIn('student', $request->students)->delete();
+
+        // TODO : delete documents : créer DocumentController::delete_students_docs(students ID)
+
         // Delete students
         foreach ($students as $student) {
+
             User::where('email', $student->email)->delete();
+
             $student->delete();
+
+            // TODO : delete password_resets where email : Model à créer
         }
 
         return redirect('/students')->with('success', 'Selected students have been successfuly deleted');

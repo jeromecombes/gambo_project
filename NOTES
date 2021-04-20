@@ -1,5 +1,10 @@
 NOTES
 
+2021-04-21
+// TODO : student::destroy : delete documents : créer DocumentController::delete_students_docs(students ID)
+// TODO : student::destroy : delete password_resets where email : Model à créer
+
+
 2021-04-14
 // TODO : move views/includes/* to views/layout/
 
