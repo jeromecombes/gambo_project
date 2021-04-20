@@ -132,6 +132,11 @@ class Student extends MyModel
         return $dob->format('Y');
     }
 
+    public function getDisplayNameAttribute($value)
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
     public function getEmailAttribute($value)
     {
         return $this->decrypt($value, false);

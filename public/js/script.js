@@ -27,11 +27,6 @@ function add_fields(i){
    document.getElementById("tr_"+i).style.display="";
 }
 
-function alertDelete(msg,id){
-  if(confirm(msg))
-    location.href="courses-update.php?id="+id+"&delete=";
-}
-
 function change_password(){
     $('#password_checkbox')
     if($('#password_checkbox').prop('checked')) {
@@ -149,6 +144,12 @@ function delete_doc(id) {
 
 function delete_host() {
   if (confirm("Etes-vous sûr(e) de vouloir supprimer ce logement ?")) {
+    $('#delete-form').submit();
+  }
+}
+
+function delete_local_course(warning) {
+  if(confirm(warning)) {
     $('#delete-form').submit();
   }
 }

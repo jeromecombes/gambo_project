@@ -27,8 +27,8 @@ class CourseController extends Controller
         $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
-        $this->middleware('admin')->only(['home', 'reidhall_assignment']);
-        $this->middleware('role:16')->only(['univ_destroy', 'univ_update']);
+        $this->middleware('admin')->only(['home', 'local_edit', 'reidhall_assignment']);
+        $this->middleware('role:16')->only(['local_edit', 'univ_destroy', 'univ_update']);
 
         App::setLocale('fr_FR');
     }
@@ -106,7 +106,7 @@ class CourseController extends Controller
         $occurences = array();
         foreach ($rhCourses as $elem) {
             $occurences[$elem->type][] = array(
-                'count' => (int) $count[$elem->id],
+                'count' => isset($count[$elem->id]) ? (int) $count[$elem->id] : 0,
                 'code' => $elem->code,
                 'title' => $elem->title,
                 'professor' => $elem->professor,
@@ -251,6 +251,120 @@ class CourseController extends Controller
     }
 
     /**
+     * Edit a local course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function local_edit(Request $request)
+    {
+        $user = auth()->user();
+
+        $id = $request->id ?? 0;
+
+        $days = array('' => '');
+        for ($i = 0; $i < 7; $i++) {
+            $days[$i] = jddayofweek($i, 1);
+        }
+
+        $hours = array('' => '');
+        for($i =8; $i <23; $i++) {
+            for($j=0; $j<60; $j = $j+15) {
+                $hours[sprintf("%02d",$i).":".sprintf("%02d",$j)] = sprintf("%02d",$i)."h".sprintf("%02d",$j);
+            }
+        }
+
+        $course = RHCourse::firstOrNew(['id' => $id]);
+
+        $students = Student::where('semesters', 'like', '%"' . session('semester') .'"%')->get();
+
+        $delete_authorized = false;
+
+        if (in_array(16, $user->access) and $id) {
+            $assignment = RHCourseAssignment::where('writing1', $id)
+                ->orWhere('writing2', $id)
+                ->orWhere('writing3', $id)
+                ->orWhere('seminar1', $id)
+                ->orWhere('seminar2', $id)
+                ->first();
+
+            if (empty($assignment)) {
+                $delete_authorized = true;
+            }
+        }
+
+        $delete_warning = "Etes vous sûr(e) de vouloir supprimer ce cours ?";
+
+        if ($delete_authorized) {
+            $choices = CourseChoice::where('a1', $id)
+                ->orWhere('a2', $id)
+                ->orWhere('b1', $id)
+                ->orWhere('b2', $id)
+                ->orWhere('c1', $id)
+                ->orWhere('c2', $id)
+                ->orWhere('d1', $id)
+                ->orWhere('d2', $id)
+                ->orWhere('e2', $id)
+                ->get();
+
+            if (count($choices)) {
+                $tab = array();
+                foreach ($choices as $elem) {
+                    $tab[] = "- " . $students->find($elem->student)->displayName;
+                }
+                sort($tab);
+
+                $delete_warning = "Attention, les étudiants suivants ont choisi ce cours :\\n";
+                $delete_warning .= join("\\n", $tab);
+            }
+        }
+
+        // View
+        return view('courses.local_edit', compact('course', 'days', 'delete_authorized', 'delete_warning', 'hours'));
+    }
+
+    /**
+     * Update a local course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function local_update(Request $request)
+    {
+        if ($request->id) {
+            $course = RHCourse::find($request->id);
+        } else {
+            $course = new RHCourse();
+        }
+
+        $course->code = $request->code;
+        $course->professor = $request->professor;
+        $course->title = $request->title;
+        $course->type = $request->type;
+        $course->semester = session('semester');
+        $course->nom = $request->nom;
+        $course->day = $request->day;
+        $course->start = $request->start;
+        $course->end = $request->end;
+        $course->save();
+
+        return redirect()->route('courses.home')->with('success', 'The course was added successfully.');
+    }
+
+    /**
+     * Destroy a local course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function local_destroy(Request $request)
+    {
+        RHCourse::destroy($request->id);
+
+        return redirect()->route('courses.home')->with('success', 'The course was deleted successfully.');
+    }
+
+    /**
      * Edit a university course
      *
      * @param  \Illuminate\Http\Request  $request
@@ -363,10 +477,10 @@ class CourseController extends Controller
      */
     public function univ_destroy(Request $request)
     {
-        UnivCourse::find($request->id)->delete();
+        UnivCourse::destroy($request->id);
 
         if (!session('student')) {
-            return redirect()->route('courses.home')->with('success', 'Le cours a été supprimé');
+            return redirect()->route('courses.home')->with('success', 'The course was deleted successfully.');
         } else {
             return redirect()->route('courses.index')->with('success', 'Le cours a été supprimé');
         }

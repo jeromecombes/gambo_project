@@ -19,7 +19,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->a1)
+        @elseif ($choices->a1 and $rhCourses->find($choices->a1))
           <td>{{ $rhCourses->find($choices->a1)->code }} {{ $rhCourses->find($choices->a1)->title }}</td>
           <td>{{ $rhCourses->find($choices->a1)->professor }}</td>
         @endif
@@ -35,7 +35,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->b1)
+        @elseif ($choices->b1 and $rhCourses->find($choices->b1))
           <td>{{ $rhCourses->find($choices->b1)->code }} {{ $rhCourses->find($choices->b1)->title }}</td>
           <td>{{ $rhCourses->find($choices->b1)->professor }}</td>
         @endif
@@ -51,7 +51,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->c1)
+        @elseif ($choices->c1 and $rhCourses->find($choices->c1))
           <td>{{ $rhCourses->find($choices->c1)->code }} {{ $rhCourses->find($choices->c1)->title }}</td>
           <td>{{ $rhCourses->find($choices->c1)->professor }}</td>
         @endif
@@ -67,7 +67,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->d1)
+        @elseif ($choices->d1 and $rhCourses->find($choices->d1))
           <td>{{ $rhCourses->find($choices->d1)->code }} {{ $rhCourses->find($choices->d1)->title }}</td>
           <td>{{ $rhCourses->find($choices->d1)->professor }}</td>
         @endif
@@ -86,7 +86,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->a2)
+        @elseif ($choices->a2 and $rhCourses->find($choices->a2))
           <td>{{ $rhCourses->find($choices->a2)->code }} {{ $rhCourses->find($choices->a2)->title }}</td>
           <td>{{ $rhCourses->find($choices->a2)->professor }}</td>
         @endif
@@ -102,7 +102,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->b2)
+        @elseif ($choices->b2 and $rhCourses->find($choices->b2))
           <td>{{ $rhCourses->find($choices->b2)->code }} {{ $rhCourses->find($choices->b2)->title }}</td>
           <td>{{ $rhCourses->find($choices->b2)->professor }}</td>
         @endif
@@ -118,7 +118,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->c2)
+        @elseif ($choices->c2 and $rhCourses->find($choices->c2))
           <td>{{ $rhCourses->find($choices->c2)->code }} {{ $rhCourses->find($choices->c2)->title }}</td>
           <td>{{ $rhCourses->find($choices->c2)->professor }}</td>
         @endif
@@ -134,7 +134,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->d2)
+        @elseif ($choices->d2 and $rhCourses->find($choices->d2))
           <td>{{ $rhCourses->find($choices->d2)->code }} {{ $rhCourses->find($choices->d2)->title }}</td>
           <td>{{ $rhCourses->find($choices->d2)->professor }}</td>
         @endif
@@ -150,7 +150,7 @@
               @endforeach
             </select>
           </td>
-        @elseif ($choices->e2)
+        @elseif ($choices->e2 and $rhCourses->find($choices->e2))
           <td>{{ $rhCourses->find($choices->e2)->code }} {{ $rhCourses->find($choices->e2)->title }}</td>
           <td>{{ $rhCourses->find($choices->e2)->professor }}</td>
         @endif

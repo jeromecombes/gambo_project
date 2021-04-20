@@ -492,6 +492,13 @@ div.dt-buttons {
   width: 300px;
 }
 
+#local_course_fieldset #day,
+#local_course_fieldset #start,
+#local_course_fieldset #end {
+  width: 27%;
+  margin: 0 5px;
+}
+
 #students_add_fieldset th{
   padding:8px 18px 8px 14px;
 }

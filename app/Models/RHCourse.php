@@ -59,7 +59,7 @@ class RHCourse extends MyModel
 
     public function getNameAttribute($value)
     {
-        return html_entity_decode($this->nom);
+        return html_entity_decode($this->title);
     }
 
     public function getDayAttribute($value)
@@ -90,6 +90,43 @@ class RHCourse extends MyModel
     public function getEndAttribute($value)
     {
         return $this->fin;
+    }
+
+    // Set
+
+    public function setCodeAttribute($value)
+    {
+        $this->attributes['code'] = $this->encrypt($value, false);
+    }
+
+    public function setDayAttribute($value)
+    {
+        $this->attributes['jour'] = $this->encrypt($value, false);
+    }
+
+    public function setEndAttribute($value)
+    {
+        $this->attributes['fin'] = $this->encrypt($value, false);
+    }
+
+    public function setNomAttribute($value)
+    {
+        $this->attributes['nom'] = $this->encrypt($value, false);
+    }
+
+    public function setProfessorAttribute($value)
+    {
+        $this->attributes['professor'] = $this->encrypt($value, false);
+    }
+
+    public function setStartAttribute($value)
+    {
+        $this->attributes['debut'] = $this->encrypt($value, false);
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $this->encrypt($value, false);
     }
 
 }
