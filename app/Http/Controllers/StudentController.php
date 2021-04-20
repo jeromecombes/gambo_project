@@ -195,7 +195,7 @@ class StudentController extends Controller
         // Date of birth
         $dob = null;
         if ($request->yob and $request->mob and $request->dob) {
-            $dob = new \DateTime($request->yob . '-' . $request->mob . '-' . $request->dob);
+            $dob = $request->yob . '-' . $request->mob . '-' . $request->dob;
         }
 
         $student->lastname = $request->lastname;

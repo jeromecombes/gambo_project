@@ -86,31 +86,31 @@
               </td>
             </tr>
             <tr>
-              <td>Date of birth </td>
+              <td>Date of birth</td>
               <td>
                 @if ($edit)
                   <select name='mob' style='width:30%;'>
                     <option value=''>Month</option>
                     @foreach ($months as $month)
-                      <option value='{{ $month->id }}' @if ($student->dob and $student->dob->format('n') == $month->id) selected='selected' @endif >{{ $month->name }}</option>\n";
+                      <option value='{{ $month->id }}' @if ($student->month == $month->id) selected='selected' @endif >{{ $month->name }}</option>\n";
                     @endforeach
                   </select>
 
                   <select name='dob' style='width:30%;'>
                     <option value=''>Day</option>
                     @for ($i = 1; $i < 32; $i++)
-                      <option value='{{ str_pad($i,2,'0',STR_PAD_LEFT) }}' @if ($student->dob and $student->dob->format('d') == $i) selected='selected' @endif >{{ str_pad($i,2,'0',STR_PAD_LEFT) }}</option>
+                      <option value='{{ $i }}' @if ($student->day == $i) selected='selected' @endif >{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
                     @endfor
                   </select>
 
                   <select name='yob' style='width:30%;'>
                     <option value=''>Year</option>
                     @for ($i = $years[0]; $i > $years[1]; $i--)
-                      <option value='{{ $i }}' @if ($student->dob and $student->dob->format('Y') == $i) selected='selected' @endif >{{ $i }}</option>
+                      <option value='{{ $i }}' @if ($student->year == $i) selected='selected' @endif >{{ $i }}</option>
                     @endfor
                   </select>
-                @elseif ($student->dob)
-                  {{ $student->dob->format('M d, Y') }}
+                @else
+                  {{ $student->dob }}
                 @endif
               </td>
             </tr>

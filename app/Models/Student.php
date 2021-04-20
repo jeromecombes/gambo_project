@@ -89,8 +89,47 @@ class Student extends MyModel
     public function getDobAttribute($value)
     {
         $dob = $this->decrypt($value);
-        $dob = !empty($dob) ? new \DateTime($dob) : null;
-        return $dob;
+
+        if (empty($dob)) {
+            return null;
+        }
+
+        $dob = new \DateTime($dob);
+
+        return $dob->format('M d, Y');
+    }
+
+    public function getDayAttribute($value)
+    {
+        if (!$this->dob) {
+            return null;
+        }
+
+        $dob = new \DateTime($this->dob);
+
+        return $dob->format('d');
+    }
+
+    public function getMonthAttribute($value)
+    {
+        if (!$this->dob) {
+            return null;
+        }
+
+        $dob = new \DateTime($this->dob);
+
+        return $dob->format('n');
+    }
+
+    public function getYearAttribute($value)
+    {
+        if (!$this->dob) {
+            return null;
+        }
+
+        $dob = new \DateTime($this->dob);
+
+        return $dob->format('Y');
     }
 
     public function getEmailAttribute($value)
@@ -247,7 +286,14 @@ class Student extends MyModel
 
     public function setDobAttribute($value)
     {
-        $dob = !empty($value) ? $value->format('Y-n-d') : null;
+        if (empty($value)) {
+            $dob = null;
+
+        } else {
+            $dob = new \DateTime($value);
+            $dob = $dob->format('Y-m-d');
+        }
+
         $this->attributes['dob'] = $this->encrypt($dob);
     }
 

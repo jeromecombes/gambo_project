@@ -34,7 +34,7 @@
   <tr>
     <td>2. Date of birth : </td>
     <td colspan='2'>
-      <div class='response2'>{{ $student->dob->format('M d,Y')}}</div>
+      <div class='response2'>{{ $student->dob }}</div>
     </td>
     <td>Gender : </td>
     <td>
