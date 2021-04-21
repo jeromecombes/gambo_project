@@ -18,7 +18,7 @@
     @foreach ($courses->local as $course)
       <tr>
         <td>
-          <a href="/course/local/{{ $course->id }}">
+          <a href="{{ route('course.edit', $course->id) }}">
             <img src='/img/edit.png' alt='Edit' />
           </a>
           <a href="/admin/courses-students.php?id={{ $course->id }}">
@@ -40,7 +40,7 @@
     <input type='button' onclick='location.href="/admin/courses_excel_vwpp2.php";' value='Export Students choices to Excel' class='btn' />
 
     @if (in_array(16, Auth::user()->access))
-      <input type='button' onclick='location.href="/course/local";' value='Add a VWPP Course' class='btn btn-primary' />
+      <input type='button' onclick='location.href="{{ route('course.edit') }}";' value='Add a VWPP Course' class='btn btn-primary' />
     @endif
   </div>
 

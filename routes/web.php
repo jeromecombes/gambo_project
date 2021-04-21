@@ -138,16 +138,18 @@ Route::post('/courses/reidhall/assignment', [CourseController::class, 'reidhall_
 Route::post('/courses/reidhall/choices', [CourseController::class, 'reidhall_choices'])
     ->name('courses.reidhall.choices');
 
-Route::get('/course/local/{id?}', [CourseController::class, 'local_edit'])
+// Local courses
+Route::get('/course/{id?}', [CourseController::class, 'local_edit'])
     ->where('id', '\d+')
-    ->name('courses.local.edit');
+    ->name('course.edit');
 
-Route::post('/course/local', [CourseController::class, 'local_update'])
-    ->name('courses.local.update');
+Route::post('/course', [CourseController::class, 'local_update'])
+    ->name('course.update');
 
-Route::delete('/course/local', [CourseController::class, 'local_destroy'])
-    ->name('courses.local.delete');
+Route::delete('/course', [CourseController::class, 'local_destroy'])
+    ->name('course.delete');
 
+// University courses
 Route::get('/course/univ/{id?}/{edit?}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')
     ->where('id', '\d+')

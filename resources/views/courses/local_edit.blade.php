@@ -4,7 +4,7 @@
   <h3>VWPP Courses for {{ session('semester') }}</h3>
 
   <fieldset id='local_course_fieldset'>
-    {{ Form::open(['route' => 'courses.local.update']) }}
+    {{ Form::open(['route' => 'course.update']) }}
     {{ Form::hidden('id', $course->id) }}
 
       <table>
@@ -65,7 +65,7 @@
   </fieldset>
 
   @if ($delete_authorized)
-    {!! Form::open(['route' => 'courses.local.delete', 'id' => 'delete-form']) !!}
+    {!! Form::open(['route' => 'course.delete', 'id' => 'delete-form']) !!}
     {!! Form::hidden('_method', 'DELETE') !!}
     {!! Form::hidden('id', $course->id) !!}
     {!! Form::close() !!}
