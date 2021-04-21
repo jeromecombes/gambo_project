@@ -60,12 +60,12 @@
 
                     @if(Auth::user()->admin)
                         @if(session('student'))
-                            @include('includes.menu_admin_student')
+                            @include('layouts.menu_admin_student')
                         @else
-                            @include('includes.menu_admin')
+                            @include('layouts.menu_admin')
                         @endif
                     @else
-                        @include('includes.menu_student')
+                        @include('layouts.menu_student')
                     @endif
 
                     @if (session('success'))
