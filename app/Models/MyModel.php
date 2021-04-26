@@ -108,6 +108,11 @@ class MyModel extends Model
         }
     }
 
+    public function std()
+    {
+        return $this->hasAttribute('student') ? $this->hasOne(Student::class, 'id', 'student') : null;
+    }
+
     public function hasAttribute($attr)
     {
         return Schema::hasColumn($this->getTable(), $attr);

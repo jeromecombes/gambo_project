@@ -465,6 +465,13 @@ div.dt-buttons {
   float: right;
 }
 
+#course_students_div {
+  display:inline-block;
+  width:49%;
+  vertical-align:top;
+  padding:15px;
+}
+
 #dates_fieldset th {
   padding:15px;
   text-align:center;

@@ -21,7 +21,7 @@
           <a href="{{ route('course.edit', $course->id) }}">
             <img src='/img/edit.png' alt='Edit' />
           </a>
-          <a href="/admin/courses-students.php?id={{ $course->id }}">
+          <a href="{{ route('course.students', $course->id) }}">
             <img src='/img/people.png' alt='Students' />
           </a>
         </td>

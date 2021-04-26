@@ -152,6 +152,10 @@ Route::post('/course', [CourseController::class, 'local_update'])
 Route::delete('/course', [CourseController::class, 'local_destroy'])
     ->name('course.delete');
 
+Route::get('/course/{id}/students', [CourseController::class, 'local_students'])
+    ->where('id', '\d+')
+    ->name('course.students');
+
 // University courses
 Route::get('/course/univ/{id?}/{edit?}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')

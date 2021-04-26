@@ -27,7 +27,7 @@ class CourseController extends Controller
         $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
-        $this->middleware('admin')->only(['home', 'local_edit', 'reidhall_assignment']);
+        $this->middleware('admin')->only(['home', 'local_edit', 'local_students', 'reidhall_assignment']);
         $this->middleware('role:16')->only(['local_edit', 'univ_destroy', 'univ_update']);
 
         App::setLocale('fr_FR');
@@ -362,6 +362,58 @@ class CourseController extends Controller
         RHCourse::destroy($request->id);
 
         return redirect()->route('courses.home')->with('success', 'The course was deleted successfully.');
+    }
+
+    /**
+     * Show students affected to the selected course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function local_students(Request $request)
+    {
+        $user = auth()->user();
+        $id = $request->id;
+
+        // Course
+        $course = RHCourse::find($id);
+
+        // Students choices
+        $choices = CourseChoice::where('a1', $id)
+            ->orWhere('a2', $id)
+            ->orWhere('b1', $id)
+            ->orWhere('b2', $id)
+            ->orWhere('c1', $id)
+            ->orWhere('c2', $id)
+            ->orWhere('d1', $id)
+            ->orWhere('d2', $id)
+            ->orWhere('e2', $id)
+            ->get();
+
+        foreach ($choices as $k => $v) {
+            if ($id == $v->a1 or $id == $v->a2) {
+                $choices[$k]['choice'] = "1<sup>st</sup>";
+            } elseif ($id == $v->b1 or $id == $v->b2) {
+                $choices[$k]['choice'] = "2<sup>nd</sup>";
+            } elseif ($id == $v->c1 or $id == $v->c2) {
+                $choices[$k]['choice'] = "3<sup>rd</sup>";
+            } elseif ($id == $v->d1 or $id == $v->d2) {
+                $choices[$k]['choice'] = "4<sup>th</sup>";
+            } elseif ($id == $v->e2) {
+                $choices[$k]['choice'] = "5<sup>th</sup>";
+            }
+        }
+
+        // Assignment
+        $assignments = RHCourseAssignment::where('writing1', $id)
+            ->orWhere('writing2', $id)
+            ->orWhere('writing3', $id)
+            ->orWhere('seminar1', $id)
+            ->orWhere('seminar2', $id)
+            ->get();
+
+        // View
+        return view('courses.local_students', compact('course', 'choices', 'assignments'));
     }
 
     /**
