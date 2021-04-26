@@ -16,6 +16,7 @@ use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\LockController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TutoringController;
@@ -39,6 +40,8 @@ Auth::routes(['register' => false]);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Check if session is going to expire
+Route::get('/session', [SessionController::class, 'get'])->name('session.get');
 
 // Admin home
 Route::get('/admin2', [AdminController::class, 'index'])

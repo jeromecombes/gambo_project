@@ -362,6 +362,69 @@ function select_action(form){
 
 }
 
+function session_init() {
+  $.ajax({
+    url: '/session',
+    type: 'get',
+    datatype: 'json',
+    success: function(result) {
+      result = JSON.parse(result);
+
+      if (!result['session_required']) {
+        return;
+      }
+
+      session_redirect_time = (result['session_lifetime'] * 60000) + 10000;
+      session_warning_time = (result['session_lifetime'] - 2) * 60000;
+
+      if (typeof(session_timeout) != 'undefined') {
+        clearTimeout(session_timeout);
+      }
+
+      if (typeof(session_warning_timeout) != 'undefined') {
+        clearTimeout(session_warning_timeout);
+      }
+
+      session_warning_timeout = setTimeout("session_renew()", session_warning_time);
+      session_timeout = setTimeout('document.location.href="/login";', session_redirect_time);
+    },
+    error: function(result) {
+      console.log(result.responseText);
+    }
+  });
+}
+
+function session_renew() {
+
+  var dialogbox = "<div id='renew-session-dialog' title='Renew your session'>\n"
+    + "<div id='renew_session'>\n"
+    + "<p>Warning !<br/>\n"
+    + "Your session is about to expire</p>\n"
+    + "</div>\n";
+
+  if ($('#renew-session-dialog').length == 0) {
+    $('#content').append(dialogbox);
+  }
+
+  $('#renew-session-dialog').dialog({
+    autoOpen: true,
+    height: 200,
+    width: 400,
+    modal: true,
+    buttons: {
+      Cancel: function() {
+        $( this ).dialog( "close" );
+      },
+
+      Renew: function() {
+        session_init();
+        $( this ).dialog( "close" );
+      }
+    },
+  });
+
+}
+
 function submit_action(form,form2){		// a finir
   switch(document.forms[form].action.value){
     case "Delete" :
@@ -547,6 +610,7 @@ function verifNote2(form){
 }
 
 $(document).ready(function(){
+  session_init();
 
   $(".myUI-button").button();
   $(".myUI-button-right").button();
