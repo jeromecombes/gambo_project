@@ -19,7 +19,7 @@ class RHCourse extends MyModel
     // Get
     public function getProfessorAttribute($value)
     {
-        return $this->decrypt($value, false);
+        return html_entity_decode($this->decrypt($value, false));
     }
 
     public function getTitleAttribute($value)

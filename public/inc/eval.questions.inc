@@ -130,7 +130,7 @@ $quest["univ"][]="9. Comments";
 $quest["univ"][]="10. Other comments";
 $quest["univ"][]="Student name";
 
-//	Tutorial
+//	Tutoring
 $quest["tutoring"]=array();
 $quest["tutoring"][]="Instructor";
 $quest["tutoring"][]="1a. Did you attend every session";

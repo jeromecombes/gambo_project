@@ -81,16 +81,16 @@
 
   {{-- Tutoring --}}
 
-  <h3>Tutorial Evaluations</h3>
+  <h3>Tutoring Evaluations</h3>
   <fieldset>
     <ul>
       <li>
         @if (!$closed->tutoring)
           <a href='{{ route('evaluation.form', 'tutoring') }}' style='font-weight:bold;'>
-            Tutorial Evaluations : {{ $tutoring->professor }} @if ($closed->tutoring) (done) @endif
+            Tutoring Evaluations : {{ $tutoring->professor }} @if ($closed->tutoring) (done) @endif
           </a>
         @else
-          Tutorial Evaluations : {{ $tutoring->professor }} @if ($closed->tutoring) (done) @endif
+          Tutoring Evaluations : {{ $tutoring->professor }} @if ($closed->tutoring) (done) @endif
         @endif
       </li>
     </ul>

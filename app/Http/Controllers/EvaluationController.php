@@ -85,6 +85,7 @@ class EvaluationController extends Controller
         if ($user->admin) {
             $evaluation = Evaluation::find($request->id);
             $course_id = $evaluation->courseId;
+            $student = $evaluation->student;
 
             foreach ($evaluation->links as $elem) {
                 $data[$elem->question] = $elem->response;
@@ -93,6 +94,7 @@ class EvaluationController extends Controller
         // Student
         } else {
             $course_id = $request->id ?? 0;
+            $student = session('student');
 
             $evaluation = Evaluation::where('form', $form)
                 ->where('semester', session('semester'))
@@ -124,11 +126,9 @@ class EvaluationController extends Controller
                 break;
 
             case 'local' :
-                if ($edit) {
-                    $course = RHCourse::find($course_id);
-                    $data[1] = $course->name;
-                    $data[2] = $course->professor;
-                }
+                $course = RHCourse::find($course_id);
+                $data[1] = $course->name;
+                $data[2] = $course->professor;
 
                 $view = (object) ['course_id' => $course_id, 'form' => $form, 'title' => 'VWPP Course Evaluation'];
                 return view('evaluations.local', compact('data', 'edit', 'view'));
@@ -174,10 +174,11 @@ class EvaluationController extends Controller
                 break;
 
             case 'tutoring' :
-                if ($edit) {
-                    $tutoring = Tutoring::findMe();
-                    $data[1] = $tutoring->professor;
-                }
+                $tutoring = Tutoring::where('semester', session('semester'))
+                    ->where('student', $student)
+                    ->first();
+
+                $data[1] = $tutoring->professor ?? null;
 
                 $view = (object) ['course_id' => 0, 'form' => $form, 'title' => 'Tutoring Evaluation'];
                 return view('evaluations.tutoring', compact('data', 'edit', 'view'));
@@ -185,13 +186,11 @@ class EvaluationController extends Controller
                 break;
 
             case 'univ' :
-                if ($edit) {
-                    $course = UnivCourse::find($course_id);
-                    $data[1] = $course->name;
-                    $data[2] = $course->professor;
-                    $data[3] = $course->institution;
-                    $data[4] = $course->code;
-                }
+                $course = UnivCourse::find($course_id);
+                $data[1] = $course->name;
+                $data[2] = $course->professor;
+                $data[3] = $course->institution;
+                $data[4] = $course->code;
 
                 $view = (object) ['course_id' => $course_id, 'form' => $form, 'title' => 'University Course Evaluation'];
                 return view('evaluations.univ', compact('data', 'edit', 'view'));

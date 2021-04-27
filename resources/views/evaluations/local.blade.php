@@ -11,17 +11,17 @@
 
 <tr>
   <td style='padding-top:20px;'><b>Course Name :</b></td>
-  <td colspan='3' style='padding-top:20px;color:blue; font-weight:bold;'>
+  <td colspan='3' style='padding-top:20px;'>
     <input type='hidden' name='data[1]' value='{{ $data[1] }}' />
-    {{ $data[1] }}
+    <span class='response'>{{ $data[1] }}</span>
   </td>
 </tr>
 
 <tr>
   <td style='padding-top:20px;'><b>Insctructor :</b></td>
-  <td colspan='3' style='padding-top:20px;color:blue; font-weight:bold;'>
+  <td colspan='3' style='padding-top:20px;'>
     <input type='hidden' name='data[2]' value='{{ $data[2] }}' />
-    {{ $data[2] }}
+    <span class='response'>{{ $data[2] }}</span>
   </td>
 </tr>
 

@@ -31,7 +31,7 @@
       <li><a href='/admin/eval_all.php?form=univ'>Individual evaluations</a></li>
     </ul>
 
-    <h4>Tutorial Evaluations</h4>
+    <h4>Tutoring Evaluations</h4>
     <ul>
       <li><a href='/admin/eval_tab.php?form=tutoring'>Table</a></li>
       <li><a href='/admin/eval_all.php?form=tutoring'>Individual evaluations</a></li>

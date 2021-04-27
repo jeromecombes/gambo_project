@@ -530,8 +530,8 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].action="/admin/internship_export.php";
 	  document.forms[form2].submit();	break;
 
-    case "tutorial" :
-	  document.forms[form2].action="/admin/tutorial_export.php";
+    case "tutoring" :
+	  document.forms[form2].action="/admin/tutoring_export.php";
 	  document.forms[form2].submit();	break;
 
 

@@ -110,7 +110,7 @@ class StudentController extends Controller
         }
         if (in_array(23, $user->access)) {
             $options[] = (object) array('value' => 'internship', 'text' => 'Export Internship to Excel');
-            $options[] = (object) array('value' => 'tutorial', 'text' => 'Export Tutorial to Excel');
+            $options[] = (object) array('value' => 'tutoring', 'text' => 'Export Tutoring to Excel');
         }
         $options[] = (object) array('value' => 'Email', 'text' => 'Send email (with Email Program)');
         $options[] = (object) array('value' => 'Email2', 'text' => 'Send email (with Web Browser)');

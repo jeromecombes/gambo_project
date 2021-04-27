@@ -18,7 +18,7 @@ switch($form){
   case "internship" : $title="Internship evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "program" : $title="Program evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "local" : $title="VWPP Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;
-  case "tutoring" : $title="Tutorial evaluations for {$_SESSION['vwpp']['semester']}"; break;
+  case "tutoring" : $title="Tutoring evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "linguistic" : $title="Ateliers Linguistiques evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "method" : $title="Ateliers M&eacute;thodologiques evaluations for {$_SESSION['vwpp']['semester']}"; break;
   case "univ" : $title="University Courses evaluations for {$_SESSION['vwpp']['semester']}"; break;

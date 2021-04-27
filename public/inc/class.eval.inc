@@ -82,7 +82,7 @@ class evaluation{
 	$data=array();
 	switch($form){
 
-	  case "ReidHall" :
+	  case "local" :
 	    $r=new reidhall();
 	    $r->fetch($elem['courseId']);
 	    $data=array($r->element['title'],$r->element['professor']);
