@@ -14,8 +14,19 @@ use Illuminate\Support\Facades\App;
 
 class EvaluationController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('semester');
+
+        $this->middleware('not.admin')->only(['index', 'update']);
+
         App::setLocale('fr_FR');
     }
 

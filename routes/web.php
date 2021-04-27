@@ -258,21 +258,13 @@ Route::post('/trip', [TripController::class, 'update'])
     ->name('trip.update');
 
 Route::get('/evaluations', [EvaluationController::class, 'index'])
-    ->middleware('auth')
-    ->middleware('not.admin')
-    ->middleware('semester')
     ->name('evaluations.index');
 
 Route::get('/evaluation/{form}/{id?}', [EvaluationController::class, 'form'])
     ->where('id', '\d+')
-    ->middleware('auth')
-    ->middleware('semester')
     ->name('evaluation.form');
 
 Route::post('/evaluations', [EvaluationController::class, 'update'])
-    ->middleware('auth')
-    ->middleware('not.admin')
-    ->middleware('semester')
     ->name('evaluations.update');
 
 Route::get('/evaluations/home', [EvaluationController::class, 'home'])
