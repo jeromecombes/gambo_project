@@ -494,6 +494,14 @@ div.dt-buttons {
   margin:20px;
 }
 
+#evaluations_home_fieldset h4 {
+  margin-bottom: 0px;
+}
+
+#evaluations_home_fieldset ul {
+  margin: 5px 0 20px 0;
+}
+
 #host_fieldset td:nth-child(2),
 #host_fieldset td:nth-child(4) {
   width: 300px;

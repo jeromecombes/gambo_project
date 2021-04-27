@@ -1,7 +1,7 @@
 @extends('layouts.myApp')
 @section('content')
 
-  <h3>VWPP Courses for {{ session('semester') }} ( {{ count($courses->local) }})</h3>
+  <h3>VWPP Courses for {{ session('semester') }} ({{ count($courses->local) }})</h3>
 
   <table class='datatable' data-sort='[[2,"asc"],[3,"asc"]]' >
     <thead>
@@ -45,7 +45,7 @@
   </div>
 
 
-  <h3>University Courses for {{ session('semester') }} ( {{ count($courses->univ) }})</h3>
+  <h3>University Courses for {{ session('semester') }} ({{ count($courses->univ) }})</h3>
 
   <table class='datatable' data-sort='[[1,"asc"],[2,"asc"],[3,"asc"]]' >
     <thead>

@@ -26,7 +26,7 @@ switch($form){
 }
 
 echo "<h3>$title</h3>\n";
-echo "<a href='eval_index.php' class='myUI-button'>Back to Evaluations, main page</a>\n";
+echo "<a href='/evaluations/home' class='myUI-button'>Back to Evaluations, main page</a>\n";
 echo "<a href='eval_export.php' class='myUI-button'>Export to Excel</a>\n";
 
 echo "<br/><br/>\n";

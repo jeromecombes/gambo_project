@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CourseHelper;
 use App\Models\Evaluation;
+use App\Models\EvaluationEnabled;
 use App\Models\Internship;
 use App\Models\Tutoring;
 use App\Models\RHCourse;
@@ -199,6 +200,24 @@ class EvaluationController extends Controller
         }
     }
 
+    /**
+     * Display the admin home page
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function home(Request $request)
+    {
+        $user = auth()->user();
+
+        if (in_array(22, $user->access)) {
+            return redirect('/admin/eval_index3.php');
+        }
+
+        $evaluations_enabled = EvaluationEnabled::where('semester', session('semester'))->first();
+
+        return view('evaluations.home', compact('evaluations_enabled'));
+    }
 
     /**
      * Update an evaluation form

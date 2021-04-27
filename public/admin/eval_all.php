@@ -79,7 +79,7 @@ elseif($form=="program"){
 
 
 echo "<h3>Evaluations for $semester</h3>\n";
-echo "<a href='eval_index.php' style='margin-left:30px;'>All evaluations</a>\n";
+echo "<a href='/evaluations/home' style='margin-left:30px;'>All evaluations</a>\n";
 
 if($form=="program"){
   echo "<h3 style='margin-bottom:0px;'>Program Evaluations</h3><ul style='margin-left:20px;'>";

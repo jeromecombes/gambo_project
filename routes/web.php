@@ -275,6 +275,9 @@ Route::post('/evaluations', [EvaluationController::class, 'update'])
     ->middleware('semester')
     ->name('evaluations.update');
 
+Route::get('/evaluations/home', [EvaluationController::class, 'home'])
+    ->name('evaluations.home');
+
 Route::get('/semester', [SemesterController::class, 'index'])
     ->middleware('auth')
     ->middleware('not.admin')

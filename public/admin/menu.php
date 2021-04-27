@@ -65,7 +65,7 @@ if($semester){
     echo "<li id='li9' class='ui-state-default ui-corner-top'><a href='grades3-1.php'>Grades</a></li>\n";
 
   if(in_array(15,$user->access) or in_array(22,$user->access))
-    echo "<li id='li4' class='ui-state-default ui-corner-top'><a href='eval_index.php'>Evaluations</a></li>\n";
+    echo "<li id='li4' class='ui-state-default ui-corner-top'><a href='/evaluations/home'>Evaluations</a></li>\n";
 
   if(in_array(3,$user->access))
     echo "<li id='li8' class='ui-state-default ui-corner-top'><a href='/documents'>Documents</a></li>\n";

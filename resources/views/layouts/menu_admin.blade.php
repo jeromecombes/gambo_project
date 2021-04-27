@@ -25,7 +25,7 @@
             @endif
 
             @if(!empty(array_intersect(array(15, 22), Auth::user()->access)))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('admin/evaluations')) ? 'ui-state-active' : '' }}"><a href='/admin/eval_index.php'>Evaluations</a></li>
+                <li class="ui-state-default ui-corner-top {{ (request()->is('*evaluations*')) ? 'ui-state-active' : '' }}"><a href='/evaluations/home'>Evaluations</a></li>
             @endif
 
             @if(in_array(3, Auth::user()->access))

@@ -2,7 +2,7 @@
 @section('content')
 
 @if (Auth::user()->admin)
-  <a href='/admin/eval_index.php' style='margin-left:30px;'>All evaluations</a> > <a href='/admin/eval_all.php'>{{ $view->title }}</a>
+  <a href="{{ route('evaluations.home') }}" style='margin-left:30px;'>All evaluations</a> > <a href='/admin/eval_all.php'>{{ $view->title }}</a>
 @endif
 
 <div style='text-align:right; margin-top:30px;'>
