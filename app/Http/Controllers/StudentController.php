@@ -76,7 +76,6 @@ class StudentController extends Controller
         $semester = session('semester');
 
         $students = Student::where('semesters', 'like', "%$semester%")
-            ->select('students.id', 'students.lastname', 'students.firstname', 'students.gender', 'students.email', 'students.university', 'students.guest')
             ->get();
 
         // Add university registration information

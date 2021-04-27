@@ -270,6 +270,10 @@ Route::post('/evaluations', [EvaluationController::class, 'update'])
 Route::get('/evaluations/home', [EvaluationController::class, 'home'])
     ->name('evaluations.home');
 
+Route::get('/evaluations/{form}/table', [EvaluationController::class, 'table'])
+    ->where('form', 'local|internship|linguistic|method|program|tutoring|univ')
+    ->name('evaluations.table');
+
 Route::get('/evaluations/{form}', [EvaluationController::class, 'list'])
     ->where('form', 'local|internship|linguistic|method|program|tutoring|univ')
     ->name('evaluations.list');

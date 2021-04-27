@@ -5,7 +5,7 @@
   <h3>Evaluation Forms {{ session('semester') }} </h3>
 
   <div class='align-right'>
-    <input type='button' value='All evaluations' class='btn btn-primary' onclick='location.href="{{ route('evaluations.home') }}";'/>
+    <input type='button' value='All evaluations' class='btn' onclick='location.href="{{ route('evaluations.home') }}";'/>
     <input type='button' value='{{ $view->title }}' class='btn btn-primary' onclick='location.href="{{ route('evaluations.list', $view->form) }}";'/>
   </div>
 

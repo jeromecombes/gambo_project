@@ -387,4 +387,28 @@ class Student extends MyModel
             ->addSelect('univ_reg3s.university as univreg');
     }
 
+    public static function findMine($fields = null)
+    {
+        $user = auth()->user();
+
+        $semester = session('semester');
+
+        if ($user->university == 'VWPP') {
+            $students = self::where('semesters', 'like', "%$semester%")->get($fields);
+        } else {
+            $students = self::where('semesters', 'like', "%$semester%")
+                ->where('university', $user->university)
+                ->get($fields);
+        }
+
+        if (is_string($fields)) {
+            $tab = array();
+            foreach ($students as $student) {
+                $tab[] = $student->id;
+            }
+            return $tab;
+        }
+
+        return $students;
+    }
 }
