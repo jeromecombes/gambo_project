@@ -25,6 +25,7 @@ class EvaluationController extends Controller
         $this->middleware('auth');
         $this->middleware('semester');
 
+        $this->middleware('admin')->only(['home', 'list']);
         $this->middleware('not.admin')->only(['index', 'update']);
 
         App::setLocale('fr_FR');
@@ -227,6 +228,42 @@ class EvaluationController extends Controller
         $evaluations_enabled = EvaluationEnabled::where('semester', session('semester'))->first();
 
         return view('evaluations.home', compact('evaluations_enabled'));
+    }
+
+    /**
+     * Display the list of filled evaluations
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function list(Request $request)
+    {
+        $form = $request->form;
+
+        $evaluations = Evaluation::where('semester', session('semester'))
+            ->where('form', $form)
+            ->groupBy('timestamp')
+            ->get();
+
+        if ($form == 'local') {
+            $courses = RHCourse::where('semester', session('semester'))->get();
+            foreach ($evaluations as $k => $v) {
+                $course = $courses->find($v->courseId);
+                $evaluations[$k]['course'] = $course->name ?? null;
+                $evaluations[$k]['professor'] = $course->professor ?? null;
+            }
+        }
+
+        if ($form == 'univ') {
+            $courses = UnivCourse::where('semester', session('semester'))->get();
+            foreach ($evaluations as $k => $v) {
+                $course = $courses->find($v->courseId);
+                $evaluations[$k]['course'] = $course->name ?? null;
+                $evaluations[$k]['professor'] = $course->professor ?? null;
+            }
+        }
+
+        return view('evaluations.list', compact(['evaluations', 'form']));
     }
 
     /**

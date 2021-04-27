@@ -2,7 +2,13 @@
 @section('content')
 
 @if (Auth::user()->admin)
-  <a href="{{ route('evaluations.home') }}" style='margin-left:30px;'>All evaluations</a> > <a href='/admin/eval_all.php'>{{ $view->title }}</a>
+  <h3>Evaluation Forms {{ session('semester') }} </h3>
+
+  <div class='align-right'>
+    <input type='button' value='All evaluations' class='btn btn-primary' onclick='location.href="{{ route('evaluations.home') }}";'/>
+    <input type='button' value='{{ $view->title }}' class='btn btn-primary' onclick='location.href="{{ route('evaluations.list', $view->form) }}";'/>
+  </div>
+
 @endif
 
 <div style='text-align:right; margin-top:30px;'>
@@ -39,7 +45,7 @@
             <input type='submit' value='Submit' class='btn btn-primary' />
           @endif
           @if (Auth::user()->admin)
-            <input type='button' value='Back' class='btn btn-primary' onclick='location.href="/admin/eval_all.php";' />
+            <input type='button' value='Back' class='btn btn-primary' onclick='location.href="{{ route('evaluations.list', $view->form) }}";' />
           @endif
         </td>
       </tr>
