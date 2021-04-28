@@ -18,7 +18,7 @@
   <ul>
     <li>
       @if (!$closed->program)
-        <a href='{{ route('evaluation.form', 'program') }}' style='font-weight:bold;'>
+        <a href='{{ route('evaluations.form', 'program') }}' style='font-weight:bold;'>
           Program Evaluation @if ($closed->program) (done) @endif
         </a>
       @else
@@ -43,7 +43,7 @@
       @foreach ($courses->local as $course)
         <li>
           @if (!$closed->local[$course->id])
-            <a href='{{ route('evaluation.form', ['local', $course->id]) }}' style='font-weight:bold;'>
+            <a href='{{ route('evaluations.form', ['local', $course->id]) }}' style='font-weight:bold;'>
               Evaluation for {{ $course->name }}, {{ $course->professor }} @if ($closed->local[$course->id]) (done) @endif
             </a>
           @else
@@ -67,7 +67,7 @@
       @foreach ($courses->univ as $course)
         <li>
           @if (!$closed->univ[$course->id])
-            <a href='{{ route('evaluation.form', ['univ', $course->id]) }}' style='font-weight:bold;'>
+            <a href='{{ route('evaluations.form', ['univ', $course->id]) }}' style='font-weight:bold;'>
               University Course Evaluation : {{ $course->name }}, {{ $course->professor }} @if ($closed->univ[$course->id]) (done) @endif
             </a>
           @else
@@ -86,7 +86,7 @@
     <ul>
       <li>
         @if (!$closed->tutoring)
-          <a href='{{ route('evaluation.form', 'tutoring') }}' style='font-weight:bold;'>
+          <a href='{{ route('evaluations.form', 'tutoring') }}' style='font-weight:bold;'>
             Tutoring Evaluations : {{ $tutoring->professor }} @if ($closed->tutoring) (done) @endif
           </a>
         @else
@@ -104,7 +104,7 @@
     <ul>
       <li>
         @if (!$closed->linguistic)
-          <a href='{{ route('evaluation.form', 'linguistic') }}' style='font-weight:bold;'>
+          <a href='{{ route('evaluations.form', 'linguistic') }}' style='font-weight:bold;'>
             Ateliers Linguistiques @if ($closed->linguistic) (done) @endif
           </a>
         @else
@@ -114,7 +114,7 @@
 
       <li>
         @if (!$closed->method)
-          <a href='{{ route('evaluation.form', 'method') }}' style='font-weight:bold;'>
+          <a href='{{ route('evaluations.form', 'method') }}' style='font-weight:bold;'>
             Ateliers Methodologiques @if ($closed->method) (done) @endif
           </a>
         @else
@@ -135,7 +135,7 @@
     <ul>
       <li>
         @if (!$closed->internship)
-          <a href='{{ route('evaluation.form', 'internship') }}' style='font-weight:bold;'>
+          <a href='{{ route('evaluations.form', 'internship') }}' style='font-weight:bold;'>
             Internship Evaluation {{ $internship->name }} @if ($closed->internship) (done) @endif
           </a>
         @else

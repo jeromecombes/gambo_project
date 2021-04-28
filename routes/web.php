@@ -262,7 +262,7 @@ Route::get('/evaluations', [EvaluationController::class, 'index'])
 
 Route::get('/evaluation/{form}/{id?}', [EvaluationController::class, 'form'])
     ->where('id', '\d+')
-    ->name('evaluation.form');
+    ->name('evaluations.form');
 
 Route::post('/evaluations', [EvaluationController::class, 'update'])
     ->name('evaluations.update');
