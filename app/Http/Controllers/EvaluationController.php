@@ -34,6 +34,28 @@ class EvaluationController extends Controller
     }
 
     /**
+     * Enable or disable evaludations
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function enable(Request $request)
+    {
+
+        $evaluation = EvaluationEnabled::where('semester', session('semester'))->first();
+
+        if ($evaluation) {
+            $evaluation->delete();
+            $result = ['button-value' => 'Enable evaluations'];
+        } else {
+            EvaluationEnabled::create(['semester' => session('semester')]);
+            $result = ['button-value' => 'Disable evaluations'];
+        }
+
+        return json_encode($result);
+    }
+
+    /**
      * Show student's evaluations index
      *
      * @param  \Illuminate\Http\Request  $request

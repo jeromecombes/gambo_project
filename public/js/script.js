@@ -707,22 +707,16 @@ $(function(){
         }
     });
 
-  $("#enableEvaluation").click(function(){
+  $('#evaluations_enable').click(function() {
+    var token = $('input[name=_token]').val();
+
     $.ajax({
-      url: "/admin/enableEval.php",
+      url: "/evaluations/enable",
       dataType: "json",
       type: "post",
-      data: {semester : $(this).attr("data-semester")},
-      success: function(){
-	var value=$("#enableEvaluation").attr("data-enabled")==1?"Enable evaluations":"Disable evaluations";
-	var enable=$("#enableEvaluation").attr("data-enabled")==1?0:1;
-	$("#enableEvaluation").attr("data-enabled",enable);
-	$("#enableEvaluation").attr("value",value);
-      },
-      error: function(){
-	alert($("#enableEvaluation").attr("data-enabled"));
-	var msg=$("#enableEvaluation").attr("data-enabled")==1?"disable":"enable";
-	CJInfo("Cannot "+msg+" evaluations","error");
+      data: {_token: token},
+      success: function(result) {
+        $("#evaluations_enable").val(result['button-value']);
       }
     });
   });

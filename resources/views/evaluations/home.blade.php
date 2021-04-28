@@ -4,11 +4,9 @@
   <h3>Evaluation Forms {{ session('semester') }} </h3>
 
   <div class='align-right'>
-    @if ($evaluations_enabled)
-      <input type='button' id='enableEvaluation' data-semester='{{ session("semester") }}' data-enabled='1' value='Disable evaluations' class='btn btn-primary' />
-    @else
-      <input type='button' id='enableEvaluation' data-semester='{{ session("semester") }}' data-enabled='0' value='Enable evaluations' class='btn btn-primary' />
-    @endif
+    {{ Form::open(['route' => 'evaluations.enable']) }}
+      <input type='button' id='evaluations_enable' value='@if ($evaluations_enabled) Disable evaluations @else Enable evaluations @endif' class='btn btn-primary' />
+    {{ Form::close() }}
   </div>
 
   <fieldset id='evaluations_home_fieldset'>

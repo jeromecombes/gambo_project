@@ -278,6 +278,9 @@ Route::get('/evaluations/{form}', [EvaluationController::class, 'list'])
     ->where('form', 'local|internship|linguistic|method|program|tutoring|univ')
     ->name('evaluations.list');
 
+Route::post('/evaluations/enable', [EvaluationController::class, 'enable'])
+    ->name('evaluations.enable');
+
 Route::get('/semester', [SemesterController::class, 'index'])
     ->middleware('auth')
     ->middleware('not.admin')
