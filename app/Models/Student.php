@@ -169,7 +169,7 @@ class Student extends MyModel
 
     public function getLastnameAttribute($value)
     {
-        return $this->decrypt($value, false);
+        return html_entity_decode($this->decrypt($value, false), ENT_QUOTES|ENT_IGNORE, 'UTF-8');
     }
 
     public function getLogementAttribute($value)
@@ -394,17 +394,17 @@ class Student extends MyModel
         $semester = session('semester');
 
         if ($user->university == 'VWPP') {
-            $students = self::where('semesters', 'like', "%$semester%")->get($fields);
+            $students = self::where('semesters', 'like', "%$semester%")->get();
         } else {
             $students = self::where('semesters', 'like', "%$semester%")
                 ->where('university', $user->university)
-                ->get($fields);
+                ->get();
         }
 
         if (is_string($fields)) {
             $tab = array();
             foreach ($students as $student) {
-                $tab[] = $student->id;
+                $tab[] = $student->$fields;
             }
             return $tab;
         }

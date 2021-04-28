@@ -24,8 +24,12 @@
                 <li class="ui-state-default ui-corner-top {{ (request()->is('admin/grades')) ? 'ui-state-active' : '' }}"><a href='/admin/grades3-1.php'>Grades</a></li>
             @endif
 
-            @if(!empty(array_intersect(array(15, 22), Auth::user()->access)))
+            @if(in_array(15, Auth::user()->access))
                 <li class="ui-state-default ui-corner-top {{ (request()->is('*evaluations*')) ? 'ui-state-active' : '' }}"><a href='/evaluations/home'>Evaluations</a></li>
+            @endif
+
+            @if(in_array(22, Auth::user()->access))
+                <li class="ui-state-default ui-corner-top {{ (request()->is('*evaluations*')) ? 'ui-state-active' : '' }}"><a href='/evaluations/who'>Evaluations</a></li>
             @endif
 
             @if(in_array(3, Auth::user()->access))

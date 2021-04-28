@@ -169,6 +169,13 @@ class UserController extends Controller
      */
     public function update(UserRequest $request)
     {
+        $access = $request->access;
+        if (in_array(15, $access)
+            and in_array(22, $access)) {
+            $key = array_search(22, $access) + 1;
+            array_splice($access, $key, 1);
+        }
+
         $user = User::findOrNew($request->id);
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
@@ -176,7 +183,7 @@ class UserController extends Controller
         $user->university = $request->university;
         $user->language = $request->language;
         $user->alerts = $request->alerts;
-        $user->access = $request->access;
+        $user->access = $access;
         $user->admin = 1;
         if ($request->password) {
             $user->password = $request->password;

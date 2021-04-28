@@ -740,4 +740,17 @@ $(function(){
     });
   });
 
+  // Users can not have simultaneously access 15 and 22 (See who filled evaluations / see evaluations)
+  $('#access15').change(function() {
+    if(this.checked) {
+      $('#access22').attr('checked', false);
+    }
+  });
+
+  $('#access22').change(function() {
+    if(this.checked) {
+      $('#access15').attr('checked', false);
+    }
+  });
+
 });

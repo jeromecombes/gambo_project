@@ -9,6 +9,7 @@ use App\Models\EvaluationEnabled;
 use App\Models\Internship;
 use App\Models\Tutoring;
 use App\Models\RHCourse;
+use App\Models\RHCourseAssignment;
 use App\Models\Student;
 use App\Models\UnivCourse;
 use Illuminate\Http\Request;
@@ -26,9 +27,11 @@ class EvaluationController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('semester');
+        $this->middleware('role:15')->except('who');
 
-        $this->middleware('admin')->only(['home', 'list', 'table']);
+        $this->middleware('admin')->only(['home', 'list', 'table', 'who']);
         $this->middleware('not.admin')->only(['index', 'update']);
+        $this->middleware('role:22')->only('who');
 
         App::setLocale('fr_FR');
     }
@@ -245,10 +248,6 @@ class EvaluationController extends Controller
     {
         $user = auth()->user();
 
-        if (in_array(22, $user->access)) {
-            return redirect('/admin/eval_index3.php');
-        }
-
         $evaluations_enabled = EvaluationEnabled::where('semester', session('semester'))->first();
 
         return view('evaluations.home', compact('evaluations_enabled'));
@@ -403,6 +402,61 @@ class EvaluationController extends Controller
         }
 
         return redirect()->route('evaluations.index')->with('success', 'Your evaluation has been saved. Thanks !');
+    }
+
+    /**
+     * Show who completed evaluations
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function who(Request $request)
+    {
+        // Students
+        $students = Student::findMine();
+        $students_ids = Student::findMine('id');
+
+        // Local courses
+        $local_courses = RHCourseAssignment::where('semester', session('semester'))->get();
+
+        // University courses
+        $univ_courses = UnivCourse::where('semester', session('semester'))->get();
+
+        // Get evaluations
+        $all_evaluations = Evaluation::where('semester', session('semester'))
+            ->whereIn('student', $students_ids)
+            ->groupBy(['form', 'timestamp'])
+            ->get();
+
+        // Count evaluations
+        $evaluations = array();
+
+        foreach ($students as $student) {
+            $local_total = 0;
+            $local = $local_courses->where('student', $student->id)->first();
+            if (!empty($local->writing1)) { $local_total++; }
+            if (!empty($local->writing2)) { $local_total++; }
+            if (!empty($local->writing3)) { $local_total++; }
+            if (!empty($local->seminar1)) { $local_total++; }
+            if (!empty($local->seminar2)) { $local_total++; }
+            if (!empty($local->seminar3)) { $local_total++; }
+
+            $evaluations[] = (object) [
+                'lastname'      => $student->lastname,
+                'firstname'     => $student->firstname,
+                'local_total'   => $local_total,
+                'univ_total'    => $univ_courses->where('student', $student->id)->count(),
+                'program'       => $all_evaluations->where('student', $student->id)->where('form', 'program')->count(),
+                'local'         => $all_evaluations->where('student', $student->id)->where('form', 'local')->count(),
+                'univ'          => $all_evaluations->where('student', $student->id)->where('form', 'univ')->count(),
+                'tutoring'      => $all_evaluations->where('student', $student->id)->where('form', 'tutoring')->count(),
+                'linguistic'    => $all_evaluations->where('student', $student->id)->where('form', 'linguistic')->count(),
+                'method'        => $all_evaluations->where('student', $student->id)->where('form', 'method')->count(),
+                'internship'    => $all_evaluations->where('student', $student->id)->where('form', 'internship')->count(),
+            ];
+        }
+
+        return view('evaluations.who', compact(['evaluations']));
     }
 
 }

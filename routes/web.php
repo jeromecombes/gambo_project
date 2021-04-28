@@ -281,6 +281,9 @@ Route::get('/evaluations/{form}', [EvaluationController::class, 'list'])
 Route::post('/evaluations/enable', [EvaluationController::class, 'enable'])
     ->name('evaluations.enable');
 
+Route::get('/evaluations/who', [EvaluationController::class, 'who'])
+    ->name('evaluations.who');
+
 Route::get('/semester', [SemesterController::class, 'index'])
     ->middleware('auth')
     ->middleware('not.admin')
