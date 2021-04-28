@@ -5,7 +5,7 @@
 
   <div class='align-right'>
     <input type='button' value='All evaluations' class='btn' onclick='location.href="{{ route('evaluations.home') }}";'/>
-    <input type='button' value='Export to Excel' class='btn btn-primary' onclick='location.href="/admin/eval_export.php";'/>
+    <input type='button' value='Export to Excel' class='btn btn-primary' onclick='$(".buttons-excel").click();'/>
   </div>
 
   <fieldset>
