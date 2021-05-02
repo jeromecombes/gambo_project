@@ -22,8 +22,6 @@ class CourseController extends Controller
         $this->middleware('auth');
         $this->middleware('semester');
         $this->middleware('role:16|23');
-        $this->middleware('old.session');
-        $this->middleware('old.student')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('this.student')->only('index');
 

@@ -11,8 +11,6 @@ use Tests\TestCase;
         $this->middleware('semester');
 
         // Student form
-        $this->middleware('old.session')->only('student_form');
-        $this->middleware('old.student')->only('student_form');
         $this->middleware('student.list')->only('student_form');
         $this->middleware('this.student')->only('student_form');
         $this->middleware('role:2|7')->only('student_form');

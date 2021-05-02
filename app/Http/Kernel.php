@@ -47,9 +47,6 @@ class Kernel extends HttpKernel
         'admin' => [
             'auth',
             'is.admin',
-            'old.semester',
-            'old.session',
-            'old.student',
             'student.list',
         ],
     ];
@@ -73,9 +70,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'is.admin' => \App\Http\Middleware\IsAdmin::class,
         'not.admin' => \App\Http\Middleware\NotAdmin::class,
-        'old.session' => \App\Http\Middleware\OldSession::class,
-        'old.semester' => \App\Http\Middleware\OldSemester::class,
-        'old.student' => \App\Http\Middleware\OldStudent::class,
         'semester' => \App\Http\Middleware\Semester::class,
         'student.list' => \App\Http\Middleware\StudentList::class,
         'this.student' => \App\Http\Middleware\ThisStudent::class,

@@ -29,7 +29,6 @@ use App\Mail\Cellphone_changed;
 use App\Mail\Student_create;
 use App\Mail\Student_delete;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session as LaravelSession;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -47,8 +46,6 @@ class StudentController extends Controller
         $this->middleware('semester');
 
         // Student form
-        $this->middleware('old.session')->only('student_form');
-        $this->middleware('old.student')->only('student_form');
         $this->middleware('student.list')->only('student_form');
         $this->middleware('role:1|4|5')->only('student_form');
 
@@ -66,11 +63,9 @@ class StudentController extends Controller
      */
     public function admin_index(Request $request)
     {
-        LaravelSession::forget('student');
-        // Clear old session
-        $_SESSION['vwpp']['student'] = null;
-
         $user = auth()->user();
+
+        $request->session()->put('student', null);
 
         // Semester
         $semester = session('semester');
@@ -146,6 +141,13 @@ class StudentController extends Controller
      */
     public function student_form(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->admin and $request->student) {
+            $request->session()->put('student', $request->student);
+            $request->session()->put('student_name', Student::find($request->student)->full_name);
+        }
+
         $edit = $request->edit;
 
         $id = session('student');

@@ -11,8 +11,6 @@ use Tests\TestCase;
         $this->middleware('semester');
 
         // Student form
-        $this->middleware('old.session')->only('student_form');
-        $this->middleware('old.student')->only('student_form');
         $this->middleware('student.list')->only('student_form');
         $this->middleware('this.student')->only('student_form');
         $this->middleware('role:2|7')->only('student_form');
@@ -51,7 +49,7 @@ class HousingTest extends MyTestCase
                 'student' => $student->id,
             ])->get('/housing');
 
-        $response->assertStatus(500);
+        $response->assertStatus(200);
     }
 
     public function test_housing_admin_session()
@@ -65,7 +63,7 @@ class HousingTest extends MyTestCase
                 'student' => $student->id,
             ])->get('/housing');
 
-        $response->assertStatus(500);
+        $response->assertStatus(200);
     }
 
     public function test_housing_with_id_student_session()
@@ -79,7 +77,7 @@ class HousingTest extends MyTestCase
                 'student' => $student->id,
             ])->get('/housing/' . $student->id);
 
-        $response->assertStatus(500);
+        $response->assertStatus(200);
     }
 
     public function test_housing_with_different_id_student_session()
@@ -107,7 +105,7 @@ class HousingTest extends MyTestCase
                 'student' => $student->id,
             ])->get('/housing/' . $student->id);
 
-        $response->assertStatus(500);
+        $response->assertStatus(200);
     }
 
     public function test_housing_update_no_session()

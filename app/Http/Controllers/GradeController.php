@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\App;
 
 class GradeController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         App::setLocale('fr_FR');
