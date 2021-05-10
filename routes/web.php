@@ -176,32 +176,12 @@ Route::post('/tutoring/update', [TutoringController::class, 'update'])
     ->middleware('role:16')
     ->name('courses.tutoring.update');
 
-Route::get('/grades', [GradeController::class, 'edit'])
-    ->middleware('admin')
-    ->middleware('student.list')
-    ->middleware('semester')
-    ->middleware('role:18|19|20')
-    ->name('grades.show');
-
-Route::get('/grades/{student}', [GradeController::class, 'edit'])
+Route::get('/grades/{student?}/{edit?}', [GradeController::class, 'edit'])
     ->where('student', '\d+')
-    ->middleware('admin')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:18|19|20')
-    ->name('grades.edit');
-
-Route::get('/grades/{edit}', [GradeController::class, 'edit'])
     ->where('edit', 'edit')
-    ->middleware('admin')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:18|19')
     ->name('grades.edit');
 
 Route::post('/grades/update', [GradeController::class, 'update'])
-    ->middleware('admin')
-    ->middleware('role:18|19')
     ->name('grades.update');
 
 Route::get('/internship', [InternshipController::class, 'edit'])

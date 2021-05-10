@@ -185,10 +185,10 @@
   @if ($fr_rw or $us_rw)
     <div style='text-align:right; margin-bottom:20px;'>
       @if ($edit)
-        <input type='button' value='Cancel' onclick='location.href="{{ route('grades.show') }}";' class='btn' />
+        <input type='button' value='Cancel' onclick='location.href="{{ route('grades.edit') }}";' class='btn' />
         <input type='submit' value='Submit' class='btn btn-primary' />
       @else
-        <input type='button' value='Change' onclick='location.href="{{ route('grades.edit', 'edit') }}";' class='btn btn-primary' />
+        <input type='button' value='Change' onclick='location.href="{{ route('grades.edit', [session('student'), 'edit']) }}";' class='btn btn-primary' />
       @endif
     </div>
   @endif

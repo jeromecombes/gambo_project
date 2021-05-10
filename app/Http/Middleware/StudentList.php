@@ -22,6 +22,11 @@ class StudentList
             return $next($request);
         }
 
+        if ($request->student) {
+            $request->session()->put('student', $request->student);
+            $request->session()->put('student_name', Student::find($request->student)->full_name);
+        }
+
         // Student list
         if (session('students')) {
             $students = session('students');

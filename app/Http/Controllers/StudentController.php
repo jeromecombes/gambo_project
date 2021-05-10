@@ -143,11 +143,6 @@ class StudentController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->admin and $request->student) {
-            $request->session()->put('student', $request->student);
-            $request->session()->put('student_name', Student::find($request->student)->full_name);
-        }
-
         $edit = $request->edit;
 
         $id = session('student');

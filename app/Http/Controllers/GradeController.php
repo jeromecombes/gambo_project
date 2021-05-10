@@ -17,6 +17,13 @@ class GradeController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('admin');
+        $this->middleware('semester');
+        $this->middleware('role:18|19|20');
+        $this->middleware('student.list')->only('edit');
+        $this->middleware('role:18|19')->only('update');
+
         App::setLocale('fr_FR');
     }
 
@@ -91,7 +98,7 @@ class GradeController extends Controller
         $user = auth()->user();
 
         // Get student courses
-        $courses = $this->courses();
+        $courses = CourseHelper::get();
 
         foreach ($courses as $key => $value) {
             foreach ($value as $course) {
@@ -116,6 +123,6 @@ class GradeController extends Controller
             }
         }
 
-        return redirect()->route('grades.show')->with('success', 'Mise à jour réussie');
+        return redirect()->route('grades.edit')->with('success', 'Mise à jour réussie');
     }
 }

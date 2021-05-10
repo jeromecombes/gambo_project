@@ -11,6 +11,7 @@ require_once("menu.php");
 
 access_ctrl("18,19,20");
 
+$_SESSION['vwpp']['semester'] = $request->session()->get('semester');
 
 //	Reid Hall Courses
 $r=new reidhall();
@@ -21,7 +22,6 @@ $u=new univ4();
 $u->fetchAllStudents(true);
 $u->elements=array_map("replace_name",$u->elements);
 $nbUniv=count($u->elements);
-
 
 //	Reid Hall Courses
 echo <<<EOD
