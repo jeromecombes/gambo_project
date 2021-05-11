@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CourseHelper;
 use App\Models\Grade;
+use App\Models\RHCourse;
+use App\Models\Student;
+use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -28,7 +31,7 @@ class GradeController extends Controller
     }
 
     /**
-     * Edit an internship
+     * Edit
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -88,7 +91,7 @@ class GradeController extends Controller
     }
 
     /**
-     * Add or update a tutoring
+     * Add or update
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -125,4 +128,28 @@ class GradeController extends Controller
 
         return redirect()->route('grades.edit')->with('success', 'Mise à jour réussie');
     }
+
+    /**
+     * Admin home
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function home(Request $request)
+    {
+
+        $students = Student::findMine();
+        $student_list = $students->pluck('id')->toArray();
+
+        $local = RHCourse::where('semester', session('semester'))->get();
+
+        $univ = UnivCourse::where('semester', session('semester'))
+            ->where('note', 1)
+            ->whereIn('student', $student_list)
+            ->get();
+
+        // View
+        return view('grades.home', compact(['local', 'students', 'univ']));
+    }
+
 }

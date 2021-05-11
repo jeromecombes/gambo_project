@@ -21,7 +21,7 @@
             @endif
 
             @if(!empty(array_intersect(array(18, 19, 20), Auth::user()->access)))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('admin/grades')) ? 'ui-state-active' : '' }}"><a href='/admin/grades3-1.php'>Grades</a></li>
+                <li class="ui-state-default ui-corner-top {{ (request()->is('*grades*')) ? 'ui-state-active' : '' }}"><a href='{{ asset('grades/home') }}'>Grades</a></li>
             @endif
 
             @if(in_array(15, Auth::user()->access))

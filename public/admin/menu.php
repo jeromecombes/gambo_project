@@ -17,6 +17,8 @@ $response = tap($kernel->handle(
 
 error_reporting(0);
 
+$_SESSION['vwpp']['semestre'] = session('semester');
+
 $semestre = filter_input(INPUT_GET, 'semestre', FILTER_SANITIZE_STRING);
 $semester = filter_input(INPUT_POST, 'semester', FILTER_SANITIZE_STRING);
 
@@ -62,7 +64,7 @@ if($semester){
     echo "<li id='li1' class='ui-state-default ui-corner-top'><a href='/courses/home'>Courses</a></li>\n";
 
   if(in_array(18,$user->access) or in_array(19,$user->access) or in_array(20,$user->access))
-    echo "<li id='li9' class='ui-state-default ui-corner-top'><a href='grades3-1.php'>Grades</a></li>\n";
+    echo "<li id='li9' class='ui-state-default ui-corner-top'><a href='/grades/home'>Grades</a></li>\n";
 
   if(in_array(15,$user->access) or in_array(22,$user->access))
     echo "<li id='li4' class='ui-state-default ui-corner-top'><a href='/evaluations/home'>Evaluations</a></li>\n";

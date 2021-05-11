@@ -8,6 +8,8 @@ require_once("menu.php");
 
 access_ctrl("18,19,20");
 
+$_SESSION['vwpp']['semester'] = session('semester');
+
 $_SESSION['vwpp']['course_id']=isset($_GET['id'])?$_GET['id']:$_SESSION['vwpp']['course_id'];
 $course_id=$_SESSION['vwpp']['course_id'];
 
@@ -163,11 +165,11 @@ EOD;
     echo <<<EOD
     <div style='text-align:right;margin:20px 0 0 0;'>
     <div id='form_1_$j' >
-    <a href='grades3-1.php' class='myUI-button-right' >Back to list</a>
+    <a href='/grades/home' class='myUI-button-right' >Back to list</a>
     <input type='button' onclick='displayForm("form",1);' value='Edit' class='myUI-button-right' />
     </div>
     <div id='form_1_done' style='display:none'>
-    <a href='grades3-1.php' class='myUI-button-right' >Back to list</a>
+    <a href='/grades/home' class='myUI-button-right' >Back to list</a>
     <input type='button' onclick='location.href="grades3-2.php"'; value='Cancel' class='myUI-button-right' />
     <input type='submit' value='Submit' id='submit' class='myUI-button-right' />
     </div>
@@ -177,7 +179,7 @@ EOD;
   }
   else{
     echo "<div style='text-align:right;margin:20px 0 0 0;'>\n";
-    echo "<a href='grades3-1.php' class='myUI-button-right' >Back to list</a>\n";
+    echo "<a href='/grades/home' class='myUI-button-right' >Back to list</a>\n";
     echo "</div>\n";
   }
 }

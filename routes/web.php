@@ -184,6 +184,9 @@ Route::get('/grades/{student?}/{edit?}', [GradeController::class, 'edit'])
 Route::post('/grades/update', [GradeController::class, 'update'])
     ->name('grades.update');
 
+Route::get('/grades/home', [GradeController::class, 'home'])
+    ->name('grades.home');
+
 Route::get('/internship', [InternshipController::class, 'edit'])
     ->middleware('auth')
     ->middleware('semester')
