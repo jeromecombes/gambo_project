@@ -42,7 +42,6 @@
             <td>
               @if ($edit and $us_rw)
                 <select name='local_us1_{{ $course->id }}'>
-                  <option value=''></option>
                   @foreach ($grades_tab as $grade)
                     <option value='{{ $grade }}' @if ($grades['local'][$course->id]->grade1 == $grade) selected='selected' @endif >{{ $grade }}</option>
                   @endforeach
@@ -55,7 +54,6 @@
             <td>
               @if ($edit and $us_rw)
                 <select name='local_us2_{{ $course->id }}'>
-                  <option value=''></option>
                   @foreach ($grades_tab as $grade)
                     <option value='{{ $grade }}' @if ($grades['local'][$course->id]->grade2 == $grade) selected='selected' @endif>{{ $grade }}</option>
                   @endforeach
@@ -68,7 +66,6 @@
             <td>
               @if ($edit and $us_rw)
                 <select name='local_us_{{ $course->id }}'>
-                  <option value=''></option>
                   @foreach ($grades_tab as $grade)
                     <option value='{{ $grade }}' @if ($grades['local'][$course->id]->grade == $grade) selected='selected' @endif >{{ $grade }}</option>
                   @endforeach
@@ -129,7 +126,6 @@
             <td>
               @if ($edit and $us_rw)
                 <select name='univ_us1_{{ $course->id }}'>
-                  <option value=''></option>
                   @foreach ($grades_tab as $grade)
                     <option value='{{ $grade }}' @if ($grades['univ'][$course->id]->grade1 == $grade) selected='selected' @endif >{{ $grade }}</option>
                   @endforeach
@@ -142,7 +138,6 @@
             <td>
               @if ($edit and $us_rw)
                 <select name='univ_us2_{{ $course->id }}'>
-                  <option value=''></option>
                   @foreach ($grades_tab as $grade)
                     <option value='{{ $grade }}' @if ($grades['univ'][$course->id]->grade2 == $grade) selected='selected' @endif >{{ $grade }}</option>
                   @endforeach
@@ -155,7 +150,6 @@
             <td>
               @if ($edit and $us_rw)
                 <select name='univ_us_{{ $course->id }}'>
-                  <option value=''></option>
                   @foreach ($grades_tab as $grade)
                     <option value='{{ $grade }}' @if ($grades['univ'][$course->id]->grade == $grade) selected='selected' @endif >{{ $grade }}</option>
                   @endforeach

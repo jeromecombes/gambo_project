@@ -187,6 +187,15 @@ Route::post('/grades/update', [GradeController::class, 'update'])
 Route::get('/grades/home', [GradeController::class, 'home'])
     ->name('grades.home');
 
+Route::get('/grades/{univ}/{id}/{edit?}', [GradeController::class, 'list'])
+    ->where('univ', 'local|univ')
+    ->where('id', '\d+')
+    ->where('edit', 'edit')
+    ->name('grades.list');
+
+Route::post('/grades/list/update', [GradeController::class, 'list_update'])
+    ->name('grades.list_update');
+
 Route::get('/internship', [InternshipController::class, 'edit'])
     ->middleware('auth')
     ->middleware('semester')

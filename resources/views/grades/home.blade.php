@@ -1,7 +1,6 @@
 @extends('layouts.myApp')
 @section('content')
 
-
 <h3>Grades, {{ session('semester') }}</h3>
   <div style='text-align:right;'>
     <input type='button' value='Export to Excel' onclick='location.href="/admin/grades3_export.php";' class='btn btn-primary' />
@@ -21,7 +20,7 @@
     <tbody>
       @foreach ($local as $course)
         <tr>
-          <td><a href='/admin/grades3-2.php?univ=VWPP&id={{ $course->id }}'><img src='../img/edit.png' alt='Edit' border='0'/></a></td>
+          <td><a href='{{ route("grades.list", ["local", $course->id]) }}'><img src='../img/edit.png' alt='Edit' border='0'/></a></td>
           <td>{{ $course->code }}</td>
           <td>{{ $course->name }}</td>
           <td>{{ $course->professor }}</td>
@@ -47,7 +46,7 @@
     <tbody>
       @foreach ($univ as $course)
         <tr>
-          <td><a href='/admin/grades3-2.php?univ=univ&id={{ $course->id }}'><img src='../img/edit.png' alt='Edit' border='0'/></a></td>
+          <td><a href='{{ route("grades.list", ["univ", $course->id]) }}'><img src='../img/edit.png' alt='Edit' border='0'/></a></td>
           <td>
             @if ($course->linkedTo)
               &rdsh;
@@ -63,6 +62,5 @@
       @endforeach
     </tbody>
   </table>
-
 
 @endsection
