@@ -11,7 +11,7 @@
       @endif
     </div>
 
-    {{ Form::open(array('name' => 'form', 'url' => '/admin/housing-email.php')) }}
+    {{ Form::open(array('name' => 'form', 'route' => 'hosts.email')) }}
 
         <table class='datatable'>
 
@@ -35,7 +35,7 @@
             @foreach($hosts as $host)
                 <tr>
                     <td style='white-space: nowrap;'>
-                        <input type='checkbox' name='housing[]' value='{{ $host->id }}' onclick='setTimeout("select_action(\"form\")",5);'/>
+                        <input type='checkbox' name='hosts[]' value='{{ $host->id }}' onclick='setTimeout("select_action("form")",5);'/>
                         <a href='/host/{{ $host->id }}'>
                             <img src='img/edit.png' alt='Edit' />
                         </a>
@@ -63,14 +63,14 @@
 
         <p>
             Pour la sélection :
-            <select id='action' onchange='select_action(\"form\");' style='width:250px;' class='ui-widget-content ui-corner-all'>
+            <select id='action' onchange='select_action("form");' style='width:250px;' class='ui-widget-content ui-corner-all'>
                 <option value=''>&nbsp;</option>
                 <option value='Email_Housing'>Envoyer un email (Logiciel)</option>
                 <option value='Email2_Housing'>Envoyer un email (Web Browser)</option>
                 <option value='Excel_Housing'>Exporter en Excel</option>
             </select>
 
-            <input type='button' id='submit_button' value='Valider' disabled='disabled' onclick='submit_action(\"form2\",\"form\");' class='myUI-button'/>
+            <input type='button' id='submit_button' value='Valider' disabled='disabled' onclick='submit_action("form2","form");' class='myUI-button'/>
         </p>
 
     {{ Form::close() }}

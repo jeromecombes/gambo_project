@@ -38,17 +38,17 @@ class CreateSession
         // Admin only
         if ($event->user->admin) {
             $_SESSION['vwpp']['access'] = $event->user->access;
-            $_SESSION['vwpp']['login_name'] = $event->user->displayName;
+            $_SESSION['vwpp']['login_name'] = $event->user->display_name;
             $_SESSION['vwpp']['login_univ'] = $event->user->university;
 
-            Session::put('login_name', $event->user->displayName);
+            Session::put('login_name', $event->user->display_name);
 
         // Students only
         } else {
 
             foreach (Student::all() as $student) {
                 if ($student->email == $event->user->email) {
-                    Session::put('login_name', $student->firstname . ' ' . $student->lastname);
+                    Session::put('login_name', $student->display_name);
                     Session::put('semesters', $student->semesters);
                     Session::put('student', $student->id);
 

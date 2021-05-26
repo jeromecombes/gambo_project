@@ -341,6 +341,12 @@ Route::get('/housing/requests', [HousingController::class, 'requests'])
 Route::get('/hosts', [HostController::class, 'index'])
     ->name('hosts.index');
 
+Route::post('/hosts/email', [HostController::class, 'email'])
+    ->name('hosts.email');
+
+Route::post('/hosts/sendmail', [HostController::class, 'sendmail'])
+    ->name('hosts.sendmail');
+
 Route::get('/host/{id}/{edit?}', [HostController::class, 'edit'])
     ->where('id', '\d+')
     ->where('edit', 'edit')

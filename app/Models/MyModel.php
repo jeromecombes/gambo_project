@@ -96,6 +96,15 @@ class MyModel extends Model
         return null;
     }
 
+    public function getDisplayNameAttribute($value)
+    {
+        if ($this->hasAttribute('firstname') and $this->hasAttribute('lastname')) {
+            return $this->firstname . ' ' . $this->lastname;
+        }
+
+        return null;
+    }
+
     public function getResponseAttribute($value)
     {
         return $this->hasAttribute('response') ? html_entity_decode($this->decrypt($value, $this->student),ENT_QUOTES|ENT_IGNORE, 'UTF-8') : null;

@@ -482,7 +482,7 @@ function submit_action(form,form2){		// a finir
 	break;
 
     case "Email2_Housing" :
-	  document.forms[form2].action="/admin/housing-email.php";
+	  document.forms[form2].action="/hosts/email";
 	  document.forms[form2].submit();	break;
 
 

@@ -26,9 +26,9 @@ use App\Helpers\CountryHelper;
 use App\Helpers\StateHelper;
 use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
+use App\Mail\Sendmail;
 use App\Mail\Student_create;
 use App\Mail\Student_delete;
-use App\Mail\Student_sendmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -177,7 +177,7 @@ class StudentController extends Controller
 
         foreach($students as $student) {
             try {
-                Mail::to($student->email)->send(new Student_sendmail($data));
+                Mail::to($student->email)->send(new Sendmail($data));
             } catch(\Exception $e) {
                 report($e);
             }

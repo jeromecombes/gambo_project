@@ -6,7 +6,9 @@ use App\Models\Host;
 use App\Models\HostAvailable;
 use App\Models\HousingAssignment;
 use App\Models\Student;
+use App\Mail\Sendmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HostController extends Controller
 {
@@ -157,4 +159,67 @@ class HostController extends Controller
 
         return redirect()->route('hosts.index')->withSuccess('Host was deleted successfully');
     }
+
+    /**
+     * Display the form for sending emails to hosts
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function email(Request $request)
+    {
+        $host_ids = join(',', $request->hosts);
+
+        $hosts = array();
+        foreach (Host::whereIn('id', $request->hosts)->get() as $host) {
+            $hosts[] = $host->display_name;
+        }
+
+        sort($hosts);
+        $hosts = join('; ', $hosts);
+
+        // View
+        return view('hosts.email', compact('host_ids', 'hosts'));
+
+    }
+
+    /**
+     * Send email to hosts
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sendmail(Request $request)
+    {
+
+        $ids = explode(',', $request->hosts);
+
+        $hosts = Host::whereIn('id', $ids)->get();
+
+        $data = (object) array(
+            'subject' => $request->subject,
+            'message' => $request->message,
+        );
+
+        foreach($hosts as $host) {
+            if ($host->email) {
+                try {
+                    Mail::to($host->email)->send(new Sendmail($data));
+                } catch(\Exception $e) {
+                    report($e);
+                }
+            }
+
+            if ($host->email2) {
+                try {
+                    Mail::to($host->email2)->send(new Sendmail($data));
+                } catch(\Exception $e) {
+                    report($e);
+                }
+            }
+        }
+
+        return redirect("/hosts")->with('success', 'Le mail a été envoyé avec succès');
+    }
+
 }
