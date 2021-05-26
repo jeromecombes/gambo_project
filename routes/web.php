@@ -287,6 +287,14 @@ Route::get('/students', [StudentController::class, 'admin_index'])
 Route::post('/students/delete', [StudentController::class, 'destroy'])
     ->name('student.destroy');
 
+// Admin students e-mail
+Route::post('/students/email', [StudentController::class, 'email'])
+    ->name('student.email');
+
+// Admin students e-mail
+Route::post('/students/sendmail', [StudentController::class, 'sendmail'])
+    ->name('student.sendmail');
+
 // Documents
 Route::get('/documents', [DocumentController::class, 'index'])
     ->middleware('auth')

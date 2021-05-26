@@ -28,6 +28,7 @@ use App\Http\Controllers\DocumentController;
 use App\Mail\Cellphone_changed;
 use App\Mail\Student_create;
 use App\Mail\Student_delete;
+use App\Mail\Student_sendmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -132,6 +133,59 @@ class StudentController extends Controller
         // View
         return view('admin.students', compact('students', 'options', 'vassar', 'wesleyan', 'other'));
     }
+
+    /**
+     * Display the form for sending emails to students
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function email(Request $request)
+    {
+        $student_ids = join(',', $request->students);
+
+        $students = array();
+        foreach (Student::findMine()->whereIn('id', $request->students) as $student) {
+            $students[] = $student->display_name;
+        }
+
+        sort($students);
+        $students = join('; ', $students);
+
+        // View
+        return view('students.email', compact('student_ids', 'students'));
+
+    }
+
+    /**
+     * Send email to students
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function sendmail(Request $request)
+    {
+
+        $ids = explode(',', $request->students);
+
+        $students = Student::findMine()->whereIn('id', $ids);
+
+        $data = (object) array(
+            'subject' => $request->subject,
+            'message' => $request->message,
+        );
+
+        foreach($students as $student) {
+            try {
+                Mail::to($student->email)->send(new Student_sendmail($data));
+            } catch(\Exception $e) {
+                report($e);
+            }
+        }
+
+        return redirect("/students")->with('success', 'Le mail a été envoyé avec succès');
+    }
+
 
     /**
      * Display general information of a student
