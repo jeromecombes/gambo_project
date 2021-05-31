@@ -13,6 +13,8 @@ use App\Models\Tutoring;
 use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Exports\UnivCoursesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -25,7 +27,7 @@ class CourseController extends Controller
         $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
-        $this->middleware('admin')->only(['home', 'local_edit', 'local_students', 'reidhall_assignment']);
+        $this->middleware('admin')->only(['home', 'local_edit', 'local_students', 'reidhall_assignment', 'univ_export']);
         $this->middleware('role:16')->only(['local_edit', 'univ_destroy', 'univ_update']);
 
         App::setLocale('fr_FR');
@@ -466,6 +468,19 @@ class CourseController extends Controller
 
         // View
         return view('courses.university_form', $params);
+    }
+
+    /**
+     * Export university courses
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_export(Request $request)
+    {
+        $filename = 'univ_courses_' .session('semester') . '.xlsx';
+
+        return Excel::download(new UnivCoursesExport, $filename);
     }
 
     /**

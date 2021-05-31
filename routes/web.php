@@ -162,6 +162,9 @@ Route::post('/courses/univ', [CourseController::class, 'univ_update'])
 Route::delete('/courses/univ', [CourseController::class, 'univ_destroy'])
     ->name('courses.univ.delete');
 
+Route::get('/courses/univ/export', [CourseController::class, 'univ_export'])
+    ->name('courses.univ.export');
+
 Route::get('/courses/home', [CourseController::class, 'home'])
     ->name('courses.home');
 

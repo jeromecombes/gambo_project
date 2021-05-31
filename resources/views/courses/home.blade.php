@@ -73,7 +73,7 @@
             @if ($course->linkedTo)
               &rdsh;
             @endif
-            {{ $course->institution2 }}
+            {{ $course->institution }}
           </td>
           <td>{{ $course->discipline }}</td>
           <td>{{ $course->code }}</td>
@@ -86,7 +86,7 @@
   </table>
 
   <div style='margin:20px 0; text-align:right;' >
-    <input type='button' onclick='location.href="/admin/courses4_excel.php";' value='Export to excel' class='btn' />
+    <input type='button' onclick='location.href="/courses/univ/export";' value='Export to excel' class='btn btn-primary' />
   </div>
 
 @endsection
