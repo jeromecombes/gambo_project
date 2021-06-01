@@ -36,8 +36,8 @@
   </table>
 
   <div style='margin:30px 0; text-align:right;'>
-    <input type='button' onclick='location.href="/courses/export";' value='Export Final Reg. to Excel' class='btn' />
-    <input type='button' onclick='location.href="/admin/courses_excel_vwpp2.php";' value='Export Students choices to Excel' class='btn' />
+    <input type='button' onclick='location.href="{{ route('courses.export') }}";' value='Export Final Reg. to Excel' class='btn' />
+    <input type='button' onclick='location.href="{{ route('courses.choices.export') }}";' value='Export Students choices to Excel' class='btn' />
 
     @if (in_array(16, Auth::user()->access))
       <input type='button' onclick='location.href="{{ route('course.edit') }}";' value='Add a VWPP Course' class='btn btn-primary' />
@@ -86,7 +86,7 @@
   </table>
 
   <div style='margin:20px 0; text-align:right;' >
-    <input type='button' onclick='location.href="/courses/univ/export";' value='Export to excel' class='btn btn-primary' />
+    <input type='button' onclick='location.href="{{ route('courses.univ.export') }}";' value='Export to excel' class='btn btn-primary' />
   </div>
 
 @endsection
