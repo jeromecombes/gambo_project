@@ -13,6 +13,8 @@ use App\Models\Tutoring;
 use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Exports\ChoicesExport;
+use App\Exports\CoursesExport;
 use App\Exports\UnivCoursesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -27,10 +29,36 @@ class CourseController extends Controller
         $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
-        $this->middleware('admin')->only(['home', 'local_edit', 'local_students', 'reidhall_assignment', 'univ_export']);
+        $this->middleware('admin')->only(['choices_export', 'export', 'home', 'local_edit', 'local_students', 'reidhall_assignment', 'univ_export']);
         $this->middleware('role:16')->only(['local_edit', 'univ_destroy', 'univ_update']);
 
         App::setLocale('fr_FR');
+    }
+
+    /**
+     * Export courses choices
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function choices_export(Request $request)
+    {
+        $filename = 'choices_' .session('semester') . '.xlsx';
+
+        return Excel::download(new ChoicesExport, $filename);
+    }
+
+    /**
+     * Export courses (final reg.)
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'courses_' .session('semester') . '.xlsx';
+
+        return Excel::download(new CoursesExport, $filename);
     }
 
     /**
@@ -286,6 +314,7 @@ class CourseController extends Controller
                 ->orWhere('writing3', $id)
                 ->orWhere('seminar1', $id)
                 ->orWhere('seminar2', $id)
+                ->orWhere('seminar3', $id)
                 ->first();
 
             if (empty($assignment)) {
@@ -410,6 +439,7 @@ class CourseController extends Controller
             ->orWhere('writing3', $id)
             ->orWhere('seminar1', $id)
             ->orWhere('seminar2', $id)
+            ->orWhere('seminar3', $id)
             ->get();
 
         // View

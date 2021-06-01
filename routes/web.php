@@ -150,6 +150,12 @@ Route::get('/course/{id}/students', [CourseController::class, 'local_students'])
     ->where('id', '\d+')
     ->name('course.students');
 
+Route::get('/courses/export', [CourseController::class, 'export'])
+    ->name('courses.export');
+
+Route::get('/courses/choices/export', [CourseController::class, 'choices_export'])
+    ->name('courses.choices.export');
+
 // University courses
 Route::get('/course/univ/{id?}/{edit?}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')

@@ -36,7 +36,7 @@
   </table>
 
   <div style='margin:30px 0; text-align:right;'>
-    <input type='button' onclick='location.href="/admin/courses_excel_vwpp.php";' value='Export Final Reg. to Excel' class='btn' />
+    <input type='button' onclick='location.href="/courses/export";' value='Export Final Reg. to Excel' class='btn' />
     <input type='button' onclick='location.href="/admin/courses_excel_vwpp2.php";' value='Export Students choices to Excel' class='btn' />
 
     @if (in_array(16, Auth::user()->access))
