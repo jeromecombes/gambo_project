@@ -3,7 +3,7 @@
 
 <h3>Grades, {{ session('semester') }}</h3>
   <div style='text-align:right;'>
-    <input type='button' value='Export to Excel' onclick='location.href="/admin/grades3_export.php";' class='btn btn-primary' />
+    <input type='button' value='Export to Excel' onclick='location.href="{{ route("grades.export") }}";' class='btn btn-primary' />
   </div>
 
   <h4>VWPP Courses</h4>

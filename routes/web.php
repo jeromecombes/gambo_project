@@ -205,6 +205,9 @@ Route::get('/grades/{univ}/{id}/{edit?}', [GradeController::class, 'list'])
 Route::post('/grades/list/update', [GradeController::class, 'list_update'])
     ->name('grades.list_update');
 
+Route::get('/grades/export', [GradeController::class, 'export'])
+    ->name('grades.export');
+
 Route::get('/internship', [InternshipController::class, 'edit'])
     ->middleware('auth')
     ->middleware('semester')

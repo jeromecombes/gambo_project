@@ -10,6 +10,8 @@ use App\Models\Student;
 use App\Models\UnivCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Exports\GradesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GradeController extends Controller
 {
@@ -91,6 +93,19 @@ class GradeController extends Controller
 
         // View
         return view('grades.edit', $params);
+    }
+
+    /**
+     * Export grades
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'grades_' .session('semester') . '.xlsx';
+
+        return Excel::download(new GradesExport, $filename);
     }
 
     /**
