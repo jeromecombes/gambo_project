@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__."/class.mails.inc";
-require_once __DIR__."/class.users.inc";
 require_once __DIR__."/class.univ_reg.inc";
 
 class student{
@@ -228,48 +227,6 @@ class student{
     $db=new db();
     $db->delete("students","id=$id");
 
-  }
-
-
-  public function delete2($ids){	// $ids = array
-    //	Send notification by e-mail
-    $error=0;
-    $msg="delete_success";
-
-    $this->fetchAll();
-    foreach($ids as $id){
-      $std=$this->elements[$id];
-      $studentsList[]="<li>{$std['lastname']} {$std['firstname']}, {$std['university2']} {$std['semestersJoin']}</li>\n";
-    }
-
-    $u=new user();
-    $u->fetchUsersAlerts();
-    $users=$u->elements;
-
-    if(!empty($users)){
-      $message="Les &eacute;tudiants suivants ont &eacute;t&eacute; supprim&eacute;s de la base de donn&eacute;es VWPP : <br/><ul>\n";
-      $message.=join("\n",$studentsList);
-      $message.="</ul><br/>Universit&eacute; : {$_SESSION['vwpp']['login_univ']}";
-      $message.="<br/>Auteur : {$_SESSION['vwpp']['login_name']}";
-      $message.="<br/><br/>The VWPP Database";
-
-      $mail=new vwppMail();
-      foreach($users as $elem){
-	$mail->addAddress($elem);
-      }
-      $mail->subject="VWPP Database, étudiants supprimés";
-      $mail->body = $message;
-      $mail->send();
-      if($mail->error){
-	$error=1;
-	$msg="send_emails_error";
-      }
-    }
-
-    //	Delete students
-    foreach($ids as $id){
-      $this->delete($id);
-    }
   }
 
 }

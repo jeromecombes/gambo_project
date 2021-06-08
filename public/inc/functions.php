@@ -1,8 +1,5 @@
 <?php
 
-require_once __DIR__."/class.student.inc";
-require_once __DIR__."/class.users.inc";
-
 //	Access control
 function access_ctrl($ids){
   $ids=explode(",",$ids);
