@@ -430,6 +430,7 @@ function submit_action(form,form2){		// a finir
     case "Delete" :
         if(confirm("Do you really want to delete selected items ?")) {
             document.forms[form2].action="/students/delete";
+            document.forms[form2].method="post";
             document.forms[form2].submit();
         }
         break;
@@ -437,6 +438,7 @@ function submit_action(form,form2){		// a finir
     case "CreatePassword" :
 	if(confirm("The password of selected students will be changed.\nContinue ?")){
 	  document.forms[form2].action="/admin/students-password.php";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();
 	}
 	break;
@@ -457,11 +459,13 @@ function submit_action(form,form2){		// a finir
 
     case "Email2" :
 	  document.forms[form2].action="/students/email";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
 
     case "Excel" :
 	  document.forms[form2].action="/admin/students-excel.php";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "Email_Housing" :
@@ -483,55 +487,68 @@ function submit_action(form,form2){		// a finir
 
     case "Email2_Housing" :
 	  document.forms[form2].action="/hosts/email";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
 
     case "Excel_Housing" :
 	  document.forms[form2].action="/admin/housing-excel.php";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "closeHousing" :
 	  document.forms[form2].action="/housing/lock";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "openHousing" :
 	  document.forms[form2].action="/housing/unlock";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "lockVWPP" :
 	  document.forms[form2].action="/admin/RHCourses/lock";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "unlockVWPP" :
 	  document.forms[form2].action="/admin/RHCourses/unlock";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "publishVWPP" :
 	  document.forms[form2].action="/admin/RHCourses/show";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "hideVWPP" :
 	  document.forms[form2].action="/admin/RHCourses/hide";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "publishUnivReg" :
 	  document.forms[form2].action="/admin/UnivReg/show";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "hideUnivReg" :
 	  document.forms[form2].action="/admin/UnivReg/hide";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "Univ_reg" :
 	  document.forms[form2].action="/admin/univ_reg_export2.php";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
     case "internship" :
-	  document.forms[form2].action="/admin/internship_export.php";
+	  document.forms[form2].action="/internship/export";
+	  document.forms[form2].method="get";
 	  document.forms[form2].submit();	break;
 
     case "tutoring" :
 	  document.forms[form2].action="/admin/tutoring_export.php";
+	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
 

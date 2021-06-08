@@ -209,14 +209,12 @@ Route::get('/grades/export', [GradeController::class, 'export'])
     ->name('grades.export');
 
 Route::get('/internship', [InternshipController::class, 'edit'])
-    ->middleware('auth')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:16')
     ->name('internship.edit');
 
+Route::get('/internship/export', [InternshipController::class, 'export'])
+    ->name('internship.export');
+
 Route::post('/internship/update', [InternshipController::class, 'update'])
-    ->middleware('role:16')
     ->name('internship.update');
 
 // Schedule

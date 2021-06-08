@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Internship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Exports\InternshipExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InternshipController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('semester');
+        $this->middleware('role:16');
+        $this->middleware('student.list');
+
         App::setLocale('fr_FR');
     }
 
@@ -38,6 +45,19 @@ class InternshipController extends Controller
 
         // View
         return view('internship.index', $params);
+    }
+
+    /**
+     * Export internships
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'internship_' .session('semester') . '.xlsx';
+
+        return Excel::download(new InternshipExport, $filename);
     }
 
     /**
