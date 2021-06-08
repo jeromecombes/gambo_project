@@ -32,6 +32,8 @@ use App\Mail\Student_delete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Exports\StudentExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -186,6 +188,18 @@ class StudentController extends Controller
         return redirect("/students")->with('success', 'Le mail a été envoyé avec succès');
     }
 
+    /**
+     * Export general information
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'students_' .session('semester') . '.xlsx';
+
+        return Excel::download(new StudentExport, $filename);
+    }
 
     /**
      * Display general information of a student

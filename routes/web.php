@@ -304,6 +304,9 @@ Route::post('/students/email', [StudentController::class, 'email'])
 Route::post('/students/sendmail', [StudentController::class, 'sendmail'])
     ->name('student.sendmail');
 
+Route::get('/students/export', [StudentController::class, 'export'])
+    ->name('student.export');
+
 // Documents
 Route::get('/documents', [DocumentController::class, 'index'])
     ->middleware('auth')

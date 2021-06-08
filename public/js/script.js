@@ -464,8 +464,8 @@ function submit_action(form,form2){		// a finir
 
 
     case "Excel" :
-	  document.forms[form2].action="/admin/students-excel.php";
-	  document.forms[form2].method="post";
+	  document.forms[form2].action="/students/export";
+	  document.forms[form2].method="get";
 	  document.forms[form2].submit();	break;
 
     case "Email_Housing" :

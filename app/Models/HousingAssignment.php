@@ -18,6 +18,11 @@ class HousingAssignment extends MyModel
             ->addSelect(array('students.lastname as lastname', 'students.firstname as firstname'));
     }
 
+    public function getHostAttribute($value)
+    {
+        return $this->logement;
+    }
+
     public function getLastnameAttribute($value)
     {
         return $this->decrypt($value, false);
