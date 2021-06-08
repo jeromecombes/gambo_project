@@ -9,6 +9,8 @@ use App\Models\Student;
 use App\Mail\Sendmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Exports\HostExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HostController extends Controller
 {
@@ -40,21 +42,15 @@ class HostController extends Controller
         $semester = substr(session('semester'), -4);
         $semester .= substr(session('semester'),0,6)=="Spring"?1:2;
 
-        // Available hosts for the selected semester
-        $available = HostAvailable::where('start', '<=', $semester)
-            ->where(function ($query) use ($semester) {
-                $query->where('end', '>=', $semester)
-                ->orWhere('end', 0);
-            })
-            ->get(array('logement_id'))
-            ->toArray();
-
         // Hosts information
-        $hosts = Host::whereIn('id', $available)->get();
+        $hosts = Host::getHosts(session('semester'));
 
         // Student assignment
-        $assignment = HousingAssignment::whereIn('logement', $available)
+        $students = Student::findMine()->pluck('id');
+
+        $assignment = HousingAssignment::whereIn('logement', $hosts->pluck('id'))
             ->where('housing_affect.semester', session('semester'))
+            ->whereIn('students.id', $students)
             ->select('logement')
             ->withStudents()
             ->get();
@@ -106,6 +102,19 @@ class HostController extends Controller
         $student = $assignment->std ?? (object) ['lastname' => null, 'firstname' => null];
 
         return view('hosts.edit', compact('edit', 'host', 'student'));
+    }
+
+    /**
+     * Export hosts
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'hosts_' .session('semester') . '.xlsx';
+
+        return Excel::download(new HostExport, $filename);
     }
 
     /**

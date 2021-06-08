@@ -490,10 +490,9 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].method="post";
 	  document.forms[form2].submit();	break;
 
-
     case "Excel_Housing" :
-	  document.forms[form2].action="/admin/housing-excel.php";
-	  document.forms[form2].method="post";
+	  document.forms[form2].action="/hosts/export";
+	  document.forms[form2].method="get";
 	  document.forms[form2].submit();	break;
 
     case "closeHousing" :

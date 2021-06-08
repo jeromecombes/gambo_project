@@ -359,6 +359,9 @@ Route::post('/hosts/email', [HostController::class, 'email'])
 Route::post('/hosts/sendmail', [HostController::class, 'sendmail'])
     ->name('hosts.sendmail');
 
+Route::get('/hosts/export', [HostController::class, 'export'])
+    ->name('hosts.export');
+
 Route::get('/host/{id}/{edit?}', [HostController::class, 'edit'])
     ->where('id', '\d+')
     ->where('edit', 'edit')
