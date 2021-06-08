@@ -547,10 +547,9 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();	break;
 
     case "tutoring" :
-	  document.forms[form2].action="/admin/tutoring_export.php";
-	  document.forms[form2].method="post";
+	  document.forms[form2].action="/tutoring/export";
+	  document.forms[form2].method="get";
 	  document.forms[form2].submit();	break;
-
 
   }
 

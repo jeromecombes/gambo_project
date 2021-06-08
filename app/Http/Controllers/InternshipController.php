@@ -17,6 +17,8 @@ class InternshipController extends Controller
         $this->middleware('role:16');
         $this->middleware('student.list');
 
+        $this->middleware('admin')->only('export');
+
         App::setLocale('fr_FR');
     }
 

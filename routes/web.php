@@ -175,11 +175,10 @@ Route::get('/courses/home', [CourseController::class, 'home'])
     ->name('courses.home');
 
 Route::get('/tutoring', [TutoringController::class, 'edit'])
-    ->middleware('auth')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:16')
     ->name('tutoring.edit');
+
+Route::get('/tutoring/export', [TutoringController::class, 'export'])
+    ->name('tutoring.export');
 
 Route::post('/tutoring/update', [TutoringController::class, 'update'])
     ->middleware('role:16')

@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Tutoring;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use App\Exports\TutoringExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TutoringController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('semester');
+        $this->middleware('role:16');
+        $this->middleware('student.list');
+
+        $this->middleware('admin')->only('export');
+
         App::setLocale('fr_FR');
     }
 
@@ -38,6 +47,19 @@ class TutoringController extends Controller
 
         // View
         return view('tutoring.index', $params);
+    }
+
+    /**
+     * Export tutoring
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'tutoring_' .session('semester') . '.xlsx';
+
+        return Excel::download(new TutoringExport, $filename);
     }
 
     /**
