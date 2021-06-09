@@ -27,14 +27,14 @@
           <th>Justification</th>
           <th>Motivated by the calendar</th>
           <th>Final Reg.</th>
-          <th>Diplome</th>
-          <th>Obtention</th>
-          <th>Pays</th>
-          <th>Ville</th>
-          <th>Etat</th>
-          <th>Etudes actuelles</th>
-          <th>Handicap</th>
-          <th>Handicap, précisez</th>
+          <th>Diploma</th>
+          <th>Graduation Year</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Start college</th>
+          <th>Disability or special needs</th>
+          <th>Details</th>
         </tr>
       </thead>
 
@@ -60,7 +60,7 @@
             <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][3] }}'>{{ $elem[0][3] }}</div></td>
             <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][4] }}'>{{ $elem[0][4] }}</div></td>
             <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][5] }}'>{{ $elem[0][5] }}</div></td>
-            <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][9] }}'>{{ $elem[0][9] }}</div></td>
+            <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][6] }}'>{{ $elem[0][6] }}</div></td>
             <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][7] }}'>{{ $elem[0][7] }}</div></td>
             <td><div style='height:50px; max-height:50px; overflow:hidden' title='{{ $elem[0][8] }}'>{{ $elem[0][8] }}</div></td>
           </tr>

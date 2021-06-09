@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__."/class.mails.inc";
-require_once __DIR__."/class.univ_reg.inc";
 
 class student{
   public $auth=false;
@@ -83,85 +82,6 @@ class student{
     $this->welcomeMessage[$id]=$message;
   }
 
-  public function fetch(){
-    $univReq=null;
-    if($this->university and $this->university!="VWPP"){		// university filter
-      $univReq=" AND university like '%{$this->university}%'";
-    }
-    if($this->id)
-      $req="id='{$this->id}' $univReq";
-    elseif($this->email)
-      $req="token=MD5('{$this->email}') $univReq";
-
-    $db=new db();
-    $db->select("students","*",$req);
-
-    if($db->result){
-      $elem=$db->result[0];
-      $keys=array_keys($db->result[0]);
-      $this->elements["semesters"]=unserialize($elem["semesters"]);
-      if($this->elements["semesters"]){
-	for($i=0;$i<count($this->elements["semesters"]);$i++)
-	  $this->elements["semesters"][$i] = $this->elements["semesters"][$i];
-      }
-      if(!$this->elements["semesters"])
-	$this->elements["semesters"] = array($elem["semester"]);
-      sort($this->elements["semesters"]);
-      $this->elements["semestersJoin"]=join(", ",$this->elements["semesters"]);
-      $year=intval(substr($this->elements['semesters'][0],-4));
-      $this->elements["newSemester"]=preg_match('/Fall/',$this->elements['semesters'][0])?"Spring ".($year+1):"Fall $year";
-      $this->elements['checkedSemester']=in_array($this->elements['newSemester'],$this->elements['semesters'])?"checked='checked'":null;
-
-      foreach($keys as $key){
-	if(in_array($key,array("id","token","password","semester","guest")))
-	  $this->elements[$key]=$elem[$key];
-	elseif(in_array($key,array("lastname","firstname","email")))
-	  $this->elements[$key]=$elem[$key]?decrypt_vwpp($elem[$key]):null;
-	elseif($key=="university")
-	  $this->elements[$key]=$elem[$key];
-	elseif(!is_numeric($key) and $key!="semesters")
- 	  $this->elements[$key]=$elem[$key]?decrypt_vwpp($elem[$key],$elem['id']):null;
-      }
-
-      //	Add HomeInstitution if Vassar or Wesleyan
-      if(!$this->elements["home_institution"]){
-	$this->elements["home_institution"]=$this->elements["university"];
-      }
-
-      //	Add DOB
-      if(isset($this->elements['dob']) and $this->elements['dob']!=null){
-	$tmp=explode("-",$this->elements['dob']);
-	$dob=strToTime($this->elements['dob']);
-	$dob=date("M d, Y",$dob);
-	$this->elements['dob_text']=$dob;
-	$this->elements['dob']=$tmp[2];
-	$this->elements['mob']=$tmp[1];
-	$this->elements['yob']=$tmp[0];
-      }else{
-	$this->elements['dob_text']=null;
-	$this->elements['dob']=null;
-	$this->elements['mob']=null;
-	$this->elements['yob']=null;
-      }
-
-      //	Add login_name
-      $this->elements['login_name']=$this->elements['lastname'].", ".$this->elements['firstname'];
-
-      //	Add logement
-      $db=new db();
-      $db->select("housing_affect","*","student='{$this->id}' AND semester LIKE '{$this->semester}'");
-      if($db->result){
-	$this->elements['logement']=$db->result[0]['logement'];
-      }
-
-      //	Add French University
-      $u=new univ_reg();
-      $u->student=$this->id;
-      $u->getAttrib();
-      $this->elements['frenchUniv']=$u->university;
-    }
-  }
-
   public function fetchAll($university=null){
     $university=$university=="VWPP"?null:$university;
     $univReq=" AND university like '%$university%'";
@@ -192,13 +112,6 @@ class student{
 	if(empty($students[$elem['id']]["home_institution"]))
 	  $students[$elem['id']]["home_institution"]=$elem['university'];
 // 	$stdExcel[$elem['id']]["home_institution"]=html_entity_decode($students[$elem['id']]["home_institution"],ENT_QUOTES,"utf-8");
-
-	//	Add French University
-	$u=new univ_reg();
-	$u->student=$elem['id'];
-	$u->getAttrib();
-	$students[$elem['id']]['frenchUniv']=$u->university;
-
 
       }
     $this->elements=$students;

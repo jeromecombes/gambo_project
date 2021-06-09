@@ -536,8 +536,8 @@ function submit_action(form,form2){		// a finir
 	  document.forms[form2].submit();	break;
 
     case "Univ_reg" :
-	  document.forms[form2].action="/admin/univ_reg_export2.php";
-	  document.forms[form2].method="post";
+	  document.forms[form2].action="/univ_reg/export";
+	  document.forms[form2].method="get";
 	  document.forms[form2].submit();	break;
 
     case "internship" :

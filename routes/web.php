@@ -124,6 +124,12 @@ Route::post('/univ_reg3', [UnivRegController::class, 'univ_reg3_update'])
     ->middleware('role:17')
     ->name('univ_reg.univ_reg3.update');
 
+Route::get('/univ_reg/export', [UnivRegController::class, 'export'])
+    ->middleware('auth')
+    ->middleware('admin')
+    ->middleware('role:17')
+    ->name('univ_reg.export');
+
 // Courses
 Route::get('/courses/{student?}', [CourseController::class, 'index'])
     ->where('student', '\d+')

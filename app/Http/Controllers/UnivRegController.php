@@ -13,6 +13,8 @@ use App\Helpers\CountryHelper;
 use App\Helpers\StateHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as LaravelSession;
+use App\Exports\UnivRegExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UnivRegController extends Controller
 {
@@ -41,16 +43,9 @@ class UnivRegController extends Controller
     {
         $user = auth()->user();
 
-        $year = substr(session('semester'), -4);
+        $students = Student::findMine();
 
-        if ($user->university == 'VWPP') {
-            $students = Student::where('semesters', 'like', '%"' . session('semester') .'"%')
-            ->get();
-        } else {
-            $students = Student::where('semesters', 'like', '%"' . session('semester') .'"%')
-                ->where('university', $user->university)
-                ->get();
-        }
+        $year = substr(session('semester'), -4);
 
         foreach ($students as $student) {
             $tab[$student->id]['student'] = $student->id;
@@ -82,6 +77,19 @@ class UnivRegController extends Controller
 
         // View
         return view('univ_reg.list', compact('tab', 'year'));
+    }
+
+    /**
+     * Export Univ Reg
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $filename = 'univ_reg_' .session('semester') . '.xlsx';
+
+        return Excel::download(new UnivRegExport, $filename);
     }
 
     /**
