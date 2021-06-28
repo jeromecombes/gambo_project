@@ -274,17 +274,6 @@ function lock(me, model, id) {
   });
 }
 
-
-function lockCourse4(id){
-  lock=file("/admin/courses4Lock.php?id="+id);
-  if(lock==1){
-    document.getElementById("lock"+id).value="Déverrouiller";
-  }
-  else{
-    document.getElementById("lock"+id).value="Verrouiller";
-  }
-}
-
 function lockRH(me,student){
   file("/admin/lockRH.php?student="+student+"&lock="+me.value);
   if(me.value=="Lock")

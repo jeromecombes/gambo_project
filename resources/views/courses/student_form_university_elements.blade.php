@@ -312,7 +312,7 @@
                 @endif
 
                 @if ($admin2)
-                  <input type='button' value='@if ($course->lock) Déverrouiller @else Verrouiller @endif' id='lock{{ $course->id }}' onclick='lockCourse4({{ $course->id }});' class='btn btn-primary'/>
+                  <input type='button' value='@if ($course->lock) Déverrouiller @else Verrouiller @endif' id='lock{{ $course->id }}' onclick='lock(this, "UnivCourse", {{ $course->id }});' class='btn btn-primary'/>
                 @endif
               </td>
             </tr>
