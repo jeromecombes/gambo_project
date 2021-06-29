@@ -26,7 +26,7 @@ class CourseController extends Controller
         $this->middleware('auth');
         $this->middleware('semester');
         $this->middleware('role:16|23');
-        $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_update']);
+        $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_link', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
         $this->middleware('admin')->only(['choices_export', 'export', 'home', 'local_edit', 'local_students', 'reidhall_assignment', 'univ_export']);
@@ -511,6 +511,20 @@ class CourseController extends Controller
         $filename = 'univ_courses_' .session('semester') . '.xlsx';
 
         return Excel::download(new UnivCoursesExport, $filename);
+    }
+
+    /**
+     * Get information for linked courses
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function univ_link(Request $request)
+    {
+        $course = UnivCourse::find($request->id);
+        $course->institution_other = $course->institutionAutre;
+
+        return json_encode($course);
     }
 
     /**

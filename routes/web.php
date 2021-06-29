@@ -177,6 +177,10 @@ Route::delete('/courses/univ', [CourseController::class, 'univ_destroy'])
 Route::get('/courses/univ/export', [CourseController::class, 'univ_export'])
     ->name('courses.univ.export');
 
+Route::get('/courses/univ/link/{id}', [CourseController::class, 'univ_link'])
+    ->where('id', '\d+')
+    ->name('courses.univ.link');
+
 Route::get('/courses/home', [CourseController::class, 'home'])
     ->name('courses.home');
 

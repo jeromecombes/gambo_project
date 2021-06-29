@@ -82,9 +82,9 @@
                   Si ce cours est rattaché à un autre cours déjà enregistré,<br/>veuillez le sélectionner dans cette liste
                 </td>
                 <td style='padding-top:20px;'>
-                  <select name='lien' onchange='checkLink(this, {{ Auth::user()->admin }}, {{ $course->id }});'>
+                  <select name='lien' id='link' onchange='checkLink({{ $course->id }});'>
                     <option value=''>&nbsp;</option>
-                    @foreach ($courses->where('lien', null) as $elem)
+                    @foreach ($courses->where('lien', null)->where('id', '<>', $course->id) as $elem)
                         <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->nature }})</option>
                     @endforeach
                   </select>
@@ -151,6 +151,11 @@
               <tr>
                 <td style='padding-top:20px;'>Institution</td>
                 <td style='padding-top:20px;' class='response'> {{$course->institution }}</td>
+              </tr>
+
+              <tr @if ($course->institution != 'Autre') style='display:none;' @endif>
+                <td>Autre institution</td>
+                <td class='response'>{{$course->institutionAutre }}</td>
               </tr>
 
               <tr>

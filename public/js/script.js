@@ -62,31 +62,41 @@ function checkInstitution(me,id){
   }
 }
 
-function checkLink(me,admin,id){
-  document.getElementById("institution"+id).value="";
-  document.getElementById("institutionAutre"+id).value="";
-  document.getElementById("discipline"+id).value="";
-  document.getElementById("niveau"+id).value="";
-  document.getElementById("institutionAutreTr"+id).style.display="none";
-  document.getElementById("institution"+id).disabled=false;
-  document.getElementById("institutionAutre"+id).disabled=false;
-  document.getElementById("discipline"+id).disabled=false;
-  document.getElementById("niveau"+id).disabled=false;
+function checkLink(id){
+  $('#institution' + id).val('');
+  $('#institutionAutre' + id).val('');
+  $('#discipline' + id).val('');
+  $('#niveau' + id).val('');
+  $('#institutionAutreTr' + id).hide();
+  $('#institution' + id).prop('disabled', false);
+  $('#institutionAutre' + id).prop('disabled', false);
+  $('#discipline' + id).prop('disabled', false);
+  $('#niveau' + id).prop('disabled', false);
 
-  if(me.value){
-    data=file("/inc/courses_univ4Info.php?id="+me.value);
-    tab=data.split("&&&");
-    document.getElementById("institution"+id).value=tab[1];
-    document.getElementById("institutionAutre"+id).value=tab[2];
-    document.getElementById("discipline"+id).value=tab[3];
-    document.getElementById("niveau"+id).value=tab[4];
-    document.getElementById("institution"+id).disabled=true;
-    document.getElementById("institutionAutre"+id).disabled=true;
-    document.getElementById("discipline"+id).disabled=true;
-    document.getElementById("niveau"+id).disabled=true;
-    if(tab[1]=="Autre"){
-      document.getElementById("institutionAutreTr"+id).style.display="";
-    }
+  if($('#link').val()) {
+    $.ajax({
+      url: '/courses/univ/link/' + $('#link').val(),
+      type: 'get',
+      datatype: 'json',
+      success: function(result) {
+        result = JSON.parse(result);
+
+        $('#institution' + id).val(result.institution);
+        $('#discipline' + id).val(result.discipline);
+        $('#niveau' + id).val(result.niveau);
+
+	if (result.institution == 'Autre') {
+          $('#institutionAutre' + id).val(result.institution_other);
+          $('#institutionAutreTr' + id).show();
+	}
+
+        $('#institution' + id).prop('disabled', true);
+        $('#institutionAutre' + id).prop('disabled', true);
+        $('#discipline' + id).prop('disabled', true);
+        $('#niveau' + id).prop('disabled', true);
+	
+      }
+    });
   }
 }
 
