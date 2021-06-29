@@ -53,25 +53,25 @@ function checkall(form,me){
       elem[i].click();
 }
 
-function checkInstitution(me,id){
-  if(me.value=="Autre"){
-    document.getElementById("institutionAutreTr"+id).style.display="";
+function checkInstitution(){
+  if ($('#institution').val() == "Autre") {
+    $('#institutionAutreTr').show();
   }
   else{
-    document.getElementById("institutionAutreTr"+id).style.display="none";
+    $('#institutionAutreTr').hide();
   }
 }
 
-function checkLink(id){
-  $('#institution' + id).val('');
-  $('#institutionAutre' + id).val('');
-  $('#discipline' + id).val('');
-  $('#niveau' + id).val('');
-  $('#institutionAutreTr' + id).hide();
-  $('#institution' + id).prop('disabled', false);
-  $('#institutionAutre' + id).prop('disabled', false);
-  $('#discipline' + id).prop('disabled', false);
-  $('#niveau' + id).prop('disabled', false);
+function checkLink(){
+  $('#institution').val('');
+  $('#institutionAutre').val('');
+  $('#discipline').val('');
+  $('#niveau').val('');
+  $('#institutionAutreTr').hide();
+  $('#institution').prop('disabled', false);
+  $('#institutionAutre').prop('disabled', false);
+  $('#discipline').prop('disabled', false);
+  $('#niveau').prop('disabled', false);
 
   if($('#link').val()) {
     $.ajax({
@@ -81,19 +81,19 @@ function checkLink(id){
       success: function(result) {
         result = JSON.parse(result);
 
-        $('#institution' + id).val(result.institution);
-        $('#discipline' + id).val(result.discipline);
-        $('#niveau' + id).val(result.niveau);
+        $('#institution').val(result.institution);
+        $('#discipline').val(result.discipline);
+        $('#niveau').val(result.niveau);
 
 	if (result.institution == 'Autre') {
-          $('#institutionAutre' + id).val(result.institution_other);
-          $('#institutionAutreTr' + id).show();
+          $('#institutionAutre').val(result.institution_other);
+          $('#institutionAutreTr').show();
 	}
 
-        $('#institution' + id).prop('disabled', true);
-        $('#institutionAutre' + id).prop('disabled', true);
-        $('#discipline' + id).prop('disabled', true);
-        $('#niveau' + id).prop('disabled', true);
+        $('#institution').prop('disabled', true);
+        $('#institutionAutre').prop('disabled', true);
+        $('#discipline').prop('disabled', true);
+        $('#niveau').prop('disabled', true);
 	
       }
     });

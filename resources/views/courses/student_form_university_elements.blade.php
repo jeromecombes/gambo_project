@@ -82,7 +82,7 @@
                   Si ce cours est rattaché à un autre cours déjà enregistré,<br/>veuillez le sélectionner dans cette liste
                 </td>
                 <td style='padding-top:20px;'>
-                  <select name='lien' id='link' onchange='checkLink({{ $course->id }});'>
+                  <select name='lien' id='link' onchange='checkLink();'>
                     <option value=''>&nbsp;</option>
                     @foreach ($courses->where('lien', null)->where('id', '<>', $course->id) as $elem)
                         <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->nature }})</option>
@@ -95,7 +95,7 @@
             <tr>
               <td style='padding-top:20px;'>Institution</td>
               <td style='padding-top:20px;'>
-                <select name='institution' id='institution{{ $course->id }}' onchange='checkInstitution(this, {{ $course->id }});' {{ $disabled }}>
+                <select name='institution' id='institution' onchange='checkInstitution();' {{ $disabled }}>
                   <option value=''>&nbsp;</option>
                   @foreach (explode(',', env('APP_INSTITUTIONS')) as $elem)
                     <option value='{{ $elem }}' @if ($course->institution == $elem) selected='selected' @endif >{{ $elem }}</option>
@@ -105,17 +105,17 @@
               </td>
             </tr>
 
-            <tr id='institutionAutreTr{{ $course->id }}' @if ($course->institution != 'Autre') style='display:none;' @endif>
+            <tr id='institutionAutreTr' @if ($course->institution != 'Autre') style='display:none;' @endif>
               <td>Autre institution</td>
               <td>
-                <input type='text' name='institutionAutre' id='institutionAutre{{ $course->id }}' value='{{ $course['institutionAutre'] }}' {{ $disabled}} />
+                <input type='text' name='institutionAutre' id='institutionAutre' value='{{ $course['institutionAutre'] }}' {{ $disabled}} />
               </td>
             </tr>
 
             <tr>
               <td>Discipline</td>
               <td>
-                <select name='discipline' {{ $disabled }} id='discipline{{ $course->id }}'>
+                <select name='discipline' id='discipline' {{ $disabled }} >
                   <option value=''>&nbsp;</option>
                   @foreach (explode(',', env('APP_DISCIPLINES')) as $elem)
 	                  <option value='{{ $elem }}' @if ($course->discipline == $elem) selected='selected' @endif >{{ $elem }}</option>
@@ -127,7 +127,7 @@
             <tr>
               <td>Niveau</td>
               <td>
-                <select name='niveau' {{ $disabled }} id='niveau{{ $course->id }}'>
+                <select name='niveau' id='niveau' {{ $disabled }} >
                   <option value=''>&nbsp;</option>
                   @foreach (explode(',', env('APP_LEVELS')) as $elem)
                     <option value='{{ $elem }}' @if ($course->niveau == $elem) selected='selected' @endif >{{ $elem }}</option>
@@ -251,8 +251,8 @@
             <td colspan='2' style='padding-top:20px;'>Avez-vous discuté des modalités du devoir final avec votre professeur ?</td>
           </tr>
 
-          <tr id='modalites0_{{ $course->id }}'>
-            <td>&nbsp;</td>
+          <tr>
+            <td></td>
             <td class='response'>
               @if ($edit_modalities)
                 <input type='radio' name='modalites' id='modalities_yes' value='Yes' @if ($course->modalites == 'Yes') checked='checked' @endif /> <label for='modalities_yes' >Oui</label>
@@ -267,7 +267,7 @@
             <td colspan='2'>Si oui, quelles sont-elles ?</td>
           </tr>
 
-          <tr id='modalitesText{{ $course->id }}'>
+          <tr>
             <td colspan='2' class='response'>
               @if ($edit_modalities)
                 <textarea name='modalites1'>{{ $course->modalites1 }}</textarea>
