@@ -48,10 +48,6 @@ $config['Mail-Sender'] = $_ENV['MAIL_FROM_ADDRESS'];
 // Notification des formulaire de voyage
 $config['emailForTripForm'] = explode(',', $_ENV['MAIL_TRIP_FORM']);
 
-//	Messages (E-mails)
-$config['Messages-Welcome-Title'] = $_ENV['MAIL_WELCOME_SUBJECT'];
-$config['Messages-Welcome'] = $_ENV['MAIL_WELCOME_MESSAGE'];
-
 $config['disciplines'] = $_ENV['APP_DISCIPLINES'];
 $config['institutions'] = $_ENV['APP_INSTITUTIONS'];
 $config['niveaux'] = $_ENV['APP_LEVELS'];

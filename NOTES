@@ -1,5 +1,14 @@
 NOTES
 
+2021-07-19
+// TODO : ajouter un contrôle lors de la modification des emails des étudiants. :
+-- doit être modifié dans la table users
+-- doit être unique dans la table users
+-- doit être modifié dans la table students
+-- doit être unique dans la table students
+// TODO Mêmes contrôles lors de l'enregistrement initial du mail
+
+
 2021-06-09
 // TODO : univ_reg models / controller / export / template : Disability : Replace  oui / non with yes / no
 // TODO : univ_reg route / controller : move middleware into the controller

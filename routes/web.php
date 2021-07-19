@@ -317,6 +317,10 @@ Route::post('/students/sendmail', [StudentController::class, 'sendmail'])
 Route::get('/students/export', [StudentController::class, 'export'])
     ->name('student.export');
 
+// Admin students password
+Route::post('/students/password', [StudentController::class, 'password'])
+    ->name('student.password');
+
 // Documents
 Route::get('/documents', [DocumentController::class, 'index'])
     ->middleware('auth')

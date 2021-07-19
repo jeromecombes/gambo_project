@@ -29,6 +29,7 @@ use App\Mail\Cellphone_changed;
 use App\Mail\Sendmail;
 use App\Mail\Student_create;
 use App\Mail\Student_delete;
+use App\Mail\Student_welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -157,6 +158,35 @@ class StudentController extends Controller
         // View
         return view('students.email', compact('student_ids', 'students'));
 
+    }
+
+    /**
+     * Create or change students' password
+     * Send the welcome message
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function password(Request $request)
+    {
+        if (!empty($request->students)) {
+            $students = Student::whereIn('id', $request->students)->get();
+
+            foreach ($students as $student) {
+                $password = Str::random(8);
+                $user = User::where('email', $student->email)->first();
+                $user->password = $password;
+                $user->save();
+
+                try {
+                    Mail::to($student->email)->send(new Student_welcome($student, $password));
+                } catch(\Exception $e) {
+                    report($e);
+                }
+            }
+        }
+
+        return redirect("/students")->with('success', 'Les mots de passe ont été créés ou modifiés. Le message de bienvenue a été envoyé.');
     }
 
     /**

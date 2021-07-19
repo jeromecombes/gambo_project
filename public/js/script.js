@@ -94,7 +94,7 @@ function checkLink(){
         $('#institutionAutre').prop('disabled', true);
         $('#discipline').prop('disabled', true);
         $('#niveau').prop('disabled', true);
-	
+
       }
     });
   }
@@ -427,130 +427,143 @@ function session_renew() {
 function submit_action(form,form2){		// a finir
   switch(document.forms[form].action.value){
     case "Delete" :
-        if(confirm("Do you really want to delete selected items ?")) {
-            document.forms[form2].action="/students/delete";
-            document.forms[form2].method="post";
-            document.forms[form2].submit();
-        }
-        break;
+      if(confirm("Do you really want to delete selected items ?")) {
+        document.forms[form2].action="/students/delete";
+        document.forms[form2].method="post";
+        document.forms[form2].submit();
+      }
+      break;
 
     case "CreatePassword" :
-	if(confirm("The password of selected students will be changed.\nContinue ?")){
-	  document.forms[form2].action="/admin/students-password.php";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();
-	}
-	break;
+      if(confirm("The password of selected students will be changed.\nContinue ?")) {
+        document.forms[form2].action="/students/password";
+        document.forms[form2].method="post";
+        document.forms[form2].submit();
+      }
+      break;
 
     case "Email" :
-	inputs=document.forms[form2].elements;
-	i=0;
-	mails=new Array();
-	while(inputs[i]){
-	  if(inputs[i].name=="students[]" && inputs[i].checked){
-	    mails.push(document.getElementById("mail_"+inputs[i].value).value);
-	  }
-	  i++;
-	}
-	mails=mails.join(", ");
-	document.location.href="mailto:"+mails;
-	break;
+      inputs=document.forms[form2].elements;
+      i=0;
+      mails=new Array();
+      while(inputs[i]){
+        if(inputs[i].name=="students[]" && inputs[i].checked){
+          mails.push(document.getElementById("mail_"+inputs[i].value).value);
+        }
+        i++;
+      }
+      mails=mails.join(", ");
+      document.location.href="mailto:"+mails;
+      break;
 
     case "Email2" :
-	  document.forms[form2].action="/students/email";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/students/email";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
 
     case "Excel" :
-	  document.forms[form2].action="/students/export";
-	  document.forms[form2].method="get";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/students/export";
+      document.forms[form2].method="get";
+      document.forms[form2].submit();
+      break;
 
     case "Email_Housing" :
-	inputs=document.forms[form2].elements;
-	i=0;
-	mails=new Array();
-	while(inputs[i]){
-	  if(inputs[i].name=="housing[]" && inputs[i].checked){
-	    if(document.getElementById("mail_"+inputs[i].value).value);
-	      mails.push(document.getElementById("mail_"+inputs[i].value).value);
-	    if(document.getElementById("mail2_"+inputs[i].value).value);
-	      mails.push(document.getElementById("mail2_"+inputs[i].value).value);
-	  }
-	  i++;
-	}
-	mails=mails.join(", ");
-	document.location.href="mailto:"+mails;
-	break;
+      inputs=document.forms[form2].elements;
+      i=0;
+      mails=new Array();
+      while(inputs[i]){
+        if(inputs[i].name=="housing[]" && inputs[i].checked){
+          if(document.getElementById("mail_"+inputs[i].value).value);
+            mails.push(document.getElementById("mail_"+inputs[i].value).value);
+          if(document.getElementById("mail2_"+inputs[i].value).value);
+            mails.push(document.getElementById("mail2_"+inputs[i].value).value);
+        }
+        i++;
+      }
+      mails=mails.join(", ");
+      document.location.href="mailto:"+mails;
+      break;
 
     case "Email2_Housing" :
-	  document.forms[form2].action="/hosts/email";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/hosts/email";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "Excel_Housing" :
-	  document.forms[form2].action="/hosts/export";
-	  document.forms[form2].method="get";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/hosts/export";
+      document.forms[form2].method="get";
+      document.forms[form2].submit();
+      break;
 
     case "closeHousing" :
-	  document.forms[form2].action="/housing/lock";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/housing/lock";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "openHousing" :
-	  document.forms[form2].action="/housing/unlock";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/housing/unlock";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "lockVWPP" :
-	  document.forms[form2].action="/admin/RHCourses/lock";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/admin/RHCourses/lock";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "unlockVWPP" :
-	  document.forms[form2].action="/admin/RHCourses/unlock";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/admin/RHCourses/unlock";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "publishVWPP" :
-	  document.forms[form2].action="/admin/RHCourses/show";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/admin/RHCourses/show";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "hideVWPP" :
-	  document.forms[form2].action="/admin/RHCourses/hide";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/admin/RHCourses/hide";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "publishUnivReg" :
-	  document.forms[form2].action="/admin/UnivReg/show";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/admin/UnivReg/show";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "hideUnivReg" :
-	  document.forms[form2].action="/admin/UnivReg/hide";
-	  document.forms[form2].method="post";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/admin/UnivReg/hide";
+      document.forms[form2].method="post";
+      document.forms[form2].submit();
+      break;
 
     case "Univ_reg" :
-	  document.forms[form2].action="/univ_reg/export";
-	  document.forms[form2].method="get";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/univ_reg/export";
+      document.forms[form2].method="get";
+      document.forms[form2].submit();
+      break;
 
     case "internship" :
-	  document.forms[form2].action="/internship/export";
-	  document.forms[form2].method="get";
-	  document.forms[form2].submit();	break;
+      document.forms[form2].action="/internship/export";
+      document.forms[form2].method="get";
+      document.forms[form2].submit();
+      break;
 
     case "tutoring" :
-	  document.forms[form2].action="/tutoring/export";
-	  document.forms[form2].method="get";
-	  document.forms[form2].submit();	break;
-
+      document.forms[form2].action="/tutoring/export";
+      document.forms[form2].method="get";
+      document.forms[form2].submit();
+      break;
   }
-
 
 }
 
