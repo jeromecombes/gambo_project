@@ -162,6 +162,9 @@ Route::get('/courses/export', [CourseController::class, 'export'])
 Route::get('/courses/choices/export', [CourseController::class, 'choices_export'])
     ->name('courses.choices.export');
 
+Route::post('/courses/lock', [CourseController::class, 'local_lock'])
+    ->name('courses.lock');
+
 // University courses
 Route::get('/course/univ/{id?}/{edit?}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')

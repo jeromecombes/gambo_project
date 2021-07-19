@@ -11,8 +11,6 @@ class RHCourseLock extends MyModel
      */
     protected $table = 'courses_rh';
 
-    public $timestamps = false;
-
     /**
      * The attributes that are mass assignable.
      *

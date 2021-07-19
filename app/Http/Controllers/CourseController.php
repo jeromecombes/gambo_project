@@ -447,6 +447,32 @@ class CourseController extends Controller
     }
 
     /**
+     * Lock or unlock a local course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function local_lock(Request $request)
+    {
+
+        $locker = RHCourseLock::findMe();
+
+        if (!empty($locker)) {
+            $locker->delete();
+
+            return json_encode(['button' => 'Lock']);
+
+        } else {
+            RHCourseLock::create([
+                'student' => session('student'),
+                'semester' => session('semester'),
+            ]);
+
+            return json_encode(['button' => 'Unlock']);
+        }
+    }
+
+    /**
      * Edit a university course
      *
      * @param  \Illuminate\Http\Request  $request

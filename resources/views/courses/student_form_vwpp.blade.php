@@ -3,7 +3,7 @@
         @if (in_array(16, Auth::user()->access))
           <td rowspan='11'>
             <div style='text-align:right;'>
-              <input type='button' value='{{ $button_lock }}' onclick='lockRH(this, {{ $student->id }});' class='btn btn-primary' />
+              <input type='button' value='{{ $button_lock }}' id='lock-button' onclick='lock_local_courses();' class='btn btn-primary' />
             </div>
           </td>
         @endif

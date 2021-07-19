@@ -284,12 +284,26 @@ function lock(me, model, id) {
   });
 }
 
-function lockRH(me,student){
-  file("/admin/lockRH.php?student="+student+"&lock="+me.value);
-  if(me.value=="Lock")
-     me.value="Unlock";
-  else
-    me.value="Lock";
+function lock_local_courses() {
+
+  var token = $('input[name=_token]').val();
+
+  $.ajax({
+    url: '/courses/lock',
+    type: 'post',
+    data_type: 'json',
+    data: {_token: token},
+    success: function(result) {
+      result = JSON.parse(result);
+      $('#lock-button').val(result['button']);
+      if (result['error']) {
+        CJInfo(result['message']);
+      }
+    },
+    error: function(result) {
+      CJInfo('Error');
+    }
+  });
 }
 
 function lockRH2(me,student){
