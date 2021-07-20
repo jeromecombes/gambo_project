@@ -473,6 +473,32 @@ class CourseController extends Controller
     }
 
     /**
+     * Publish or hide a local course
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function local_publish(Request $request)
+    {
+
+        $locker = RHCoursePublish::findMe();
+
+        if (!empty($locker)) {
+            $locker->delete();
+
+            return json_encode(['button' => 'Publish']);
+
+        } else {
+            RHCoursePublish::create([
+                'student' => session('student'),
+                'semester' => session('semester'),
+            ]);
+
+            return json_encode(['button' => 'Hide']);
+        }
+    }
+
+    /**
      * Edit a university course
      *
      * @param  \Illuminate\Http\Request  $request

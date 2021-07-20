@@ -50,7 +50,7 @@
         @if (in_array(16, Auth::user()->access))
           <td rowspan='8' style='text-align:right; padding-right:0px;'>
             <input type='submit' value='Submit' class='btn btn-primary'/> <br/>
-            <input type='button' value='{{ $button_publish }}' onclick='lockRH2(this, {{ $student->id }});' class='btn btn-primary' />
+            <input type='button' value='{{ $button_publish }}' id='publish-button' onclick='publish_local_courses();' class='btn btn-primary' />
           </td>
         @endif
       </tr>

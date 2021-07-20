@@ -306,12 +306,26 @@ function lock_local_courses() {
   });
 }
 
-function lockRH2(me,student){
-  file("/admin/lockRH2.php?student="+student+"&lock="+me.value);
-  if(me.value=="Publish")
-     me.value="Hide";
-  else
-    me.value="Publish";
+function publish_local_courses() {
+
+  var token = $('input[name=_token]').val();
+
+  $.ajax({
+    url: '/courses/publish',
+    type: 'post',
+    data_type: 'json',
+    data: {_token: token},
+    success: function(result) {
+      result = JSON.parse(result);
+      $('#publish-button').val(result['button']);
+      if (result['error']) {
+        CJInfo(result['message']);
+      }
+    },
+    error: function(result) {
+      CJInfo('Error');
+    }
+  });
 }
 
 function form1_ctrl() {

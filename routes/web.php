@@ -165,6 +165,9 @@ Route::get('/courses/choices/export', [CourseController::class, 'choices_export'
 Route::post('/courses/lock', [CourseController::class, 'local_lock'])
     ->name('courses.lock');
 
+Route::post('/courses/publish', [CourseController::class, 'local_publish'])
+    ->name('courses.publish');
+
 // University courses
 Route::get('/course/univ/{id?}/{edit?}', [CourseController::class, 'univ_edit'])
     ->where('edit', 'edit')

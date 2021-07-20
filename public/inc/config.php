@@ -57,5 +57,4 @@ $inc=explode("/",$_SERVER['SCRIPT_NAME']);
 $folder=($inc[count($inc)-2]=="inc" or $inc[count($inc)-2]=="admin")?"../":null;
 
 require_once __DIR__."/db_mysql.php";
-require_once __DIR__."/functions.php";
 ?>
