@@ -29,8 +29,24 @@ class CourseController extends Controller
         $this->middleware('student.list')->except(['home', 'reidhall_assignment', 'univ_link', 'univ_update']);
         $this->middleware('this.student')->only('index');
 
-        $this->middleware('admin')->only(['choices_export', 'export', 'home', 'local_edit', 'local_students', 'reidhall_assignment', 'univ_export']);
-        $this->middleware('role:16')->only(['local_edit', 'univ_destroy', 'univ_update']);
+        $this->middleware('admin')->only([
+            'choices_export',
+            'export', 'home',
+            'local_edit',
+            'local_lock',
+            'local_publish',
+            'local_students',
+            'reidhall_assignment',
+            'univ_export'
+        ]);
+
+        $this->middleware('role:16')->only([
+            'local_edit',
+            'local_lock',
+            'local_publish',
+            'univ_destroy',
+            'univ_update'
+        ]);
 
         App::setLocale('fr_FR');
     }
