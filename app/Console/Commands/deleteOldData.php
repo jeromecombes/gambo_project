@@ -49,6 +49,10 @@ class deleteOldData extends Command
             return 0;
         }
 
+        if ($this->confirm("Do you want to backup the database and the documents ?")) {
+            $this->call('backup:run');
+        }
+
         echo "Deleting all data older than $year ...\n";
 
         if ($verbos) {
@@ -82,7 +86,9 @@ class deleteOldData extends Command
         );
 
         foreach ($models as $model) {
-            echo $model . "\n";
+            if ($verbos) {
+                echo $model . "\n";
+            }
 
             for ($current = 2011; $current < $year; $current++) {
 

@@ -20,7 +20,8 @@
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.2",
         "maatwebsite/excel": "^3.1",
-        "phpmailer/phpmailer": "^6.0"
+        "phpmailer/phpmailer": "^6.0",
+        "spatie/laravel-backup": "^6.16"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
