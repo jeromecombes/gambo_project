@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-
+use App\Http\Traits\CryptTrait;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, CryptTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -53,14 +53,34 @@ class User extends Authenticatable
         return json_decode($value);
     }
 
+    public function setAccessdAttribute($value)
+    {
+        $this->attributes['access'] = json_encode($value);
+    }
+
+    public function getFirstnameAttribute($value)
+    {
+        return $this->decrypt($value, false);
+    }
+
     public function getDisplayNameAttribute($value)
     {
         return $this->firstname . ' ' . $this->lastname;
     }
 
-    public function setAccessdAttribute($value)
+    public function getLastnameAttribute($value)
     {
-        $this->attributes['access'] = json_encode($value);
+        return $this->decrypt($value, false);
+    }
+
+    public function setFirstnameAttribute($value)
+    {
+        $this->attributes['firstname'] = $this->encrypt($value, false);
+    }
+
+    public function setLastnameAttribute($value)
+    {
+        $this->attributes['lastname'] = $this->encrypt($value, false);
     }
 
     public function setPasswordAttribute($value)

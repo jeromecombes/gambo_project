@@ -3,7 +3,7 @@
 
   <h3>User list</h3>
 
-  <table class='datatable'>
+  <table class='datatable' data-sort='[[1, "asc"],[2, "asc"]]' >
     <thead>
       <tr>
         <th class='dataTableNoSort'></th>
