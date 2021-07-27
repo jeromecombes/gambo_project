@@ -28,19 +28,8 @@ class CreateSession
      */
     public function handle(Login $event)
     {
-        session_start();
-
-        // Admin and Students
-        $_SESSION['vwpp']['email'] = $event->user->email;
-        $_SESSION['vwpp']['language'] = $event->user->language;
-        $_SESSION['vwpp']['login'] = $event->user->email;
-
         // Admin only
         if ($event->user->admin) {
-            $_SESSION['vwpp']['access'] = $event->user->access;
-            $_SESSION['vwpp']['login_name'] = $event->user->display_name;
-            $_SESSION['vwpp']['login_univ'] = $event->user->university;
-
             Session::put('login_name', $event->user->display_name);
 
         // Students only

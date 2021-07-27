@@ -40,10 +40,6 @@ class AdminController extends Controller
 
         $semester = $request->semester;
 
-        if (empty($semester) and !empty($_SESSION['vwpp']['semester'])) {
-            $semester = $_SESSION['vwpp']['semester'];
-        }
-
         return view('admin.index', compact('semesters', 'semester'));
     }
 
@@ -54,8 +50,6 @@ class AdminController extends Controller
     public function semester(Request $request)
     {
         $request->session()->put('semester', $request->semester);
-        $_SESSION['vwpp']['semester'] = $request->semester;
-        $_SESSION['vwpp']['semestre'] = $request->semester;
 
         return redirect('/students');
     }

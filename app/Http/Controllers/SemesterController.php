@@ -34,12 +34,6 @@ class SemesterController extends Controller
     {
         Session::put('semester', $request->semester);
 
-        // Old Session
-        session_start();
-
-        $_SESSION['vwpp']['semester'] = $request->semester;
-        $_SESSION['vwpp']['semestre'] = $request->semester;
-
         return redirect('/');
     }
 

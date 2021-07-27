@@ -24,12 +24,6 @@ class EventServiceProvider extends ServiceProvider
         Login::class => [
             CreateSession::class,
         ],
-
-        // Clear Old Session ($_SESSION['VWPP'])
-        // TODO : remove this when Laravel migration will be completed
-        Logout::class => [
-            ClearSession::class,
-        ],
     ];
 
     /**
