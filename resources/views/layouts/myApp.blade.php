@@ -41,11 +41,7 @@
                     @endif
                 </div>
                 <div id='loginName'>
-                    <span>
-                    @if(session('login_name'))
-                        {{ session('login_name') }}
-                    @endif
-                    </span>
+                    <span>{{ Auth::user()->display_name }}</span>
                     <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
                     <div id='myMenu'>
                         <a href="{{ route('account.index') }}">My Account</a><br/>

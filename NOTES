@@ -22,13 +22,6 @@ NOTES
 // TODO : student::destroy : delete password_resets where email : Model à créer
 
 
-2021-04-12
-// TODO crypt lastname and firstname into user table (Models\User), like Students
-// Add Student_Id to Users Table
-// Move lastname and firstname from Students to Users
-// Use Auth::User->DisplayName for Admin and Students (see Models\User and app\Providers\CreateSession
-
-
 2021-04-07
 // TODO use custom request for changing password and fields contrôle with length, etc. template user/account
 // TODO Remettre le contrôle onsubmit = ctrl_form_univreg() sur les templates
@@ -75,6 +68,16 @@ ET adapter les IDs
 20		Voir les Notes FR et US
 21		Bloc-notes des cours
 24		Modifier les dates (1<sup>ère</sup> page)
+
+
+CLOSED :
+
+
+2021-04-12
+// TODO crypt lastname and firstname into user table (Models\User), like Students : DONE (2021-07-26)
+// Add Student_Id to Users Table : DONE (2021-07-26) : I added user_id to students' table
+// Move lastname and firstname from Students to Users : TESTED : degrade les performances en multipliant les requetes.
+// Use Auth::User->DisplayName for Admin and Students (see Models\User and app\Providers\CreateSession : DONE (2021-07-30)
 
 
 2021-03-18 : DONE

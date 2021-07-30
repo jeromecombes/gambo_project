@@ -293,11 +293,6 @@ class StudentController extends Controller
         // Get initial cellphone
         $cellphone = $student->cellphone;
 
-        // Token
-        $mail = trim(strtolower($request->email));
-        $mail = htmlentities($mail, ENT_QUOTES | ENT_IGNORE, 'UTF-8');
-        $token = md5($mail);
-
         // Semesters
         $student->semesters = $request->semesters;
 
@@ -315,7 +310,6 @@ class StudentController extends Controller
         $student->dob = $dob;
         $student->placeOB = $request->placeOB;
         $student->countryOB = $request->countryOB;
-        $student->email = $request->email;
         $student->cellphone = $request->cellphone;
         $student->contactlast = $request->contactlast;
         $student->contactfirst = $request->contactfirst;
@@ -329,10 +323,20 @@ class StudentController extends Controller
         $student->contactemail = $request->contactemail;
         $student->resultatTCF = $request->resultatTCF;
         $student->semesters = $request->semesters;
-        $student->token = $token;
 
         if ($request->frenchNumber) {
             $student->frenchNumber = $request->frenchNumber;
+        }
+
+        try {
+            $user = User::find($student->user_id);
+            $user->email = $request->email;
+
+            if ($user->save()) {
+                $student->email = $request->email;
+            }
+        } catch(\Exception $e) {
+            report($e);
         }
 
         $student->save();
@@ -400,32 +404,37 @@ class StudentController extends Controller
 
             $password = Str::random(8);
 
-            // Save student's information
-            $student = new Student();
-            $student->lastname = $elem[0];
-            $student->firstname = $elem[1];
-            $student->email = $elem[2];
-            $student->token = $elem[2];
-            $student->university = $university;
-            $student->guest = $elem[3] ?? null;
-            $student->semester = session('semester');
-            $student->semesters = array(session('semester'));
-            $student->save();
+            try {
+                // Create an account
+                $user = new User();
+                $user->admin = 0;
+                $user->email = $elem[2];
+                $user->password = $password;
 
-            // Create an account
-            $user = new User();
-            $user->admin = 0;
-            $user->email = $elem[2];
-            $user->password = $password;
-            $user->save();
+                // Save student's information if the account has been successfuly created
+                if ($user->save()) {
+                    $student = new Student();
+                    $student->user_id = $user->id;
+                    $student->lastname = $elem[0];
+                    $student->firstname = $elem[1];
+                    $student->email = $elem[2];
+                    $student->university = $university;
+                    $student->guest = $elem[3] ?? null;
+                    $student->semester = session('semester');
+                    $student->semesters = array(session('semester'));
+                    $student->save();
 
-            // Email data
-            $email_data[] = (object) array(
-                'lastname' => $elem[0],
-                'firstname' => $elem[1],
-                'email' => $elem[2],
-                'visiting' => !empty($elem[3]) ? 'Visiting' : null,
-            );
+                    // Email data
+                    $email_data[] = (object) array(
+                        'lastname' => $elem[0],
+                        'firstname' => $elem[1],
+                        'email' => $elem[2],
+                        'visiting' => !empty($elem[3]) ? 'Visiting' : null,
+                    );
+                }
+            } catch(\Exception $e) {
+                report($e);
+            }
         }
 
         // Send an email to administrators

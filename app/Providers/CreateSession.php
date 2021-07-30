@@ -28,27 +28,16 @@ class CreateSession
      */
     public function handle(Login $event)
     {
-        // Admin only
-        if ($event->user->admin) {
-            Session::put('login_name', $event->user->display_name);
+        // For students only
+        if (!$event->user->admin) {
+            $student = Student::where('user_id', $event->user->id)->first();
 
-        // Students only
-        } else {
+            Session::put('semesters', $student->semesters);
+            Session::put('student', $student->id);
 
-            foreach (Student::all() as $student) {
-                if ($student->email == $event->user->email) {
-                    Session::put('login_name', $student->display_name);
-                    Session::put('semesters', $student->semesters);
-                    Session::put('student', $student->id);
-
-                    if (count($student->semesters) == 1) {
-                        Session::put('semester', $student->semesters[0]);
-                    }
-
-                    break;
-                }
+            if (count($student->semesters) == 1) {
+                Session::put('semester', $student->semesters[0]);
             }
         }
-
     }
 }

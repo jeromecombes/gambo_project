@@ -1,5 +1,5 @@
 @yield('content')
 
-Auteur : {{ session('login_name') }}
+Auteur : {{ Auth::user()->display_name }}
 
 The VWPP Database

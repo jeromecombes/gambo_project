@@ -147,7 +147,8 @@ class CourseController extends Controller
 
         $count = array_count_values($tab);
 
-        $occurences = array();
+        $occurences = ['Seminar' => [], 'Writing' => []];
+
         foreach ($rhCourses as $elem) {
             $occurences[$elem->type][] = array(
                 'count' => isset($count[$elem->id]) ? (int) $count[$elem->id] : 0,
@@ -158,13 +159,8 @@ class CourseController extends Controller
             );
         }
 
-        if (!empty($occurences['Seminar'])) {
-            usort($occurences['Seminar'], [$this, 'cmp_count_desc']);
-        }
-
-        if (!empty($occurences['Writing'])) {
-            usort($occurences['Writing'], [$this, 'cmp_count_desc']);
-        }
+        usort($occurences['Seminar'], [$this, 'cmp_count_desc']);
+        usort($occurences['Writing'], [$this, 'cmp_count_desc']);
 
         // Student assignment IDs
         $default_assignment = (object) array(

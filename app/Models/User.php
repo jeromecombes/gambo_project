@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\CryptTrait;
+use App\Models\Student;
 
 class User extends Authenticatable
 {
@@ -60,7 +61,11 @@ class User extends Authenticatable
 
     public function getFirstnameAttribute($value)
     {
-        return $this->decrypt($value, false);
+        if ($this->admin) {
+            return $this->decrypt($value, false);
+        } else {
+            return Student::where('user_id', $this->id)->first()->firstname ?? null;
+        }
     }
 
     public function getDisplayNameAttribute($value)
@@ -70,7 +75,11 @@ class User extends Authenticatable
 
     public function getLastnameAttribute($value)
     {
-        return $this->decrypt($value, false);
+        if ($this->admin) {
+            return $this->decrypt($value, false);
+        } else {
+            return Student::where('user_id', $this->id)->first()->lastname ?? null;
+        }
     }
 
     public function setFirstnameAttribute($value)

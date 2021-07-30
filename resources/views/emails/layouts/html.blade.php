@@ -1,5 +1,5 @@
 @yield('content')
 
-<p>Auteur : {{ session('login_name') }}</p>
+<p>Auteur : {{ Auth::user()->display_name }}</p>
 
 <p>The VWPP Database</p>

@@ -16,10 +16,6 @@ class MyTestCase extends TestCase
             $user = User::where('admin', 0)->first();
         }
 
-        foreach (Student::all() as $student) {
-            if ($student->email == $user->email) {
-                return $student;
-            }
-        }
+        return Student::where('user_id', $user->id)->first();
     }
 }
