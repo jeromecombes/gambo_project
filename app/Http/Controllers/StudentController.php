@@ -32,6 +32,7 @@ use App\Mail\Student_delete;
 use App\Mail\Student_welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Exports\StudentExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -175,7 +176,7 @@ class StudentController extends Controller
             foreach ($students as $student) {
                 $password = Str::random(8);
                 $user = User::where('email', $student->email)->first();
-                $user->password = $password;
+                $user->password = Hash::make($password);
                 $user->save();
 
                 try {
@@ -409,7 +410,7 @@ class StudentController extends Controller
                 $user = new User();
                 $user->admin = 0;
                 $user->email = $elem[2];
-                $user->password = $password;
+                $user->password = Hash::make($password);
 
                 // Save student's information if the account has been successfuly created
                 if ($user->save()) {

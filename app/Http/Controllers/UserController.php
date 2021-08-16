@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -153,9 +154,7 @@ class UserController extends Controller
             return redirect()->route('account.index')->with('warning', "The new password is too short !");
         }
 
-        $crypted_password = password_hash($password, PASSWORD_BCRYPT);
-
-        $user->password = $crypted_password;
+        $user->password = Hash::make($password);
         $user->save();
 
         return redirect()->route('account.index')->with('success', 'Password changed !');
@@ -186,7 +185,7 @@ class UserController extends Controller
         $user->access = $access;
         $user->admin = 1;
         if ($request->password) {
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
         }
         $user->save();
 

@@ -6,7 +6,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\CryptTrait;
 use App\Models\Student;
 
@@ -90,11 +89,6 @@ class User extends Authenticatable
     public function setLastnameAttribute($value)
     {
         $this->attributes['lastname'] = $this->encrypt($value, false);
-    }
-
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
     }
 
 }
