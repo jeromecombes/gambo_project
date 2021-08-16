@@ -338,6 +338,11 @@ class StudentController extends Controller
             }
         } catch(\Exception $e) {
             report($e);
+            if ($e->errorInfo[1] == 1062) {
+                $warning = 'Cannot change the e-mail address, it is already in use.';
+            } else {
+                $warning = $e->errorInfo[2];
+            }
         }
 
         $student->save();
@@ -363,7 +368,15 @@ class StudentController extends Controller
             }
         }
 
-        return redirect("/student")->with('success', 'Mise à jour réussie');
+        $redirect = redirect()->route('student.student_form');
+
+        if (!empty($warning)) {
+            $redirect->with('warning', $warning);
+        } else {
+            $redirect->with('success', 'Mise à jour réussie');
+        }
+
+        return $redirect;
     }
 
     /**
@@ -396,7 +409,8 @@ class StudentController extends Controller
     {
         $user = auth()->user();
         $university = $user->university;
-        $email_data = array();
+        $email_data = [];
+        $warning = [];
 
         foreach ($request->students as $elem) {
             if (empty($elem[2])) {
@@ -435,6 +449,7 @@ class StudentController extends Controller
                 }
             } catch(\Exception $e) {
                 report($e);
+                $warning[] = $e->errorInfo[2];
             }
         }
 
@@ -451,7 +466,15 @@ class StudentController extends Controller
             }
         }
 
-        return redirect()->route('student.index')->withSuccess('Students were added successfuly !');
+        $redirect = redirect()->route('student.index');
+
+        if (!empty($warning)) {
+            $redirect->with('warning', join(' ; ', $warning));
+        } else {
+            $redirect->with('success', 'Students were added successfuly !');
+        }
+
+        return $redirect;
     }
 
     /**
