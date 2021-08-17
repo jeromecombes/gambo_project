@@ -1,6 +1,6 @@
 <nav>
     <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
-        <li class='ui-state-default ui-corner-top'><a href='/admin2'>Home</a></li>
+        <li class='ui-state-default ui-corner-top'><a href='{{ route("admin.index") }}'>Home</a></li>
         @if(session('semester'))
             @if(in_array(24, Auth::user()->access))
                 <li class="ui-state-default ui-corner-top {{ (request()->is('dates')) ? 'ui-state-active' : '' }}"><a href='{{ asset('dates') }}'>Dates</a></li>

@@ -30,7 +30,7 @@ class DateController extends Controller
      */
     public function edit(Request $request)
     {
-        $dates = Dates::where('semester', session('semester'))->first();
+        $dates = Dates::where('semester', session('semester'))->firstOrNew();
 
         // View
         return view('dates.edit', compact('dates'));
@@ -44,7 +44,8 @@ class DateController extends Controller
      */
     public function update(Request $request)
     {
-        Dates::updateOrCreate(array('semester' => session('semester')),
+        Dates::updateOrCreate(
+            array('semester' => session('semester')),
             array(
                 'date1' => $request->date1,
                 'date2' => $request->date2,

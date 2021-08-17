@@ -44,9 +44,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/session', [SessionController::class, 'get'])->name('session.get');
 
 // Admin home
-Route::get('/admin2', [AdminController::class, 'index'])
+Route::get('/admin', [AdminController::class, 'index'])
     ->name('admin.index');
-// TODO Rename to admin when migration completed
 
 // Set the semester
 Route::post('/admin/semester', [AdminController::class, 'semester'])
@@ -88,47 +87,22 @@ Route::post('/housing/accept_terms', [HousingController::class, 'accept_terms'])
     ->name('housing.accept_terms');
 
 // Student Univ registration
-Route::get('/univ_reg', [UnivRegController::class, 'student_form'])
-    ->middleware('auth')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('role:17')
+Route::get('/univ_reg/{student?}/{edit?}', [UnivRegController::class, 'student_form'])
+    ->where('student', '\d+')
+    ->where('edit', 'edit')
     ->name('univ_reg.student_form');
 
-Route::get('/univ_reg/{student}', [UnivRegController::class, 'student_form'])
-    ->where('student', '\d+')
-    ->middleware('auth')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->middleware('role:17')
-    ->name('univ_reg.student_form_id');
-
-Route::get('/univ_reg/{student}/{edit}', [UnivRegController::class, 'student_form'])
-    ->where('student', '\d+')
-    ->middleware('auth')
-    ->middleware('semester')
-    ->middleware('student.list')
-    ->middleware('this.student')
-    ->middleware('role:17')
-    ->where('edit', 'edit')
-    ->name('univ_reg.student_form.edit');
-
 Route::post('/univ_reg', [UnivRegController::class, 'univ_reg_update'])
-    ->middleware('auth')
-    ->middleware('role:17')
     ->name('univ_reg.univ_reg.update');
 
 Route::post('/univ_reg3', [UnivRegController::class, 'univ_reg3_update'])
-    ->middleware('auth')
-    ->middleware('role:17')
     ->name('univ_reg.univ_reg3.update');
 
 Route::get('/univ_reg/export', [UnivRegController::class, 'export'])
-    ->middleware('auth')
-    ->middleware('admin')
-    ->middleware('role:17')
     ->name('univ_reg.export');
+
+Route::get('/univ_reg/list', [UnivRegController::class, 'list'])
+    ->name('univ_reg.list');
 
 // Courses
 Route::get('/courses/{student?}', [CourseController::class, 'index'])
@@ -402,9 +376,6 @@ Route::get('/dates', [DateController::class, 'edit'])
 
 Route::post('/dates', [DateController::class, 'update'])
     ->name('dates.update');
-
-Route::get('/univ_reg/list', [UnivRegController::class, 'list'])
-    ->name('univ_reg.list');
 
 Route::get('/users', [UserController::class, 'index'])
     ->name('users.index');

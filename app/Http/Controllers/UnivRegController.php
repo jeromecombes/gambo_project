@@ -28,9 +28,10 @@ class UnivRegController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('semester');
+        $this->middleware('role:17');
 
-        $this->middleware('admin')->only('list');
-        $this->middleware('role:17')->only('list');
+        $this->middleware('admin')->only(['export','list']);
+        $this->middleware('student.list')->only('student_form');
     }
 
     /**

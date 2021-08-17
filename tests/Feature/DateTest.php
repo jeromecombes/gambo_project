@@ -78,6 +78,6 @@ class DateTest extends MyTestCase
             ->post('/dates');
 
         $response->assertStatus(302);
-        $response->assertRedirect('/admin2');
+        $response->assertRedirect('/admin');
     }
 }

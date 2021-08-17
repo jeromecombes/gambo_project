@@ -11,21 +11,21 @@ class AdminTest extends MyTestCase
 {
     public function test_admin_no_session()
     {
-        $response = $this->get('/admin2');
+        $response = $this->get('/admin');
         $response->assertStatus(302);
     }
 
     public function test_admin_student_session()
     {
         $user = User::where('admin', 0)->first();
-        $response = $this->actingAs($user)->get('/admin2');
+        $response = $this->actingAs($user)->get('/admin');
         $response->assertStatus(302);
     }
 
     public function test_admin_admin_session()
     {
         $user = User::where('admin', 1)->first();
-        $response = $this->actingAs($user)->get('/admin2');
+        $response = $this->actingAs($user)->get('/admin');
         $response->assertStatus(200);
     }
 

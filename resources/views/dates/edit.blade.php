@@ -1,6 +1,6 @@
 @extends('layouts.myApp')
 @section('content')
-  <h3>Dates, Deadlines</h3>
+  <h3>Deadlines for {{ session('semester') }}</h3>
 
   <fieldset id='dates_fieldset'>
 

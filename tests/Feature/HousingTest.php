@@ -162,7 +162,7 @@ class HousingTest extends MyTestCase
             ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect('/admin2');
+        $response->assertRedirect('/admin');
     }
 
     public function test_housing_accept_terms_no_session()
@@ -263,7 +263,7 @@ class HousingTest extends MyTestCase
             ])->get('/housing/home');
 
         $response->assertStatus(302);
-        $response->assertRedirect('/admin2');
+        $response->assertRedirect('/admin');
     }
 
     public function test_housing_requests_no_session()
@@ -328,7 +328,7 @@ class HousingTest extends MyTestCase
             ])->get('/housing/requests');
 
         $response->assertStatus(302);
-        $response->assertRedirect('/admin2');
+        $response->assertRedirect('/admin');
     }
 
     public function test_housing_assignment_no_session()
@@ -380,7 +380,7 @@ class HousingTest extends MyTestCase
             ])->post('/housing_assignment');
 
         $response->assertStatus(302);
-        $response->assertRedirect('/admin2');
+        $response->assertRedirect('/admin');
     }
 
 
