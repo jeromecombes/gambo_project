@@ -1,7 +1,6 @@
 NOTES
 
 2021-06-09
-// TODO : univ_reg models / controller / export / template : Disability : Replace  oui / non with yes / no
 // TODO : univ_reg route / controller : move middleware into the controller
 // TODO : univ_reg controller : use findMe methods (student::findMe)
 // TODO : all : simplify this.student controller : always use findMe in controllers (witch uses session('student'), and this.student set request->student into session('student') when admin
@@ -53,6 +52,8 @@ ET adapter les IDs
 
 
 CLOSED :
+
+// TODO : univ_reg models / controller / export / template : Disability : Replace  oui / non with yes / no / closed at 2021-08-17 23:04
 
 2021-04-01 / closed at 2021-08-17 19:17
 // TODO : Standardize models and DB tables with day attribute int between 0 and 6

@@ -101,13 +101,13 @@
 
         @if ($edit)
           <td style='padding-left:30px;'>
-            <input type='radio' name='question[7]' value='Oui' @if ($answer[7] == 'Oui' ) checked='checked' @endif /> Oui
+            <input type='radio' name='question[7]' value='Yes' @if ($answer[7] == 'Yes' ) checked='checked' @endif /> Yes
           </td>
         </tr>
         <tr>
           <td>&nbsp;</td>
           <td style='padding-left:30px;'>
-            <input type='radio' name='question[7]' value='Non' @if ($answer[7] == 'Non' ) checked='checked' @endif /> Non
+            <input type='radio' name='question[7]' value='No' @if ($answer[7] == 'No' ) checked='checked' @endif /> No
           </td>
         @else
           <td class='response'>{{ $answer[7] }}</td>
