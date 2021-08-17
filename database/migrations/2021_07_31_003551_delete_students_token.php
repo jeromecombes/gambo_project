@@ -25,6 +25,8 @@ class DeleteStudentsToken extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('students', function (Blueprint $table) {
+            $table->string('token', 200)->after('email');
+        });
     }
 }

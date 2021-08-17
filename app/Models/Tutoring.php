@@ -39,22 +39,7 @@ class Tutoring extends MyModel
 
     public function getDayAttribute($value)
     {
-        $day = $this->decrypt($value, false);
-
-        if (!is_numeric($day)) {
-            switch ($day) {
-                case 'Lundi' : return 0; break;
-                case 'Mardi' : return 1; break;
-                case 'Mercredi' : return 2; break;
-                case 'Jeudi' : return 3; break;
-                case 'Vendredi' : return 4; break;
-                case 'Samedi' : return 5; break;
-                case 'Dimanche' : return 6; break;
-                default : return null; break;
-            }
-        }
-
-        return $day;
+        return $this->decrypt($value, false);
     }
 
     public function getStartAttribute($value)

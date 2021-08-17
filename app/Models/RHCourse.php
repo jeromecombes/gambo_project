@@ -14,7 +14,7 @@ class RHCourse extends MyModel
     /**
      * @var array
      */
-    protected $fillable = ['professor', 'title', 'type', 'semester', 'univ', 'nom', 'code', 'jour', 'debut', 'fin'];
+    protected $fillable = ['type', 'semester'];
 
     // Get
     public function getProfessorAttribute($value)
@@ -42,11 +42,6 @@ class RHCourse extends MyModel
         return $this->decrypt($value, false);
     }
 
-    public function getJourAttribute($value)
-    {
-        return $this->decrypt($value, false);
-    }
-
     public function getDebutAttribute($value)
     {
         return $this->decrypt($value, false);
@@ -64,22 +59,7 @@ class RHCourse extends MyModel
 
     public function getDayAttribute($value)
     {
-        $day = $this->jour;
-
-        if (!is_numeric($day)) {
-            switch ($day) {
-                case 'Lundi' : return 0; break;
-                case 'Mardi' : return 1; break;
-                case 'Mercredi' : return 2; break;
-                case 'Jeudi' : return 3; break;
-                case 'Vendredi' : return 4; break;
-                case 'Samedi' : return 5; break;
-                case 'Dimanche' : return 6; break;
-                default : return null; break;
-            }
-        }
-
-        return $day;
+        return $this->decrypt($value, false);
     }
 
     public function getStartAttribute($value)
@@ -101,7 +81,7 @@ class RHCourse extends MyModel
 
     public function setDayAttribute($value)
     {
-        $this->attributes['jour'] = $this->encrypt($value, false);
+        $this->attributes['day'] = $this->encrypt($value, false);
     }
 
     public function setEndAttribute($value)

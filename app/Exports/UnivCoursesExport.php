@@ -82,7 +82,7 @@ class UnivCoursesExport implements FromArray
                     $key = substr($field[0], 8);
                     $line[] = $elem->student->{$key};
                 } elseif ($field[0] == 'day') {
-                    $line[] = __(jddayofweek(($elem->day -1), 1));
+                    $line[] = __($elem->dayText);
                 } else {
                     $line[] = $elem->{$field[0]};
                 }

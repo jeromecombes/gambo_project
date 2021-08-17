@@ -622,7 +622,7 @@ class CourseController extends Controller
             $course->institution = $request->institution;
             $course->discipline = $request->discipline;
             $course->niveau = $request->niveau;
-            $course->jour = $request->jour;
+            $course->day = $request->day;
             $course->debut = $request->debut;
             $course->fin = $request->fin;
         }

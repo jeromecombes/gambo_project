@@ -56,7 +56,7 @@
             @endfor
             </select>
           @elseif ($tutoring->id)
-            <div>{{ __(jddayofweek($tutoring->day, 1)) }} de {{ $tutoring->start }} à {{ $tutoring->end }}</div>
+            <div>{{ __($tutoring->dayText) }} de {{ $tutoring->start }} à {{ $tutoring->end }}</div>
           @endif
         </td>
       </tr>

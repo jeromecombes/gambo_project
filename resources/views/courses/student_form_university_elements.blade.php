@@ -198,10 +198,10 @@
             <td>Horaires</td>
             <td class='response'>
               @if ($edit)
-                <select name='jour' style='width:31%;'>
+                <select name='day' style='width:31%;'>
                   <option value=''>Jour</option>
                   @for ($i = 0; $i < 7; $i++)
-                    <option value='{{ $i + 1 }}' @if ($course->jour == $i + 1) selected='selected' @endif >{{ __(jddayofweek($i, 1)) }}</option>
+                    <option value='{{ $i }}' @if ($course->day == $i) selected='selected' @endif >{{ __(jddayofweek($i, 1)) }}</option>
                   @endfor
                 </select>
                 <select name='debut' style='width:33%;'>
@@ -230,7 +230,7 @@
                   @endfor
                 </select>
               @else
-                @if (is_numeric($course->jour)) {{ __(jddayofweek($course->jour-1, 1)) }} @endif {{ $course->debut }} {{ $course->fin }}
+                @if (is_numeric($course->day)) {{ __($course->dayText) }} @endif {{ $course->debut }} {{ $course->fin }}
               @endif
               </td>
           </tr>

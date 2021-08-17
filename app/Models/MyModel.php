@@ -42,7 +42,7 @@ class MyModel extends Model
 
     public function getDayTextAttribute()
     {
-        if (!empty($this->day)) {
+        if (isset($this->day) and is_numeric($this->day)) {
             return jddayofweek($this->day, 1);
         }
 

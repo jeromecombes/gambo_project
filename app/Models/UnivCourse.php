@@ -52,11 +52,6 @@ class UnivCourse extends MyModel
         return $this->decrypt($value, false);
     }
 
-    public function getDayAttribute($value)
-    {
-        return $this->jour;
-    }
-
     public function getDisciplineAttribute($value)
     {
         return $this->decrypt($value, false);
@@ -92,7 +87,7 @@ class UnivCourse extends MyModel
         return $this->decrypt($value, false);
     }
 
-    public function getJourAttribute($value)
+    public function getDayAttribute($value)
     {
         return $this->decrypt($value, false);
     }
@@ -181,9 +176,9 @@ class UnivCourse extends MyModel
         $this->attributes['email'] = $this->encrypt($value, false);
     }
 
-    public function setJourAttribute($value)
+    public function setDayAttribute($value)
     {
-        $this->attributes['jour'] = $this->encrypt($value, false);
+        $this->attributes['day'] = $this->encrypt($value, false);
     }
 
     public function setDebutAttribute($value)
