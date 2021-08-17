@@ -60,7 +60,7 @@ class MyModel extends Model
 
     public function getResponseAttribute($value)
     {
-        return $this->hasAttribute('response') ? html_entity_decode($this->decrypt($value, $this->student),ENT_QUOTES|ENT_IGNORE, 'UTF-8') : null;
+        return $this->hasAttribute('response') ? $this->decrypt($value, $this->student) : null;
     }
 
     public function setResponseAttribute($value)

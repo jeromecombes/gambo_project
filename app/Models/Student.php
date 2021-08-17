@@ -164,7 +164,7 @@ class Student extends MyModel
 
     public function getLastnameAttribute($value)
     {
-        return html_entity_decode($this->decrypt($value, false), ENT_QUOTES|ENT_IGNORE, 'UTF-8');
+        return $this->decrypt($value, false);
     }
 
     public function getLogementAttribute($value)

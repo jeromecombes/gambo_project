@@ -26,8 +26,6 @@ ET adapter les IDs
 // Day attribute can be use to sort results and as value in select options
 // DayText can be use to show days
 
-// TODO : remove HTML Entities from courses_univ4 et RH courses (DB)
-
 // TODO use custom laravel request for submitting trip form with old() helper and laravel forms with required fields
 
 // TODO Permettre la d<E9>sactivation des notifications dans MyAccount
@@ -61,6 +59,11 @@ ET adapter les IDs
 
 
 CLOSED :
+
+// TODO : remove HTML Entities from courses_univ4 (Done) et RH courses (DB) (Done)   / closed at 2021-08-17 10:15
+// TODO : remove HTML Entities Students : Done
+// TODO : remove HTML Entities from MyModels / Responses : Done
+-------------------------------------------------------------------------------------------------------------------------
 
 // TODO : Standardize type (courses_univ4 = nature)  / closed at 2021-08-17 07:33
 -------------------------------------------------------------------------------------------------------------------------

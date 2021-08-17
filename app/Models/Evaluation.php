@@ -20,7 +20,7 @@ class Evaluation extends MyModel
             $value = json_encode($value);
         }
 
-        $this->attributes['response'] = $this->encrypt($value, session('student'));
+        $this->attributes['response'] = $this->encrypt($value, $this->student);
     }
 
     public function links()

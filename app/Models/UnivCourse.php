@@ -34,7 +34,7 @@ class UnivCourse extends MyModel
 
     public function getNomAttribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getTypeAttribute($value)
@@ -44,12 +44,12 @@ class UnivCourse extends MyModel
 
     public function getInstitutionAttribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getInstitutionAutreAttribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getDayAttribute($value)
@@ -59,7 +59,7 @@ class UnivCourse extends MyModel
 
     public function getDisciplineAttribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getStartAttribute($value)
@@ -79,7 +79,7 @@ class UnivCourse extends MyModel
 
     public function getProfAttribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getProfessorAttribute($value)
@@ -114,12 +114,12 @@ class UnivCourse extends MyModel
 
     public function getModalites1Attribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getModalites2Attribute($value)
     {
-        return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
+        return $this->decrypt($value, false);
     }
 
     public function getNoteAttribute($value)

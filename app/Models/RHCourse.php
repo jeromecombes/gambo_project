@@ -19,7 +19,7 @@ class RHCourse extends MyModel
     // Get
     public function getProfessorAttribute($value)
     {
-        return html_entity_decode($this->decrypt($value, false));
+        return $this->decrypt($value, false);
     }
 
     public function getTitleAttribute($value)
@@ -59,7 +59,7 @@ class RHCourse extends MyModel
 
     public function getNameAttribute($value)
     {
-        return html_entity_decode($this->title);
+        return $this->title;
     }
 
     public function getDayAttribute($value)
@@ -107,6 +107,11 @@ class RHCourse extends MyModel
     public function setEndAttribute($value)
     {
         $this->attributes['fin'] = $this->encrypt($value, false);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['title'] = $this->encrypt($value, false);
     }
 
     public function setNomAttribute($value)
