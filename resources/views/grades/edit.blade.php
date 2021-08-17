@@ -105,7 +105,7 @@
 
       @foreach ($courses->univ as $course)
         <tr>
-          <td>{{ $course->nom }}, {{ $course->prof }} ({{ $course->nature }})</td>
+          <td>{{ $course->nom }}, {{ $course->prof }} @if ($course->type) ({{ $course->type }}) @endif</td>
           <td>
             @if ($edit and $fr_rw)
               <input type='text' name='univ_fr_{{ $course->id }}' value='{{ $grades['univ'][$course->id]->note }}' onkeyup='verifNote("form",this);'>

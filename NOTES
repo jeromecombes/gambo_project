@@ -27,7 +27,6 @@ ET adapter les IDs
 // DayText can be use to show days
 
 // TODO : remove HTML Entities from courses_univ4 et RH courses (DB)
-// TODO : Standardize type (courses_univ4 = nature)
 
 // TODO use custom laravel request for submitting trip form with old() helper and laravel forms with required fields
 
@@ -62,6 +61,9 @@ ET adapter les IDs
 
 
 CLOSED :
+
+// TODO : Standardize type (courses_univ4 = nature)  / closed at 2021-08-17 07:33
+-------------------------------------------------------------------------------------------------------------------------
 
 2021-07-19 / closed at 2021-08-16
 commit bd90a41697715f8bc6b5fa3cc4300140f39ab99d (HEAD -> master)

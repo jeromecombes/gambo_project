@@ -617,7 +617,7 @@ class CourseController extends Controller
             $course->prof = $request->prof;
             $course->email = $request->email;
             $course->note = $request->note;
-            $course->nature = $request->nature;
+            $course->type = $request->type;
             $course->lien = $request->lien;
             $course->institution = $request->institution;
             $course->discipline = $request->discipline;

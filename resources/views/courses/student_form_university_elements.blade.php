@@ -58,17 +58,17 @@
           </tr>
 
           <tr>
-            <td>Nature du cours</td>
+            <td>Type de cours</td>
             <td class='response'>
               @if ($edit)
-                <select name='nature'>
+                <select name='type'>
                   <option value=''>&nbsp;</option>
                   @foreach (explode(',', env('APP_COURSE_TYPE')) as $elem)
-                    <option value='{{ $elem }}' @if ($course->nature == $elem) selected='selected' @endif >{{ $elem }}</option>
+                    <option value='{{ $elem }}' @if ($course->type == $elem) selected='selected' @endif >{{ $elem }}</option>
                   @endforeach
                 </select>
               @else
-                {{ $course->nature }}
+                {{ $course->type }}
               @endif
             </td>
           </tr>
@@ -85,7 +85,7 @@
                   <select name='lien' id='link' onchange='checkLink();'>
                     <option value=''>&nbsp;</option>
                     @foreach ($courses->where('lien', null)->where('id', '<>', $course->id) as $elem)
-                        <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->nature }})</option>
+                        <option value='{{ $elem->id }}' @if ($course->lien == $elem->id) selected='selected' @endif >{{ $elem->nom }}, {{$elem->prof }} ({{$elem->type }})</option>
                     @endforeach
                   </select>
                 </td>
@@ -145,7 +145,7 @@
             @if ($course->linkedTo)
               <tr>
                 <td style='padding-top:20px;'>Ce cours est rattaché au cours suivant :</td>
-                <td style='padding-top:20px;' class='response'>{{ $course->linkedTo->nom }}, {{ $course->linkedTo->prof }} ({{ $course->linkedTo->nature }})</td>
+                <td style='padding-top:20px;' class='response'>{{ $course->linkedTo->nom }}, {{ $course->linkedTo->prof }} ({{ $course->linkedTo->type }})</td>
               </tr>
             @else
               <tr>

@@ -37,14 +37,9 @@ class UnivCourse extends MyModel
         return str_replace('&#039;', "'", html_entity_decode($this->decrypt($value, false)));
     }
 
-    public function getNatureAttribute($value)
-    {
-        return $this->decrypt($value, false);
-    }
-
     public function getTypeAttribute($value)
     {
-        return $this->nature;
+        return $this->decrypt($value, false);
     }
 
     public function getInstitutionAttribute($value)
@@ -151,9 +146,9 @@ class UnivCourse extends MyModel
         $this->attributes['nom'] = $this->encrypt($value, false);
     }
 
-    public function setNatureAttribute($value)
+    public function setTypeAttribute($value)
     {
-        $this->attributes['nature'] = $this->encrypt($value, false);
+        $this->attributes['type'] = $this->encrypt($value, false);
     }
 
     public function setInstitutionAttribute($value)

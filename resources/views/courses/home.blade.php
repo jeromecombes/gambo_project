@@ -77,7 +77,7 @@
           </td>
           <td>{{ $course->discipline }}</td>
           <td>{{ $course->code }}</td>
-          <td>{{ $course->nom }}</td><td>{{ $course->prof }}</td><td>{{ $course->nature }}</td>
+          <td>{{ $course->nom }}</td><td>{{ $course->prof }}</td><td>{{ $course->type }}</td>
           <td>{{ $course->studentName }}</td>
         </tr>
       @endforeach

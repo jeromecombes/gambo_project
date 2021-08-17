@@ -18,7 +18,7 @@ class UnivCoursesExport implements FromArray
             ['niveau', 'Niveau'],
             ['code', 'Code'],
             ['nom', 'Nom'],
-            ['type', 'Nature'],
+            ['type', 'Type'],
             ['prof', 'Professeur'],
             ['email', 'E-mail'],
             ['day', 'Jour'],
