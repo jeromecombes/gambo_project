@@ -6,12 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Http\Traits\CryptTrait;
 use App\Models\Student;
 
+
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, CryptTrait;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, CryptTrait;
 
     /**
      * The attributes that are mass assignable.

@@ -23,7 +23,6 @@ ET adapter les IDs
 
 // TODO use custom laravel request for submitting trip form with old() helper and laravel forms with required fields
 
-// TODO Permettre la d<E9>sactivation des notifications dans MyAccount
 
 
 
@@ -54,6 +53,8 @@ ET adapter les IDs
 
 
 CLOSED :
+// TODO Permettre la désactivation des notifications dans MyAccount / closed at 2021-08-18 12:37 : exists already
+
 // TODO : univ_reg route / controller : move middleware into the controller / closed at 2021-08-17 23:59
 
 // TODO : univ_reg models / controller / export / template : Disability : Replace  oui / non with yes / no / closed at 2021-08-17 23:04

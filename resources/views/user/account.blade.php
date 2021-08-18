@@ -51,14 +51,14 @@
       {{ csrf_field() }}
         <table>
           <tr>
-            <td>
-              <label for='notifications'>Enable notifications ?</label>
-            </td>
-            <td>
-              <input type='checkbox' name='notifications' value='1' @if ($notifications) checked='checked' @endif />
-            </td>
             <td class='td-button same-line' >
-              <input type='submit' value='Update' class='btn btn-primary' />
+              @if (Auth::user()->alerts)
+                <input type='hidden' name='notifications' value='0' />
+                <input type='submit' value='Disable notifications' class='btn btn-primary' />
+              @else
+                <input type='hidden' name='notifications' value='1' />
+                <input type='submit' value='Enable notifications' class='btn btn-primary' />
+              @endif
             </td>
           </tr>
 
@@ -66,6 +66,40 @@
       </form>
     </fieldset>
   @endif
+
+  <h3>Two Factor Authentication</h3>
+
+  <fieldset>
+    <form method='post' action='{{ route('two-factor.enable') }}'>
+    {{ csrf_field() }}
+      <table>
+        <tr>
+          <td colspan='2' class='td-button same-line' >
+            @if (!Auth::user()->two_factor_secret)
+              <input type='submit' value='Enable Two Factor Authentication' class='btn btn-primary' />
+            @else
+              <input type='hidden' name='_method' value='DELETE' />
+              <input type='submit' value='Disable Two Factor Authentication' class='btn btn-primary' />
+            @endif
+          </td>
+        </tr>
+
+        @if (Auth::user()->two_factor_secret)
+          <tr>
+            <td style='padding-top:20px;'>
+              Please scan this QR Code with an TOTP application (e.g. Duo)
+            </td>
+            <td style='padding:20px 30px; text-align:right;'>
+              {!! Auth::user()->twoFactorQrCodeSvg() !!}
+            </td>
+          </tr>
+        @endif
+
+      </table>
+    </form>
+  </fieldset>
+
+
 </section>
 
 @endsection

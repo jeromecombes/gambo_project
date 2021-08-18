@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes(['register' => false]);
+Auth::routes(['login' => false, 'register' => false]);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

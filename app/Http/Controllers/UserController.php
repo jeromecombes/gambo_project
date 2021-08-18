@@ -32,12 +32,8 @@ class UserController extends Controller
      */
     public function account(Request $request)
     {
-        $user = auth()->user();
-
-        $notifications = $user->alerts;
-
         // View
-        return view('user.account', compact('notifications'));
+        return view('user.account');
     }
 
     /**
