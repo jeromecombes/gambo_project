@@ -138,7 +138,7 @@ return [
         // Features::updateProfileInformation(),
         // Features::updatePasswords(),
         Features::twoFactorAuthentication([
-//             'confirmPassword' => true,  // TEST : uncomment this line after tests
+            'confirmPassword' => true,
         ]),
     ],
 
