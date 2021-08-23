@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Document;
 use App\Models\Host;
 use App\Models\HostAvailable;
+use App\Models\PasswordReset;
 use App\Models\Student;
+use App\Models\User;
 
 class deleteOldData extends Command
 {
@@ -177,6 +179,15 @@ class deleteOldData extends Command
         }
 
         Host::whereIn('id', $deleted_hosts)->delete();
+
+        // Users
+        $students = Student::pluck('user_id');
+        $users = User::where('admin', 0)
+            ->whereNotIn('id', $students)
+            ->delete();
+
+        $emails = User::pluck('email');
+        PasswordReset::whereNotIn('email', $emails)->delete();
 
         if ($verbos) {
             dd(DB::getQueryLog());

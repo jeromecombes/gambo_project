@@ -8,8 +8,6 @@ NOTES
 
 2021-04-21
 // TODO : student::destroy : delete documents : créer DocumentController::delete_students_docs(students ID)
-// TODO : student::destroy : delete password_resets where email : Model à créer
-
 
 2021-04-07
 // TODO use custom request for changing password and fields contrôle with length, etc. template user/account
@@ -50,6 +48,9 @@ ET adapter les IDs
 
 
 CLOSED :
+2021-04-21
+TODO : student::destroy : delete password_resets where email : Model à créer  / closed at 2021-08-23 18:58
+
 2021-08-17 / closed at 2021-08-23 16:58
 // TODO remove html entities from lastname, firstname on students table by migration
 

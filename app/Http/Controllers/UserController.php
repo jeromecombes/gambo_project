@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\PasswordReset;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -44,7 +45,10 @@ class UserController extends Controller
      */
     public function delete(Request $request)
     {
-        User::find($request->id)->delete();
+        $user = User::find($request->id);
+
+        PasswordReset::where('email', $user->email)->delete();
+        $user->delete();
 
         return redirect()->route('users.index')->with('success', 'The user has been deleted');
     }

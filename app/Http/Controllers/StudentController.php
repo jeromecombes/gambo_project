@@ -10,6 +10,7 @@ use App\Models\HousingClosed;
 use App\Models\HousingTerm;
 use App\Models\HousingAssignment;
 use App\Models\Internship;
+use App\Models\PasswordReset;
 use App\Models\RHCourseAssignment;
 use App\Models\RHCourseLock;
 use App\Models\RHCoursePublish;
@@ -560,10 +561,9 @@ class StudentController extends Controller
         foreach ($students as $student) {
 
             User::where('email', $student->email)->delete();
+            PasswordReset::where('email', $student->email)->delete();
 
             $student->delete();
-
-            // TODO : delete password_resets where email : Model à créer
         }
 
         return redirect('/students')->with('success', 'Selected students have been successfuly deleted');
