@@ -1,8 +1,5 @@
 NOTES
 
-2021-08-17
-// TODO remove html entities from lastname, firstname on students table by migration
-
 2021-06-09
 // TODO : univ_reg controller : use findMe methods (student::findMe)
 // TODO : all : simplify this.student controller : always use findMe in controllers (witch uses session('student'), and this.student set request->student into session('student') when admin
@@ -53,6 +50,9 @@ ET adapter les IDs
 
 
 CLOSED :
+2021-08-17 / closed at 2021-08-23 16:58
+// TODO remove html entities from lastname, firstname on students table by migration
+
 // TODO Permettre la désactivation des notifications dans MyAccount / closed at 2021-08-18 12:37 : exists already
 
 // TODO : univ_reg route / controller : move middleware into the controller / closed at 2021-08-17 23:59
