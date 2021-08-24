@@ -147,11 +147,6 @@ class Student extends MyModel
         return $this->decrypt($value);
     }
 
-    public function getFullnameAttribute()
-    {
-        return $this->lastname.', '.$this->firstname;
-    }
-
     public function getGenderAttribute($value)
     {
         return $this->decrypt($value);
