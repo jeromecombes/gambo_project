@@ -12,7 +12,6 @@ use App\Models\UnivRegShow;
 use App\Helpers\CountryHelper;
 use App\Helpers\StateHelper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session as LaravelSession;
 use App\Exports\UnivRegExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -45,8 +44,6 @@ class UnivRegController extends Controller
         $user = auth()->user();
 
         $students = Student::findMine();
-
-        $year = substr(session('semester'), -4);
 
         foreach ($students as $student) {
             $tab[$student->id]['student'] = $student->id;

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+
 /**
         $this->middleware('auth');
         $this->middleware('semester');
@@ -91,7 +92,7 @@ class HousingTest extends MyTestCase
                 'student' => $student->id,
             ])->get('/housing/' . ($student->id +1));
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 
     public function test_housing_with_id_admin_session()

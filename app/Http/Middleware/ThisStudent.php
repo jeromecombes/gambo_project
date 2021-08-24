@@ -17,15 +17,16 @@ class ThisStudent
     {
         $user = $request->user();
 
-        if ($user->admin or !$request->student) {
-            return $next($request);
+        // Admin : set session student = request->student
+        if ($user->admin and $request->student) {
+            $request->session('student')->put($request->student);
         }
 
-        if ($request->student != session('student')) {
-            return redirect('/');
+        // Student : force request->student = session student
+        if (!$user->admin and $request->student) {
+            $request->student = session('student');
         }
 
         return $next($request);
-
     }
 }

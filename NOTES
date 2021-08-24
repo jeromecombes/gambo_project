@@ -1,10 +1,7 @@
 NOTES
 
 2021-06-09
-// TODO : univ_reg controller : use findMe methods (student::findMe)
-// TODO : all : simplify this.student controller : always use findMe in controllers (witch uses session('student'), and this.student set request->student into session('student') when admin
 // TODO : idea : all : simplify middleware : use groups (ex : auth group may contain this.student, ...)
-
 
 2021-04-21
 // TODO : student::destroy : delete documents : créer DocumentController::delete_students_docs(students ID)
@@ -48,6 +45,13 @@ ET adapter les IDs
 
 
 CLOSED :
+
+2021-06-09
+// TODO : univ_reg controller : use findMe methods (student::findMe) : OK
+// TODO : all : simplify this.student middleware : always use findMe in controllers (witch uses session('student'),
+and this.student set request->student into session('student') when admin : OK
+-------------------------------------------------------------------------------------------------------------------------
+
 2021-04-21
 TODO : student::destroy : delete password_resets where email : Model à créer  / closed at 2021-08-23 18:58
 
