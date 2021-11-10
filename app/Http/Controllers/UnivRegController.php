@@ -73,6 +73,8 @@ class UnivRegController extends Controller
             }
         }
 
+        $year = substr(session('semester'), -4);
+
         // View
         return view('univ_reg.list', compact('tab', 'year'));
     }
