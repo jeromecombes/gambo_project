@@ -1,46 +1,70 @@
-<nav>
-    <ul class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'>
-        <li class='ui-state-default ui-corner-top'><a href='{{ route("admin.index") }}'>Home</a></li>
-        @if(session('semester'))
-            @if(in_array(24, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('dates')) ? 'ui-state-active' : '' }}"><a href='{{ asset('dates') }}'>Dates</a></li>
-            @endif
+<ul class='nav nav-tabs'>
 
-            <li class="ui-state-default ui-corner-top {{ (request()->is('students*')) ? 'ui-state-active' : '' }}"><a href="{{ asset('students') }}">Students</a></li>
+  <li class="@if (Request::is('admin')) active @endif">
+    <a href='{{ route("admin.index") }}'>Home</a>
+  </li>
 
-            @if(!empty(array_intersect(array(2, 7), Auth::user()->access)))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('ho*')) ? 'ui-state-active' : '' }}"><a href="{{ asset('housing/home') }}">Housing</a></li>
-            @endif
+  @if(session('semester'))
+    @if(in_array(24, Auth::user()->access))
+      <li class="@if (Request::is('dates')) active @endif">
+        <a href='{{ asset('dates') }}'>Dates</a>
+      </li>
+    @endif
 
-            @if(in_array(17, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('univ_reg/list')) ? 'ui-state-active' : '' }}"><a href='{{ asset('univ_reg/list') }}'>Univ. reg.</a></li>
-            @endif
+    <li class="@if (Request::is('students*')) active @endif">
+      <a href="{{ asset('students') }}">Students</a>
+    </li>
 
-            @if(in_array(23, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('courses/home')) ? 'ui-state-active' : '' }}"><a href='/courses/home'>Courses</a></li>
-            @endif
+    @if(!empty(array_intersect(array(2, 7), Auth::user()->access)))
+      <li class="@if (Request::is('ho*')) active @endif">
+        <a href="{{ asset('housing/home') }}">Housing</a>
+      </li>
+    @endif
 
-            @if(!empty(array_intersect(array(18, 19, 20), Auth::user()->access)))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('*grades*')) ? 'ui-state-active' : '' }}"><a href='{{ asset('grades/home') }}'>Grades</a></li>
-            @endif
+    @if(in_array(17, Auth::user()->access))
+      <li class="@if (Request::is('univ_reg/list')) active @endif">
+        <a href='{{ asset('univ_reg/list') }}'>Univ. reg.</a>
+      </li>
+    @endif
 
-            @if(in_array(15, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('*evaluations*')) ? 'ui-state-active' : '' }}"><a href='/evaluations/home'>Evaluations</a></li>
-            @endif
+    @if(in_array(23, Auth::user()->access))
+      <li class="@if (Request::is('courses/home')) active @endif">
+        <a href='/courses/home'>Courses</a>
+      </li>
+    @endif
 
-            @if(in_array(22, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('*evaluations*')) ? 'ui-state-active' : '' }}"><a href='/evaluations/who'>Evaluations</a></li>
-            @endif
+    @if(!empty(array_intersect(array(18, 19, 20), Auth::user()->access)))
+      <li class="@if (Request::is('*grades*')) active @endif">
+        <a href='{{ asset('grades/home') }}'>Grades</a>
+      </li>
+    @endif
 
-            @if(in_array(3, Auth::user()->access))
-                <li class="ui-state-default ui-corner-top {{ (request()->is('documents')) ? 'ui-state-active' : '' }}"><a href="{{ asset('documents') }}">Documents</a></li>
-            @endif
-        @endif
+    @if(in_array(15, Auth::user()->access))
+      <li class="@if (Request::is('*evaluations*')) active @endif">
+        <a href='/evaluations/home'>Evaluations</a>
+      </li>
+    @endif
 
-        @if(!empty(array_intersect(array(9, 10, 11, 12), Auth::user()->access)))
-            <li class="ui-state-default ui-corner-top {{ (request()->is('*user*')) ? 'ui-state-active' : '' }}"><a href='/users'>Users</a></li>
-        @endif
+    @if(in_array(22, Auth::user()->access))
+      <li class="@if (Request::is('*evaluations*')) active @endif">
+        <a href='/evaluations/who'>Evaluations</a>
+      </li>
+    @endif
 
-        <li class="ui-state-default ui-corner-top {{ (request()->is('account')) ? 'ui-state-active' : '' }}"><a href='/account'>My Account</a></li>
-    </ul>
-</nav>
+    @if(in_array(3, Auth::user()->access))
+      <li class="@if (Request::is('documents')) active @endif">
+        <a href="{{ asset('documents') }}">Documents</a>
+      </li>
+    @endif
+  @endif
+
+  @if(!empty(array_intersect(array(9, 10, 11, 12), Auth::user()->access)))
+    <li class="@if (Request::is('*user*')) active @endif">
+      <a href='/users'>Users</a>
+    </li>
+  @endif
+
+  <li class="@if (Request::is('account')) active @endif">
+    <a href='/account'>My Account</a>
+  </li>
+</ul>
