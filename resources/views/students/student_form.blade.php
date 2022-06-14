@@ -49,6 +49,7 @@
                     <option value=''>&nbsp;</option>
                     <option value='Female' @if ($student->gender == 'Female') selected='selected' @endif >Female</option>
                     <option value='Male' @if ($student->gender == 'Male') selected='selected' @endif >Male</option>
+                    <option value='Other' @if ($student->gender == 'Other') selected='selected' @endif >Other</option>
                   </select>
                 @else
                   {{ $student->gender }}
