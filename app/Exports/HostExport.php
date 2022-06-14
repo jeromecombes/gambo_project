@@ -8,7 +8,7 @@ use App\Models\HousingAssignment;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromArray;
 
-class hostExport implements FromArray
+class HostExport implements FromArray
 {
 
     public function array(): array
