@@ -20,12 +20,16 @@ class ChoicesExport implements FromArray
         foreach ($courses as $k => $v) {
             $choices = CourseChoice::where('a1', $v->id)
                 ->orWhere('a2', $v->id)
+                ->orWhere('a3', $v->id)
                 ->orWhere('b1', $v->id)
                 ->orWhere('b2', $v->id)
+                ->orWhere('b3', $v->id)
                 ->orWhere('c1', $v->id)
                 ->orWhere('c2', $v->id)
+                ->orWhere('c3', $v->id)
                 ->orWhere('d1', $v->id)
                 ->orWhere('d2', $v->id)
+                ->orWhere('d3', $v->id)
                 ->orWhere('e2', $v->id)
                 ->get();
             $courses[$k]['choices'] = $choices;
@@ -37,7 +41,7 @@ class ChoicesExport implements FromArray
         foreach ($courses as $course) {
             if (empty($course['choices'])) {
                 $data[] = array(
-                    $course->type,
+                    __($course->type),
                     $course->code,
                     $course->title,
                     $course->nom,
@@ -51,20 +55,20 @@ class ChoicesExport implements FromArray
 
                     $student_choice = null;
 
-                    if ($choice->a1 == $course->id or $choice->a2 == $course->id) {
+                    if ($choice->a1 == $course->id or $choice->a2 == $course->id or $choice->a3 == $course->id) {
                         $student_choice = '1st';
-                    }elseif ($choice->b1 == $course->id or $choice->b2 == $course->id) {
+                    }elseif ($choice->b1 == $course->id or $choice->b2 == $course->id or $choice->b3 == $course->id) {
                         $student_choice = '2nd';
-                    }elseif ($choice->c1 == $course->id or $choice->c2 == $course->id) {
+                    }elseif ($choice->c1 == $course->id or $choice->c2 == $course->id or $choice->c3 == $course->id) {
                         $student_choice = '3rd';
-                    }elseif ($choice->d1 == $course->id or $choice->d2 == $course->id) {
+                    }elseif ($choice->d1 == $course->id or $choice->d2 == $course->id or $choice->d3 == $course->id) {
                         $student_choice = '4th';
                     }elseif ($choice->e2 == $course->id) {
                         $student_choice = '5th';
                     }
 
                     $data[] = array(
-                        $course->type,
+                        __($course->type),
                         $course->code,
                         $course->title,
                         $course->nom,

@@ -41,6 +41,18 @@
           </ul>
         </td>
       </tr>
+      <tr>
+        <td colspan='4'><b>Ateliers</b></td>
+      </tr>
+      <tr>
+        <td colspan='4'>
+          <ul style='margin-top:0px;'>
+            @foreach ($occurences['Workshop'] as $elem)
+              <li>{{ $elem['code'] }} {{ $elem['title'] }}, {{ $elem['professor'] }} : {{ $elem['count'] }}</li>
+            @endforeach
+          </ul>
+        </td>
+      </tr>
 
       <tr>
         <td colspan='4' style='font-weight:bold; padding:30px 0 10px 0;'><u>3.) Final registration</u></td>
@@ -69,7 +81,6 @@
           @endif
         </td>
       </tr>
-
       <tr>
         <td style='text-align:right;'>N°2</td>
         <td colspan='2'>
@@ -85,6 +96,7 @@
           @endif
         </td>
       </tr>
+
       <tr>
         <td style='padding-left:15px;font-weight:bold;' colspan='3'>Seminars</td>
       </tr>
@@ -130,6 +142,55 @@
             </select>
           @else
             {{ $assignment_text->seminar3 }}
+          @endif
+        </td>
+      </tr>
+
+      <tr>
+        <td style='padding-left:15px;font-weight:bold;' colspan='3'>Ateliers</td>
+      </tr>
+      <tr>
+        <td style='text-align:right;'>N°1</td>
+        <td colspan='2'>
+          @if (in_array(16, Auth::user()->access))
+            <select name='workshop1'>
+              <option value=''>&nbsp;</option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $assignment->workshop1) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          @else
+            {{ $assignment_text->workshop1 }}
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td style='text-align:right;'>N°2</td>
+        <td colspan='2'>
+          @if (in_array(16, Auth::user()->access))
+            <select name='workshop2'>
+              <option value=''>&nbsp;</option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $assignment->workshop2) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          @else
+            {{ $assignment_text->workshop2 }}
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td style='text-align:right;'>N°3</td>
+        <td colspan='2'>
+          @if (in_array(16, Auth::user()->access))
+            <select name='workshop3'>
+              <option value=''>&nbsp;</option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $assignment->workshop3) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          @else
+            {{ $assignment_text->workshop3 }}
           @endif
         </td>
       </tr>

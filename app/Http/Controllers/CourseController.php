@@ -143,11 +143,14 @@ class CourseController extends Controller
             if (!empty($elem->seminar1)) $tab[] = $elem->seminar1;
             if (!empty($elem->seminar2)) $tab[] = $elem->seminar2;
             if (!empty($elem->seminar3)) $tab[] = $elem->seminar3;
+            if (!empty($elem->workshop1)) $tab[] = $elem->workshop1;
+            if (!empty($elem->workshop2)) $tab[] = $elem->workshop2;
+            if (!empty($elem->workshop3)) $tab[] = $elem->workshop3;
         }
 
         $count = array_count_values($tab);
 
-        $occurences = ['Seminar' => [], 'Writing' => []];
+        $occurences = ['Seminar' => [], 'Workshop' => [], 'Writing' => []];
 
         foreach ($rhCourses as $elem) {
             $occurences[$elem->type][] = array(
@@ -160,6 +163,7 @@ class CourseController extends Controller
         }
 
         usort($occurences['Seminar'], [$this, 'cmp_count_desc']);
+        usort($occurences['Workshop'], [$this, 'cmp_count_desc']);
         usort($occurences['Writing'], [$this, 'cmp_count_desc']);
 
         // Student assignment IDs
@@ -256,6 +260,9 @@ class CourseController extends Controller
                 'seminar1' => $request->seminar1,
                 'seminar2' => $request->seminar2,
                 'seminar3' => $request->seminar3,
+                'workshop1' => $request->workshop1,
+                'workshop2' => $request->workshop2,
+                'workshop3' => $request->workshop3,
             )
         );
 
@@ -284,6 +291,10 @@ class CourseController extends Controller
                 'c2' => $request->seminar3,
                 'd2' => $request->seminar4,
                 'e2' => $request->seminar5,
+                'a3' => $request->workshop1,
+                'b3' => $request->workshop2,
+                'c3' => $request->workshop3,
+                'd3' => $request->workshop4,
             )
         );
 
@@ -422,12 +433,16 @@ class CourseController extends Controller
         // Students choices
         $choices = CourseChoice::where('a1', $id)
             ->orWhere('a2', $id)
+            ->orWhere('a3', $id)
             ->orWhere('b1', $id)
             ->orWhere('b2', $id)
+            ->orWhere('b3', $id)
             ->orWhere('c1', $id)
             ->orWhere('c2', $id)
+            ->orWhere('c3', $id)
             ->orWhere('d1', $id)
             ->orWhere('d2', $id)
+            ->orWhere('d3', $id)
             ->orWhere('e2', $id)
             ->get();
 
@@ -452,6 +467,9 @@ class CourseController extends Controller
             ->orWhere('seminar1', $id)
             ->orWhere('seminar2', $id)
             ->orWhere('seminar3', $id)
+            ->orWhere('workshop1', $id)
+            ->orWhere('workshop2', $id)
+            ->orWhere('workshop3', $id)
             ->get();
 
         // View

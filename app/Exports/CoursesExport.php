@@ -24,6 +24,9 @@ class CoursesExport implements FromArray
                 ->orWhere('seminar1', $v->id)
                 ->orWhere('seminar2', $v->id)
                 ->orWhere('seminar3', $v->id)
+                ->orWhere('workshop1', $v->id)
+                ->orWhere('workshop2', $v->id)
+                ->orWhere('workshop3', $v->id)
                 ->pluck('student');
             $courses[$k]['students'] = $tab;
         }
@@ -34,7 +37,7 @@ class CoursesExport implements FromArray
         foreach ($courses as $course) {
             if (empty($course['students'])) {
                 $data[] = array(
-                    $course->type,
+                    __($course->type),
                     $course->code,
                     $course->title,
                     $course->nom,
@@ -47,7 +50,7 @@ class CoursesExport implements FromArray
                     }
 
                     $data[] = array(
-                        $course->type,
+                        __($course->type),
                         $course->code,
                         $course->title,
                         $course->nom,

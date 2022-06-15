@@ -30,7 +30,7 @@
 
         <tr>
           <td>{{ Form::label('type', 'Type') }}</td>
-          <td>{{ Form::select('type', ['' => '', 'Writing' => 'Writing-Intensive Course', 'Seminar' => 'Seminar'], $course->type, ['id' => 'type']) }}</td>
+          <td>{{ Form::select('type', ['' => '', 'Writing' => 'Writing-Intensive Course', 'Seminar' => 'Seminar', 'Workshop' => 'Atelier'], $course->type, ['id' => 'type']) }}</td>
         </tr>
 
         <tr>

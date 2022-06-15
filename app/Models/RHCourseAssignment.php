@@ -14,6 +14,6 @@ class RHCourseAssignment extends MyModel
     /**
      * @var array
      */
-    protected $fillable = ['student', 'semester', 'writing1', 'writing2', 'writing3', 'seminar1', 'seminar2', 'seminar3'];
+    protected $fillable = ['student', 'semester', 'writing1', 'writing2', 'writing3', 'seminar1', 'seminar2', 'seminar3', 'workshop1', 'workshop2', 'workshop3'];
 
 }

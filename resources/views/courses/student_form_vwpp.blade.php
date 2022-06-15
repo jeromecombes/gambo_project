@@ -155,6 +155,73 @@
           <td>{{ $rhCourses->find($choices->e2)->professor }}</td>
         @endif
       </tr>
+      <tr>
+        <td colspan='3'><b>Ateliers</b></td>
+      </tr>
+      <tr>
+        <td style='padding-left:30px;'>1<sup>st</sup> choice</td>
+        @if ($edit_vwpp)
+          <td>
+            <select name='workshop1'>
+              <option value=''></option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $choices->a3) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          </td>
+        @elseif ($choices->a3 and $rhCourses->find($choices->a3))
+          <td>{{ $rhCourses->find($choices->a3)->code }} {{ $rhCourses->find($choices->a3)->title }}</td>
+          <td>{{ $rhCourses->find($choices->a3)->professor }}</td>
+        @endif
+      </tr>
+      <tr>
+        <td style='padding-left:30px;'>2<sup>nd</sup> choice</td>
+        @if ($edit_vwpp)
+          <td>
+            <select name='workshop2'>
+              <option value=''></option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $choices->b3) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          </td>
+        @elseif ($choices->b3 and $rhCourses->find($choices->b3))
+          <td>{{ $rhCourses->find($choices->b3)->code }} {{ $rhCourses->find($choices->b3)->title }}</td>
+          <td>{{ $rhCourses->find($choices->b3)->professor }}</td>
+        @endif
+      </tr>
+      <tr>
+        <td style='padding-left:30px;'>3<sup>rd</sup> choice</td>
+        @if ($edit_vwpp)
+          <td>
+            <select name='workshop3'>
+              <option value=''></option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $choices->c3) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          </td>
+        @elseif ($choices->c3 and $rhCourses->find($choices->c3))
+          <td>{{ $rhCourses->find($choices->c3)->code }} {{ $rhCourses->find($choices->c3)->title }}</td>
+          <td>{{ $rhCourses->find($choices->c3)->professor }}</td>
+        @endif
+      </tr>
+      <tr>
+        <td style='padding-left:30px;'>4<sup>th</sup> choice</td>
+        @if ($edit_vwpp)
+          <td>
+            <select name='workshop4'>
+              <option value=''></option>
+              @foreach ($rhCourses->where('type', 'Workshop') as $elem)
+                <option value='{{ $elem->id }}' @if ($elem->id == $choices->d3) selected='selected' @endif >{{ $elem->code }} {{ $elem->title }}, {{ $elem->professor }}</option>
+              @endforeach
+            </select>
+          </td>
+        @elseif ($choices->d3 and $rhCourses->find($choices->d3))
+          <td>{{ $rhCourses->find($choices->d3)->code }} {{ $rhCourses->find($choices->d3)->title }}</td>
+          <td>{{ $rhCourses->find($choices->d3)->professor }}</td>
+        @endif
+      </tr>
 
       @if ($edit_vwpp)
         <tr>

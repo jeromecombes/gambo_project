@@ -25,7 +25,7 @@
             <img src='/img/people.png' alt='Students' />
           </a>
         </td>
-        <td>{{ $course->type }}</td>
+        <td>{{ __($course->type) }}</td>
         <td>{{ $course->code }}</td>
         <td>{{ $course->title }}</td>
         <td>{{ $course->professor }}</td>
