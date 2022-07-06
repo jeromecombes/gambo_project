@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\MimeTypeHelper;
 use App\Models\Document;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -275,7 +276,9 @@ class DocumentController extends Controller
 
         $content = decrypt(Storage::get($doc->path));
 
-        header('Content-Disposition: inline; filename='.$doc->name);
+	$extension = MimeTypeHelper::getExtension($doc->type);
+
+        header('Content-Disposition: inline; filename=' . $doc->name . $extension);
         header('Content-type:'.$doc->type);
         header('Cache-Control: private, max-age=0, must-revalidate');
         header('Pragma: public');
