@@ -22,7 +22,7 @@
               </td>
             </tr>
             <tr>
-              <td style='width:220px;'>Lastname</td>
+              <td style='width:220px;'>Last name</td>
               <td style='width:360px;'>
                 @if ($edit)
                   <input type='text' name='lastname' value='{{ $student->lastname}}'/>
@@ -32,7 +32,7 @@
               </td>
             </tr>
             <tr>
-              <td>Firstname</td>
+              <td>First name</td>
               <td>
                 @if ($edit)
                   <input type='text' name='firstname' value='{{ $student->firstname}}'/>
@@ -170,11 +170,11 @@
                 <td colspan='2'><br/><b><u>Housing in France</u></b></td>
               </tr>
               <tr>
-                <td>Lastname</td>
+                <td>Last name</td>
                 <td>{{ $host->lastname }}</td>
               </tr>
               <tr>
-                <td>Firstname</td>
+                <td>First name</td>
                 <td>{{ $host->firstname }}</td>
               </tr>
               <tr>
@@ -213,7 +213,7 @@
               <td colspan='2'><br/><b><u>Contact Information for Parent/Guardian</u></b></td>
             </tr>
             <tr>
-              <td style='width:40%;'>Lastname</td>
+              <td style='width:40%;'>Last name</td>
               <td style='width:60%;'>
                 @if ($edit)
                   <input type='text' name='contactlast' value='{{ $student->contactlast }}'/>
@@ -223,7 +223,7 @@
               </td>
             </tr>
             <tr>
-              <td>Firstname</td>
+              <td>First name</td>
               <td>
                 @if ($edit)
                   <input type='text' name='contactfirst' value='{{ $student->contactfirst }}'/>

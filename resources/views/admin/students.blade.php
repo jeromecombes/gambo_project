@@ -30,8 +30,8 @@
                 <th class='dataTableNoSort'>
                     <input type='checkbox' id='check_all' />
                 </th>
-                <th>Lastanme</th>
-                <th>Firstname</th>
+                <th>Last name</th>
+                <th>First name</th>
                 <th>Gender</th>
                 <th>French Univ.</th>
                 <th>Email</th>

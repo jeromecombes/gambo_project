@@ -22,11 +22,11 @@
     <td colspan='5'><h3>I. Personal details</h3></td>
   </tr>
   <tr>
-    <td>1. Last Name : </td>
+    <td>1. Last name : </td>
     <td colspan='2'>
       <div class='response2'>{{ $student->lastname }}</div>
     </td>
-    <td>First Name : </td>
+    <td>First name : </td>
     <td>
       <div class='response2'>{{ $student->firstname }}</div>
     </td>
