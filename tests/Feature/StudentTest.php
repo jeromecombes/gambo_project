@@ -32,6 +32,7 @@ class StudentTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/student');
@@ -46,6 +47,7 @@ class StudentTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/student');
@@ -60,6 +62,7 @@ class StudentTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/student/' . $student->id);
@@ -74,6 +77,7 @@ class StudentTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/student/' . $student->id);

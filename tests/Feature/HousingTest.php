@@ -46,6 +46,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing');
@@ -60,6 +61,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing');
@@ -74,6 +76,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing/' . $student->id);
@@ -88,6 +91,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing/' . ($student->id +1));
@@ -102,6 +106,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing/' . $student->id);
@@ -123,6 +128,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/housing', [
@@ -139,6 +145,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/housing', [
@@ -156,6 +163,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/housing', [
@@ -180,6 +188,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/housing/accept_terms');
@@ -194,6 +203,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/housing/accept_terms');
@@ -216,6 +226,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing/home');
@@ -231,6 +242,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->get('/housing/home');
 
@@ -244,6 +256,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->get('/housing/home');
 
@@ -260,6 +273,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->get('/housing/home');
 
@@ -281,6 +295,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/housing/requests');
@@ -296,6 +311,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->get('/housing/requests');
 
@@ -309,6 +325,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->get('/housing/requests');
 
@@ -325,6 +342,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->get('/housing/requests');
 
@@ -346,6 +364,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/housing_assignment');
@@ -361,6 +380,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->post('/housing_assignment');
 
@@ -377,6 +397,7 @@ class HousingTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => 'Spring 2020',
             ])->post('/housing_assignment');
 
