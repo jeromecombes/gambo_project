@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Student;
+use App\Models\Partner;
 use App\Models\UnivReg;
 use App\Models\UnivReg3;
 use Illuminate\Http\Request;
@@ -17,21 +18,25 @@ class UnivRegExport implements FromArray
         $students = Student::findMine()
             ->whereIn('id', request()->students);
 
+        $partners = Partner::getCurrents();
+
         $univ_reg = UnivReg::where('semester', session('semester'))->get();
         $univ_reg3 = UnivReg3::where('semester', session('semester'))->get();
 
-        $header[] = array(
+        $header1[] = array(
             'Lastname',
             'Firstname',
             'Major 1',
             'Minor 1',
             'Major 2',
             'Minor 2',
-            'Paris 3',
-            'Paris 4',
-            'Paris 7',
-            'Paris 12',
-            'CIPh',
+        );
+
+        foreach ($partners as $partner) {
+            $header1[] = $partner->name;
+        }
+
+        $header2 = array(
             'Justification',
             'Motivated by the calendar',
             'Final Reg.',
@@ -43,7 +48,9 @@ class UnivRegExport implements FromArray
             'Start college',
             'Disability or special needs',
             'Details',
-            );
+        );
+
+        $header = array_merge($header1, $header2);
 
         $data = array();
 

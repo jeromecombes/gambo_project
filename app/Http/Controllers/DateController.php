@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dates;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -31,9 +32,10 @@ class DateController extends Controller
     public function edit(Request $request)
     {
         $dates = Dates::where('semester', session('semester'))->firstOrNew();
+        $partners = Partner::getCurrents()->where('date', 1);
 
         // View
-        return view('dates.edit', compact('dates'));
+        return view('dates.edit', compact('dates', 'partners'));
     }
 
     /**

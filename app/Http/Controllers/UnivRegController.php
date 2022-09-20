@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dates;
+use App\Models\Partner;
 use App\Models\Student;
 use App\Models\UnivReg;
 use App\Models\UnivReg2;
@@ -75,8 +76,10 @@ class UnivRegController extends Controller
 
         $year = substr(session('semester'), -4);
 
+        $partners = Partner::getCurrents();
+
         // View
-        return view('univ_reg.list', compact('tab', 'year'));
+        return view('univ_reg.list', compact('tab', 'partners', 'year'));
     }
 
     /**
@@ -140,12 +143,13 @@ class UnivRegController extends Controller
 
         // Get deadlines
         $dates = Dates::where('semester', session('semester'))->first();
+        $partners = Partner::getCurrents();
 
         $states = StateHelper::get();
         $countries = CountryHelper::get();
 
         // View
-        return view('univ_reg.student_form', compact('edit', 'student', 'published', 'locked', 'dates', 'university', 'answer', 'answer_plus', 'countries', 'states'));
+        return view('univ_reg.student_form', compact('edit', 'student', 'published', 'locked', 'dates', 'partners', 'university', 'answer', 'answer_plus', 'countries', 'states'));
     }
 
     /**

@@ -12,11 +12,9 @@
             <td>
               <select name='university' style='width:800px;'>
                 <option value=''>&nbsp;</option>
-                <option value='Paris 3' @if ($university == 'Paris 3') selected='selected' @endif >Paris 3</option>
-                <option value='Paris 4' @if ($university == 'Paris 4') selected='selected' @endif >Paris 4</option>
-                <option value='Paris 7' @if ($university == 'Paris 7') selected='selected' @endif >Paris 7</option>
-                <option value='Paris 12' @if ($university == 'Paris 12') selected='selected' @endif >Paris 12</option>
-                <option value='CIPh' @if ($university == 'CIPh') selected='selected' @endif >CIPh</option>
+                @foreach ($partners as $partner)
+                  <option value='{{ $partner->name }}' @if ($university == $partner->name ) selected='selected' @endif >{{ $partner->name }}</option>
+                @endforeach
               </select>
             </td>
             <td style='text-align:right;'>

@@ -184,10 +184,20 @@
         <tr>
           <td colspan='6' style='padding:20px 0 0 0; text-align:justify;'>
             Please note that each university has a different calendar :<br/>
-            Paris 3, end of course <b>{{ $dates->date5 }}</b><br/>
-            Paris 4, end of course <b>{{ $dates->date6 }}</b><br/>
-            Paris 7, end of course <b>{{ $dates->date7 }}</b><br/>
-            Paris 12, end of course <b>{{ $dates->date8 }}</b><br/>
+
+            @php
+              $i = 4;
+            @endphp
+
+            @foreach ($partners as $partner)
+	      @if ($partner->date)
+                @php
+                  $i++;
+                @endphp
+
+                {{ $partner->name }}, end of course <b>{{ $dates->{"date$i"} }}</b><br/>
+              @endif
+	    @endforeach
           </td>
         </tr>
       @endif
@@ -198,95 +208,33 @@
         </td>
       </tr>
 
-      <tr>
-        <td>Paris 3</td>
-        <td colspan='2'>
-          @if ($edit)
-            <select name='question[14]'>
-              <option value=''>&nbsp;</option>
-              <option value='1st' {@if ($answer[14] == '1st') selected='selected' @endif >1st Choice</option>
-              <option value='2nd' {@if ($answer[14] == '2nd') selected='selected' @endif >2nd Choice</option>
-              <option value='3rd' {@if ($answer[14] == '3rd') selected='selected' @endif >3rd Choice</option>
-              <option value='4th' {@if ($answer[14] == '4th') selected='selected' @endif >4th Choice</option>
-              <option value='5th' {@if ($answer[14] == '5th') selected='selected' @endif >5th Choice</option>
-            </select>
-          @else
-            <font class='response'>{{ $answer[14] }}</font>
-          @endif
-        </td>
-      </tr>
+      @php
+        $i = 13;
+      @endphp
 
-      <tr>
-        <td>Paris 4</td>
-        <td colspan='2'>
-          @if ($edit)
-            <select name='question[15]'>
-              <option value=''>&nbsp;</option>
-              <option value='1st' {@if ($answer[15] == '1st') selected='selected' @endif >1st Choice</option>
-              <option value='2nd' {@if ($answer[15] == '2nd') selected='selected' @endif >2nd Choice</option>
-              <option value='3rd' {@if ($answer[15] == '3rd') selected='selected' @endif >3rd Choice</option>
-              <option value='4th' {@if ($answer[15] == '4th') selected='selected' @endif >4th Choice</option>
-              <option value='5th' {@if ($answer[15] == '5th') selected='selected' @endif >5th Choice</option>
-            </select>
-          @else
-            <font class='response'>{{ $answer[15] }}</font>
-          @endif
-        </td>
-      </tr>
+      @foreach ($partners as $partner)
+        @php
+          $i++;
+        @endphp
 
-      <tr>
-        <td>Paris 7</td>
-        <td colspan='2'>
-          @if ($edit)
-            <select name='question[16]'>
-              <option value=''>&nbsp;</option>
-              <option value='1st' {@if ($answer[16] == '1st') selected='selected' @endif >1st Choice</option>
-              <option value='2nd' {@if ($answer[16] == '2nd') selected='selected' @endif >2nd Choice</option>
-              <option value='3rd' {@if ($answer[16] == '3rd') selected='selected' @endif >3rd Choice</option>
-              <option value='4th' {@if ($answer[16] == '4th') selected='selected' @endif >4th Choice</option>
-              <option value='5th' {@if ($answer[16] == '5th') selected='selected' @endif >5th Choice</option>
-            </select>
-          @else
-            <font class='response'>{{ $answer[16] }}</font>
-          @endif
-        </td>
-      </tr>
-
-      <tr>
-        <td>Paris 12</td>
-        <td colspan='2'>
-          @if ($edit)
-            <select name='question[17]'>
-              <option value=''>&nbsp;</option>
-              <option value='1st' {@if ($answer[17] == '1st') selected='selected' @endif >1st Choice</option>
-              <option value='2nd' {@if ($answer[17] == '2nd') selected='selected' @endif >2nd Choice</option>
-              <option value='3rd' {@if ($answer[17] == '3rd') selected='selected' @endif >3rd Choice</option>
-              <option value='4th' {@if ($answer[17] == '4th') selected='selected' @endif >4th Choice</option>
-              <option value='5th' {@if ($answer[17] == '5th') selected='selected' @endif >5th Choice</option>
-            </select>
-          @else
-            <font class='response'>{{ $answer[17] }}</font>
-          @endif
-        </td>
-      </tr>
-
-      <tr>
-        <td>CIPh</td>
-        <td colspan='2'>
-          @if ($edit)
-            <select name='question[18]'>
-              <option value=''>&nbsp;</option>
-              <option value='1st' {@if ($answer[18] == '1st') selected='selected' @endif >1st Choice</option>
-              <option value='2nd' {@if ($answer[18] == '2nd') selected='selected' @endif >2nd Choice</option>
-              <option value='3rd' {@if ($answer[18] == '3rd') selected='selected' @endif >3rd Choice</option>
-              <option value='4th' {@if ($answer[18] == '4th') selected='selected' @endif >4th Choice</option>
-              <option value='5th' {@if ($answer[18] == '5th') selected='selected' @endif >5th Choice</option>
-            </select>
-          @else
-            <font class='response'>{{ $answer[18] }}</font>
-          @endif
-        </td>
-      </tr>
+        <tr>
+          <td>{{ $partner->name }}</td>
+          <td colspan='2'>
+            @if ($edit)
+              <select name='question[{{ $i }}]'>
+                <option value=''>&nbsp;</option>
+                <option value='1st' @if ($answer[$i] == '1st') selected='selected' @endif >1st Choice</option>
+                <option value='2nd' @if ($answer[$i] == '2nd') selected='selected' @endif >2nd Choice</option>
+                <option value='3rd' @if ($answer[$i] == '3rd') selected='selected' @endif >3rd Choice</option>
+                <option value='4th' @if ($answer[$i] == '4th') selected='selected' @endif >4th Choice</option>
+                <option value='5th' @if ($answer[$i] == '5th') selected='selected' @endif >5th Choice</option>
+              </select>
+            @else
+              <font class='response'>{{ $answer[$i] }}</font>
+            @endif
+          </td>
+        </tr>
+      @endforeach
 
       <tr>
         <td colspan='6' style='padding:20px 0 0 0;text-align:justify';>

@@ -19,11 +19,9 @@
           <th>Minor 1</th>
           <th>Major 2</th>
           <th>Minor 2</th>
-          <th>Paris 3</th>
-          <th>Paris 4</th>
-          <th>Paris 7</th>
-          <th>Paris 12</th>
-          <th>CIPh</th>
+          @foreach ($partners as $partner)
+            <th>{{ $partner->name }}</th>
+          @endforeach
           <th>Justification</th>
           <th>Motivated by the calendar</th>
           <th>Final Reg.</th>
@@ -79,11 +77,9 @@
           <th>Minor 1</th>
           <th>Major 2</th>
           <th>Minor 2</th>
-          <th>Paris 3</th>
-          <th>Paris 4</th>
-          <th>Paris 7</th>
-          <th>Paris 12</th>
-          <th>CIPh</th>
+          @foreach ($partners as $partner)
+            <th>{{ $partner->name }}</th>
+          @endforeach
           <th>Justification</th>
           <th>Motivated by the calendar</th>
           <th>Final Reg.</th>

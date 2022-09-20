@@ -67,41 +67,24 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td>
-              {{ Form::label('date5', 'Paris  3, end of course') }}
-            </td>
-            <td>
-              {{ Form::text('date5', $dates->date5, ['class' => 'myUI-datepicker-string']) }}
-            </td>
-          </tr>
+          @php
+            $i = 4;
+          @endphp
 
-          <tr>
-            <td>
-              {{ Form::label('date6', 'Paris  4, end of course') }}
-            </td>
-            <td>
-              {{ Form::text('date6', $dates->date6, ['class' => 'myUI-datepicker-string']) }}
-            </td>
-          </tr>
+          @foreach ($partners as $partner)
+            @php
+              $i++;
+            @endphp
 
-          <tr>
-            <td>
-              {{ Form::label('date7', 'Paris  7, end of course') }}
-            </td>
-            <td>
-              {{ Form::text('date7', $dates->date7, ['class' => 'myUI-datepicker-string']) }}
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              {{ Form::label('date8', 'Paris 12, end of course') }}
-            </td>
-            <td>
-              {{ Form::text('date8', $dates->date8, ['class' => 'myUI-datepicker-string']) }}
-            </td>
-          </tr>
+            <tr>
+              <td>
+                {{ Form::label('date' . $i, $partner->name . ', end of course') }}
+              </td>
+              <td>
+                {{ Form::text('date' . $i, $dates->{"date$i"}, ['class' => 'myUI-datepicker-string']) }}
+              </td>
+            </tr>
+          @endforeach
 
         </tbody>
 
