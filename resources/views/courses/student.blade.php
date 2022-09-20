@@ -14,7 +14,7 @@ Choose your VWPP Courses</p>
 <p style='margin:30px 0 0 0;'>A Paris, saisissez l'information concernant :
   <ul style='margin:5px 0 0 0'>
     <li>Vos cours universitaires</li>
-    <li>Vos cours au CIPh or autre institution</li>
+    <li>Vos cours au CIPh ou autre institution</li>
   </ul>
 </p>
 
