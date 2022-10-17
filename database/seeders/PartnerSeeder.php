@@ -15,11 +15,16 @@ class PartnerSeeder extends Seeder
     public function run()
     {
 	$partners = [
-	    ['Paris 3', 1, 1],
-	    ['Paris 4', 2, 1],
-	    ['Paris 7', 3, 1],
-	    ['Paris 12', 4, 1],
-	    ['CIPh', 5, 0],
+	    ['Paris 3', 1, 1, 20181, 20221],
+	    ['Paris 4', 2, 1, 20181, 20221],
+	    ['Paris 7', 3, 1, 20181, 20221],
+	    ['Paris 12', 4, 1, 20181, 20221],
+	    ['Académie de Port Royal', 5, 0, 20181, 0],
+	    ['CIPh', 6, 0, 20181, 0],
+	    ['Sorbonne Nouvelle', 1, 1, 20222, 0],
+	    ['Sorbonne Université', 1, 1, 20222, 0],
+	    ['Paris Cité', 1, 1, 20222, 0],
+	    ['UPEC', 1, 1, 20222, 0],
 	];
 
 	foreach ($partners as $p) {
@@ -27,8 +32,8 @@ class PartnerSeeder extends Seeder
 	    $partner->name = $p[0];
 	    $partner->order = $p[1];
 	    $partner->date = $p[2];
-	    $partner->start = '20181';
-	    $partner->end = 0;
+	    $partner->start = $p[3];
+	    $partner->end = $p[4] ?? 0;
 	    $partner->save();
 	}
     }

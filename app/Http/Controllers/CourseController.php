@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CourseChoice;
 use App\Models\Internship;
+use App\Models\Partner;
 use App\Models\RHCourse;
 use App\Models\RHCourseAssignment;
 use App\Models\RHCourseLock;
@@ -571,11 +572,14 @@ class CourseController extends Controller
         // Admin with modification access
         $admin2 = in_array(16, $user->access);
 
+        $partners = Partner::getCurrents();
+
         $params = compact(
             'edit',
             'courses',
             'course',
             'admin2',
+            'partners',
         );
 
         // View

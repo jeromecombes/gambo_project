@@ -97,8 +97,8 @@
               <td style='padding-top:20px;'>
                 <select name='institution' id='institution' onchange='checkInstitution();' {{ $disabled }}>
                   <option value=''>&nbsp;</option>
-                  @foreach (explode(',', env('APP_INSTITUTIONS')) as $elem)
-                    <option value='{{ $elem }}' @if ($course->institution == $elem) selected='selected' @endif >{{ $elem }}</option>
+                  @foreach ($partners as $partner)
+                    <option value='{{ $partner->name }}' @if ($course->institution == $partner->name) selected='selected' @endif >{{ $partner->name }}</option>
                   @endforeach
                   <option value='Autre' @if ($course->institution == 'Autre') selected='selected' @endif >Autre (Précisez)</option>
                 </select>
