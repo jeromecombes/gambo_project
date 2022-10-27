@@ -204,7 +204,7 @@
 
       <tr>
         <td colspan='6' style='padding:20px 0 0 0; text-align:justify;'>
-          <b>5. Please rank your choices </b>(fill in 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup> and 4<sup>th</sup> in the appropriate boxes)
+          <b>5. Please rank your choices </b>(fill in 1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup> 4<sup>th</sup> and 5<sup>th</sup> in the appropriate boxes)
         </td>
       </tr>
 

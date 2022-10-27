@@ -18,7 +18,7 @@ class UnivRegExport implements FromArray
         $students = Student::findMine()
             ->whereIn('id', request()->students);
 
-        $partners = Partner::getCurrents();
+        $partners = Partner::getCurrents()->where('univreg', 1);
 
         $univ_reg = UnivReg::where('semester', session('semester'))->get();
         $univ_reg3 = UnivReg3::where('semester', session('semester'))->get();

@@ -9,7 +9,7 @@ class Partner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'order', 'date', 'start', 'end'];
+    protected $fillable = ['name', 'order', 'date', 'univreg', 'start', 'end'];
 
     public static function getCurrents() {
 

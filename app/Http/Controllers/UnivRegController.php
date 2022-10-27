@@ -76,7 +76,7 @@ class UnivRegController extends Controller
 
         $year = substr(session('semester'), -4);
 
-        $partners = Partner::getCurrents();
+        $partners = Partner::getCurrents()->where('univreg', 1);
 
         // View
         return view('univ_reg.list', compact('tab', 'partners', 'year'));
@@ -143,7 +143,7 @@ class UnivRegController extends Controller
 
         // Get deadlines
         $dates = Dates::where('semester', session('semester'))->first();
-        $partners = Partner::getCurrents();
+        $partners = Partner::getCurrents()->where('univreg', 1);
 
         $states = StateHelper::get();
         $countries = CountryHelper::get();
