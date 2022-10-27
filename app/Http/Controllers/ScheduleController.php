@@ -26,7 +26,7 @@ class ScheduleController extends Controller
         $courses = array();
 
         foreach (CourseHelper::get()->all as $elem) {
-            if ($elem->day) {
+            if (is_numeric($elem->day)) {
                 $courses[] = $elem;
             }
         }
@@ -34,7 +34,7 @@ class ScheduleController extends Controller
         // Get tutoring
         $tutoring = Tutoring::findMe();
         if ($tutoring) {
-            if ($tutoring->day) {
+            if (is_numeric($tutoring->day)) {
                 $courses[] = $tutoring;
             }
         }
