@@ -6,10 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Http\Traits\CryptTrait;
+use App\Mail\Send2FACode;
 use App\Models\Student;
-
+use Exception;
 
 class User extends Authenticatable
 {
@@ -55,6 +57,13 @@ class User extends Authenticatable
         return json_decode($value);
     }
 
+    public function getPartialEmailAttribute($value)
+    {
+        $tab = explode('@', $this->email);
+        $partialEmail = substr($tab[0], 0, -5) . '*****@' . $tab[1];
+        return $partialEmail;
+    }
+
     public function setAccessdAttribute($value)
     {
         $this->attributes['access'] = json_encode($value);
@@ -93,4 +102,24 @@ class User extends Authenticatable
         $this->attributes['lastname'] = $this->encrypt($value, false);
     }
 
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function generateCode()
+    {
+        $code = rand(100000, 999999);
+
+        UserCode::updateOrCreate(
+            [ 'user_id' => auth()->user()->id ],
+            [ 'code' => $code ]
+        );
+
+        try {
+            Mail::to(auth()->user()->email)->send(new Send2FACode($code));
+        } catch (Exception $e) {
+            report($e);
+        }
+    }
 }

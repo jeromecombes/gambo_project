@@ -22,6 +22,7 @@ class DateTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/dates');
@@ -33,8 +34,10 @@ class DateTest extends MyTestCase
     {
         $user = User::where('admin', 1)->where('access', 'like', '%"24"%')->first();
         $response = $this->actingAs($user)
-            ->withSession(['semester' => 'Spring 2020'])
-            ->get('/dates');
+            ->withSession([
+                '2FAVerified' => true,
+                'semester' => 'Spring 2020',
+            ])->get('/dates');
         $response->assertStatus(200);
     }
 
@@ -42,8 +45,10 @@ class DateTest extends MyTestCase
     {
         $user = User::where('admin', 1)->where('access', 'not like', '%"24"%')->first();
         $response = $this->actingAs($user)
-            ->withSession(['semester' => 'Spring 2020'])
-            ->get('/dates');
+            ->withSession([
+                '2FAVerified' => true,
+                'semester' => 'Spring 2020',
+            ])->get('/dates');
         $response->assertStatus(302);
     }
 
@@ -61,6 +66,7 @@ class DateTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->post('/dates');
@@ -74,8 +80,10 @@ class DateTest extends MyTestCase
         $student = $this->get_student();
 
         $response = $this->actingAs($user)
-            ->withSession(['semester' => 'Spring 2020'])
-            ->post('/dates');
+            ->withSession([
+                '2FAVerified' => true,
+                'semester' => 'Spring 2020',
+            ])->post('/dates');
 
         $response->assertStatus(302);
         $response->assertRedirect('/admin');

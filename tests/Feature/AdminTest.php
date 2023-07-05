@@ -18,14 +18,18 @@ class AdminTest extends MyTestCase
     public function test_admin_student_session()
     {
         $user = User::where('admin', 0)->first();
-        $response = $this->actingAs($user)->get('/admin');
+        $response = $this->actingAs($user)
+            ->withSession(['2FAVerified' => true])
+            ->get('/admin');
         $response->assertStatus(302);
     }
 
     public function test_admin_admin_session()
     {
         $user = User::where('admin', 1)->first();
-        $response = $this->actingAs($user)->get('/admin');
+        $response = $this->actingAs($user)
+            ->withSession(['2FAVerified' => true])
+            ->get('/admin');
         $response->assertStatus(200);
     }
 
@@ -42,6 +46,7 @@ class AdminTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/courses');
@@ -55,6 +60,7 @@ class AdminTest extends MyTestCase
 
         $response = $this->actingAs($user)
             ->withSession([
+                '2FAVerified' => true,
                 'semester' => $student->semester,
                 'student' => $student->id,
             ])->get('/courses');

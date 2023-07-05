@@ -31,16 +31,16 @@ class UpdatePartnerForUnivReg extends Migration
             'Paris 4' => 'Sorbonne Université',
             'Paris 7' => 'Paris Cité',
             'Paris 12' => 'UPEC',
-	);
+        );
 
-	$keys = array_keys($replace);
+        $keys = array_keys($replace);
 
         $univReg = UnivReg3::whereNotIn('semester', $serie1)->get();
 
         foreach ($univReg as $elem) {
             if (in_array($elem->university, $keys)) {
                $elem->university = $replace[$elem->university];
-	       $elem->save();
+               $elem->save();
             }
         }
     }
@@ -69,16 +69,16 @@ class UpdatePartnerForUnivReg extends Migration
             'Sorbonne Université' => 'Paris 4',
             'Paris Cité' => 'Paris 7',
             'UPEC' => 'Paris 12',
-	);
+        );
 
-	$keys = array_keys($replace);
+        $keys = array_keys($replace);
 
         $univReg = UnivReg3::whereNotIn('semester', $serie1)->get();
 
         foreach ($univReg as $elem) {
             if (in_array($elem->university, $keys)) {
                $elem->university = $replace[$elem->university];
-	       $elem->save();
+               $elem->save();
             }
         }
     }

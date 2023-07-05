@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
         }
 
         if ($request->password) {
-            $rules['password'] = 'required|min:8|confirmed';
+            $rules['current_password'] = 'required|min:8|confirmed';
         }
 
         return $rules;

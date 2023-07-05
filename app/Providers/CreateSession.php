@@ -28,6 +28,7 @@ class CreateSession
      */
     public function handle(Login $event)
     {
+
         // For students only
         if (!$event->user->admin) {
             $student = Student::where('user_id', $event->user->id)->first();

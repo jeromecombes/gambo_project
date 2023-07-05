@@ -25,8 +25,10 @@ class ExampleTest extends MyTestCase
         $student = $this->get_student($user);
 
         $response = $this->actingAs($user)
-            ->withSession(['semester' => $student->semester])
-            ->get('/');
+            ->withSession([
+                '2FAVerified' => true,
+                'semester' => $student->semester,
+            ])->get('/');
         $response->assertStatus(200);
     }
 }

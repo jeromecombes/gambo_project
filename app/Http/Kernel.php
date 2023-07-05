@@ -74,5 +74,6 @@ class Kernel extends HttpKernel
         'student.list' => \App\Http\Middleware\StudentList::class,
         'this.student' => \App\Http\Middleware\ThisStudent::class,
         'role' => \App\Http\Middleware\CheckRole::class,
+        '2fa' => \App\Http\Middleware\Check2FA::class,
     ];
 }
