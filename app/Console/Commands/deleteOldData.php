@@ -5,11 +5,15 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Models\Document;
+use App\Models\Grade;
 use App\Models\Host;
 use App\Models\HostAvailable;
+use App\Models\Partner;
 use App\Models\PasswordReset;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\UserAgent;
+use App\Models\UserCode;
 
 class deleteOldData extends Command
 {
@@ -72,6 +76,7 @@ class deleteOldData extends Command
             'App\Models\Dates',
             'App\Models\Evaluation',
             'App\Models\EvaluationEnabled',
+            'App\Models\Grade',
             'App\Models\Housing',
             'App\Models\HousingTerm',
             'App\Models\HousingAssignment',
@@ -180,6 +185,11 @@ class deleteOldData extends Command
 
         Host::whereIn('id', $deleted_hosts)->delete();
 
+        // Partners
+        Partner::where('end', '<>', 0)
+            ->where('end', '<', $year . '1')
+            ->delete();
+
         // Users
         $students = Student::pluck('user_id');
         $users = User::where('admin', 0)
@@ -188,6 +198,11 @@ class deleteOldData extends Command
 
         $emails = User::pluck('email');
         PasswordReset::whereNotIn('email', $emails)->delete();
+
+        // User agents and user codes
+        $userIds = User::pluck('id');
+        UserAgent::whereNotIn('user_id', $userIds)->delete();
+        UserCode::whereNotIn('user_id', $userIds)->delete();
 
         if ($verbos) {
             dd(DB::getQueryLog());
