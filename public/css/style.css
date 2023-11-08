@@ -261,6 +261,10 @@ textarea {
   text-align:justify;
 }
 
+a.response {
+  color: #005c9c;
+}
+
 font.response {
   margin: 0 0 0 5px;
 }

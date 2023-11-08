@@ -14,7 +14,7 @@
     Please take a few minutes to read through the Housing Process Residence commitment sections of the VWPP website by clicking on the link below, before proceeding to fill out the questionnaire.
   </p>
   <p>
-    <a href='http://en.vwpp.org/wp-content/uploads/2019/04/Charte-hebergement-chez-habitant-F2019.pdf' target='_blank' alt='Housing Process Residence commitment'>Housing Process Residence commitment</a>
+    <a href='/doc/HomestayCharter.pdf' target='_blank' alt='Homestay Charter' class='response'>Homestay Charter</a>
   </p>
   <p>
     {{ Form::open(['url' => '/housing/accept_terms']) }}

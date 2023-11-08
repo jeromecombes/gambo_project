@@ -288,7 +288,7 @@
 
   <tr>
     <td colspan='5'>
-      <h3 style='text-align:justify;'>V. The VWPP housing is described in detail in the <a href='http://en.vwpp.org/info-for-accepted-students/essential-housing-information/'>Essential Housing Information page on the VWPP Web site</a>. <u>You must read through this description
+      <h3 style='text-align:justify;'>V. The VWPP housing is described in detail in the <a href='https://en.vwpp.org/homestays' target='_blank' alt='Essential Housing Information' class='response' >Essential Housing Information page on the VWPP Web site</a>. <u>You must read through this description
       VERY carefully and then answer the following questions</u>.</h3>
     </td>
   </tr>
