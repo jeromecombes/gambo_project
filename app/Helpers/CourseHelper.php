@@ -27,6 +27,9 @@ class CourseHelper
             $students = array_merge($students, $assignments->where('seminar1', $v->id)->pluck('student')->toArray());
             $students = array_merge($students, $assignments->where('seminar2', $v->id)->pluck('student')->toArray());
             $students = array_merge($students, $assignments->where('seminar3', $v->id)->pluck('student')->toArray());
+            $students = array_merge($students, $assignments->where('workshop1', $v->id)->pluck('student')->toArray());
+            $students = array_merge($students, $assignments->where('workshop2', $v->id)->pluck('student')->toArray());
+            $students = array_merge($students, $assignments->where('workshop3', $v->id)->pluck('student')->toArray());
             $courses['local'][$k]['students'] = $students;
         }
 
@@ -54,6 +57,9 @@ class CourseHelper
         if ($a->seminar1) { $assignment[] = $a->seminar1; }
         if ($a->seminar2) { $assignment[] = $a->seminar2; }
         if ($a->seminar3) { $assignment[] = $a->seminar3; }
+        if ($a->workshop1) { $assignment[] = $a->workshop1; }
+        if ($a->workshop2) { $assignment[] = $a->workshop2; }
+        if ($a->workshop3) { $assignment[] = $a->workshop3; }
 
         $courses['local'] = RHCourse::whereIn('id', $assignment)->orderBy('type')->get();
 

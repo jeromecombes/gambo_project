@@ -184,6 +184,9 @@ class CourseController extends Controller
         $as1 = $assignment ? $rhCourses->find($assignment->seminar1) :null;
         $as2 = $assignment ? $rhCourses->find($assignment->seminar2) :null;
         $as3 = $assignment ? $rhCourses->find($assignment->seminar3) :null;
+        $aws1 = $assignment ? $rhCourses->find($assignment->workshop1) :null;
+        $aws2 = $assignment ? $rhCourses->find($assignment->workshop2) :null;
+        $aws3 = $assignment ? $rhCourses->find($assignment->workshop3) :null;
 
         $assignment_text = (object) array(
             'writing1' => $aw1 ? $aw1->code . ' ' . $aw1->title . ', ' . $aw1->professor : null,
@@ -191,6 +194,9 @@ class CourseController extends Controller
             'seminar1' => $as1 ? $as1->code . ' ' . $as1->title . ', ' . $as1->professor : null,
             'seminar2' => $as2 ? $as2->code . ' ' . $as2->title . ', ' . $as2->professor : null,
             'seminar3' => $as3 ? $as3->code . ' ' . $as3->title . ', ' . $as3->professor : null,
+            'workshop1' => $aws1 ? $aws1->code . ' ' . $aws1->title . ', ' . $aws1->professor : null,
+            'workshop2' => $aws2 ? $aws2->code . ' ' . $aws2->title . ', ' . $aws2->professor : null,
+            'workshop3' => $aws3 ? $aws3->code . ' ' . $aws3->title . ', ' . $aws3->professor : null,
         );
 
         // Hide final reg if no assignment (student view only)
