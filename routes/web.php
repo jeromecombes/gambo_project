@@ -428,6 +428,11 @@ Route::group(['middleware' => ['auth', '2fa']], function () {
     Route::get('/export/{semester}/{delete}', [DocumentController::class, 'export_all'])
         ->middleware('admin')
         ->name('document.export_delete');
+
+    // Tests
+    Route::get('/test/form', [App\Http\Controllers\TestController::class, 'form'])
+        ->middleware('admin')
+        ->name('test.form');
 });
 
 // Two Factor Authentication

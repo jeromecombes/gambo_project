@@ -167,7 +167,6 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Html\HtmlServiceProvider::class,
 
@@ -178,6 +177,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\FormServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],
@@ -232,7 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Form' => Collective\Html\FormFacade::class,
+        'Form' => App\Services\FormFacade::class,
         'Html' => Spatie\Html\Facades\Html::class,
 	'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
