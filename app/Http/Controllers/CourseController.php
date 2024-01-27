@@ -174,6 +174,9 @@ class CourseController extends Controller
             'seminar1' => null,
             'seminar2' => null,
             'seminar3' => null,
+            'workshop1' => null,
+            'workshop2' => null,
+            'workshop3' => null,
         );
 
         $assignment = $rhCoursesAssign->where('student', session('student'))->first() ?? $default_assignment;
