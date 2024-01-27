@@ -38,8 +38,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', '2fa']], function () {
 
-    Auth::routes(['login' => false, 'register' => false]);
-
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Check if session is going to expire
@@ -434,6 +432,9 @@ Route::group(['middleware' => ['auth', '2fa']], function () {
         ->middleware('admin')
         ->name('test.form');
 });
+
+// Auth routes
+Auth::routes(['login' => false, 'register' => false]);
 
 // Two Factor Authentication
 Route::get('2fa', [App\Http\Controllers\TwoFAController::class, 'index'])->name('2fa.index');
