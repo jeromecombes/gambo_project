@@ -16,7 +16,11 @@
 
   @else
 
-      @include('univ_reg.student_form_2019')
+      @if (substr(session('semester'), -4) >= 2024)
+        @include('univ_reg.student_form_2024')
+      @else
+        @include('univ_reg.student_form_2019')
+      @endif
 
     @if (Auth::user()->admin or $published)
 
