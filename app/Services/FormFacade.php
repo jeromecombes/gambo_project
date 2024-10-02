@@ -15,7 +15,7 @@ class FormFacade
         return $html;
     }
 
-    public static function checkbox($name, $value, $checked, $params = [])
+    public static function checkbox($name, $value = '1', $checked = false, $params = [])
     {
         $html = html()->checkbox($name, $checked, $value);
         $html = self::setAttributes($html, $params);
@@ -27,7 +27,7 @@ class FormFacade
         return html()->form()->close();
     }
 
-    public static function email($name, $value, $params = [])
+    public static function email($name, $value = null, $params = [])
     {
         $html = html()->email($name, $value);
         $html = self::setAttributes($html, $params);
