@@ -10,7 +10,7 @@ class FormFacade
 {
     public static function button($value, $params = [])
     {
-        $html = html()->button($value);
+        $html = html()->button($value, 'button');
         $html = self::setAttributes($html, $params);
         return $html;
     }
