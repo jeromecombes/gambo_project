@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected function authenticated($request, $user)
     {
         if ($user->admin) {
-            return redirect()->route('admin.index');
+            return redirect()->route('project.index');
         }
     }
 }

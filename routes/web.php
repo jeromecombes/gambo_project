@@ -14,6 +14,7 @@ use App\Http\Controllers\HousingClosedController;
 use App\Http\Controllers\HousingController;
 use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\LockController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SessionController;
@@ -44,8 +45,22 @@ Route::group(['middleware' => ['auth', '2fa']], function () {
     Route::get('/session', [SessionController::class, 'get'])->name('session.get');
 
     // Admin home
-    Route::get('/admin', [AdminController::class, 'index'])
-        ->name('admin.index');
+    Route::get('/projects', [ProjectController::class, 'index'])
+        ->name('project.index');
+
+    // Project Edit
+    Route::get('/project/{id?}/{edit?}', [ProjectController::class, 'edit'])
+        ->where('id', '\d+')
+        ->where('edit', 'edit')
+        ->name('project.edit');
+
+    // Project Update
+    Route::post('/project', [ProjectController::class, 'update'])
+        ->name('project.update');
+
+    // Project Destroy
+    Route::delete('/project', [ProjectController::class, 'destroy'])
+        ->name('project.delete');
 
     // Set the semester
     Route::post('/admin/semester', [AdminController::class, 'semester'])

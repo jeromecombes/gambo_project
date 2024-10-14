@@ -19,7 +19,7 @@ class Semester
 
         if (empty(session('semester'))) {
             if ($user->admin) {
-                return redirect()->route('admin.index')->with('warning', 'Please, select a semester');
+                return redirect()->route('project.index')->with('warning', 'Please, select a semester');
             } else {
                 return redirect()->route('semester.index');
             }

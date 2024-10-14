@@ -38,7 +38,7 @@ class CheckRole
         }
 
         if ($redirect) {
-            return redirect()->route('admin.index')->with('warning', 'Access denied');
+            return redirect()->route('project.index')->with('warning', 'Access denied');
         }
 
         return $next($request);

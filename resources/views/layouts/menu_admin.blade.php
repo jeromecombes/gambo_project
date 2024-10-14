@@ -1,7 +1,7 @@
 <ul class='nav nav-tabs'>
 
-  <li class="@if (Request::is('admin')) active @endif">
-    <a href='{{ route("admin.index") }}'>Home</a>
+  <li class="@if (Request::is('project*')) active @endif">
+    <a href='{{ route("project.index") }}'>Projets</a>
   </li>
 
   @if(session('semester'))

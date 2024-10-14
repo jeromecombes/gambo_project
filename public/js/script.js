@@ -1,6 +1,12 @@
 var li_ids=new Array();
 var logins=new Array();
 
+function projectDelete() {
+  if (confirm('Etes-vous sûr(e) de vouloir supprimer ce projet ?')) {
+    $('#delete-form').submit();
+  }
+}
+
 // function activEval(semester){
 //     file("activEval.php?semester="+semester);
 // }

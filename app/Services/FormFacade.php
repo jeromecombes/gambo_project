@@ -80,6 +80,14 @@ class FormFacade
 
     public static function select($name, $options, $value, $params = [])
     {
+        if (is_object($options)) {
+            $new = [];
+            foreach ($options as $option) {
+                $new[$option->id] = $option->name;
+            }
+            $options = $new;
+        }
+
         $html = html()->select($name, $options, $value);
         $html = self::setAttributes($html, $params);
         return $html;
