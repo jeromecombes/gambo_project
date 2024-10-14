@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}?rev=20210330" rel="stylesheet">
         <link href="{{ asset('css/jquery-ui.min.css') }}?rev=20210330" rel="stylesheet">
         <link href="{{ asset('js/DataTables/datatables.min.css') }}?rev=20210414" rel="StyleSheet" type="text/css" media="all"/>
@@ -19,6 +20,7 @@
 
         <link rel='shortcut icon' href="{{ asset('favicon.ico') }}" type='image/x-icon' />
 
+        <script type="text/JavaScript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/jquery-1.10.2.js?rev=20210330'></script>
         <script type='text/JavaScript' src='/js/jquery-ui-1.10.4/ui/jquery-ui.js?rev=20210330'></script>
         <script type='text/JavaScript' src='/js/DataTables/datatables.min.js?rev=20210414'></script>

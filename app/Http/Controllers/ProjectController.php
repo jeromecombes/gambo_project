@@ -40,7 +40,7 @@ class ProjectController extends Controller
 
         $supports = [];
         $supportDB = ProjectSupport::where('project_id', $request->id)->get();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             $supports[$i]['lastname'] = $supportDB->where('position', $i)->first()->lastname ?? null;
             $supports[$i]['firstname'] = $supportDB->where('position', $i)->first()->firstname ?? null;
             $supports[$i]['email'] = $supportDB->where('position', $i)->first()->email ?? null;
@@ -72,7 +72,7 @@ class ProjectController extends Controller
         $project->manager = $request->user()->id;
         $project->save();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             $support = ProjectSupport::firstOrNew(['project_id' => $project->id, 'position' => $i]);
             $support->lastname = $request->support_lastname[$i];
             $support->firstname = $request->support_firstname[$i];

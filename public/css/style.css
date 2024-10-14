@@ -525,6 +525,10 @@ div.dt-buttons {
   padding:8px 18px 0 0;
 }
 
+.tabDiv {
+  margin-top: 20px;
+}
+
 @media screen and (min-width:1200px) {
 	#body{
 	  width: 1200px;

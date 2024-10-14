@@ -7,6 +7,13 @@ function projectDelete() {
   }
 }
 
+function showDiv(number) {
+  $('.tabDiv').hide();
+  $('#tabDiv' + number).show();
+  $('#project-menu li').removeClass('active');
+  $('#li' + number).addClass('active');
+}
+
 // function activEval(semester){
 //     file("activEval.php?semester="+semester);
 // }
