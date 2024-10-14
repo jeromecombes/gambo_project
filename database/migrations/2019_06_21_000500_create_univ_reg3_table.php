@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsToHosts extends Migration
+class CreateUnivReg3Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddTimestampsToHosts extends Migration
      */
     public function up()
     {
-        Schema::table('logements', function (Blueprint $table) {
-            $table->timestamps();
-        });
+         Schema::create('univ_reg3', function (Blueprint $table) {
+             $table->bigIncrements('id');
+             $table->string('name');
+         });
     }
 
     /**
@@ -25,9 +26,6 @@ class AddTimestampsToHosts extends Migration
      */
     public function down()
     {
-        Schema::table('logements', function (Blueprint $table) {
-            $table->dropColumn('created_at');
-            $table->dropColumn('updated_at');
-        });
+        Schema::dropIfExists('univ_reg3');
     }
 }

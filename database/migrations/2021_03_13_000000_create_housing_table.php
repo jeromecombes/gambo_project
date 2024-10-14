@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeLockFieldOnInternship extends Migration
+class CreateHousingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class ChangeLockFieldOnInternship extends Migration
      */
     public function up()
     {
-        Schema::table('stages', function (Blueprint $table) {
-            $table->integer('lock')->nullable()->change();
-        });
+         Schema::create('housing', function (Blueprint $table) {
+             $table->bigIncrements('id');
+             $table->string('semestre');
+             $table->integer('question');
+             $table->text('response');
+         });
     }
 
     /**
@@ -25,6 +28,6 @@ class ChangeLockFieldOnInternship extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('housing');
     }
 }

@@ -14,11 +14,11 @@ class AlterUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('name');
-            $table->string('email')->unique()->change();
-            $table->string('password')->change();
-            $table->rememberToken();
-            $table->timestamps();
+//            $table->string('name');
+//            $table->string('email')->unique()->change();
+//            $table->string('password')->change();
+//            $table->rememberToken();
+//            $table->timestamps();
         });
     }
 
@@ -30,12 +30,12 @@ class AlterUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropUnique('email');
-            $table->string('email', 200)->change();
-            $table->string('password', 200)->change();
-            $table->dropRememberToken();
-            $table->dropTimestamps();
+  //          $table->dropColumn('name');
+  //          $table->dropUnique('email');
+  //          $table->string('email', 200)->change();
+  //          $table->string('password', 200)->change();
+  //          $table->dropRememberToken();
+  //          $table->dropTimestamps();
         });
     }
 }
