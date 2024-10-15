@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Option;
 use App\Models\Product;
 use App\Models\Project;
+use App\Models\ProjectOption;
 use App\Models\ProjectSupport;
 use Illuminate\Http\Request;
 
@@ -25,6 +27,7 @@ class ProjectController extends Controller
      */
     public function edit(Request $request, ProjectController $projectController)
     {
+        // General info
         $products = Product::all();
 
         if ($request->id) {
@@ -38,6 +41,11 @@ class ProjectController extends Controller
             $project = new Project();
         }
 
+        // Options
+        $options = Option::orderBy('value', 'asc')->get();
+        $projectOptions = ProjectOption::where('project_id', $project->id)->get();
+
+        // Support
         $supports = [];
         $supportDB = ProjectSupport::where('project_id', $request->id)->get();
         for ($i = 0; $i < 4; $i++) {
@@ -46,7 +54,7 @@ class ProjectController extends Controller
             $supports[$i]['email'] = $supportDB->where('position', $i)->first()->email ?? null;
         }
 
-        return view('project.edit', compact('project', 'products', 'supports'));
+        return view('project.edit', compact('options', 'project', 'projectOptions', 'products', 'supports'));
     }
 
     /**
@@ -54,6 +62,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, ProjectController $projectController)
     {
+        // General info
         if ($request->id) {
             $project = Project::find($request->id);
 
@@ -62,7 +71,10 @@ class ProjectController extends Controller
               return;
             }
         } else {
+            $token = bin2hex(random_bytes(16));
             $project = new project();
+            $project->token = $token;
+            $project->save();
         }
 
         $project->order = $request->order;
@@ -72,6 +84,20 @@ class ProjectController extends Controller
         $project->manager = $request->user()->id;
         $project->save();
 
+        // Options
+        $options = Option::orderBy('value', 'asc')->get();
+        if ($request->options) {
+            foreach ($options as $option) {
+                if (in_array($option->id, $request->options)) {
+                    $projectOption = ProjectOption::firstOrNew(['project_id' => $project->id, 'option_id' => $option->id]);
+                    $projectOption->save();
+                } else {
+                    ProjectOption::where('project_id', $project->id)->where('option_id', $option->id)->delete();
+                }
+            }
+        }
+
+        // Support
         for ($i = 0; $i < 4; $i++) {
             $support = ProjectSupport::firstOrNew(['project_id' => $project->id, 'position' => $i]);
             $support->lastname = $request->support_lastname[$i];

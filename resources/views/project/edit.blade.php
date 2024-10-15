@@ -97,8 +97,17 @@
         <div class="row gx-5 align-items-start">
           <div class="col">
             <div class="p-3">
-              <label for='options'>Options</label>
-              {!! Form::checkbox('options', '1', '1', ['id' => 'options']) !!}
+              <ul>
+                @foreach ($options as $option)
+                  @php
+                    $checked = $projectOptions->where('option_id', $option->id)->count() ? true : false;
+                  @endphp
+                  <li class="option_li_{{ $option->product_id }}">
+                  {!! Form::checkbox('options[]', $option->id, $checked, ['id' => 'option_' . $option->id]) !!}
+                  <label for="option_{{ $option->id }}">{{ $option->value }}</label>
+                  </li>
+                @endforeach
+              </ul>
             </div>
           </div>
         </div>
