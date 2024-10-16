@@ -34,36 +34,25 @@
         <div id='body'>
             <div class="content">
                 <div id='title'>
-                    @if(!Auth::user()->admin)
-                        VWPP Database
-                    @elseif(!session('student'))
-                        VWPP Database - Admin
-                    @else
-                        VWPP Database - {{ session('student_name') }}
-                    @endif
+                    Projects
                 </div>
-                <div id='loginName'>
-                    <span>{{ Auth::user()->display_name }}</span>
-                    <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
-                    <div id='myMenu'>
-                        <a href="{{ route('account.index') }}">My Account</a><br/>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                @if (Auth::user())
+                    <div id='loginName'>
+                        <span>{{ Auth::user()->display_name }}</span>
+                        <span class='ui-icon ui-icon-triangle-1-s' id='myMenuTriangle'></span><br/>
+                        <div id='myMenu'>
+                            <a href="{{ route('account.index') }}">My Account</a><br/>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
-
-                    @if(Auth::user()->admin)
-                        @if(session('student'))
-                            @include('layouts.menu_admin_student')
-                        @else
-                            @include('layouts.menu_admin')
-                        @endif
-                    @else
-                        @include('layouts.menu_student')
+                    @if (Auth::user())
+                        @include('layouts.menu_admin')
                     @endif
 
                     @if (session('success'))

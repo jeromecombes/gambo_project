@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CoursesRHController;
 use App\Http\Controllers\CoursesRH2Controller;
@@ -36,6 +37,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Client 
+Route::get('/client/{token}', [ClientController::class, 'index'])
+    ->name('client.index');
 
 Route::group(['middleware' => ['auth', '2fa']], function () {
 
