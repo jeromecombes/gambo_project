@@ -42,6 +42,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/client/{token}', [ClientController::class, 'index'])
     ->name('client.index');
 
+// Client update
+Route::post('/client', [ClientController::class, 'update'])
+    ->name('client.update');
+
 Route::group(['middleware' => ['auth', '2fa']], function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
