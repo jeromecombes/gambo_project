@@ -14,4 +14,14 @@ class ProjectOption extends Model
         'option_id',
     ];
 
+    public function scopeWithOptions($query)
+    {
+        $query->leftjoin('options', 'options.id', '=', 'project_options.option_id')
+            ->addSelect([
+                'options.id as id',
+                'options.order as option_order',
+                'options.value as option_value'
+            ]);
+    }
+
 }

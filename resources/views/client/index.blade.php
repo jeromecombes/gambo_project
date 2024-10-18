@@ -1,33 +1,41 @@
 @extends('layouts.myApp')
 @section('content')
 
-<h3>Projets</h3>
-<p>
-Vous trouverez ci-dessous la liste de vos projets.<br/>
-</p>
+<h1>Votre projet {{ $project->product }}</h1>
 
-<input type='button' value='Nouveau projet' class='btn btn-primary' onclick='location.href="{{ route('project.edit') }}";' />
+<div>
+Commande {{ $project->order }}<br/>
+Client {{ $project->customer }}
+</div>
 
-<table class='datatable' data-sort='[]'>
-  <thead>
-    <tr>
-      <th>Commande</th>
-      <th>Produit</th>
-      <th>Client</th>
-      <th>Statut</th>
-    </tr>
-  </thead>
+<h2>Questions</h2>
 
-  <tbody>
+<div class="accordion" id="accordionQuestions">
 
-    <tr>
-      <td><a href="{{ route('project.edit', [$project->id, 'edit']) }}">{{ $project->order }}</a></td>
-      <td>{{ $project->product }}</td>
-      <td>{{ $project->customer }}</td>
-      <td>{{ $project->statusText }}</td>
-    </tr>
-  </tbody>
-</table>
+  @foreach ($options as $option)
+    @php
+      $collapsed = $loop->first ? null : 'collapsed';
+      $expanded = $loop->first ? true : false;
+    @endphp
+
+    <div class="accordion-item">
+      <h3 class="accordion-header">
+        <button class="accordion-button {{ $collapsed }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ $option->id }}" aria-expanded="{{ $expanded }}" aria-controls="collapse_{{ $option->id }}">
+          {{ $option->option_value }}
+        </button>
+      </h3>
+      <div id="collapse_{{ $option->id }}" class="accordion-collapse collapse @if ($loop->first) show @endif" data-bs-parent="#accordionQuestions">
+        <div class="accordion-body">
+          <ul>
+          @foreach ($questions->where('option_id', $option->id) as $question)
+              <li>{{ $question->question }}</li>
+          @endforeach
+          </ul>
+        </div>
+      </div>
+    </div>
+  @endforeach
+</div>
 
 @endsection
 

@@ -42,8 +42,17 @@ class ProjectController extends Controller
         }
 
         // Options
-        $options = Option::orderBy('value', 'asc')->get();
         $projectOptions = ProjectOption::where('project_id', $project->id)->get();
+        $options = Option::orderBy('order', 'asc')->get();
+        foreach ($options as &$option) {
+            if ($request->id) {
+                $checked = $projectOptions->where('option_id', $option->id)->count() ? true : false;
+            } else {
+                $checked = $option->default;
+            }
+            $option->checked = $checked;
+        }
+
 
         // Support
         $supports = [];

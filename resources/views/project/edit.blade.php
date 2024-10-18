@@ -99,11 +99,8 @@
             <div class="p-3">
               <ul>
                 @foreach ($options as $option)
-                  @php
-                    $checked = $projectOptions->where('option_id', $option->id)->count() ? true : false;
-                  @endphp
                   <li class="option_li_{{ $option->product_id }}">
-                  {!! Form::checkbox('options[]', $option->id, $checked, ['id' => 'option_' . $option->id]) !!}
+                  {!! Form::checkbox('options[]', $option->id, $option->checked, ['id' => 'option_' . $option->id]) !!}
                   <label for="option_{{ $option->id }}">{{ $option->value }}</label>
                   </li>
                 @endforeach

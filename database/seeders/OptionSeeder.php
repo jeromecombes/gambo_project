@@ -13,65 +13,104 @@ class OptionSeeder extends Seeder
      */
     public function run(): void
     {
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'conges';
-        $option->value = 'Module congés';
-        $option->save();
+        $options = [
+            [
+                9,
+                0,
+                'mep',
+                'Date de mise en production',
+                true,
+            ],
+            [
+                9,
+                1,
+                'url',
+                'URL de production',
+                true,
+            ],
+            [
+                9,
+                2,
+                'mail_from',
+                'Mail-From de production',
+                true,
+            ],
+            [
+                9,
+                3,
+                'conges',
+                'Module congés',
+            ],
+            [
+                9,
+                4,
+                'ics',
+                'Import agendas ICS',
+            ],
+            [
+                9,
+                5,
+                'office',
+                'Import agendas Office 365',
+            ],
+            [
+                9,
+                6,
+                'sirh',
+                'Import absences SIRH',
+            ],
+            [
+                9,
+                7,
+                'sirh_presence',
+                'Import présence SIRH',
+            ],
+            [
+                9,
+                8,
+                'entra_id',
+                'Authentification Microsoft Entra ID',
+            ],
+            [
+                9,
+                9,
+                'cas',
+                'Authentification CAS',
+            ],
+            [
+                9,
+                10,
+                'ldap',
+                'Authentification ou importation LDAP',
+            ],
+            [
+                9,
+                11,
+                'open_id',
+                'Authentification Open ID Connect',
+            ],
+            [
+                9,
+                12,
+                'data',
+                'Récupération des données',
+            ],
+        ]; 
 
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'ics';
-        $option->value = 'Import agendas ICS';
-        $option->save();
+        foreach (Option::all() as $option) {
+            $option->delete();
+        }
 
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'office';
-        $option->value = 'Import agendas Office 365';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'sirh';
-        $option->value = 'Import absences SIRH';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'sirh_presence';
-        $option->value = 'Import présence SIRH';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'entra_id';
-        $option->value = 'Authentification Microsoft Entra ID';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'cas';
-        $option->value = 'Authentification CAS';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'ldap';
-        $option->value = 'Authentification ou importation LDAP';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'open_id';
-        $option->value = 'Authentification Open ID Connect';
-        $option->save();
-
-        $option = new Option();
-        $option->product_id = 9;
-        $option->name = 'data';
-        $option->value = 'Récupération des données';
-        $option->save();
-
+        foreach ($options as $elem) {
+            $option = new Option();
+            $option->product_id = $elem[0];
+            $option->order = $elem[1];
+            $option->name = $elem[2];
+            $option->value = $elem[3];
+            if (isset($elem[4])) {
+                $option->default = $elem[4];
+            }
+            $option->save();
+        }
     }
 }
