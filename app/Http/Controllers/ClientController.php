@@ -29,7 +29,7 @@ class ClientController extends Controller
         $questions = Question::whereIn('option_id', $options->pluck('id'))->orderBy('order', 'asc')->get();
 
         foreach ($questions as &$question) {
-            $question->answer = $answers->where('question', $question->name)->first()->answer;
+            $question->answer = $answers->where('question', $question->name)->first()->answer ?? null;
         }
 
         return view('client.index', compact('options', 'project', 'questions'));
