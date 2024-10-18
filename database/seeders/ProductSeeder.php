@@ -13,44 +13,23 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $product = new Product();
-        $product->name = '';
-        $product->save();
+        $products = [
+            '',
+            'Bokeh',
+            'Koha',
+            'Matomo',
+            'NumaHOP',
+            'Omeka S',
+            'Omekalia',
+            'Pikoloco',
+            'Planno',
+            'Urungi',
+        ];
 
-        $product = new Product();
-        $product->name = 'Bokeh';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Koha';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Matomo';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'NumaHOP';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Omeka S';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Omekalia';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Pikoloco';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Planno';
-        $product->save();
-
-        $product = new Product();
-        $product->name = 'Urungi';
-        $product->save();
+        foreach ($products as $elem) {
+            $product = new Product();
+            $product->name = $elem;
+            $product->save();
+        }
     }
 }

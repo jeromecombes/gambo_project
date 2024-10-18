@@ -19,7 +19,7 @@ return new class extends Migration
             $table->mediumtext('long_desc')->nullable();
             $table->integer('order')->nullable();
             $table->timestamps();
-            $table->foreign('option_id')->references('id')->on('options');
+            $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');
         });
     }
 

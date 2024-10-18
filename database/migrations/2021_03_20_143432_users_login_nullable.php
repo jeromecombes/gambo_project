@@ -35,7 +35,7 @@ class UsersLoginNullable extends Migration
             $table->dropColumn('login');
             $table->dropColumn('lastname');
             $table->dropColumn('firstname');
-            $table->dropColumntext('access');
+            $table->dropColumn('access');
             $table->dropColumn('university');
             $table->dropColumn('language');
             $table->dropColumn('token');

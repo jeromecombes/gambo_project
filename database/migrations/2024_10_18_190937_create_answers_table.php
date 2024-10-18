@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('question')->nullable();
             $table->mediumtext('answer')->nullable();
             $table->timestamps();
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

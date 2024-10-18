@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('firstname')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
