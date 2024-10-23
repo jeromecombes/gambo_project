@@ -35,7 +35,7 @@
 
         <tr>
           <td colspan='2' class='td-button' >
-            <input type='reset' value='Cancel' class='btn' />
+            <input type='reset' value='Cancel' class='btn btn-secondary' />
             <input type='submit' value='Change password' class='btn btn-primary' />
           </td>
         </tr>

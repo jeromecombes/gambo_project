@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Mail;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Http\Traits\CryptTrait;
 use App\Mail\Send2FACode;
-use App\Models\Student;
 use Exception;
 
 class User extends Authenticatable
@@ -71,11 +70,7 @@ class User extends Authenticatable
 
     public function getFirstnameAttribute($value)
     {
-        if ($this->admin) {
-            return $this->decrypt($value, false);
-        } else {
-            return Student::where('user_id', $this->id)->first()->firstname ?? null;
-        }
+        return $this->decrypt($value, false);
     }
 
     public function getDisplayNameAttribute($value)
@@ -85,11 +80,7 @@ class User extends Authenticatable
 
     public function getLastnameAttribute($value)
     {
-        if ($this->admin) {
-            return $this->decrypt($value, false);
-        } else {
-            return Student::where('user_id', $this->id)->first()->lastname ?? null;
-        }
+        return $this->decrypt($value, false);
     }
 
     public function setFirstnameAttribute($value)

@@ -3,28 +3,41 @@
 
   <h3>User list</h3>
 
-  <table class='datatable' data-sort='[[1, "asc"],[2, "asc"]]' >
+  <div class="container">
+    <div class="row">
+      <div class="col col-9">
+        <input type="text" class="search-table form-control" placeholder="Search">
+      </div>
+      <div class="col">
+        <input type="button" value="Add" class="btn btn-primary w-100" onclick="location.href='{{ route('user.edit') }}';" />
+      </div>
+    </div>
+  </div>
+
+  <table class="table">
     <thead>
       <tr>
-        <th class='dataTableNoSort'></th>
-        <th>Last name</th>
-        <th>First name</th>
-        <th>Email</th>
-        <th>University</th>
+        <th scope="col">Last name</th>
+        <th scope="col">First name</th>
+        <th scope="col">Email</th>
+        <th scope="col">University</th>
       </tr>
     </thead>
 
     <tbody>
     @foreach ($users as $user)
       <tr>
-        <td>
-          @if (in_array(10, Auth::user()->access))
+        @if (in_array(10, Auth::user()->access))
+          <th>
             <a href='{{ route('user.edit', $user->id) }}'>
-              <img src='/img/edit.png' alt='Edit' />
+              {{ $user->lastname }}
             </a>
-          @endif
-        </td>
-        <td>{{ $user->lastname }}</td>
+          </th>
+        @else
+          <td>
+            {{ $user->lastname }}
+          </td>
+        @endif
         <td>{{ $user->firstname }}</td>
         <td><a href='mailto:{{ $user->email }}'>{{ $user->email }}</a></td>
         <td>{{ $user->university }}</td>
@@ -32,9 +45,5 @@
     @endforeach
     </tbody>
   </table>
-
-  <div style='margin-top:30px; text-align:right;'>
-    <input type='button' value='Add' class='btn btn-primary' onclick='location.href="{{ route('user.edit') }}";' />
-  </div>
 
 @endsection

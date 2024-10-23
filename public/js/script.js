@@ -195,6 +195,13 @@ function isNumeric(input){
 $(document).ready(function(){
   session_init();
 
+  $('.search-table').on('keyup', function() {
+    var value = $(this).val().toLowerCase();
+    $('.table tbody tr').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
   $(".myUI-button").button();
   $(".myUI-button-right").button();
   $(".myUI-datepicker-string").datepicker({dateFormat: "MM d, yy"});

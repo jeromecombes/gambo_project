@@ -12,9 +12,17 @@ body{
   margin: auto;
 }
 
+section h1,
+section h2,
+section h3,
+section p{
+  margin-left: 8px;
+}
+
 table {
   width:100%;
 }
+
 
 .marginBottom{
   margin-bottom :30px;
@@ -435,12 +443,6 @@ ul.ui-widget-header{
 
 .btn {
 	min-width:100px;
-	margin-left:20px;
-    margin-bottom: 5px;
-}
-
-section#content{
-  padding:10px;
 }
 
 label{

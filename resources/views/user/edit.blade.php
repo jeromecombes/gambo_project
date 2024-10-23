@@ -144,10 +144,10 @@
 
       <div style='margin:20px; text-align:right;'>
 
-        {!! Form::button('Cancel', ['onclick' => 'location.href="' . route('users.index') . '";', 'class' => 'btn']) !!}
+        {!! Form::button('Cancel', ['onclick' => 'location.href="' . route('users.index') . '";', 'class' => 'btn btn-secondary']) !!}
 
         @if (in_array(12, Auth::user()->access) and $user->id)
-          {!! Form::button('Delete', ['onclick' => "delete_user()", 'class' => 'btn']) !!}
+          {!! Form::button('Delete', ['onclick' => "delete_user()", 'class' => 'btn btn-danger']) !!}
         @endif
 
         {!! Form::submit($user->id ? 'Update' : 'Add', ['class' => 'btn btn-primary']) !!}
